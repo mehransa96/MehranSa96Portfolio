@@ -1,6 +1,6 @@
 # GMTec — Mehran Sabzali portfolio
 
-Single-page bilingual (FA / EN) portfolio with an interactive WebGL core, built from the Claude Design handoff in `project/` and `chats/`.
+Single-page bilingual (FA / EN) portfolio with an interactive WebGL core, built from the Claude Design handoff in `design/`.
 
 ## Layout
 
@@ -13,7 +13,8 @@ Single-page bilingual (FA / EN) portfolio with an interactive WebGL core, built 
 | `site/vendor/three.min.js` | three.js r149, self-hosted. |
 | `site/assets/` | Logo, portrait and self-hosted fonts (Vazirmatn, Space Grotesk, IBM Plex Mono). |
 | `dist/portfolio-fa-standalone.html` | Everything above inlined into one file — works offline or from any host. |
-| `project/`, `chats/` | The original design bundle and conversation, kept for reference. |
+| `design/claude-design/` | The original Claude Design bundle (prototypes, screenshots, source export), kept for reference. |
+| `design/chats/` | The design conversation where every decision was made. |
 
 ## Build the standalone file
 
