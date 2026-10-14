@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="881e0ac0-5842-4570-a1ae-41ff128a97ff"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("d75253eb-604f-46f0-a481-93d4b9d88c33") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("bf32d728-dd38-4abd-a2f6-a87f0d560c91") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("cc2a2e80-62cf-4d15-803c-0cdb5deb28fc") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("c743ad59-7d41-4c30-aa46-6b692cd49b52") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("b916a571-b57c-48fb-ad2a-c1881e925f24") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("d2ee0fc0-6f46-4abd-8b04-274f3220984a") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("92366156-fba3-46d4-8498-f8d706218d94") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("2f14b177-9eb1-4479-ac23-8b3b4976a43a") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("985ba46b-4c3b-45d8-94f5-188f6cbd6308") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("5950cb2c-5dba-4d7c-911c-c3edb0887340") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("77805df0-607d-4e6a-a282-9201d83b11f4") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("16d1fdc3-76de-4798-96be-7738840b190e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("77703454-d3f2-4ba4-9417-1b05e4c639cd") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("77805df0-607d-4e6a-a282-9201d83b11f4") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("16d1fdc3-76de-4798-96be-7738840b190e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("77703454-d3f2-4ba4-9417-1b05e4c639cd") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("77805df0-607d-4e6a-a282-9201d83b11f4") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("16d1fdc3-76de-4798-96be-7738840b190e") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("77703454-d3f2-4ba4-9417-1b05e4c639cd") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("57fb564c-bc1f-4588-892d-f43cb36d4324") format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("8e5842d8-4f9b-4c9d-b53a-1baee578d844") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("b79f9119-638b-494f-9512-b20ef55a948a") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("57fb564c-bc1f-4588-892d-f43cb36d4324") format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("8e5842d8-4f9b-4c9d-b53a-1baee578d844") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("b79f9119-638b-494f-9512-b20ef55a948a") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("57fb564c-bc1f-4588-892d-f43cb36d4324") format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("8e5842d8-4f9b-4c9d-b53a-1baee578d844") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("b79f9119-638b-494f-9512-b20ef55a948a") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("57fb564c-bc1f-4588-892d-f43cb36d4324") format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("8e5842d8-4f9b-4c9d-b53a-1baee578d844") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("b79f9119-638b-494f-9512-b20ef55a948a") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("57fb564c-bc1f-4588-892d-f43cb36d4324") format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("8e5842d8-4f9b-4c9d-b53a-1baee578d844") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("b79f9119-638b-494f-9512-b20ef55a948a") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<script type="module" src="168d2081-57f2-4674-a597-78b5f47623a8"></script>
+<style>
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#08090A;--accent:#00E28A;--portrait-filter:grayscale(0.35) contrast(1.05);}
+  a{color:#E7E9E8;text-decoration:none;transition:color .2s;}
+  a:hover{color:var(--accent);}
+  ::selection{background:rgba(0,226,138,.22);}
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-track{background:#08090A;}
+  ::-webkit-scrollbar-thumb{background:#232726;border-radius:8px;}
+  @keyframes msIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes msChar{from{opacity:0;transform:translateY(.42em);filter:blur(9px)}to{opacity:1;transform:none;filter:blur(0)}}
+  @keyframes msMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes msPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.32;transform:scale(1.85)}}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+  body[data-nomotion] *{animation:none!important;transition:none!important}
+</style>
+</helmet>
+<div dir="rtl" lang="fa" style="background:#08090A;color:#E7E9E8;font-family:'Vazirmatn',sans-serif;min-height:100vh;overflow-x:hidden;">
+
+  <div style="position:sticky;top:0;z-index:50;background:rgba(8,9,10,.82);backdrop-filter:blur(18px);border-bottom:1px solid #151818;">
+    <span data-progress="" style="position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(to left,var(--accent),transparent);transform:scaleX(0);transform-origin:right;pointer-events:none;z-index:2;"></span>
+    <div style="max-width:1360px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:20px;padding:14px clamp(18px,4vw,48px);">
+      <a href="#top" style="display:flex;align-items:center;gap:12px;">
+        <img src="73b68986-00db-4001-bf06-218ee402295f" alt="GMTec" style="height:26px;width:auto;display:block;object-fit:contain;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:#6E7A78;">GMTEC</span>
+      </a>
+      <div data-navlinks="" style="display:flex;align-items:center;flex-wrap:nowrap;gap:22px;font-size:13.5px;color:#8A9391;flex:0 1 auto;justify-content:flex-end;">
+        <a href="#expertise" style="white-space:nowrap;">تخصص‌ها</a>
+        <a href="#projects" style="white-space:nowrap;">پروژه‌ها</a>
+        <a href="#opensource" style="white-space:nowrap;">کد باز</a>
+        <a href="#certs" style="white-space:nowrap;">گواهینامه‌ها</a>
+        <a href="#stack" style="white-space:nowrap;">استک</a>
+        <a href="#about" style="white-space:nowrap;">درباره</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;flex:0 0 auto;">
+        <button data-navtoggle="" sc-camel-on-click="{{ toggleMenu }}" style="display:none;font-family:'Vazirmatn',sans-serif;font-size:13px;color:#C8D0CE;background:transparent;border:1px solid #2A2F2E;border-radius:2px;padding:7px 14px;cursor:pointer;white-space:nowrap;">بخش‌ها</button>
+        <a href="portfolio-en-standalone.html" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6E7A78;white-space:nowrap;">EN</a>
+        <a href="https://t.me/Mehran_Sa96" target="_blank" style="border:1px solid #2A2F2E;border-radius:2px;padding:8px 18px;font-size:13px;white-space:nowrap;" style-hover="border-color:var(--accent);color:var(--accent);">پیام در تلگرام</a>
+      </div>
+    </div>
+    <div data-navpanel="" style="display:none;border-top:1px solid #151818;padding:8px clamp(18px,4vw,48px) 18px;">
+      <div style="max-width:1360px;margin:0 auto;display:flex;flex-direction:column;">
+        <a href="#expertise" style="font-size:14px;padding:10px 0;color:#C8D0CE;border-bottom:1px solid #151818;">تخصص‌ها</a>
+        <a href="#projects" style="font-size:14px;padding:10px 0;color:#C8D0CE;border-bottom:1px solid #151818;">پروژه‌ها</a>
+        <a href="#opensource" style="font-size:14px;padding:10px 0;color:#C8D0CE;border-bottom:1px solid #151818;">کد باز</a>
+        <a href="#certs" style="font-size:14px;padding:10px 0;color:#C8D0CE;border-bottom:1px solid #151818;">گواهینامه‌ها</a>
+        <a href="#stack" style="font-size:14px;padding:10px 0;color:#C8D0CE;border-bottom:1px solid #151818;">استک</a>
+        <a href="#about" style="font-size:14px;padding:10px 0;color:#C8D0CE;border-bottom:1px solid #151818;">درباره</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="top" style="position:relative;overflow:hidden;">
+    <div data-ring="" style="position:fixed;left:0;top:0;width:24px;height:24px;margin:-12px 0 0 -12px;border:1px solid var(--accent);border-radius:50%;opacity:0;pointer-events:none;z-index:60;transition:opacity .35s ease,width .25s ease,height .25s ease,margin .25s ease;"></div>
+    <div data-spotlight="" style="position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0;transition:opacity .3s ease;"></div>
+    <canvas data-bg="" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;"></canvas>
+    <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(110% 85% at 22% 4%,rgba(0,226,138,.055),transparent 62%);"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,226,138,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,226,138,.05) 1px,transparent 1px);background-size:clamp(38px,4.4vw,66px) clamp(38px,4.4vw,66px);mask-image:radial-gradient(125% 95% at 50% 20%,#000 8%,rgba(0,0,0,.32) 52%,transparent 82%);-webkit-mask-image:radial-gradient(125% 95% at 50% 20%,#000 8%,rgba(0,0,0,.32) 52%,transparent 82%);"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:repeating-linear-gradient(58deg,rgba(0,226,138,.06) 0 1px,transparent 1px 26px);mask-image:linear-gradient(160deg,#000,transparent 68%);-webkit-mask-image:linear-gradient(160deg,#000,transparent 68%);"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(46% 34% at 50% 0%,rgba(0,226,138,.07),transparent 70%);"></div>
+    <div style="position:relative;max-width:1360px;margin:0 auto;padding:clamp(56px,8vw,104px) clamp(18px,4vw,48px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,5vw,72px);align-items:center;">
+      <div data-hero-copy="">
+        <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#6E7A78;margin-bottom:36px;animation:msIn .8s cubic-bezier(.16,.86,.2,1) both;">
+          <span style="width:5px;height:5px;border-radius:50%;background:var(--accent);animation:msPulse 2.6s ease-in-out infinite;"></span>
+          <span data-decode="">CEH CERTIFIED · SENIOR SOFTWARE ENGINEER</span>
+        </div>
+        <h1 data-magnet="" style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:500;line-height:1.04;letter-spacing:-0.03em;" dir="ltr"><span style="display:inline-block;white-space:nowrap;"><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.300s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">M</span></span><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.345s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">e</span></span><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.390s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">h</span></span><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.435s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">r</span></span><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.480s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">a</span></span><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.525s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">n</span></span></span><span data-space="" style="display:inline-block;width:.3em;"></span><span style="display:inline-block;white-space:nowrap;"><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.615s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">S</span></span><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.660s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">a</span></span><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.705s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">b</span></span><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.750s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">z</span></span><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.795s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">a</span></span><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.840s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">l</span></span><span style="display:inline-block;animation:msChar .85s cubic-bezier(.16,.86,.2,1) 0.885s both;"><span data-ltr="" style="display:inline-block;transition:transform .22s cubic-bezier(.2,.7,.2,1),color .3s ease;">i</span></span></span></h1>
+        <div style="margin-top:22px;font-size:clamp(17px,1.5vw,21px);font-weight:500;color:#C8D0CE;animation:msIn .9s cubic-bezier(.16,.86,.2,1) .95s both;">مهران سبزعلی — مهندس ارشد نرم‌افزار</div>
+        <div style="display:flex;gap:12px;margin-top:40px;flex-wrap:wrap;animation:msIn .9s cubic-bezier(.16,.86,.2,1) 1.14s both;">
+          <a href="https://t.me/Mehran_Sa96" target="_blank" data-mag="" style="background:var(--accent);color:#04120C;font-size:14px;font-weight:600;padding:15px 28px;border-radius:2px;transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease;" style-hover="filter:brightness(1.08);">پیام در تلگرام</a>
+          <a href="assets/resume.pdf" data-mag="" style="border:1px solid #2A2F2E;color:#C8D0CE;font-size:14px;padding:15px 28px;border-radius:2px;transition:transform .25s cubic-bezier(.2,.7,.2,1),border-color .3s ease;" style-hover="border-color:#3A423F;">دانلود رزومه</a>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:44px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#5C6664;animation:msIn .9s cubic-bezier(.16,.86,.2,1) 1.24s both;">
+          <span>TEHRAN, IR</span><span style="color:#232726;">|</span><span>AI · SECURITY · IOT</span><span style="color:#232726;">|</span><span><span data-count="8">0</span> YEARS</span>
+        </div>
+      </div>
+      <div data-hero-inst="" style="position:relative;will-change:transform;">
+        <div style="animation:msIn 1s cubic-bezier(.16,.86,.2,1) .5s both;">
+          <canvas ref="{{ canvasRef }}" style="width:100%;max-width:460px;aspect-ratio:1;display:block;margin:0 auto;touch-action:manipulation;"></canvas>
+          <div dir="ltr" style="max-width:460px;margin:16px auto 0;display:flex;justify-content:space-between;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#3E4644;">
+            <span data-decode="">SYSTEM MAP · LIVE</span>
+            <span>NODES 49</span>
+            <span>FPS <span data-fps="">60</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div dir="ltr" style="position:relative;margin-top:clamp(46px,5vw,70px);border-top:1px solid #111414;border-bottom:1px solid #111414;background:rgba(10,12,12,.55);overflow:hidden;">
+      <div data-strip="" style="display:flex;width:max-content;animation:msMarquee 52s linear infinite;"><div style="display:flex;align-items:center;gap:28px;padding:13px 28px 13px 0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#4E5654;white-space:nowrap;"><span style="color:var(--accent);">/</span><span>TEHRAN 35.69°N 51.39°E</span><span style="color:#232726;">/</span><span>LOCAL <span data-clock="">--:--:--</span></span><span style="color:#232726;">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span style="color:#232726;">/</span><span>AI · SECURITY · IOT</span><span style="color:#232726;">/</span><span>8 YEARS IN PRODUCTION</span><span style="color:#232726;">/</span><span>23 PROJECTS</span></div><div style="display:flex;align-items:center;gap:28px;padding:13px 28px 13px 0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#4E5654;white-space:nowrap;"><span style="color:var(--accent);">/</span><span>TEHRAN 35.69°N 51.39°E</span><span style="color:#232726;">/</span><span>LOCAL <span data-clock="">--:--:--</span></span><span style="color:#232726;">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span style="color:#232726;">/</span><span>AI · SECURITY · IOT</span><span style="color:#232726;">/</span><span>8 YEARS IN PRODUCTION</span><span style="color:#232726;">/</span><span>23 PROJECTS</span></div></div>
+    </div>
+  </div>
+
+  <div id="expertise" style="max-width:1360px;margin:clamp(88px,12vw,150px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;" data-rv="">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #1A1D1D;padding-bottom:16px;position:relative;"><span data-rule="" style="position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(to left,var(--accent),transparent);transform:scaleX(0);transform-origin:right;transition:transform 1.25s cubic-bezier(.16,.86,.2,1);"></span>
+      <h2 style="margin:0;font-size:15px;font-weight:600;">حوزه‌های تخصصی</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#5C6664;" data-decode="">03 DOMAINS</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:1px;background:#1A1D1D;" data-stagger="">
+      <div data-glow-item="" style="padding:40px clamp(22px,2.4vw,34px);background:#08090A;transition:background .45s ease;position:relative;overflow:hidden;" style-hover="background:#0B0D0D;"><span data-glow="" style="position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;"></span>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:var(--accent);margin-bottom:22px;">01</div>
+        <h3 style="margin:0 0 14px;font-size:21px;font-weight:600;">هوش مصنوعی و LLM</h3>
+        <p style="margin:0 0 24px;font-size:14.5px;line-height:1.95;color:#8A9391;text-wrap:pretty;">طراحی و استقرار سیستم‌های RAG، مهندسی پرامپت پیشرفته، معماری عامل‌های هوشمند و اتوماسیون جریان‌های کاری پیچیده با مدل‌های زبانی بزرگ؛ از تحقیق تا تولید.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6E7A78;">
+          <span>LangChain</span><span style="color:#282D2C;">/</span><span>RAG</span><span style="color:#282D2C;">/</span><span>Vector DB</span><span style="color:#282D2C;">/</span><span>Fine-tuning</span>
+        </div>
+      </div>
+      <div data-glow-item="" style="padding:40px clamp(22px,2.4vw,34px);background:#08090A;transition:background .45s ease;position:relative;overflow:hidden;" style-hover="background:#0B0D0D;"><span data-glow="" style="position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;"></span>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:var(--accent);margin-bottom:22px;">02</div>
+        <h3 style="margin:0 0 14px;font-size:21px;font-weight:600;">امنیت سایبری (CEH)</h3>
+        <p style="margin:0 0 24px;font-size:14.5px;line-height:1.95;color:#8A9391;text-wrap:pretty;">تست نفوذ، معماری Zero Trust، طراحی سیستم‌های امن از پایه، ارزیابی آسیب‌پذیری و پیاده‌سازی پروتکل‌های امنیتی در سطح سازمانی برای برنامه‌های وب و شبکه.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6E7A78;">
+          <span>Pen Testing</span><span style="color:#282D2C;">/</span><span>OWASP</span><span style="color:#282D2C;">/</span><span>Zero Trust</span><span style="color:#282D2C;">/</span><span>Burp Suite</span>
+        </div>
+      </div>
+      <div data-glow-item="" style="padding:40px clamp(22px,2.4vw,34px);background:#08090A;transition:background .45s ease;position:relative;overflow:hidden;" style-hover="background:#0B0D0D;"><span data-glow="" style="position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;"></span>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:var(--accent);margin-bottom:22px;">03</div>
+        <h3 style="margin:0 0 14px;font-size:21px;font-weight:600;">IoT و فول‌استک</h3>
+        <p style="margin:0 0 24px;font-size:14.5px;line-height:1.95;color:#8A9391;text-wrap:pretty;">توسعه سیستم‌های IoT مبتنی بر ESP32، معماری client-server با ارتباطات امن VPN، استقرار اپلیکیشن‌های وب مقیاس‌پذیر و طراحی API های RESTful.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6E7A78;">
+          <span>ESP32</span><span style="color:#282D2C;">/</span><span>Next.js</span><span style="color:#282D2C;">/</span><span>WireGuard</span><span style="color:#282D2C;">/</span><span>Docker</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="projects" style="max-width:1360px;margin:clamp(80px,10vw,130px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;" data-rv="">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #1A1D1D;padding-bottom:16px;position:relative;"><span data-rule="" style="position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(to left,var(--accent),transparent);transform:scaleX(0);transform-origin:right;transition:transform 1.25s cubic-bezier(.16,.86,.2,1);"></span>
+      <h2 style="margin:0;font-size:15px;font-weight:600;">پروژه‌های منتخب</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#5C6664;">{{ projectCount }}</span>
+    </div>
+    <div style="display:flex;gap:8px;margin:28px 0 32px;flex-wrap:wrap;">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+        <button sc-camel-on-click="{{ f.onClick }}" style="font-family:'Vazirmatn',sans-serif;font-size:13px;padding:8px 18px;border-radius:2px;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};cursor:pointer;transition:border-color .2s,background .2s,color .2s;">{{ f.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1px;background:#151818;border:1px solid #151818;" data-cards="">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+        <article style="background:#0A0C0C;position:relative;transition:background .45s ease,transform .12s ease-out;" style-hover="background:#0C100F;">
+          <span data-glow="" style="position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;"></span>
+          <div sc-camel-on-click="{{ p.onClick }}" style="padding:clamp(24px,2.2vw,30px);cursor:pointer;">
+            <div style="display:flex;align-items:center;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#5C6664;margin-bottom:26px;">
+              <span>{{ p.num }}</span><span>{{ p.tag }}</span>
+            </div>
+            <h3 style="margin:0 0 6px;font-size:18px;font-weight:600;line-height:1.5;">{{ p.title }}</h3>
+            <div dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;margin-bottom:14px;">{{ p.en }}</div>
+            <p style="margin:0 0 20px;font-size:14px;line-height:1.9;color:#8A9391;text-wrap:pretty;">{{ p.sum }}</p>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6E7A78;letter-spacing:.4px;line-height:1.8;">{{ p.stackLine }}</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:22px;font-size:13px;color:{{ p.linkColor }};transition:color .2s;">
+              <span>{{ p.toggleLabel }}</span><span style="font-family:'IBM Plex Mono',monospace;">{{ p.sign }}</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-rows:{{ p.rows }};transition:grid-template-rows .62s cubic-bezier(.16,.86,.2,1);">
+            <div style="overflow:hidden;">
+              <div style="padding:0 clamp(24px,2.2vw,30px) clamp(26px,2.2vw,30px);opacity:{{ p.opacity }};transform:translateY({{ p.ty }});transition:opacity .5s ease .05s,transform .6s cubic-bezier(.16,.86,.2,1) .05s;">
+                <div style="border-top:1px solid #1A1D1D;padding-top:24px;">
+                  <sc-if value="{{ p.hasCtx }}" hint-placeholder-val="{{ true }}">
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#5C6664;margin-bottom:12px;">زمینه پروژه</div>
+                    <p style="margin:0 0 28px;font-size:14px;line-height:2.05;color:#9BA5A3;text-wrap:pretty;">{{ p.ctx }}</p>
+                  </sc-if>
+                  <sc-if value="{{ p.hasCh }}" hint-placeholder-val="{{ true }}">
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#5C6664;margin-bottom:12px;">چالش‌های فنی</div>
+                    <sc-for list="{{ p.ch }}" as="c" hint-placeholder-count="3">
+                      <div style="display:grid;grid-template-columns:auto 1fr;gap:10px;margin-bottom:10px;font-size:13.5px;line-height:1.9;color:#8A9391;">
+                        <span style="color:var(--accent);">·</span><span>{{ c.text }}</span>
+                      </div>
+                    </sc-for>
+                  </sc-if>
+                  <sc-if value="{{ p.hasSol }}" hint-placeholder-val="{{ true }}">
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#5C6664;margin:26px 0 12px;">رویکرد فنی</div>
+                    <sc-for list="{{ p.sol }}" as="sv" hint-placeholder-count="4">
+                      <div style="display:grid;grid-template-columns:auto 1fr;gap:10px;margin-bottom:10px;font-size:13.5px;line-height:1.9;color:#8A9391;">
+                        <span style="color:#3E4644;">·</span><span>{{ sv.text }}</span>
+                      </div>
+                    </sc-for>
+                  </sc-if>
+                  <sc-if value="{{ p.hasResp }}" hint-placeholder-val="{{ true }}">
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#5C6664;margin:26px 0 12px;">نقش من</div>
+                    <sc-for list="{{ p.resp }}" as="r" hint-placeholder-count="4">
+                      <div style="display:grid;grid-template-columns:auto 1fr;gap:10px;margin-bottom:10px;font-size:13.5px;line-height:1.9;color:#8A9391;">
+                        <span style="color:#3E4644;">·</span><span>{{ r.text }}</span>
+                      </div>
+                    </sc-for>
+                  </sc-if>
+                  <sc-if value="{{ p.hasVal }}" hint-placeholder-val="{{ true }}">
+                    <div style="margin-top:26px;border:1px solid #1A1D1D;background:#0C0F0E;padding:18px 20px;">
+                      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#5C6664;margin-bottom:10px;">نتیجه</div>
+                      <div style="font-size:13.5px;line-height:1.9;color:#C8D0CE;">{{ p.val }}</div>
+                    </div>
+                  </sc-if>
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#5C6664;margin:26px 0 12px;">استک</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                    <sc-for list="{{ p.stack }}" as="s" hint-placeholder-count="6">
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 10px;border-radius:2px;">{{ s.text }}</span>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{ p.hasLink }}" hint-placeholder-val="{{ true }}">
+                    <a href="{{ p.link }}" target="_blank" style="display:inline-block;margin-top:24px;font-size:13px;color:var(--accent);">مشاهده مخزن ↗</a>
+                  </sc-if>
+                  <sc-if value="{{ p.hasBadge }}" hint-placeholder-val="{{ true }}">
+                    <div style="display:inline-block;margin-top:24px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:#5C6664;border:1px solid #232726;padding:5px 10px;border-radius:2px;">{{ p.badge }}</div>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+
+  <div id="opensource" style="max-width:1360px;margin:clamp(72px,9vw,110px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;" data-rv="">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #1A1D1D;padding-bottom:16px;position:relative;"><span data-rule="" style="position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(to left,var(--accent),transparent);transform:scaleX(0);transform-origin:right;transition:transform 1.25s cubic-bezier(.16,.86,.2,1);"></span>
+      <h2 style="margin:0;font-size:15px;font-weight:600;">مخازن کد</h2>
+      <a href="https://github.com/mehransa96" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#5C6664;" data-decode="">GITHUB.COM/MEHRANSA96 ↗</a>
+    </div>
+    <div style="display:flex;flex-direction:column;" data-stagger="">
+      <a href="https://github.com/mehransa96/Website-analyse-tool-site-recon" target="_blank" style="display:flex;flex-wrap:wrap;gap:10px 32px;align-items:baseline;padding:26px 0;border-bottom:1px solid #151818;transition:background .35s ease,border-color .35s ease;" style-hover="background:#0B0E0D;border-color:#232726;">
+        <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#E7E9E8;text-align:right;flex:0 0 220px;">site-recon</span>
+        <span style="font-size:14px;line-height:1.85;color:#8A9391;flex:1 1 300px;">ایجنت محلی که یک وب‌سایت را مثل یک مهندس بازاریابی می‌خواند و مستندش می‌کند؛ شواهد روی دستگاه خودت می‌ماند.</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">↗</span>
+      </a>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 32px;align-items:baseline;padding:26px 0;border-bottom:1px solid #151818;transition:background .35s ease,border-color .35s ease;" style-hover="background:#0B0E0D;border-color:#232726;">
+        <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#E7E9E8;text-align:right;flex:0 0 220px;">RepBuilderAssis</span>
+        <span style="font-size:14px;line-height:1.85;color:#8A9391;flex:1 1 300px;">دستیار هوش مصنوعی ساخت گزارش SSRS روی دیتابیس ERP: از پرسش فارسی تا T-SQL اعتبارسنجی‌شده و فایل RDL، با ایندکس دانشی از ۳٬۴۲۸ جدول و بنچمارک چندمدلی.</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:#5C6664;border:1px solid #232726;padding:3px 8px;border-radius:2px;white-space:nowrap;">خصوصی</span>
+      </div>
+      <a href="https://github.com/mehransa96/gmtecaitools" target="_blank" style="display:flex;flex-wrap:wrap;gap:10px 32px;align-items:baseline;padding:26px 0;border-bottom:1px solid #151818;transition:background .35s ease,border-color .35s ease;" style-hover="background:#0B0E0D;border-color:#232726;">
+        <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#E7E9E8;text-align:right;flex:0 0 220px;">gmtecaitools</span>
+        <span></span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">↗</span>
+      </a>
+      <a href="https://github.com/mehransa96/PowerGmTec" target="_blank" style="display:flex;flex-wrap:wrap;gap:10px 32px;align-items:baseline;padding:26px 0;border-bottom:1px solid #151818;transition:background .35s ease,border-color .35s ease;" style-hover="background:#0B0E0D;border-color:#232726;">
+        <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#E7E9E8;text-align:right;flex:0 0 220px;">PowerGmTec</span>
+        <span></span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div id="certs" style="max-width:1360px;margin:clamp(72px,9vw,110px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;" data-rv="">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #1A1D1D;padding-bottom:16px;position:relative;"><span data-rule="" style="position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(to left,var(--accent),transparent);transform:scaleX(0);transform-origin:right;transition:transform 1.25s cubic-bezier(.16,.86,.2,1);"></span>
+      <h2 style="margin:0;font-size:15px;font-weight:600;">گواهینامه‌ها</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#5C6664;" data-decode="">03 CERTIFICATES</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,272px),1fr));gap:1px;background:#151818;border:1px solid #151818;margin-top:0;" data-stagger="">
+      <div data-glow-item="" style="background:#0A0C0C;padding:32px;transition:background .45s ease;position:relative;overflow:hidden;" style-hover="background:#0C100F;"><span data-glow="" style="position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;"></span>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-bottom:24px;animation:msPulse 2.6s ease-in-out infinite;"></div>
+        <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;">Certified Ethical Hacker</h3>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">CEH · EC-COUNCIL</div>
+      </div>
+      <div data-glow-item="" style="background:#0A0C0C;padding:32px;transition:background .45s ease;position:relative;overflow:hidden;" style-hover="background:#0C100F;"><span data-glow="" style="position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;"></span>
+        <div style="width:6px;height:6px;border-radius:50%;background:#3A423F;margin-bottom:24px;"></div>
+        <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;">دوره کامل پایتون</h3>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">PYTHON · FULL COURSE</div>
+      </div>
+      <div data-glow-item="" style="background:#0A0C0C;padding:32px;transition:background .45s ease;position:relative;overflow:hidden;" style-hover="background:#0C100F;"><span data-glow="" style="position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;"></span>
+        <div style="width:6px;height:6px;border-radius:50%;background:#3A423F;margin-bottom:24px;"></div>
+        <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;">دوره کامل SQL Server</h3>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">SQL SERVER · FULL COURSE</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="stack" style="max-width:1360px;margin:clamp(72px,9vw,110px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;" data-rv="">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #1A1D1D;padding-bottom:16px;position:relative;"><span data-rule="" style="position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(to left,var(--accent),transparent);transform:scaleX(0);transform-origin:right;transition:transform 1.25s cubic-bezier(.16,.86,.2,1);"></span>
+      <h2 style="margin:0;font-size:15px;font-weight:600;">استک فنی</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#5C6664;" data-decode="">04 GROUPS</span>
+    </div>
+    <div style="display:flex;flex-direction:column;" data-stagger="">
+      <div style="display:flex;flex-wrap:wrap;gap:14px 40px;align-items:baseline;padding:26px 0;border-bottom:1px solid #151818;transition:background .35s ease,border-color .35s ease;" style-hover="background:#0B0E0D;border-color:#232726;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:1.5px;color:#8A9391;flex:0 0 150px;">AI / LLM</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:14px;color:#C8D0CE;flex:1 1 260px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">LangChain</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">OpenAI API</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">RAG Pipeline</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Vector DB</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Embeddings</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Prompt Engineering</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Fine-tuning</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">AI Agents</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px 40px;align-items:baseline;padding:26px 0;border-bottom:1px solid #151818;transition:background .35s ease,border-color .35s ease;" style-hover="background:#0B0E0D;border-color:#232726;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:1.5px;color:#8A9391;flex:0 0 150px;">SECURITY</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:14px;color:#C8D0CE;flex:1 1 260px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">CEH</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Pen Testing</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">OWASP Top 10</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Zero Trust</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Metasploit</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Burp Suite</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Nmap</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Cloudflare WAF</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px 40px;align-items:baseline;padding:26px 0;border-bottom:1px solid #151818;transition:background .35s ease,border-color .35s ease;" style-hover="background:#0B0E0D;border-color:#232726;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:1.5px;color:#8A9391;flex:0 0 150px;">DATABASE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:14px;color:#C8D0CE;flex:1 1 260px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">SQL Server</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">T-SQL</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">SSRS</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">PostgreSQL</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Prisma</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Redis</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">InfluxDB</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px 40px;align-items:baseline;padding:26px 0;border-bottom:1px solid #151818;transition:background .35s ease,border-color .35s ease;" style-hover="background:#0B0E0D;border-color:#232726;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:1.5px;color:#8A9391;flex:0 0 150px;">IOT / EMBEDDED</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px 20px;font-size:14px;color:#C8D0CE;flex:1 1 260px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">ESP32</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Arduino C++</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">MQTT</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">WireGuard VPN</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Raspberry Pi</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">Grafana</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="about" style="max-width:1360px;margin:clamp(72px,9vw,110px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;" data-rv="">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #1A1D1D;padding-bottom:16px;position:relative;"><span data-rule="" style="position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(to left,var(--accent),transparent);transform:scaleX(0);transform-origin:right;transition:transform 1.25s cubic-bezier(.16,.86,.2,1);"></span>
+      <h2 style="margin:0;font-size:15px;font-weight:600;">درباره من</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#5C6664;" data-decode="">MEHRAN SABZALI</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(32px,4vw,64px);padding-top:48px;align-items:start;">
+      <div>
+        <div style="border:1px solid #1A1D1D;background:#0C0E0E;padding:8px;max-width:460px;">
+          <img src="7aca07c7-2333-4eab-b504-d2f8abd54022" alt="مهران سبزعلی" style="width:100%;display:block;filter:var(--portrait-filter);">
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#5C6664;">
+          <span>TEHRAN, IR</span><span>CEH CERTIFIED</span>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0;font-size:16.5px;line-height:2.05;color:#9BA5A3;text-wrap:pretty;">بیش از ۸ سال است که در سه حوزه موازی فعالیت می‌کنم: توسعه نرم‌افزار فول‌استک، امنیت سایبری، و معماری سیستم‌های هوش مصنوعی. مسیر حرفه‌ای‌ام از طراحی نرم‌افزارهای سازمانی آغاز شد و امروز شامل ساخت پایپ‌لاین‌های LLM، اجرای تست‌های نفوذ، و توسعه سیستم‌های IoT در مقیاس واقعی می‌شود.</p>
+        <p style="margin:22px 0 0;font-size:16.5px;line-height:2.05;color:#9BA5A3;text-wrap:pretty;">رویکرد من ساده است: کد تمیز، معماری محکم، امنیت از روز اول. دارنده مدرک CEH هستم و با شرکت‌ها و استارتاپ‌ها در پروژه‌های تحول دیجیتال همکاری می‌کنم.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1px;background:#151818;border:1px solid #151818;margin-top:40px;" data-stagger="">
+          <div data-glow-item="" style="background:#0A0C0C;padding:24px;transition:background .45s ease;position:relative;overflow:hidden;" style-hover="background:#0C100F;"><span data-glow="" style="position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;"></span>
+            <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">امنیت از روز اول</div>
+            <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">هر پروژه با تحلیل تهدیدات و طراحی امن آغاز می‌شود، نه پس از توسعه.</div>
+          </div>
+          <div data-glow-item="" style="background:#0A0C0C;padding:24px;transition:background .45s ease;position:relative;overflow:hidden;" style-hover="background:#0C100F;"><span data-glow="" style="position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;"></span>
+            <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">ارزش واقعی</div>
+            <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">تنها راه‌حل‌هایی می‌سازم که مشکل واقعی کسب‌وکار را حل کنند.</div>
+          </div>
+          <div data-glow-item="" style="background:#0A0C0C;padding:24px;transition:background .45s ease;position:relative;overflow:hidden;" style-hover="background:#0C100F;"><span data-glow="" style="position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;"></span>
+            <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">شفافیت فنی</div>
+            <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">مستندسازی کامل و ارتباط شفاف در طول پروژه، بدون تعجب.</div>
+          </div>
+          <div data-glow-item="" style="background:#0A0C0C;padding:24px;transition:background .45s ease;position:relative;overflow:hidden;" style-hover="background:#0C100F;"><span data-glow="" style="position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;"></span>
+            <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">یادگیری مداوم</div>
+            <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">در فضای AI و امنیت، توقف یعنی عقب‌ماندن.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1360px;margin:clamp(80px,10vw,130px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;" data-rv="">
+    <div style="border:1px solid #1A1D1D;background:#0A0C0C;padding:clamp(32px,5vw,56px) clamp(22px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+      <div>
+        <h2 style="margin:0 0 12px;font-size:26px;font-weight:600;">پروژه‌ای در ذهن دارید؟</h2>
+        <p style="margin:0;font-size:15px;line-height:1.9;color:#8A9391;max-width:520px;">مستقیم در تلگرام پیام بدهید؛ معمولاً همان روز جواب می‌دهم.</p>
+      </div>
+      <a href="https://t.me/Mehran_Sa96" target="_blank" style="background:var(--accent);color:#04120C;font-size:14.5px;font-weight:600;padding:16px 32px;border-radius:2px;white-space:nowrap;">پیام در تلگرام</a>
+    </div>
+  </div>
+
+  <div style="max-width:1360px;margin:clamp(56px,7vw,80px) auto 0;padding:0 clamp(18px,4vw,48px) 64px;">
+    <div style="border-top:1px solid #151818;padding-top:32px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <img src="73b68986-00db-4001-bf06-218ee402295f" alt="GMTec" style="height:20px;width:auto;display:block;object-fit:contain;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#5C6664;">© 2026 GMTEC · MEHRAN SABZALI</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:24px;font-size:13.5px;color:#8A9391;">
+        <a href="https://t.me/Mehran_Sa96" target="_blank">تلگرام</a>
+        <a href="https://www.linkedin.com/in/mehran-sabzali" target="_blank">لینکدین</a>
+        <a href="https://github.com/mehransa96" target="_blank">گیت‌هاب</a>
+        <a href="mailto:mehran.sabzali96@gmail.com">ایمیل</a>
+        <a href="tel:+989127299329" dir="ltr">+98 912 729 9329</a>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#00E28A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#00E28A&quot;,&quot;#7FD4C1&quot;,&quot;#C8D0CE&quot;,&quot;#E0A458&quot;],&quot;section&quot;:&quot;ظاهر&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;حرکت&quot;},&quot;portraitTone&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;خاکستری&quot;,&quot;options&quot;:[&quot;خاکستری&quot;,&quot;رنگی&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;ظاهر&quot;}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.canvasRef = React.createRef();
+    this.state = { filter: 'all', open: null, projects: [] };
+  }
+
+  componentDidMount(){
+    const accent = this.props.accent || '#00E28A';
+    document.body.style.setProperty('--accent', accent);
+    document.body.style.setProperty('--portrait-filter',
+      (this.props.portraitTone || 'خاکستری') === 'رنگی' ? 'none' : 'grayscale(0.35) contrast(1.05)');
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.motion = this.props.motion !== false && !this.reduced;
+    this.initReveal();
+    this.initHero();
+    if (!this.motion) document.body.setAttribute('data-nomotion', '');
+    this.initNav();
+    this.initFx();
+    this.initScroll();
+    this.initCardGlow();
+    this.initAmbientGlow();
+    const applyData = () => { const d = window.__PORTFOLIO_DATA; if (d && d.FA) this.setState({ projects: d.FA }); };
+    if (window.__PORTFOLIO_DATA) applyData();
+    else window.addEventListener('portfolio-data-ready', applyData, { once: true });
+    import('./projects-data.js').catch(() => {});
+  }
+
+  componentDidUpdate(){
+    const sig = this.state.filter + ':' + this.state.projects.length;
+    if (sig !== this._sig) { this._sig = sig; this.replayCards(); }
+    document.body.style.setProperty('--accent', this.props.accent || '#00E28A');
+    document.body.style.setProperty('--portrait-filter',
+      (this.props.portraitTone || 'خاکستری') === 'رنگی' ? 'none' : 'grayscale(0.35) contrast(1.05)');
+  }
+
+  componentWillUnmount(){
+    cancelAnimationFrame(this.raf);
+    if (this.onMove) {
+      window.removeEventListener('mousemove', this.onMove);
+      window.removeEventListener('touchmove', this.onMove);
+      window.removeEventListener('touchstart', this.onMove);
+    }
+    if (this.ro) this.ro.disconnect();
+    if (this.io) this.io.disconnect();
+    if (this.obs) this.obs.forEach(o => o.disconnect());
+    clearTimeout(this.fxTimer);
+    clearInterval(this.clockTimer);
+    if (this._probe && this._probe.parentNode) this._probe.parentNode.removeChild(this._probe);
+    if (this.onResize) window.removeEventListener('resize', this.onResize);
+    cancelAnimationFrame(this.decRaf);
+    if (this.onScroll) window.removeEventListener('scroll', this.onScroll);
+    if (this.glowGrid) {
+      this.glowGrid.removeEventListener('pointermove', this.onCardMove);
+      this.glowGrid.removeEventListener('pointerleave', this.onCardLeave);
+    }
+    if (this.onAmbientMove) document.removeEventListener('pointermove', this.onAmbientMove);
+    if (this.navRo) this.navRo.disconnect();
+    if (this.applyNav) window.removeEventListener('resize', this.applyNav);
+  }
+
+  initNav(){
+    const links = document.querySelector('[data-navlinks]');
+    const toggle = document.querySelector('[data-navtoggle]');
+    this.panel = document.querySelector('[data-navpanel]');
+    if (!links || !toggle || !this.panel) return;
+    const bar = links.parentElement;
+    const apply = () => {
+      const w = Math.round((bar.getBoundingClientRect().width) || window.innerWidth);
+      const narrow = w < 800;
+      if (narrow === this.narrow) return;
+      this.narrow = narrow;
+      links.style.display = narrow ? 'none' : 'flex';
+      toggle.style.display = narrow ? 'inline-flex' : 'none';
+      this.panel.style.display = 'none';
+    };
+    this.applyNav = apply;
+    apply();
+    if (window.ResizeObserver) { this.navRo = new ResizeObserver(apply); this.navRo.observe(bar); }
+    window.addEventListener('resize', apply);
+    this.panel.addEventListener('click', e => {
+      if (e.target.tagName === 'A') this.panel.style.display = 'none';
+    });
+  }
+
+  toggleMenu(){
+    if (!this.panel) return;
+    this.panel.style.display = this.panel.style.display === 'block' ? 'none' : 'block';
+  }
+
+  initReveal(){
+    const els = Array.from(document.querySelectorAll('[data-rv]'));
+    if (!els.length) return;
+    if (!this.motion) return;
+    els.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(14px)';
+      el.style.transition = 'opacity .7s cubic-bezier(.2,.6,.2,1), transform .7s cubic-bezier(.2,.6,.2,1)';
+    });
+    const show = el => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    this.io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { show(e.target); this.io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    els.forEach(el => this.io.observe(el));
+    setTimeout(() => els.forEach(show), 2500);
+  }
+
+  initHero(){
+    const hero = document.getElementById('top');
+    const bg = document.querySelector('[data-bg]');
+    const inst = this.canvasRef.current;
+    if (!hero) return;
+    this.onPointerFrame = () => {};
+    this.spotlight = document.querySelector('[data-spotlight]');
+    this._instScrollY = 0; this._tiltX = 0; this._tiltY = 0;
+    const instBox = document.querySelector('[data-hero-inst]');
+    const sp = document.querySelector('[data-space]');
+    if (sp) sp.textContent = '\u00a0';
+
+    const hexA = (hex, a) => {
+      const h = String(hex || '').replace('#', '');
+      const v = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+      const p = parseInt(v, 16);
+      const n = isNaN(p) ? 0x00E28A : p;
+      return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+    };
+    const accentOf = () => ((getComputedStyle(document.body).getPropertyValue('--accent') || '').trim() || '#00E28A');
+    let accent = accentOf();
+
+    const fine = window.matchMedia('(pointer:fine)').matches;
+    const ring = fine && this.motion ? document.querySelector('[data-ring]') : null;
+    if (!ring) { const r0 = document.querySelector('[data-ring]'); if (r0) r0.style.display = 'none'; }
+
+    const P = { x: -9999, y: -9999, rx: -9999, ry: -9999, inside: false, idle: 999 };
+    this.pointer = P;
+    this.onMove = e => {
+      const pt = e.touches && e.touches[0] ? e.touches[0] : e;
+      if (pt.clientX == null) return;
+      P.x = pt.clientX; P.y = pt.clientY; P.idle = 0;
+      if (P.rx < -9000) { P.rx = P.x; P.ry = P.y; }
+      const r = hero.getBoundingClientRect();
+      P.inside = pt.clientX >= r.left && pt.clientX <= r.right && pt.clientY >= r.top && pt.clientY <= r.bottom;
+      if (ring) {
+        const over = e.target && e.target.closest ? e.target.closest('a,button') : null;
+        const s = over ? 46 : 24;
+        ring.style.width = s + 'px'; ring.style.height = s + 'px';
+        ring.style.margin = (-s / 2) + 'px 0 0 ' + (-s / 2) + 'px';
+      }
+      if (this.spotlight && !this._spotQueued) {
+        this._spotQueued = true;
+        requestAnimationFrame(() => {
+          this._spotQueued = false;
+          if (!this.spotlight) return;
+          this.spotlight.style.background = 'radial-gradient(680px circle at ' + P.x + 'px ' + P.y + 'px, ' + hexA(accent, 0.05) + ', transparent 62%)';
+          this.spotlight.style.opacity = '1';
+        });
+      }
+      this.onPointerFrame();
+    };
+    window.addEventListener('mousemove', this.onMove, { passive: true });
+    window.addEventListener('touchmove', this.onMove, { passive: true });
+    window.addEventListener('touchstart', this.onMove, { passive: true });
+
+    let bctx = null, bw = 0, bh = 0, parts = [];
+    const sizeBg = () => {
+      if (!bg) return;
+      const r = hero.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+      bw = Math.max(1, Math.round(r.width)); bh = Math.max(1, Math.round(r.height));
+      bg.width = Math.round(bw * dpr); bg.height = Math.round(bh * dpr);
+      bctx = bg.getContext('2d');
+      bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      bctx.fillStyle = '#08090A'; bctx.fillRect(0, 0, bw, bh);
+      const n = Math.max(70, Math.min(260, Math.round(bw * bh / 7400)));
+      parts = [];
+      for (let i = 0; i < n; i++) {
+        const x = Math.random() * bw, y = Math.random() * bh;
+        parts.push({ x: x, y: y, px: x, py: y, life: (Math.random() * 340) | 0 });
+      }
+    };
+
+    const flow = (x, y, t) => Math.sin(x * 0.0041 + t * 0.0011) + Math.cos(y * 0.0036 - t * 0.0008) + Math.sin((x + y) * 0.0019 + t * 0.0005);
+
+    const drawBg = t => {
+      if (!bctx) return;
+      bctx.fillStyle = 'rgba(8,9,10,0.072)';
+      bctx.fillRect(0, 0, bw, bh);
+      const r = hero.getBoundingClientRect();
+      const mx = P.inside ? P.x - r.left : -9999, my = P.inside ? P.y - r.top : -9999;
+      bctx.lineWidth = 1;
+      for (let i = 0; i < parts.length; i++) {
+        const p = parts[i];
+        const a = flow(p.x, p.y, t) * 1.45;
+        let vx = Math.cos(a) * 0.95, vy = Math.sin(a) * 0.95, boost = 0;
+        if (P.inside) {
+          const dx = p.x - mx, dy = p.y - my, d = Math.hypot(dx, dy);
+          if (d < 200) { const f = 1 - d / 200; boost = f; const k = f * 2.5 / (d || 1); vx += dx * k; vy += dy * k; }
+        }
+        p.px = p.x; p.py = p.y; p.x += vx; p.y += vy; p.life -= 1;
+        if (p.life < 0 || p.x < -30 || p.x > bw + 30 || p.y < -30 || p.y > bh + 30) {
+          p.x = Math.random() * bw; p.y = Math.random() * bh; p.px = p.x; p.py = p.y;
+          p.life = 200 + ((Math.random() * 280) | 0);
+          continue;
+        }
+        bctx.strokeStyle = hexA(accent, 0.072 + boost * 0.33);
+        bctx.beginPath(); bctx.moveTo(p.px, p.py); bctx.lineTo(p.x, p.y); bctx.stroke();
+      }
+    };
+
+    const N = 7, lit = [[1,2],[3,1],[2,4],[4,4],[5,2],[3,5]], ripples = [], trace = [];
+    let ictx = null, size = 0, cell = 0;
+    const sizeInst = () => {
+      if (!inst) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      size = Math.round(inst.getBoundingClientRect().width) || 320;
+      if (size < 40) return;
+      inst.width = Math.round(size * dpr); inst.height = Math.round(size * dpr);
+      ictx = inst.getContext('2d');
+      ictx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cell = size / N;
+    };
+
+    const drawInst = t => {
+      if (!ictx || !size) return;
+      const ctx = ictx, cx = size / 2, cy = size / 2;
+      ctx.clearRect(0, 0, size, size);
+      const r = inst.getBoundingClientRect();
+      let px = P.x - r.left, py = P.y - r.top;
+      let live = P.inside && px > -90 && px < size + 90 && py > -90 && py < size + 90;
+      if (P.idle > 150) { live = true; px = cx + Math.cos(t / 250) * size * 0.33; py = cy + Math.sin(t / 180) * size * 0.33; }
+      const ox = live ? (px - cx) * 0.02 : 0, oy = live ? (py - cy) * 0.02 : 0;
+
+      if (live) {
+        for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) {
+          const x = i * cell + ox, y = j * cell + oy;
+          const d = Math.hypot(px - (x + cell / 2), py - (y + cell / 2));
+          const a = Math.max(0, 1 - d / (cell * 1.9)) * 0.17;
+          if (a > 0.004) { ctx.fillStyle = hexA(accent, a); ctx.fillRect(x, y, cell, cell); }
+        }
+      }
+      lit.forEach((c, k) => {
+        const v = 0.055 + 0.05 * Math.sin(t / 60 + k * 1.7);
+        ctx.fillStyle = hexA(accent, Math.max(0.02, v));
+        ctx.fillRect(c[0] * cell + ox, c[1] * cell + oy, cell, cell);
+      });
+
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= N; i++) {
+        const edge = (i === 0 || i === N);
+        ctx.strokeStyle = edge ? 'rgba(231,233,232,0.13)' : 'rgba(231,233,232,0.05)';
+        ctx.beginPath(); ctx.moveTo(i * cell + ox, oy); ctx.lineTo(i * cell + ox, size + oy); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(ox, i * cell + oy); ctx.lineTo(size + ox, i * cell + oy); ctx.stroke();
+      }
+      ctx.fillStyle = 'rgba(231,233,232,0.12)';
+      for (let i = 0; i <= N; i++) for (let j = 0; j <= N; j++) ctx.fillRect(i * cell - 0.9 + ox, j * cell - 0.9 + oy, 1.8, 1.8);
+
+      const R = size * 0.415, sweep = t / 155;
+      ctx.save();
+      ctx.translate(cx + ox * 0.6, cy + oy * 0.6);
+      ctx.strokeStyle = 'rgba(231,233,232,0.10)';
+      ctx.beginPath(); ctx.arc(0, 0, R, 0, Math.PI * 2); ctx.stroke();
+      ctx.strokeStyle = 'rgba(231,233,232,0.055)';
+      ctx.beginPath(); ctx.arc(0, 0, R * 0.6, 0, Math.PI * 2); ctx.stroke();
+      for (let k = 0; k < 72; k++) {
+        const ang = k / 72 * Math.PI * 2, major = k % 6 === 0, len = major ? 9 : 4;
+        ctx.strokeStyle = major ? 'rgba(231,233,232,0.20)' : 'rgba(231,233,232,0.085)';
+        ctx.beginPath();
+        ctx.moveTo(Math.cos(ang) * R, Math.sin(ang) * R);
+        ctx.lineTo(Math.cos(ang) * (R - len), Math.sin(ang) * (R - len));
+        ctx.stroke();
+      }
+      ctx.fillStyle = hexA(accent, 0.05);
+      ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, R, sweep - 0.55, sweep); ctx.closePath(); ctx.fill();
+      const lg = ctx.createLinearGradient(0, 0, Math.cos(sweep) * R, Math.sin(sweep) * R);
+      lg.addColorStop(0, hexA(accent, 0)); lg.addColorStop(1, hexA(accent, 0.55));
+      ctx.strokeStyle = lg; ctx.lineWidth = 1.4;
+      ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(Math.cos(sweep) * R, Math.sin(sweep) * R); ctx.stroke();
+      ctx.fillStyle = hexA(accent, 0.9);
+      ctx.beginPath(); ctx.arc(Math.cos(sweep) * R, Math.sin(sweep) * R, 2.3, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      trace.push({ x: cx + Math.sin(t / 57) * size * 0.3 + ox, y: cy + Math.sin(t / 41 + 1.1) * size * 0.3 + oy });
+      if (trace.length > 150) trace.shift();
+      ctx.lineWidth = 1.2;
+      for (let i = 1; i < trace.length; i++) {
+        ctx.strokeStyle = hexA(accent, (i / trace.length) * 0.32);
+        ctx.beginPath(); ctx.moveTo(trace[i - 1].x, trace[i - 1].y); ctx.lineTo(trace[i].x, trace[i].y); ctx.stroke();
+      }
+      if (trace.length) {
+        const h = trace[trace.length - 1];
+        const rg = ctx.createRadialGradient(h.x, h.y, 0, h.x, h.y, cell * 0.85);
+        rg.addColorStop(0, hexA(accent, 0.45)); rg.addColorStop(1, hexA(accent, 0));
+        ctx.fillStyle = rg; ctx.beginPath(); ctx.arc(h.x, h.y, cell * 0.85, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = hexA(accent, 0.95);
+        ctx.beginPath(); ctx.arc(h.x, h.y, 2, 0, Math.PI * 2); ctx.fill();
+      }
+
+      const lap = (t / 330) % 4, seg = Math.floor(lap), f = lap - seg, track = [2, 4, 3, 5];
+      let qx, qy;
+      if (seg % 2 === 0) { qx = f * size; qy = track[seg] * cell; } else { qx = track[seg] * cell; qy = (1 - f) * size; }
+      ctx.fillStyle = hexA(accent, 0.85);
+      ctx.beginPath(); ctx.arc(qx + ox, qy + oy, 2, 0, Math.PI * 2); ctx.fill();
+
+      for (let k = ripples.length - 1; k >= 0; k--) {
+        const rp = ripples[k];
+        rp.t += 1;
+        const life = rp.t / 48;
+        if (life >= 1) { ripples.splice(k, 1); continue; }
+        ctx.strokeStyle = hexA(accent, 0.5 * (1 - life));
+        ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.arc(rp.x + ox, rp.y + oy, life * cell * 3.6, 0, Math.PI * 2); ctx.stroke();
+      }
+    };
+
+    if (inst) {
+      this.onTap = e => {
+        const rr = inst.getBoundingClientRect();
+        ripples.push({ x: e.clientX - rr.left, y: e.clientY - rr.top, t: 0 });
+        if (ripples.length > 5) ripples.shift();
+      };
+      inst.addEventListener('pointerdown', this.onTap, { passive: true });
+      inst.style.cursor = 'crosshair';
+    }
+
+    const resize = () => { accent = accentOf(); this.fitName(); sizeBg(); sizeInst(); this.magnetDirty = true; };
+    resize();
+    this.onResize = resize;
+    window.addEventListener('resize', resize);
+    if (window.ResizeObserver) { this.ro = new ResizeObserver(resize); this.ro.observe(hero); }
+
+    this.heroVisible = true;
+    if (window.IntersectionObserver) {
+      const vio = new IntersectionObserver(es => { this.heroVisible = es[0].isIntersecting; }, { threshold: 0 });
+      vio.observe(hero);
+      this.obs = this.obs || [];
+      this.obs.push(vio);
+    }
+
+    let t = 0, last = performance.now(), fpsAvg = 60;
+    const fpsEl = document.querySelector('[data-fps]');
+    const loop = now => {
+      const dt = Math.max(1, now - last);
+      last = now;
+      fpsAvg += (1000 / dt - fpsAvg) * 0.07;
+      P.idle += 1; t += 1;
+      if (ring) {
+        P.rx += (P.x - P.rx) * 0.17; P.ry += (P.y - P.ry) * 0.17;
+        ring.style.transform = 'translate(' + P.rx.toFixed(1) + 'px,' + P.ry.toFixed(1) + 'px)';
+        ring.style.opacity = P.inside ? '1' : '0';
+      }
+      if (this.heroVisible) {
+        drawBg(t);
+        drawInst(t);
+        if (instBox) {
+          const br = instBox.getBoundingClientRect();
+          let tx = 0, ty = 0;
+          if (P.inside && br.width) {
+            tx = Math.max(-1, Math.min(1, (P.x - (br.left + br.width / 2)) / (br.width / 2)));
+            ty = Math.max(-1, Math.min(1, (P.y - (br.top + br.height / 2)) / (br.height / 2)));
+          }
+          this._tiltX += (tx - this._tiltX) * 0.09;
+          this._tiltY += (ty - this._tiltY) * 0.09;
+          instBox.style.transform = 'translateY(' + (this._instScrollY || 0).toFixed(1) + 'px) perspective(900px) rotateX(' + (-this._tiltY * 6).toFixed(2) + 'deg) rotateY(' + (this._tiltX * 8).toFixed(2) + 'deg)';
+        }
+        if (fpsEl && t % 14 === 0) fpsEl.textContent = String(Math.max(1, Math.min(120, Math.round(fpsAvg))));
+      }
+      this.raf = requestAnimationFrame(loop);
+    };
+    if (this.motion) this.raf = requestAnimationFrame(loop);
+    else { drawBg(0); drawInst(0); }
+
+    this.initMagnet();
+    this.initClock();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this.fitName()).catch(() => {});
+  }
+
+  fitName(){
+    const h1 = document.querySelector('[data-magnet]');
+    if (!h1 || !h1.parentElement) return;
+    const cs = getComputedStyle(h1);
+    if (!this._probe) {
+      const p = document.createElement('span');
+      p.textContent = 'Mehran Sabzali';
+      p.setAttribute('aria-hidden', 'true');
+      p.style.cssText = 'position:absolute;left:-9999px;top:0;white-space:nowrap;visibility:hidden;pointer-events:none;font-size:100px;';
+      p.style.fontFamily = cs.fontFamily;
+      p.style.fontWeight = cs.fontWeight;
+      p.style.letterSpacing = '-0.03em';
+      document.body.appendChild(p);
+      this._probe = p;
+    }
+    const w100 = this._probe.getBoundingClientRect().width;
+    if (!w100) return;
+    const box = h1.parentElement.getBoundingClientRect().width;
+    if (!box) return;
+    let size = Math.max(30, Math.min(104, (box * 0.95) * 100 / w100));
+    h1.style.fontSize = size.toFixed(1) + 'px';
+    for (let i = 0; i < 8; i++) {
+      const lh = parseFloat(getComputedStyle(h1).lineHeight) || size;
+      if (h1.getBoundingClientRect().height / lh < 1.5) break;
+      size *= 0.94;
+      h1.style.fontSize = size.toFixed(1) + 'px';
+    }
+    this.magnetDirty = true;
+  }
+
+  initMagnet(){
+    const h1 = document.querySelector('[data-magnet]');
+    if (!h1 || !this.motion) return;
+    const letters = Array.from(h1.querySelectorAll('[data-ltr]'));
+    const mags = Array.from(document.querySelectorAll('[data-mag]'));
+    if (!letters.length) return;
+    let rects = null;
+    this.magnetDirty = true;
+    this.onPointerFrame = () => {
+      const P = this.pointer;
+      if (this.magnetDirty || !rects) {
+        rects = letters.map(el => { const r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
+        this.magnetDirty = false;
+      }
+      for (let i = 0; i < letters.length; i++) {
+        const c = rects[i], el = letters[i];
+        const f = Math.max(0, 1 - Math.hypot(P.x - c.x, P.y - c.y) / 200);
+        if (f < 0.02) {
+          if (el._lift) { el.style.transform = 'none'; el.style.color = ''; el._lift = false; }
+          continue;
+        }
+        el._lift = true;
+        const e2 = f * f;
+        el.style.transform = 'translateY(' + (-14 * e2).toFixed(2) + 'px) scale(' + (1 + 0.17 * e2).toFixed(3) + ')';
+        el.style.color = f > 0.6 ? 'var(--accent)' : '';
+      }
+      mags.forEach(el => {
+        const r = el.getBoundingClientRect();
+        const dx = P.x - (r.left + r.width / 2), dy = P.y - (r.top + r.height / 2);
+        const near = Math.abs(dx) < r.width / 2 + 90 && Math.abs(dy) < r.height / 2 + 70;
+        el.style.transform = near ? 'translate(' + (dx * 0.11).toFixed(2) + 'px,' + (dy * 0.13).toFixed(2) + 'px)' : 'none';
+      });
+    };
+  }
+
+  initClock(){
+    const els = Array.from(document.querySelectorAll('[data-clock]'));
+    if (!els.length) return;
+    const tick = () => {
+      let s = '--:--:--';
+      try { s = new Date().toLocaleTimeString('en-GB', { hour12: false, timeZone: 'Asia/Tehran' }); } catch (err) { s = new Date().toTimeString().slice(0, 8); }
+      els.forEach(el => { el.textContent = s; });
+    };
+    tick();
+    this.clockTimer = setInterval(tick, 1000);
+  }
+
+  initFx(){
+    this.obs = this.obs || [];
+    const once = (sel, fn, threshold) => {
+      const els = Array.from(document.querySelectorAll(sel));
+      if (!els.length) return;
+      const io = new IntersectionObserver(es => {
+        es.forEach(e => { if (e.isIntersecting) { fn(e.target); io.unobserve(e.target); } });
+      }, { threshold: threshold, rootMargin: '0px 0px -5% 0px' });
+      els.forEach(el => io.observe(el));
+      this.obs.push(io);
+    };
+
+    once('[data-rule]', el => { el.style.transform = 'scaleX(1)'; }, 0.01);
+    once('[data-count]', el => this.countTo(el), 0.4);
+    if (this.motion) once('[data-decode]', el => this.decode(el), 0.45);
+
+    Array.from(document.querySelectorAll('[data-stagger]')).forEach(box => {
+      const kids = Array.from(box.children);
+      if (!kids.length) return;
+      if (this.motion) kids.forEach((k, i) => {
+        k.style.opacity = '0';
+        k.style.transform = 'translateY(20px)';
+        k.style.transition = 'opacity .72s cubic-bezier(.2,.6,.2,1) ' + (i * 0.065) + 's, transform .72s cubic-bezier(.2,.6,.2,1) ' + (i * 0.065) + 's';
+      });
+      const io = new IntersectionObserver(es => {
+        if (es.some(e => e.isIntersecting)) {
+          kids.forEach(k => { k.style.opacity = '1'; k.style.transform = 'none'; });
+          io.disconnect();
+        }
+      }, { threshold: 0.06 });
+      io.observe(box);
+      this.obs.push(io);
+    });
+    this.fxTimer = setTimeout(() => {
+      Array.from(document.querySelectorAll('[data-stagger] > *')).forEach(k => { k.style.opacity = '1'; k.style.transform = 'none'; });
+      Array.from(document.querySelectorAll('[data-rule]')).forEach(r => { r.style.transform = 'scaleX(1)'; });
+    }, 3200);
+  }
+
+  decode(el){
+    const target = el.getAttribute('data-decode-text') || el.textContent;
+    el.setAttribute('data-decode-text', target);
+    const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%$/·';
+    let i = 0;
+    const tick = () => {
+      let out = '';
+      for (let k = 0; k < target.length; k++) {
+        const c = target[k];
+        if (k < i || c === ' ' || c === '\u2197') out += c;
+        else out += pool[(Math.random() * pool.length) | 0];
+      }
+      el.textContent = out;
+      i += Math.max(0.6, target.length / 26);
+      if (i < target.length) this.decRaf = requestAnimationFrame(tick);
+      else el.textContent = target;
+    };
+    tick();
+  }
+
+  countTo(el){
+    const target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    if (!this.motion) { el.textContent = String(target); return; }
+    const t0 = performance.now(), dur = 1000;
+    const tick = now => {
+      const p = Math.min(1, (now - t0) / dur);
+      el.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  initScroll(){
+    const bar = document.querySelector('[data-progress]');
+    const links = Array.from(document.querySelectorAll('[data-navlinks] a'));
+    const targets = links.map(a => document.getElementById((a.getAttribute('href') || '').slice(1)));
+    const copy = document.querySelector('[data-hero-copy]');
+    let queued = false;
+    const update = () => {
+      queued = false;
+      const doc = document.documentElement;
+      const max = Math.max(1, doc.scrollHeight - doc.clientHeight);
+      if (bar) bar.style.transform = 'scaleX(' + Math.min(1, doc.scrollTop / max) + ')';
+      let cur = -1;
+      targets.forEach((el, i) => { if (el && el.getBoundingClientRect().top < window.innerHeight * 0.38) cur = i; });
+      links.forEach((a, i) => { a.style.color = i === cur ? 'var(--accent)' : ''; });
+      this.magnetDirty = true;
+      if (this.motion) {
+        const y = doc.scrollTop;
+        if (copy && y < 1400) copy.style.transform = 'translateY(' + Math.min(72, y * 0.14).toFixed(1) + 'px)';
+        if (y < 1400) this._instScrollY = -Math.min(46, y * 0.075);
+      }
+    };
+    this.onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    update();
+  }
+
+  initCardGlow(){
+    const grid = document.querySelector('[data-cards]');
+    if (!grid || !this.motion) return;
+    const rgba = a => {
+      const hex = (getComputedStyle(document.body).getPropertyValue('--accent') || '#00E28A').trim().replace('#', '');
+      const v = hex.length === 3 ? hex.split('').map(c => c + c).join('') : hex;
+      const n = parseInt(v, 16) || 0x00E28A;
+      return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+    };
+    const clear = () => {
+      if (!this.glowCard) return;
+      this.glowCard.style.transform = 'none';
+      const g = this.glowCard.querySelector('[data-glow]');
+      if (g) g.style.opacity = '0';
+      this.glowCard = null;
+    };
+    this.onCardMove = e => {
+      const card = e.target && e.target.closest ? e.target.closest('article') : null;
+      if (card !== this.glowCard) clear();
+      if (!card) return;
+      this.glowCard = card;
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      card.style.transform = 'perspective(900px) rotateX(' + ((0.5 - py) * 2.6).toFixed(2) + 'deg) rotateY(' + ((px - 0.5) * 3.4).toFixed(2) + 'deg)';
+      const g = card.querySelector('[data-glow]');
+      if (!g) return;
+      g.style.background = 'radial-gradient(340px circle at ' + (e.clientX - r.left) + 'px ' + (e.clientY - r.top) + 'px, ' + rgba(0.07) + ', transparent 66%)';
+      g.style.opacity = '1';
+    };
+    this.onCardLeave = clear;
+    grid.addEventListener('pointermove', this.onCardMove, { passive: true });
+    grid.addEventListener('pointerleave', this.onCardLeave, { passive: true });
+    this.glowGrid = grid;
+  }
+
+  initAmbientGlow(){
+    if (!this.motion) return;
+    const rgba = a => {
+      const hex = (getComputedStyle(document.body).getPropertyValue('--accent') || '#00E28A').trim().replace('#', '');
+      const v = hex.length === 3 ? hex.split('').map(c => c + c).join('') : hex;
+      const n = parseInt(v, 16) || 0x00E28A;
+      return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+    };
+    let current = null;
+    const clear = () => {
+      if (!current) return;
+      current.style.transform = 'none';
+      const g = current.querySelector('[data-glow]');
+      if (g) g.style.opacity = '0';
+      current = null;
+    };
+    this.onAmbientMove = e => {
+      const item = e.target && e.target.closest ? e.target.closest('[data-glow-item]') : null;
+      if (item !== current) { clear(); if (item) item.style.transition = 'transform .15s ease-out, opacity .45s ease'; }
+      if (!item) return;
+      current = item;
+      const r = item.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      item.style.transform = 'perspective(700px) rotateX(' + ((0.5 - py) * 5).toFixed(2) + 'deg) rotateY(' + ((px - 0.5) * 6).toFixed(2) + 'deg)';
+      const g = item.querySelector('[data-glow]');
+      if (g) {
+        g.style.background = 'radial-gradient(260px circle at ' + (px * 100).toFixed(1) + '% ' + (py * 100).toFixed(1) + '%, ' + rgba(0.08) + ', transparent 66%)';
+        g.style.opacity = '1';
+      }
+    };
+    document.addEventListener('pointermove', this.onAmbientMove, { passive: true });
+  }
+
+  replayCards(){
+    if (!this.motion) return;
+    const grid = document.querySelector('[data-cards]');
+    if (!grid) return;
+    Array.from(grid.children).forEach((el, i) => {
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = 'msIn .6s cubic-bezier(.16,.86,.2,1) ' + (i * 0.035) + 's both';
+    });
+  }
+
+  setFilter(key){
+    this.setState({ filter: key, open: null });
+  }
+
+  toggleProject(id){
+    this.setState(st => ({ open: st.open === id ? null : id }));
+  }
+
+  renderVals(){
+    const st = this.state;
+    const list = st.projects.filter(p => st.filter === 'all' || p.cat.split(' ').indexOf(st.filter) > -1);
+    const pad = n => (n < 10 ? '0' + n : String(n));
+    return {
+      canvasRef: this.canvasRef,
+      toggleMenu: () => this.toggleMenu(),
+      projectCount: "{n} پروژه".replace('{n}', pad(list.length)),
+      filters: [["all","همه"],["ai","هوش مصنوعی"],["security","امنیت"],["iot","IoT"],["database","دیتابیس"],["web","وب"]].map(([key, label]) => {
+        const on = st.filter === key;
+        return {
+          key: key, label: label,
+          border: on ? 'var(--accent)' : '#232726',
+          bg: on ? 'rgba(0,226,138,.08)' : 'transparent',
+          color: on ? 'var(--accent)' : '#8A9391',
+          onClick: () => this.setFilter(key)
+        };
+      }),
+      projects: list.map((p, i) => {
+        const open = st.open === p.id;
+        return {
+          num: pad(i + 1), tag: p.tag, title: p.title, en: p.en, sum: p.sum,
+          stackLine: p.stack.slice(0, 4).join(' · '),
+          toggleLabel: open ? "بستن" : "جزئیات فنی",
+          sign: open ? '−' : '+',
+          linkColor: open ? 'var(--accent)' : '#6E7A78',
+          rows: open ? '1fr' : '0fr',
+          opacity: open ? 1 : 0,
+          ty: open ? '0px' : '-10px',
+          hasCtx: !!p.ctx, ctx: p.ctx || '',
+          hasSol: !!(p.sol && p.sol.length),
+          sol: (p.sol || []).map(text => ({ text: text })),
+          hasCh: !!(p.ch && p.ch.length),
+          ch: (p.ch || []).map(text => ({ text: text })),
+          hasResp: !!(p.resp && p.resp.length),
+          resp: (p.resp || []).map(text => ({ text: text })),
+          stack: p.stack.map(text => ({ text: text })),
+          hasVal: !!p.val, val: p.val || '',
+          hasLink: !!p.link, link: p.link || '#',
+          hasBadge: !!p.badge, badge: p.badge || '',
+          onClick: () => this.toggleProject(p.id)
+        };
+      })
+    };
+  }
+}
+</script>
+
+
+<script>
+(function(){
+  'use strict';
+  const root=document.documentElement, body=document.body;
+  const isFA=(root.lang||'').toLowerCase().startsWith('fa') || document.querySelector('[dir="rtl"]');
+  const A='#00E28A';
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(body.dataset.gmtEnhanced) return; body.dataset.gmtEnhanced='1';
+
+  const css=document.createElement('style');
+  css.textContent=`
+    :root{--gmt-accent:${A};--gmt-line:#171B1A;--gmt-panel:rgba(9,12,11,.72)}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{background:#08090A!important}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.20;background-image:linear-gradient(rgba(0,226,138,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,226,138,.035) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,black,transparent 72%);-webkit-mask-image:linear-gradient(to bottom,black,transparent 72%)}
+    body>*{position:relative;z-index:1}
+    [data-gmt-hud]{position:absolute;z-index:8;pointer-events:none;display:flex;align-items:center;gap:8px;bottom:22px;right:clamp(18px,4vw,48px);font:10px/1 'IBM Plex Mono',monospace;letter-spacing:1.5px;color:#56615E}
+    [data-gmt-hud] .gmt-live{display:inline-flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid #202624;background:rgba(8,9,10,.62);backdrop-filter:blur(10px)}
+    [data-gmt-hud] i{width:5px;height:5px;border-radius:50%;background:${A};box-shadow:0 0 12px rgba(0,226,138,.65);display:inline-block}
+    [data-gmt-mode]{pointer-events:auto;display:flex;border:1px solid #202624;background:rgba(8,9,10,.72);backdrop-filter:blur(10px)}
+    [data-gmt-mode] button{border:0;border-right:1px solid #202624;background:transparent;color:#68736F;font:10px 'IBM Plex Mono',monospace;letter-spacing:1px;padding:7px 9px;cursor:pointer;transition:color .2s,background .2s}
+    [data-gmt-mode] button:last-child{border-right:0}
+    [data-gmt-mode] button:hover,[data-gmt-mode] button.is-on{color:${A};background:rgba(0,226,138,.055)}
+    [data-gmt-scroll]{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,transparent,${A});z-index:100;pointer-events:none;box-shadow:0 0 14px rgba(0,226,138,.3)}
+    [data-gmt-cursor]{position:fixed;left:0;top:0;width:26px;height:26px;border:1px solid rgba(0,226,138,.6);border-radius:50%;pointer-events:none;z-index:9998;opacity:0;transform:translate3d(-50%,-50%,0);transition:width .2s,height .2s,border-color .2s,opacity .25s;mix-blend-mode:screen}
+    [data-gmt-cursor].hot{width:44px;height:44px;border-color:${A};background:rgba(0,226,138,.035)}
+    [data-gmt-spot]{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0;background:radial-gradient(520px circle at var(--gx,50%) var(--gy,30%),rgba(0,226,138,.065),transparent 68%);transition:opacity .3s}
+    [data-gmt-enhanced-card]{transform-style:preserve-3d;will-change:transform;transition:transform .18s ease-out,background .35s,border-color .35s!important}
+    [data-gmt-enhanced-card]:hover{border-color:#27302D!important}
+    [data-gmt-reveal]{opacity:0;transform:translateY(22px);transition:opacity .72s cubic-bezier(.16,.86,.2,1),transform .72s cubic-bezier(.16,.86,.2,1)}
+    [data-gmt-reveal].is-visible{opacity:1;transform:none}
+    [data-gmt-focus]{outline:none}
+    [data-gmt-focus]:focus-visible{outline:1px solid ${A};outline-offset:5px}
+    #top{isolation:isolate}
+    #top:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,226,138,.35),transparent);pointer-events:none}
+    #top [data-hero-inst]{filter:drop-shadow(0 24px 45px rgba(0,0,0,.22));transition:transform .18s ease-out}
+    #top [data-hero-copy] h1{transition:text-shadow .3s,letter-spacing .3s}
+    #top [data-hero-copy] h1:hover{text-shadow:0 0 34px rgba(0,226,138,.11);letter-spacing:-.045em}
+    #top a[data-mag]{position:relative;overflow:hidden}
+    #top a[data-mag]:after{content:"";position:absolute;inset:-80% -20%;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 42%);transform:translate3d(var(--mx,0),var(--my,0),0);opacity:0;transition:opacity .25s}
+    #top a[data-mag]:hover:after{opacity:1}
+    [data-navlinks] a{position:relative}
+    [data-navlinks] a:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1px;background:${A};transform:scaleX(0);transform-origin:center;transition:transform .25s}
+    [data-navlinks] a:hover:after,[data-navlinks] a.is-active:after{transform:scaleX(1)}
+    [data-stagger]>*{backface-visibility:hidden}
+    [data-gmt-console]{max-width:1360px;margin:0 auto;padding:clamp(58px,8vw,112px) clamp(18px,4vw,48px) clamp(74px,9vw,130px);position:relative}
+    .gmt-console-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:22px}
+    .gmt-console-kicker{font:10px/1.2 'IBM Plex Mono',monospace;letter-spacing:2px;color:#59635F;text-transform:uppercase;margin-bottom:10px}
+    .gmt-console-head h2{font:clamp(25px,3.5vw,48px)/1.02 'Space Grotesk',sans-serif;font-weight:500;letter-spacing:-.035em;color:#E8EEEB;margin:0}
+    .gmt-console-signal{font:10px 'IBM Plex Mono',monospace;color:#69746F;display:flex;align-items:center;gap:8px;white-space:nowrap}
+    .gmt-console-signal span{width:6px;height:6px;border-radius:50%;background:#00E28A;box-shadow:0 0 13px rgba(0,226,138,.6)}
+    .gmt-console-shell{border:1px solid #202624;background:linear-gradient(180deg,rgba(13,17,15,.88),rgba(8,10,9,.94));box-shadow:0 24px 70px rgba(0,0,0,.25);overflow:hidden}
+    .gmt-console-toolbar,.gmt-console-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-bottom:1px solid #181D1B;background:rgba(255,255,255,.012)}
+    .gmt-console-tabs{display:flex;gap:2px;flex-wrap:wrap}.gmt-console-tabs button,.gmt-console-toolbar>[data-gmt-copy]{border:1px solid transparent;background:transparent;color:#68736F;font:10px 'IBM Plex Mono',monospace;letter-spacing:1px;padding:7px 10px;cursor:pointer}.gmt-console-tabs button:hover,.gmt-console-toolbar>[data-gmt-copy]:hover{color:#00E28A;border-color:#25302B;background:rgba(0,226,138,.04)}
+    .gmt-console-body{min-height:270px;padding:22px clamp(16px,3vw,30px);font-family:'IBM Plex Mono',monospace}.gmt-console-prompt{display:flex;align-items:center;gap:9px;color:#00E28A;font-size:12px}.gmt-prompt-symbol{font-size:19px}.gmt-console-prompt [contenteditable]{outline:0;min-width:45px;color:#C8D0CE;caret-color:#00E28A}.gmt-caret{width:7px;height:15px;background:#00E28A;opacity:.8;animation:gmtBlink 1s steps(1) infinite}.gmt-console-body pre{margin:20px 0 0;color:#82908A;font:11px/1.85 'IBM Plex Mono',monospace;white-space:pre-wrap}.gmt-console-footer{border-top:1px solid #181D1B;border-bottom:0;color:#4F5B56;font:9px 'IBM Plex Mono',monospace;letter-spacing:.7px}.gmt-console-footer [data-gmt-console-state]{color:#00A96B}@keyframes gmtBlink{50%{opacity:0}}
+    @media(max-width:760px){
+      body:before{background-size:52px 52px;opacity:.13}
+      [data-gmt-console]{padding:52px 14px 76px}.gmt-console-head{align-items:flex-start;flex-direction:column;gap:12px}.gmt-console-head h2{font-size:30px}.gmt-console-body{min-height:240px;padding:18px 14px}.gmt-console-toolbar{align-items:flex-start}.gmt-console-footer{font-size:8px}.gmt-console-signal{font-size:8px}
+      [data-gmt-cursor],[data-gmt-spot]{display:none!important}
+      [data-gmt-hud]{left:12px;right:12px;bottom:14px;justify-content:space-between;gap:6px}
+      [data-gmt-hud] .gmt-live{padding:6px 7px;font-size:8px}
+      [data-gmt-mode] button{padding:6px 7px;font-size:8px}
+      #top [data-hero-inst]{transform:none!important}
+      #top [data-hero-copy]{transform:none!important}
+    }
+    @media(prefers-reduced-motion:reduce){
+      [data-gmt-reveal]{opacity:1;transform:none;transition:none!important}
+      [data-gmt-cursor],[data-gmt-spot]{display:none!important}
+    }
+  `;
+  document.head.appendChild(css);
+
+  const scroll=document.createElement('div'); scroll.setAttribute('data-gmt-scroll',''); document.body.appendChild(scroll);
+  const spot=document.createElement('div'); spot.setAttribute('data-gmt-spot',''); document.body.appendChild(spot);
+  let cursor=null;
+  if(!reduce && matchMedia('(pointer:fine)').matches){
+    cursor=document.createElement('div'); cursor.setAttribute('data-gmt-cursor',''); document.body.appendChild(cursor);
+    let cx=innerWidth/2,cy=innerHeight/2,tx=cx,ty=cy;
+    const loop=()=>{cx+=(tx-cx)*.22;cy+=(ty-cy)*.22;cursor.style.transform=`translate3d(${cx}px,${cy}px,0) translate(-50%,-50%)`;requestAnimationFrame(loop)}; loop();
+    addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;cursor.style.opacity='1';spot.style.setProperty('--gx',e.clientX+'px');spot.style.setProperty('--gy',e.clientY+'px');spot.style.opacity='.8'}, {passive:true});
+    addEventListener('pointerleave',()=>{cursor.style.opacity='0';spot.style.opacity='0'});
+    document.addEventListener('pointerover',e=>{if(e.target.closest('a,button,[data-glow-item],[data-cards] article,[data-gmt-mode]'))cursor.classList.add('hot')},{passive:true});
+    document.addEventListener('pointerout',e=>{if(e.target.closest('a,button,[data-glow-item],[data-cards] article,[data-gmt-mode]'))cursor.classList.remove('hot')},{passive:true});
+  }
+
+  const top=document.querySelector('#top');
+  if(top){
+    const hud=document.createElement('div'); hud.setAttribute('data-gmt-hud','');
+    hud.innerHTML=`<span class="gmt-live"><i></i>${isFA?'رابط زنده':'LIVE INTERFACE'}</span><span data-gmt-mode><button class="is-on" data-mode="flow">FLOW</button><button data-mode="focus">FOCUS</button><button data-mode="calm">CALM</button></span>`;
+    top.appendChild(hud);
+    const heroCanvas=top.querySelector('[data-hero-inst] canvas');
+    const modeButtons=[...hud.querySelectorAll('button')];
+    modeButtons.forEach(btn=>btn.addEventListener('click',()=>{
+      modeButtons.forEach(b=>b.classList.remove('is-on'));btn.classList.add('is-on');
+      if(!heroCanvas)return;
+      const mode=btn.dataset.mode;
+      heroCanvas.style.transition='filter .45s ease,transform .55s cubic-bezier(.16,.86,.2,1)';
+      heroCanvas.style.filter=mode==='focus'?'contrast(1.12) brightness(1.04)':mode==='calm'?'saturate(.72) brightness(.92)':'none';
+      heroCanvas.style.transform=mode==='focus'?'scale(1.025)':mode==='calm'?'scale(.985)':'scale(1)';
+    }));
+  }
+
+  // Magnetic controls and pointer-responsive hero.
+  if(!reduce && matchMedia('(pointer:fine)').matches){
+    document.querySelectorAll('[data-mag]').forEach(el=>{
+      el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();const x=(e.clientX-r.left-r.width/2)*.12,y=(e.clientY-r.top-r.height/2)*.12;el.style.transform=`translate3d(${x}px,${y}px,0)`;el.style.setProperty('--mx',x*2+'px');el.style.setProperty('--my',y*2+'px')},{passive:true});
+      el.addEventListener('pointerleave',()=>{el.style.transform='';el.style.removeProperty('--mx');el.style.removeProperty('--my')});
+    });
+    const inst=document.querySelector('#top [data-hero-inst]');
+    top&&inst&&top.addEventListener('pointermove',e=>{const r=top.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;inst.style.transform=`translate3d(${x*10}px,${y*-7}px,0)`},{passive:true});
+    top&&top.addEventListener('pointerleave',()=>{if(inst)inst.style.transform=''});
+  }
+
+  // Enhanced cards without interfering with existing click handlers.
+  const cards=[...document.querySelectorAll('[data-glow-item],#projects [data-cards] article,[data-cards] article')];
+  cards.forEach((card,i)=>{card.setAttribute('data-gmt-enhanced-card','');card.setAttribute('data-gmt-focus','');if(!card.hasAttribute('tabindex'))card.setAttribute('tabindex','0');
+    if(!reduce && matchMedia('(pointer:fine)').matches){
+      card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(900px) rotateX(${(-y*2.5).toFixed(2)}deg) rotateY(${(x*3.1).toFixed(2)}deg)`},{passive:true});
+      card.addEventListener('pointerleave',()=>card.style.transform='');
+    }
+  });
+
+  // Reveal long-page content progressively, preserving existing animations.
+  const reveal=[...document.querySelectorAll('#expertise,#projects,#opensource,#certs,#stack,#about')];
+  reveal.forEach((el,i)=>{el.setAttribute('data-gmt-reveal','');el.style.transitionDelay=(i*.035)+'s'});
+  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.05,rootMargin:'0px 0px -6%'});reveal.forEach(el=>io.observe(el));}else reveal.forEach(el=>el.classList.add('is-visible'));
+
+  // Active section navigation.
+  const nav=[...document.querySelectorAll('[data-navlinks] a[href^="#"]')];
+  const targets=nav.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  if('IntersectionObserver' in window){const nio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){nav.forEach(a=>a.classList.toggle('is-active',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-25% 0px -60% 0px',threshold:0});targets.forEach(t=>nio.observe(t))}
+
+  const updateScroll=()=>{const d=document.documentElement,max=Math.max(1,d.scrollHeight-innerHeight);scroll.style.transform=`scaleX(${Math.min(1,scrollY/max)})`};addEventListener('scroll',updateScroll,{passive:true});addEventListener('resize',updateScroll,{passive:true});updateScroll();
+
+  // Fix standalone language links to the packaged sibling artifacts.
+  const langLink=[...document.querySelectorAll('a')].find(a=>a.textContent.trim()===(isFA?'EN':'FA') || a.textContent.trim()===(isFA?'EN':'FA'));
+  if(langLink)langLink.href=isFA?'portfolio-en-standalone.html':'portfolio-fa-standalone.html';
+
+  // Interactive Engineering Console: intentionally frontend-only and deterministic.
+  (function initEngineeringConsole(){
+    const box=document.querySelector('[data-gmt-console]'); if(!box)return;
+    const out=box.querySelector('[data-gmt-output]'), input=box.querySelector('[data-gmt-command-input]'), state=box.querySelector('[data-gmt-console-state]');
+    const copy=box.querySelector('[data-gmt-copy]'); const fa=(document.documentElement.lang||'').toLowerCase().startsWith('fa')||box.dir==='rtl';
+    const commands={
+      status:()=>fa?['GMTec ENGINEERING CORE','────────────────────','status   : ONLINE','mode     : INTERACTIVE','ui       : RTL / RESPONSIVE','motion   : ADAPTIVE','assets   : EMBEDDED','runtime  : STANDALONE SAFE','> interface ready.']:['GMTec ENGINEERING CORE','────────────────────','status   : ONLINE','mode     : INTERACTIVE','ui       : LTR / RESPONSIVE','motion   : ADAPTIVE','assets   : EMBEDDED','runtime  : STANDALONE SAFE','> interface ready.'],
+      stack:()=>['TECHNICAL STACK','────────────────────','AI       → LLM · RAG · Agents','DATA     → SQL Server · PostgreSQL','WEB      → JS · HTML · CSS · Cloudflare','SECURITY → CEH · Hardening · Web Security','AUTOMATION → n8n · APIs','IOT      → ESP32 · Sensors'],
+      projects:()=>fa?['PROJECT INDEX','────────────────────','01  RAG / SQL Assistant','02  HCM Query Intelligence','03  ESP32 IoT Monitor','04  SSRS / RDL Reporting','05  MCP / AI Tooling','> inspect the Projects section for full details.']:['PROJECT INDEX','────────────────────','01  RAG / SQL Assistant','02  HCM Query Intelligence','03  ESP32 IoT Monitor','04  SSRS / RDL Reporting','05  MCP / AI Tooling','> inspect the Projects section for full details.'],
+      help:()=>['AVAILABLE COMMANDS','────────────────────','status    system state','stack     technical capabilities','projects  project index','help      command reference','clear     clear terminal']
+    };
+    function render(cmd){
+      cmd=(cmd||'').trim().toLowerCase(); if(cmd==='clear'){out.textContent='';state.textContent='READY';return;}
+      const fn=commands[cmd]||(()=>[fa?'دستور ناشناخته. help را اجرا کنید.':'Unknown command. Run help.']);
+      out.textContent=fn().join('\n'); state.textContent=cmd.toUpperCase();
+      if(!reduce) { out.animate([{opacity:.45,transform:'translateY(4px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,easing:'cubic-bezier(.16,.86,.2,1)'}); }
+    }
+    window.GMTecEngineeringConsole={run:render}; render('status');
+    box.querySelectorAll('[data-gmt-command]').forEach(b=>b.addEventListener('click',()=>{input.textContent=b.dataset.gmtCommand;render(b.dataset.gmtCommand);input.focus();}));
+    input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();render(input.textContent);}});
+    copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(out.textContent);state.textContent=fa?'کپی شد':'COPIED';setTimeout(()=>state.textContent='READY',1100)}catch(_){state.textContent='COPY BLOCKED'}});
+  })();
+
+  // Keyboard shortcut: G toggles the ambient grid.
+  addEventListener('keydown',e=>{if((e.key||'').toLowerCase()==='g'&&!/input|textarea/i.test(document.activeElement.tagName)){document.body.classList.toggle('gmt-no-grid')}});
+  const gridStyle=document.createElement('style');gridStyle.textContent='.gmt-no-grid:before{opacity:0!important}';document.head.appendChild(gridStyle);
+})();
+</script>
+
+
+<section data-gmt-console="" aria-label="کنسول مهندسی" dir="rtl">
+  <div class="gmt-console-head">
+    <div><div class="gmt-console-kicker">GMTec / کنسول مهندسی</div><h2>یک نگاه به سیستم</h2></div>
+    <div class="gmt-console-signal"><span></span>ONLINE · آماده</div>
+  </div>
+  <div class="gmt-console-shell">
+    <div class="gmt-console-toolbar"><div class="gmt-console-tabs"><button data-gmt-command="status" type="button">status</button><button data-gmt-command="stack" type="button">stack</button><button data-gmt-command="projects" type="button">projects</button><button data-gmt-command="help" type="button">help</button></div><button data-gmt-copy type="button" aria-label="کپی خروجی">COPY</button></div>
+    <div class="gmt-console-body">
+      <div class="gmt-console-prompt"><span class="gmt-prompt-symbol">›</span><span data-gmt-command-input contenteditable="true" role="textbox" aria-label="دستور کنسول" spellcheck="false">status</span><span class="gmt-caret"></span></div>
+      <pre data-gmt-output aria-live="polite"></pre>
+    </div>
+    <div class="gmt-console-footer"><span>برای مشاهده قابلیت‌های مهندسی اجرا کنید…</span><span data-gmt-console-state>READY</span></div>
+  </div>
+</section>
+</body></html>

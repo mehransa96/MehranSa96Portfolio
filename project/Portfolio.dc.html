@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>مهران سبزعلی | مهندس ارشد نرم‌افزار — هوش مصنوعی، امنیت، IoT</title>
+<meta name="description" content="کارنامه فنی مهران سبزعلی (GMTec): معماری سیستم‌های هوش مصنوعی، امنیت سایبری با مدرک CEH، پایگاه داده و SQL Server، و توسعه IoT. ۸ سال تجربه و ۲۳ پروژه عملیاتی.">
+<meta name="author" content="Mehran Sabzali">
+<link rel="canonical" href="https://gmtec.ir/">
+<meta property="og:title" content="مهران سبزعلی | مهندس ارشد نرم‌افزار">
+<meta property="og:description" content="هوش مصنوعی، امنیت سایبری، پایگاه داده و IoT — ۲۳ پروژه عملیاتی.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gmtec.ir/">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/three@0.149.0/build/three.min.js"></script>
+<script type="module" src="./projects-data.js"></script>
+<style>
+  :root{--accent:#00E28A;--line:#1A1D1D;--portrait-filter:grayscale(1) contrast(1.05);}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:92px}
+  body{margin:0;background:#08090A;color:#E7E9E8;font-family:'Vazirmatn','Tahoma','Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:#C8D0CE;text-decoration:none;transition:color .22s ease}
+  a:hover{color:var(--accent)}
+  button{font-family:'Vazirmatn',sans-serif}
+  ::selection{background:rgba(0,226,138,.22)}
+  @keyframes msIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes msChar{from{opacity:0;transform:translateY(.42em);filter:blur(9px)}to{opacity:1;transform:none;filter:blur(0)}}
+  @keyframes msPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.32;transform:scale(1.85)}}
+  @keyframes msCue{0%{transform:translateY(0);opacity:.25}50%{transform:translateY(7px);opacity:1}100%{transform:translateY(0);opacity:.25}}
+  @keyframes msMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes msFlow{0%{transform:translateY(-6px);opacity:0}30%{opacity:1}100%{transform:translateY(46px);opacity:0}}
+  @keyframes msFade{from{opacity:0}to{opacity:1}}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+</style>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#08090A"/><circle cx="100" cy="100" r="46" fill="none" stroke="#00E28A" stroke-width="1.4" opacity=".45"/><circle cx="100" cy="100" r="30" fill="none" stroke="#00E28A" stroke-width="1.4" opacity=".7"/><circle cx="100" cy="100" r="8" fill="#00E28A"/><text x="100" y="172" font-family="monospace" font-size="17" letter-spacing="4" fill="#C8D0CE" text-anchor="middle">GMTEC</text></svg></template>
+</helmet>
+<div ref="{{ rootRef }}" dir="rtl" lang="fa" style="position:relative;min-height:100vh;background:transparent;">
+
+  <canvas ref="{{ canvasRef }}" aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:0;"></canvas>
+  <div aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.2;background-image:linear-gradient(rgba(0,226,138,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,226,138,.05) 1px,transparent 1px);background-size:clamp(42px,4.6vw,68px) clamp(42px,4.6vw,68px);mask-image:radial-gradient(130% 100% at 50% 0%,#000 6%,rgba(0,0,0,.25) 55%,transparent 85%);-webkit-mask-image:radial-gradient(130% 100% at 50% 0%,#000 6%,rgba(0,0,0,.25) 55%,transparent 85%);"></div>
+  <div ref="{{ spotRef }}" aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(520px circle at 50% 30%,rgba(0,226,138,.05),transparent 70%);"></div>
+
+  <div style="position:relative;z-index:2;">
+
+  <div style="position:sticky;top:0;z-index:40;background:rgba(8,9,10,.8);backdrop-filter:blur(20px);border-bottom:1px solid #151818;">
+    <span ref="{{ progRef }}" style="position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(to left,var(--accent),transparent);transform:scaleX(0);transform-origin:right;pointer-events:none;"></span>
+    <div style="max-width:1360px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px clamp(16px,4vw,48px);min-height:58px;">
+      <a href="#top" aria-label="GMTec" style="display:flex;align-items:center;gap:11px;flex:0 0 auto;">
+        <img src="assets/logo.png" alt="GMTec" style="height:26px;width:auto;display:block;object-fit:contain;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:#6E7A78;">GMTEC</span>
+      </a>
+
+      <sc-if value="{{ isDesk }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:clamp(14px,2vw,30px);font-size:13.5px;color:#8A9391;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+            <a href="#expertise" style="white-space:nowrap;padding:4px 0;border-bottom:1px solid transparent;" style-hover="border-color:var(--accent);">تخصص‌ها</a>
+            <a href="#projects" style="white-space:nowrap;padding:4px 0;border-bottom:1px solid transparent;" style-hover="border-color:var(--accent);">پروژه‌ها</a>
+            <a href="#about" style="white-space:nowrap;padding:4px 0;border-bottom:1px solid transparent;" style-hover="border-color:var(--accent);">درباره</a>
+          </sc-if>
+          <sc-if value="{{ isEn }}">
+            <a href="#expertise" style="white-space:nowrap;padding:4px 0;border-bottom:1px solid transparent;" style-hover="border-color:var(--accent);">Domains</a>
+            <a href="#projects" style="white-space:nowrap;padding:4px 0;border-bottom:1px solid transparent;" style-hover="border-color:var(--accent);">Work</a>
+            <a href="#about" style="white-space:nowrap;padding:4px 0;border-bottom:1px solid transparent;" style-hover="border-color:var(--accent);">About</a>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <div style="display:flex;align-items:center;gap:8px;flex:0 0 auto;">
+        <sc-if value="{{ isDesk }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ openPal }}" title="Ctrl + K" aria-label="Search" dir="ltr" style="display:flex;align-items:center;gap:8px;background:transparent;border:1px solid #232726;border-radius:2px;padding:0 12px;height:36px;color:#6E7A78;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:#3A423F;color:#C8D0CE;">
+            <span>⌘K</span><span style="width:1px;height:10px;background:#282D2C;"></span><span>SEARCH</span>
+          </button>
+        </sc-if>
+        <sc-if value="{{ isMobile }}">
+          <button onClick="{{ openPal }}" aria-label="Search" style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid #232726;border-radius:2px;color:#8A9391;cursor:pointer;">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="6.4"></circle><line x1="15.8" y1="15.8" x2="20.5" y2="20.5"></line></svg>
+          </button>
+        </sc-if>
+        <button onClick="{{ toggleLang }}" aria-label="Language" style="display:flex;align-items:center;justify-content:center;min-width:{{ tapSize }};height:{{ tapSize }};background:transparent;border:1px solid #232726;border-radius:2px;padding:0 10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#6E7A78;cursor:pointer;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:var(--accent);">{{ langLabel }}</button>
+        <a href="https://t.me/Mehran_Sa96" target="_blank" title="Telegram" aria-label="Telegram" style="display:flex;align-items:center;justify-content:center;width:{{ tapSize }};height:{{ tapSize }};border:1px solid #2A2F2E;border-radius:2px;color:#C8D0CE;transition:border-color .25s ease,color .25s ease,background .25s ease;" style-hover="border-color:var(--accent);color:var(--accent);background:rgba(0,226,138,.06);">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M21.86 4.3a1 1 0 0 0-1.35-1.05L2.9 10.1c-.94.37-.92 1.72.03 2.05l4.2 1.47 1.63 4.97c.24.72 1.17.9 1.66.32l2.2-2.6 4.06 2.98c.62.46 1.5.14 1.69-.61l3.49-14.38ZM9.1 13.38l8.07-5.1-6.4 5.96a1 1 0 0 0-.31.6l-.25 1.87-1.11-3.33Z"></path></svg>
+        </a>
+        <sc-if value="{{ isMobile }}">
+          <button onClick="{{ toggleMenu }}" aria-label="Menu" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:44px;height:44px;background:{{ menuBg }};border:1px solid {{ menuBorder }};border-radius:2px;cursor:pointer;">
+            <span style="display:block;width:16px;height:1.4px;background:{{ menuInk }};transition:transform .25s ease;transform:{{ barTop }};"></span>
+            <span style="display:block;width:16px;height:1.4px;background:{{ menuInk }};opacity:{{ barMidOpacity }};transition:opacity .2s ease;"></span>
+            <span style="display:block;width:16px;height:1.4px;background:{{ menuInk }};transition:transform .25s ease;transform:{{ barBottom }};"></span>
+          </button>
+        </sc-if>
+      </div>
+    </div>
+    <sc-if value="{{ menuOpen }}">
+      <div style="border-top:1px solid #151818;background:rgba(8,9,10,.96);animation:msIn .24s cubic-bezier(.16,.86,.2,1) both;">
+        <div style="max-width:1360px;margin:0 auto;padding:6px clamp(16px,4vw,48px) 16px;display:flex;flex-direction:column;">
+          <sc-for list="{{ menuLinks }}" as="m" hint-placeholder-count="3">
+            <a href="{{ m.href }}" onClick="{{ m.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:15px;color:#C8D0CE;padding:15px 2px;border-bottom:1px solid #151818;min-height:48px;">
+              <span>{{ m.label }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#3E4644;">{{ m.meta }}</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <div id="top" style="position:relative;">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(52px,8vw,104px) clamp(18px,4vw,48px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(32px,4vw,64px);align-items:center;">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#6E7A78;margin-bottom:34px;animation:msIn .8s cubic-bezier(.16,.86,.2,1) both;">
+          <span style="width:5px;height:5px;border-radius:50%;background:var(--accent);animation:msPulse 2.6s ease-in-out infinite;"></span>
+          <span>CEH CERTIFIED · SENIOR SOFTWARE ENGINEER</span>
+        </div>
+        <h1 dir="ltr" style="margin:0;font-family:'Space Grotesk',sans-serif;font-size:clamp(40px,6.2vw,80px);font-weight:500;line-height:1.04;letter-spacing:-0.03em;animation:msChar .95s cubic-bezier(.16,.86,.2,1) .2s both;">Mehran Sabzali</h1>
+        <div style="margin-top:20px;font-size:clamp(16px,1.5vw,21px);font-weight:500;color:#C8D0CE;animation:msIn .9s cubic-bezier(.16,.86,.2,1) .75s both;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">مهران سبزعلی — مهندس ارشد نرم‌افزار</sc-if>
+          <sc-if value="{{ isEn }}">Senior Software Engineer</sc-if>
+        </div>
+        <div dir="ltr" style="display:flex;flex-wrap:wrap;gap:12px 18px;margin-top:clamp(40px,5vw,60px);font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#5C6664;animation:msIn .9s cubic-bezier(.16,.86,.2,1) .95s both;">
+          <span style="white-space:nowrap;">TEHRAN, IR</span><span style="white-space:nowrap;display:inline-flex;align-items:center;gap:18px;"><span style="color:#232726;">|</span>AI · SECURITY · DATA · IOT</span><span style="white-space:nowrap;display:inline-flex;align-items:center;gap:18px;"><span style="color:#232726;">|</span>8 YEARS</span><span style="white-space:nowrap;display:inline-flex;align-items:center;gap:18px;"><span style="color:#232726;">|</span>23 PROJECTS</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:clamp(32px,4vw,44px);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#3E4644;animation:msIn .9s cubic-bezier(.16,.86,.2,1) 1.15s both;">
+          <span style="display:inline-block;animation:msCue 2.2s ease-in-out infinite;">↓</span><span>SCROLL</span>
+        </div>
+      </div>
+      <div style="position:relative;animation:msFade 1.4s ease .4s both;">
+        <div ref="{{ anchorRef }}" style="width:100%;max-width:520px;margin:0 auto;aspect-ratio:1;"></div>
+        <div dir="ltr" style="max-width:520px;margin:6px auto 0;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#3E4644;">
+          <span>NESTED CORE · WEBGL</span><span>DRAG TO ORBIT</span>
+        </div>
+      </div>
+    </div>
+    <div dir="ltr" style="position:relative;margin-top:clamp(42px,5vw,68px);border-top:1px solid #111414;border-bottom:1px solid #111414;background:rgba(10,12,12,.55);overflow:hidden;">
+      <div style="display:flex;width:max-content;animation:msMarquee 52s linear infinite;">
+        <div style="display:flex;align-items:center;gap:28px;padding:13px 28px 13px 0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#4E5654;white-space:nowrap;"><span style="color:var(--accent);">/</span><span>TEHRAN 35.69°N 51.39°E</span><span style="color:#232726;">/</span><span>LOCAL <span ref="{{ clockRef }}">--:--:--</span></span><span style="color:#232726;">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span style="color:#232726;">/</span><span>AI · SECURITY · DATA · IOT</span><span style="color:#232726;">/</span><span>8 YEARS IN PRODUCTION</span><span style="color:#232726;">/</span><span>23 PROJECTS</span></div>
+        <div style="display:flex;align-items:center;gap:28px;padding:13px 28px 13px 0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#4E5654;white-space:nowrap;"><span style="color:var(--accent);">/</span><span>TEHRAN 35.69°N 51.39°E</span><span style="color:#232726;">/</span><span>LOCAL <span ref="{{ clock2Ref }}">--:--:--</span></span><span style="color:#232726;">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span style="color:#232726;">/</span><span>AI · SECURITY · DATA · IOT</span><span style="color:#232726;">/</span><span>8 YEARS IN PRODUCTION</span><span style="color:#232726;">/</span><span>23 PROJECTS</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="expertise" style="max-width:1360px;margin:clamp(90px,12vw,160px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px 24px;margin-bottom:clamp(28px,3.6vw,46px);">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2.5px;color:var(--accent);"><span style="width:22px;height:1px;background:var(--accent);"></span><span>01 — DOMAINS</span></div>
+        <h2 style="margin:16px 0 0;font-size:clamp(28px,3.6vw,46px);font-weight:600;line-height:1.3;letter-spacing:-0.01em;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">حوزه‌های تخصصی</sc-if>
+          <sc-if value="{{ isEn }}">Domains of work</sc-if>
+        </h2>
+      </div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#5C6664;">05 DOMAINS</span>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ expCols }};gap:clamp(12px,1.4vw,18px);">
+      <div onMouseMove="{{ cardMove }}" onMouseLeave="{{ cardLeave }}" style="grid-column:span {{ expSpan1 }};position:relative;display:flex;flex-direction:column;min-height:clamp(280px,26vw,330px);padding:clamp(24px,2.6vw,36px);border:1px solid #1C2120;border-radius:3px;background:radial-gradient(460px circle at var(--mx,50%) var(--my,-20%),rgba(0,226,138,.10),transparent 62%),linear-gradient(180deg,rgba(13,16,15,.52),rgba(8,9,10,.30));transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .55s cubic-bezier(.16,.86,.2,1),border-color .35s ease;overflow:hidden;" style-hover="border-color:rgba(0,226,138,.34);">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(26px,3vw,42px);">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--accent);">01</span>
+          <span style="flex:1;height:1px;background:linear-gradient(to left,transparent,rgba(0,226,138,.32),transparent);"></span>
+          <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.8px;color:#5C6664;">AI / LLM</span>
+        </div>
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+          <h3 style="margin:0 0 14px;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.5;">هوش مصنوعی و LLM</h3>
+          <p style="margin:0;font-size:14.5px;line-height:2;color:#9BA5A3;text-wrap:pretty;">طراحی و استقرار سیستم‌های RAG، مهندسی پرامپت پیشرفته، معماری عامل‌های هوشمند و اتوماسیون جریان‌های کاری پیچیده با مدل‌های زبانی بزرگ؛ از تحقیق تا تولید.</p>
+        </sc-if>
+        <sc-if value="{{ isEn }}">
+          <h3 style="margin:0 0 14px;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.4;">AI &amp; LLM systems</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.85;color:#9BA5A3;text-wrap:pretty;">RAG systems, advanced prompt engineering, agent architecture and automation of complex workflows with large language models — from research to production.</p>
+        </sc-if>
+        <div dir="ltr" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:24px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">LangChain</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">RAG</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">Vector DB</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">Fine-tuning</span>
+        </div>
+      </div>
+      <div onMouseMove="{{ cardMove }}" onMouseLeave="{{ cardLeave }}" style="grid-column:span {{ expSpan2 }};position:relative;display:flex;flex-direction:column;min-height:clamp(280px,26vw,330px);padding:clamp(24px,2.6vw,36px);border:1px solid #1C2120;border-radius:3px;background:radial-gradient(460px circle at var(--mx,50%) var(--my,-20%),rgba(0,226,138,.10),transparent 62%),linear-gradient(180deg,rgba(13,16,15,.52),rgba(8,9,10,.30));transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .55s cubic-bezier(.16,.86,.2,1),border-color .35s ease;overflow:hidden;" style-hover="border-color:rgba(0,226,138,.34);">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(26px,3vw,42px);">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--accent);">02</span>
+          <span style="flex:1;height:1px;background:linear-gradient(to left,transparent,rgba(0,226,138,.32),transparent);"></span>
+          <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.8px;color:#5C6664;">SECURITY</span>
+        </div>
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+          <h3 style="margin:0 0 14px;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.5;">امنیت سایبری (CEH)</h3>
+          <p style="margin:0;font-size:14.5px;line-height:2;color:#9BA5A3;text-wrap:pretty;">تست نفوذ، معماری Zero Trust، طراحی سیستم‌های امن از پایه، ارزیابی آسیب‌پذیری و پیاده‌سازی پروتکل‌های امنیتی در سطح سازمانی برای برنامه‌های وب و شبکه.</p>
+        </sc-if>
+        <sc-if value="{{ isEn }}">
+          <h3 style="margin:0 0 14px;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.4;">Cyber security (CEH)</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.85;color:#9BA5A3;text-wrap:pretty;">Penetration testing, Zero Trust architecture, secure-by-design systems, vulnerability assessment and enterprise-grade security protocols for web and network.</p>
+        </sc-if>
+        <div dir="ltr" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:24px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">Pen Testing</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">OWASP</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">Zero Trust</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">Burp Suite</span>
+        </div>
+      </div>
+      <div onMouseMove="{{ cardMove }}" onMouseLeave="{{ cardLeave }}" style="grid-column:span {{ expSpan3 }};position:relative;display:flex;flex-direction:column;min-height:clamp(280px,26vw,330px);padding:clamp(24px,2.6vw,36px);border:1px solid #1C2120;border-radius:3px;background:radial-gradient(460px circle at var(--mx,50%) var(--my,-20%),rgba(0,226,138,.10),transparent 62%),linear-gradient(180deg,rgba(13,16,15,.52),rgba(8,9,10,.30));transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .55s cubic-bezier(.16,.86,.2,1),border-color .35s ease;overflow:hidden;" style-hover="border-color:rgba(0,226,138,.34);">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(26px,3vw,42px);">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--accent);">03</span>
+          <span style="flex:1;height:1px;background:linear-gradient(to left,transparent,rgba(0,226,138,.32),transparent);"></span>
+          <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.8px;color:#5C6664;">DATABASE</span>
+        </div>
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+          <h3 style="margin:0 0 14px;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.5;">پایگاه داده و SQL Server</h3>
+          <p style="margin:0;font-size:14.5px;line-height:2;color:#9BA5A3;text-wrap:pretty;">کوئری‌نویسی و بهینه‌سازی T-SQL روی دیتابیس‌های بزرگ ERP، طراحی Schema و Stored Procedure، ساخت گزارش‌های SSRS/RDL، و مانیتورینگ و تیونینگ کارایی در محیط عملیاتی.</p>
+        </sc-if>
+        <sc-if value="{{ isEn }}">
+          <h3 style="margin:0 0 14px;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.4;">Databases &amp; SQL Server</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.85;color:#9BA5A3;text-wrap:pretty;">T-SQL authoring and optimisation on large ERP databases, schema and stored-procedure design, SSRS/RDL reporting, plus performance monitoring and tuning in production.</p>
+        </sc-if>
+        <div dir="ltr" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:24px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">SQL Server</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">T-SQL</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">SSRS</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">Perf Tuning</span>
+        </div>
+      </div>
+      <div onMouseMove="{{ cardMove }}" onMouseLeave="{{ cardLeave }}" style="grid-column:span {{ expSpan4 }};position:relative;display:flex;flex-direction:column;min-height:clamp(280px,26vw,330px);padding:clamp(24px,2.6vw,36px);border:1px solid #1C2120;border-radius:3px;background:radial-gradient(460px circle at var(--mx,50%) var(--my,-20%),rgba(0,226,138,.10),transparent 62%),linear-gradient(180deg,rgba(13,16,15,.52),rgba(8,9,10,.30));transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .55s cubic-bezier(.16,.86,.2,1),border-color .35s ease;overflow:hidden;" style-hover="border-color:rgba(0,226,138,.34);">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(26px,3vw,42px);">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--accent);">04</span>
+          <span style="flex:1;height:1px;background:linear-gradient(to left,transparent,rgba(0,226,138,.32),transparent);"></span>
+          <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.8px;color:#5C6664;">AUTOMATION</span>
+        </div>
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+          <h3 style="margin:0 0 14px;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.5;">راهکارهای خلاقانه و هوشمند</h3>
+          <p style="margin:0;font-size:14.5px;line-height:2;color:#9BA5A3;text-wrap:pretty;">نگاه من به هر پروژه این است که کدام مرحله را می‌توان حذف کرد: ابزار اختصاصی، اتوماسیون جریان کار و ابزارهای AI داخلی (MCP) تا کار تکراری به ماشین برود و زمان صرف کیفیت شود.</p>
+        </sc-if>
+        <sc-if value="{{ isEn }}">
+          <h3 style="margin:0 0 14px;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.4;">Creative, smart solutions</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.85;color:#9BA5A3;text-wrap:pretty;">I look at every project asking which step can be removed: purpose-built tooling, workflow automation and internal AI tools (MCP) so repetitive work goes to the machine and time goes to quality.</p>
+        </sc-if>
+        <div dir="ltr" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:24px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">n8n</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">MCP</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">Internal Tools</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">Agents</span>
+        </div>
+      </div>
+      <div onMouseMove="{{ cardMove }}" onMouseLeave="{{ cardLeave }}" style="grid-column:span {{ expSpan5 }};position:relative;display:flex;flex-direction:column;min-height:clamp(280px,26vw,330px);padding:clamp(24px,2.6vw,36px);border:1px solid #1C2120;border-radius:3px;background:radial-gradient(460px circle at var(--mx,50%) var(--my,-20%),rgba(0,226,138,.10),transparent 62%),linear-gradient(180deg,rgba(13,16,15,.52),rgba(8,9,10,.30));transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .55s cubic-bezier(.16,.86,.2,1),border-color .35s ease;overflow:hidden;" style-hover="border-color:rgba(0,226,138,.34);">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:clamp(26px,3vw,42px);">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--accent);">05</span>
+          <span style="flex:1;height:1px;background:linear-gradient(to left,transparent,rgba(0,226,138,.32),transparent);"></span>
+          <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.8px;color:#5C6664;">IOT / FULL-STACK</span>
+        </div>
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+          <h3 style="margin:0 0 14px;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.5;">IoT و فول‌استک</h3>
+          <p style="margin:0;font-size:14.5px;line-height:2;color:#9BA5A3;text-wrap:pretty;">توسعه سیستم‌های IoT مبتنی بر ESP32، معماری client-server با ارتباطات امن VPN، استقرار اپلیکیشن‌های وب مقیاس‌پذیر و طراحی API های RESTful.</p>
+        </sc-if>
+        <sc-if value="{{ isEn }}">
+          <h3 style="margin:0 0 14px;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.4;">IoT &amp; full-stack</h3>
+          <p style="margin:0;font-size:14.5px;line-height:1.85;color:#9BA5A3;text-wrap:pretty;">ESP32-based IoT systems, client-server architecture over secure VPN links, scalable web app deployment and RESTful API design.</p>
+        </sc-if>
+        <div dir="ltr" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:24px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">ESP32</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">Next.js</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">WireGuard</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #232827;background:rgba(8,9,10,.5);padding:5px 10px;border-radius:2px;">Docker</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="projects" style="max-width:1360px;margin:clamp(90px,11vw,150px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px 24px;margin-bottom:clamp(28px,3.6vw,46px);">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2.5px;color:var(--accent);"><span style="width:22px;height:1px;background:var(--accent);"></span><span>02 — WORK</span></div>
+        <h2 style="margin:16px 0 0;font-size:clamp(28px,3.6vw,46px);font-weight:600;line-height:1.3;letter-spacing:-0.01em;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">پروژه‌های منتخب</sc-if>
+          <sc-if value="{{ isEn }}">Selected work</sc-if>
+        </h2>
+      </div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#5C6664;">{{ projectCount }}</span>
+    </div>
+    <div style="display:flex;gap:8px;margin:0 0 22px;flex-wrap:wrap;">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+        <button onClick="{{ f.onClick }}" style="display:inline-flex;align-items:center;justify-content:center;min-height:42px;font-size:13px;padding:0 16px;border-radius:2px;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};cursor:pointer;transition:border-color .22s,background .22s,color .22s;">{{ f.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:{{ pjCols }};gap:{{ pjGap }};align-items:start;">
+      <div style="grid-column:1;grid-row:1;border:1px solid #181C1B;border-radius:3px;background:rgba(9,11,11,.78);height:{{ pjListH }};overflow-y:{{ panelScroll }};overscroll-behavior:contain;">
+        <sc-for list="{{ rowsA }}" as="r" hint-placeholder-count="10">
+          <button data-pj="{{ r.id }}" onClick="{{ r.onClick }}" style="width:100%;display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:14px;align-items:center;text-align:start;padding:16px 18px;background:{{ r.bg }};border:0;border-bottom:1px solid #131616;border-inline-start:2px solid {{ r.bar }};cursor:pointer;transition:background .25s ease,border-color .25s ease;font-family:inherit;" style-hover="background:rgba(14,18,17,.92);">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:{{ r.numColor }};">{{ r.num }}</span>
+            <span style="display:block;min-width:0;">
+              <span style="display:block;font-size:14.5px;font-weight:500;color:{{ r.titleColor }};line-height:1.6;">{{ r.title }}</span>
+              <span dir="ltr" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#4E5654;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:start;">{{ r.en }}</span>
+            </span>
+            <span style="display:flex;align-items:center;gap:10px;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:#5C6664;white-space:nowrap;">{{ r.tag }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:{{ r.markColor }};width:12px;text-align:center;">{{ r.mark }}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+      <sc-if value="{{ showDet }}" hint-placeholder-val="{{ true }}">
+        <div ref="{{ detRef }}" style="grid-column:{{ pjDetCol }};grid-row:{{ pjDetRow }};border:1px solid {{ pjDetBorder }};border-radius:3px;background:linear-gradient(180deg,rgba(13,17,16,.94),rgba(9,11,11,.94));height:{{ pjDetH }};overflow-y:{{ panelScroll }};overscroll-behavior:contain;">
+          <div style="padding:clamp(22px,2.8vw,40px);">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#5C6664;margin-bottom:clamp(20px,2.4vw,30px);">
+              <span style="color:var(--accent);">{{ det.num }}</span>
+              <span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                <sc-if value="{{ det.hasBadge }}"><span style="border:1px solid #2A302E;border-radius:2px;padding:4px 9px;">{{ det.badge }}</span></sc-if>
+                <span style="border:1px solid #2A302E;border-radius:2px;padding:4px 9px;">{{ det.tag }}</span>
+              </span>
+            </div>
+            <h3 style="margin:0 0 8px;font-size:clamp(22px,2.4vw,31px);font-weight:600;line-height:1.45;letter-spacing:-0.01em;text-wrap:balance;">{{ det.title }}</h3>
+            <div dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#6E7A78;text-align:start;">{{ det.en }}</div>
+            <p style="margin:clamp(20px,2.2vw,28px) 0 0;padding-top:clamp(20px,2.2vw,28px);border-top:1px solid #1A1F1E;font-size:clamp(15px,1.15vw,16.5px);line-height:2;color:#D3D9D7;text-wrap:pretty;">{{ det.sum }}</p>
+            <sc-if value="{{ det.hasCtx }}">
+              <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#6E7A78;margin:30px 0 14px;"><span style="width:14px;height:1px;background:var(--accent);"></span><span>{{ t.ctx }}</span></div>
+              <p style="margin:0;font-size:14px;line-height:2.05;color:#9BA5A3;text-wrap:pretty;">{{ det.ctx }}</p>
+            </sc-if>
+            <sc-if value="{{ det.hasCh }}">
+              <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#6E7A78;margin:30px 0 14px;"><span style="width:14px;height:1px;background:var(--accent);"></span><span>{{ t.ch }}</span></div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+              <sc-for list="{{ det.ch }}" as="c" hint-placeholder-count="3">
+                <div style="display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:14px;line-height:1.95;color:#9BA5A3;">
+                  <span style="width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:12px;"></span><span>{{ c.text }}</span>
+                </div>
+              </sc-for>
+            </div>
+            </sc-if>
+            <sc-if value="{{ det.hasSol }}">
+              <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#6E7A78;margin:30px 0 14px;"><span style="width:14px;height:1px;background:var(--accent);"></span><span>{{ t.sol }}</span></div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+              <sc-for list="{{ det.sol }}" as="s" hint-placeholder-count="3">
+                <div style="display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:14px;line-height:1.95;color:#9BA5A3;">
+                  <span style="width:5px;height:5px;border-radius:50%;background:#3E4644;margin-top:12px;"></span><span>{{ s.text }}</span>
+                </div>
+              </sc-for>
+            </div>
+            </sc-if>
+            <sc-if value="{{ det.hasResp }}">
+              <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#6E7A78;margin:30px 0 14px;"><span style="width:14px;height:1px;background:var(--accent);"></span><span>{{ t.resp }}</span></div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+              <sc-for list="{{ det.resp }}" as="rr" hint-placeholder-count="3">
+                <div style="display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:14px;line-height:1.95;color:#9BA5A3;">
+                  <span style="width:5px;height:5px;border-radius:50%;background:#3E4644;margin-top:12px;"></span><span>{{ rr.text }}</span>
+                </div>
+              </sc-for>
+            </div>
+            </sc-if>
+            <sc-if value="{{ det.hasVal }}">
+              <div style="margin-top:30px;border:1px solid #1F2523;border-radius:3px;background:radial-gradient(380px circle at 0% 0%,rgba(0,226,138,.07),transparent 70%),rgba(10,13,12,.9);padding:20px 22px;">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:var(--accent);margin-bottom:10px;">{{ t.val }}</div>
+                <div style="font-size:14.5px;line-height:1.95;color:#D3D9D7;">{{ det.val }}</div>
+              </div>
+            </sc-if>
+            <div style="display:flex;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#6E7A78;margin:30px 0 14px;"><span style="width:14px;height:1px;background:var(--accent);"></span><span>{{ t.stack }}</span></div>
+            <div dir="ltr" style="display:flex;flex-wrap:wrap;gap:7px;">
+              <sc-for list="{{ det.stack }}" as="st" hint-placeholder-count="6">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9BA5A3;border:1px solid #232827;background:rgba(8,9,10,.55);padding:6px 11px;border-radius:2px;">{{ st.text }}</span>
+              </sc-for>
+            </div>
+            <sc-if value="{{ det.hasLink }}">
+              <a href="{{ det.link }}" target="_blank" style="display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:1.5px;color:var(--accent);border-bottom:1px solid rgba(0,226,138,.3);">{{ t.open }} <span>↗</span></a>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ hasRowsB }}">
+        <div style="grid-column:1;grid-row:3;border:1px solid #181C1B;border-radius:3px;background:rgba(9,11,11,.78);">
+        <sc-for list="{{ rowsB }}" as="r" hint-placeholder-count="0">
+          <button data-pj="{{ r.id }}" onClick="{{ r.onClick }}" style="width:100%;display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:14px;align-items:center;text-align:start;padding:16px 18px;background:{{ r.bg }};border:0;border-bottom:1px solid #131616;border-inline-start:2px solid {{ r.bar }};cursor:pointer;transition:background .25s ease,border-color .25s ease;font-family:inherit;" style-hover="background:rgba(14,18,17,.92);">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:{{ r.numColor }};">{{ r.num }}</span>
+            <span style="display:block;min-width:0;">
+              <span style="display:block;font-size:14.5px;font-weight:500;color:{{ r.titleColor }};line-height:1.6;">{{ r.title }}</span>
+              <span dir="ltr" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#4E5654;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:start;">{{ r.en }}</span>
+            </span>
+            <span style="display:flex;align-items:center;gap:10px;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:#5C6664;white-space:nowrap;">{{ r.tag }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:{{ r.markColor }};width:12px;text-align:center;">{{ r.mark }}</span>
+            </span>
+          </button>
+        </sc-for>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <div id="opensource" style="max-width:1360px;margin:clamp(70px,9vw,110px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;">
+      <h2 style="margin:0;font-size:15px;font-weight:600;">
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">مخازن کد</sc-if>
+        <sc-if value="{{ isEn }}">Code repositories</sc-if>
+      </h2>
+      <a href="https://github.com/mehransa96" target="_blank" style="display:inline-flex;align-items:center;min-height:40px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#5C6664;">GITHUB.COM/MEHRANSA96 ↗</a>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <a href="https://github.com/mehransa96/Website-analyse-tool-site-recon" target="_blank" style="display:flex;flex-wrap:wrap;gap:10px 32px;align-items:baseline;padding:24px 0;border-bottom:1px solid #151818;transition:background .35s ease,border-color .35s ease;" style-hover="background:rgba(11,14,13,.8);border-color:#232726;">
+        <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#E7E9E8;flex:0 0 220px;">site-recon</span>
+        <span style="font-size:14px;line-height:1.85;color:#8A9391;flex:1 1 300px;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">ایجنت محلی که یک وب‌سایت را مثل یک مهندس بازاریابی می‌خواند و مستندش می‌کند؛ شواهد روی دستگاه خودت می‌ماند.</sc-if>
+          <sc-if value="{{ isEn }}">A local agent that reads a website like a marketing engineer and documents it — the evidence stays on your own machine.</sc-if>
+        </span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">↗</span>
+      </a>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 32px;align-items:baseline;padding:24px 0;border-bottom:1px solid #151818;transition:background .35s ease;" style-hover="background:rgba(11,14,13,.8);">
+        <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#E7E9E8;flex:0 0 220px;">RepBuilderAssis</span>
+        <span style="font-size:14px;line-height:1.85;color:#8A9391;flex:1 1 300px;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">دستیار هوش مصنوعی ساخت گزارش SSRS: از پرسش فارسی تا T-SQL اعتبارسنجی‌شده و فایل RDL آماده.</sc-if>
+          <sc-if value="{{ isEn }}">An AI assistant for building SSRS reports: from a Persian question to validated T-SQL and a ready RDL file.</sc-if>
+        </span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:#5C6664;border:1px solid #232726;padding:3px 8px;border-radius:2px;white-space:nowrap;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">خصوصی</sc-if>
+          <sc-if value="{{ isEn }}">Private</sc-if>
+        </span>
+      </div>
+      <a href="https://github.com/mehransa96/gmtecaitools" target="_blank" style="display:flex;flex-wrap:wrap;gap:10px 32px;align-items:baseline;padding:24px 0;border-bottom:1px solid #151818;transition:background .35s ease;" style-hover="background:rgba(11,14,13,.8);">
+        <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#E7E9E8;flex:0 0 220px;">gmtecaitools</span>
+        <span style="flex:1 1 300px;"></span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">↗</span>
+      </a>
+      <a href="https://github.com/mehransa96/PowerGmTec" target="_blank" style="display:flex;flex-wrap:wrap;gap:10px 32px;align-items:baseline;padding:24px 0;border-bottom:1px solid #151818;transition:background .35s ease;" style-hover="background:rgba(11,14,13,.8);">
+        <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#E7E9E8;flex:0 0 220px;">PowerGmTec</span>
+        <span style="flex:1 1 300px;"></span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div id="certs" style="max-width:1360px;margin:clamp(70px,9vw,110px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;">
+      <h2 style="margin:0;font-size:15px;font-weight:600;">
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">گواهینامه‌ها</sc-if>
+        <sc-if value="{{ isEn }}">Certificates</sc-if>
+      </h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#5C6664;">03 CERTIFICATES</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,272px),1fr));gap:1px;background:#151818;border:1px solid #151818;">
+      <div style="background:rgba(10,12,12,.78);padding:30px;transition:background .45s ease;" style-hover="background:rgba(12,16,15,.9);">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-bottom:22px;animation:msPulse 2.6s ease-in-out infinite;"></div>
+        <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;">Certified Ethical Hacker</h3>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">CEH · EC-COUNCIL</div>
+      </div>
+      <div style="background:rgba(10,12,12,.78);padding:30px;transition:background .45s ease;" style-hover="background:rgba(12,16,15,.9);">
+        <div style="width:6px;height:6px;border-radius:50%;background:#3A423F;margin-bottom:22px;"></div>
+        <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">دوره کامل پایتون</sc-if>
+          <sc-if value="{{ isEn }}">Python — full course</sc-if>
+        </h3>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">PYTHON · FULL COURSE</div>
+      </div>
+      <div style="background:rgba(10,12,12,.78);padding:30px;transition:background .45s ease;" style-hover="background:rgba(12,16,15,.9);">
+        <div style="width:6px;height:6px;border-radius:50%;background:#3A423F;margin-bottom:22px;"></div>
+        <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">دوره کامل SQL Server</sc-if>
+          <sc-if value="{{ isEn }}">SQL Server — full course</sc-if>
+        </h3>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;">SQL SERVER · FULL COURSE</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="stack" style="max-width:1360px;margin:clamp(70px,9vw,110px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;">
+      <h2 style="margin:0;font-size:15px;font-weight:600;">
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">استک فنی</sc-if>
+        <sc-if value="{{ isEn }}">Technical stack</sc-if>
+      </h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#5C6664;">05 GROUPS</span>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <sc-for list="{{ stackGroups }}" as="g" hint-placeholder-count="5">
+        <div style="display:flex;flex-wrap:wrap;gap:14px 40px;align-items:baseline;padding:24px 0;border-bottom:1px solid #151818;transition:background .35s ease;" style-hover="background:rgba(11,14,13,.8);">
+          <div dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:1.5px;color:#8A9391;flex:0 0 150px;">{{ g.label }}</div>
+          <div dir="ltr" style="display:flex;flex-wrap:wrap;gap:9px;flex:1 1 260px;">
+            <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="7">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 12px;border-radius:2px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:var(--accent);color:#C8D0CE;">{{ it.text }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div id="about" style="max-width:1360px;margin:clamp(70px,9vw,110px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;">
+      <h2 style="margin:0;font-size:15px;font-weight:600;">
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">درباره من</sc-if>
+        <sc-if value="{{ isEn }}">About</sc-if>
+      </h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#5C6664;">MEHRAN SABZALI</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(30px,4vw,60px);padding-top:44px;align-items:start;">
+      <div>
+        <div style="border:1px solid var(--line);background:rgba(12,14,14,.8);padding:8px;max-width:460px;">
+          <img src="assets/portrait.webp" alt="مهران سبزعلی" style="width:100%;display:block;filter:var(--portrait-filter);">
+        </div>
+        <div dir="ltr" style="display:flex;justify-content:space-between;max-width:460px;margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#5C6664;">
+          <span>TEHRAN, IR</span><span>CEH CERTIFIED</span>
+        </div>
+      </div>
+      <div>
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+          <p style="margin:0;font-size:16.5px;line-height:2.05;color:#9BA5A3;text-wrap:pretty;">بیش از ۸ سال است که در سه حوزه موازی فعالیت می‌کنم: توسعه نرم‌افزار فول‌استک، امنیت سایبری، و معماری سیستم‌های هوش مصنوعی. مسیر حرفه‌ای‌ام از طراحی نرم‌افزارهای سازمانی آغاز شد و امروز شامل ساخت پایپ‌لاین‌های LLM، اجرای تست‌های نفوذ، و توسعه سیستم‌های IoT در مقیاس واقعی می‌شود.</p>
+          <p style="margin:22px 0 0;font-size:16.5px;line-height:2.05;color:#9BA5A3;text-wrap:pretty;">رویکرد من ساده است: کد تمیز، معماری محکم، امنیت از روز اول. دارنده مدرک CEH هستم و با شرکت‌ها و استارتاپ‌ها در پروژه‌های تحول دیجیتال همکاری می‌کنم.</p>
+        </sc-if>
+        <sc-if value="{{ isEn }}">
+          <p style="margin:0;font-size:16.5px;line-height:2.05;color:#9BA5A3;text-wrap:pretty;">For more than eight years I have worked across three parallel fields: full-stack software development, cyber security, and AI system architecture. My path started with enterprise software design and today includes LLM pipelines, penetration testing, and IoT systems at real scale.</p>
+          <p style="margin:22px 0 0;font-size:16.5px;line-height:2.05;color:#9BA5A3;text-wrap:pretty;">My approach is simple: clean code, solid architecture, security from day one. I hold the CEH certification and work with companies and startups on digital transformation projects.</p>
+        </sc-if>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1px;background:#151818;border:1px solid #151818;margin-top:38px;">
+          <div style="background:rgba(10,12,12,.78);padding:22px;transition:background .45s ease;" style-hover="background:rgba(12,16,15,.9);">
+            <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">امنیت از روز اول</div>
+              <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">هر پروژه با تحلیل تهدیدات و طراحی امن آغاز می‌شود، نه پس از توسعه.</div>
+            </sc-if>
+            <sc-if value="{{ isEn }}">
+              <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">Security from day one</div>
+              <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">Every project starts with threat analysis and secure design, not after the build.</div>
+            </sc-if>
+          </div>
+          <div style="background:rgba(10,12,12,.78);padding:22px;transition:background .45s ease;" style-hover="background:rgba(12,16,15,.9);">
+            <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">ارزش واقعی</div>
+              <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">تنها راه‌حل‌هایی می‌سازم که مشکل واقعی کسب‌وکار را حل کنند.</div>
+            </sc-if>
+            <sc-if value="{{ isEn }}">
+              <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">Real value</div>
+              <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">I only build solutions that solve an actual business problem.</div>
+            </sc-if>
+          </div>
+          <div style="background:rgba(10,12,12,.78);padding:22px;transition:background .45s ease;" style-hover="background:rgba(12,16,15,.9);">
+            <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">شفافیت فنی</div>
+              <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">مستندسازی کامل و ارتباط شفاف در طول پروژه، بدون تعجب.</div>
+            </sc-if>
+            <sc-if value="{{ isEn }}">
+              <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">Technical transparency</div>
+              <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">Full documentation and clear communication throughout — no surprises.</div>
+            </sc-if>
+          </div>
+          <div style="background:rgba(10,12,12,.78);padding:22px;transition:background .45s ease;" style-hover="background:rgba(12,16,15,.9);">
+            <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">یادگیری مداوم</div>
+              <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">در فضای AI و امنیت، توقف یعنی عقب‌ماندن.</div>
+            </sc-if>
+            <sc-if value="{{ isEn }}">
+              <div style="font-size:14.5px;font-weight:600;margin-bottom:8px;">Constant learning</div>
+              <div style="font-size:13.5px;line-height:1.85;color:#7E8886;">In AI and security, standing still means falling behind.</div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="architecture" style="max-width:1360px;margin:clamp(76px,10vw,124px) auto 0;padding:0 clamp(18px,4vw,48px);scroll-margin-top:84px;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;">
+      <h2 style="margin:0;font-size:15px;font-weight:600;">
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">نقشه معماری زنده</sc-if>
+        <sc-if value="{{ isEn }}">Live architecture map</sc-if>
+      </h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:#5C6664;">{{ archMeta }}</span>
+    </div>
+    <p style="margin:22px 0 0;font-size:14.5px;line-height:2;color:#8A9391;max-width:720px;text-wrap:pretty;">{{ t.archIntro }}</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 22px;">
+      <sc-for list="{{ archTabs }}" as="tb" hint-placeholder-count="3">
+        <button onClick="{{ tb.onClick }}" style="display:inline-flex;align-items:center;justify-content:center;min-height:42px;font-size:13px;padding:0 16px;border-radius:2px;border:1px solid {{ tb.border }};background:{{ tb.bg }};color:{{ tb.color }};cursor:pointer;transition:border-color .22s,background .22s,color .22s;">{{ tb.label }}</button>
+      </sc-for>
+      <button onClick="{{ toggleFlow }}" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1.5px;display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 16px;border-radius:2px;border:1px solid {{ flowBorder }};background:transparent;color:{{ flowColor }};cursor:pointer;margin-inline-start:auto;transition:border-color .22s,color .22s;">{{ flowLabel }}</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(18px,2vw,26px);align-items:start;">
+      <div style="display:flex;flex-direction:column;">
+        <sc-for list="{{ archLayers }}" as="L" hint-placeholder-count="5">
+          <div>
+            <button onClick="{{ L.onClick }}" style="width:100%;text-align:right;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;padding:16px 18px;border:1px solid {{ L.border }};background:{{ L.bg }};cursor:pointer;transition:border-color .28s ease,background .28s ease;" style-hover="border-color:#313836;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:{{ L.numColor }};padding-top:3px;">{{ L.num }}</span>
+              <span style="display:block;min-width:0;">
+                <span style="display:block;font-size:14.5px;font-weight:600;color:{{ L.titleColor }};line-height:1.6;">{{ L.title }}</span>
+                <span dir="ltr" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4E5654;margin-top:4px;">{{ L.en }}</span>
+              </span>
+            </button>
+            <sc-if value="{{ L.hasNext }}">
+              <div style="height:34px;margin-inline-start:26px;position:relative;">
+                <span style="position:absolute;inset-inline-start:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,#1F2423,{{ L.wireColor }});"></span>
+                <span style="position:absolute;inset-inline-start:-2px;top:0;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:{{ L.pulseOpacity }};animation:msFlow 1.6s linear infinite;"></span>
+                <span dir="ltr" style="position:absolute;inset-inline-start:14px;top:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:#5C6664;">{{ L.edge }}</span>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <div style="position:{{ panelPos }};top:92px;border:1px solid #151818;background:rgba(10,12,12,.82);backdrop-filter:blur(8px);padding:clamp(22px,2.4vw,30px);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#5C6664;margin-bottom:14px;">{{ archDet.kicker }}</div>
+        <h3 style="margin:0 0 6px;font-size:clamp(18px,1.9vw,22px);font-weight:600;line-height:1.55;">{{ archDet.title }}</h3>
+        <div dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5C6664;margin-bottom:18px;">{{ archDet.en }}</div>
+        <p style="margin:0 0 22px;font-size:14px;line-height:2.05;color:#9BA5A3;text-wrap:pretty;">{{ archDet.body }}</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#151818;border:1px solid #151818;margin-bottom:22px;">
+          <div style="background:rgba(9,11,11,.9);padding:14px 16px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#5C6664;margin-bottom:7px;">{{ t.inLabel }}</div>
+            <div style="font-size:13px;line-height:1.8;color:#C8D0CE;">{{ archDet.input }}</div>
+          </div>
+          <div style="background:rgba(9,11,11,.9);padding:14px 16px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#5C6664;margin-bottom:7px;">{{ t.outLabel }}</div>
+            <div style="font-size:13px;line-height:1.8;color:#C8D0CE;">{{ archDet.output }}</div>
+          </div>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:#5C6664;margin-bottom:10px;">{{ t.stack }}</div>
+        <div dir="ltr" style="display:flex;flex-wrap:wrap;gap:8px;">
+          <sc-for list="{{ archDet.tech }}" as="s" hint-placeholder-count="4">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A9391;border:1px solid #1F2423;padding:5px 10px;border-radius:2px;">{{ s.text }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1360px;margin:clamp(76px,10vw,124px) auto 0;padding:0 clamp(18px,4vw,48px);">
+    <div style="border:1px solid var(--line);background:rgba(10,12,12,.82);backdrop-filter:blur(6px);padding:clamp(30px,5vw,54px) clamp(22px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;">
+      <div>
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">
+          <h2 style="margin:0 0 12px;font-size:26px;font-weight:600;">پروژه‌ای در ذهن دارید؟</h2>
+          <p style="margin:0;font-size:15px;line-height:1.9;color:#8A9391;max-width:520px;">مستقیم در تلگرام پیام بدهید؛ معمولاً همان روز جواب می‌دهم.</p>
+        </sc-if>
+        <sc-if value="{{ isEn }}">
+          <h2 style="margin:0 0 12px;font-size:26px;font-weight:600;">Have a project in mind?</h2>
+          <p style="margin:0;font-size:15px;line-height:1.9;color:#8A9391;max-width:520px;">Message me directly on Telegram — I usually reply the same day.</p>
+        </sc-if>
+      </div>
+      <a href="https://t.me/Mehran_Sa96" target="_blank" style="display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:15.5px;color:var(--accent);border-bottom:1px solid rgba(0,226,138,.35);">
+        <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">پیام در تلگرام</sc-if>
+        <sc-if value="{{ isEn }}">Message on Telegram</sc-if>
+        <span>↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div style="max-width:1360px;margin:clamp(52px,7vw,78px) auto 0;padding:0 clamp(18px,4vw,48px) 64px;">
+    <div style="border-top:1px solid #151818;padding-top:30px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <img src="assets/logo.png" alt="GMTec" style="height:20px;width:auto;display:block;object-fit:contain;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#5C6664;">© 2026 GMTEC · MEHRAN SABZALI</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px 20px;font-size:13.5px;color:#8A9391;flex-wrap:wrap;">
+        <a href="https://t.me/Mehran_Sa96" target="_blank" style="display:inline-flex;align-items:center;min-height:40px;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">تلگرام</sc-if>
+          <sc-if value="{{ isEn }}">Telegram</sc-if>
+        </a>
+        <a href="https://www.linkedin.com/in/mehran-sabzali" target="_blank" style="display:inline-flex;align-items:center;min-height:40px;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">لینکدین</sc-if>
+          <sc-if value="{{ isEn }}">LinkedIn</sc-if>
+        </a>
+        <a href="https://github.com/mehransa96" target="_blank" style="display:inline-flex;align-items:center;min-height:40px;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">گیت‌هاب</sc-if>
+          <sc-if value="{{ isEn }}">GitHub</sc-if>
+        </a>
+        <a href="mailto:mehran.sabzali96@gmail.com" style="display:inline-flex;align-items:center;min-height:40px;">
+          <sc-if value="{{ isFa }}" hint-placeholder-val="{{ true }}">ایمیل</sc-if>
+          <sc-if value="{{ isEn }}">Email</sc-if>
+        </a>
+        <a href="tel:+989127299329" dir="ltr" style="display:inline-flex;align-items:center;min-height:40px;">+98 912 729 9329</a>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <sc-if value="{{ palOpen }}">
+    <div onClick="{{ closePal }}" style="position:fixed;inset:0;z-index:80;background:rgba(4,5,5,.72);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;padding:clamp(60px,12vh,140px) 18px 18px;animation:msFade .18s ease both;">
+      <div onClick="{{ stop }}" style="width:min(640px,100%);border:1px solid #232726;background:rgba(10,12,12,.97);box-shadow:0 30px 80px rgba(0,0,0,.6);">
+        <div style="display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #1A1D1D;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">›</span>
+          <input ref="{{ palInputRef }}" value="{{ q }}" onChange="{{ onQ }}" placeholder="{{ t.searchPh }}" style="flex:1;background:transparent;border:0;outline:none;color:#E7E9E8;font-family:'Vazirmatn',sans-serif;font-size:15px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1px;color:#4E5654;border:1px solid #232726;padding:3px 7px;border-radius:2px;">ESC</span>
+        </div>
+        <div style="max-height:min(50vh,420px);overflow-y:auto;">
+          <sc-for list="{{ palResults }}" as="r" hint-placeholder-count="5">
+            <button onClick="{{ r.onClick }}" style="width:100%;text-align:right;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:13px 18px;background:{{ r.bg }};border:0;border-bottom:1px solid #131616;cursor:pointer;" style-hover="background:rgba(16,20,19,.9);">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1px;color:#5C6664;">{{ r.kind }}</span>
+              <span style="display:block;font-size:13.5px;color:#C8D0CE;line-height:1.6;">{{ r.label }}</span>
+              <span dir="ltr" style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#3E4644;">↵</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#00E28A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#00E28A&quot;,&quot;#7FD4C1&quot;,&quot;#C8D0CE&quot;,&quot;#E0A458&quot;],&quot;section&quot;:&quot;ظاهر&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;حرکت&quot;},&quot;portraitTone&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;رنگی&quot;,&quot;options&quot;:[&quot;خاکستری&quot;,&quot;رنگی&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;ظاهر&quot;}}">
+const STACK_GROUPS = [
+  { label: 'AI / LLM', items: ['LangChain', 'OpenAI API', 'RAG Pipeline', 'Vector DB', 'Embeddings', 'Prompt Engineering', 'Fine-tuning', 'MCP', 'n8n'] },
+  { label: 'SECURITY', items: ['CEH', 'Pen Testing', 'OWASP Top 10', 'Zero Trust', 'Metasploit', 'Burp Suite', 'Nmap', 'WireGuard'] },
+  { label: 'DATABASE', items: ['SQL Server', 'T-SQL', 'SSRS / RDL', 'Query Tuning', 'PostgreSQL', 'Prisma', 'Redis', 'InfluxDB'] },
+  { label: 'WEB / BACKEND', items: ['ASP.NET Core', 'C#', 'Python', 'Next.js', 'React', 'Node.js', 'Cloudflare Workers', 'Docker'] },
+  { label: 'IOT / EMBEDDED', items: ['ESP32', 'Arduino C++', 'MQTT', 'WireGuard VPN', 'Raspberry Pi', 'Grafana'] }
+];
+
+const ARCH = [
+  {
+    fa: 'دستیار گزارش SSRS', en: 'RepBuilderAssis',
+    intro: {
+      fa: 'سه سیستم واقعی، لایه به لایه. روی هر لایه بزنید تا ورودی، خروجی و ابزار آن را ببینید؛ «پخش جریان» مسیر داده را از ابتدا تا انتها حرکت می‌دهد.',
+      en: 'Three real systems, layer by layer. Click a layer to see its input, output and tooling; “play flow” walks the data path end to end.'
+    },
+    layers: [
+      { fa: 'پرسش فارسی کاربر', en: 'Natural-language request', edge: 'PROMPT', bodyFa: 'کاربر گزارش مورد نیازش را به زبان فارسی توصیف می‌کند؛ لازم نیست نام جدول یا ساختار دیتابیس را بداند.', bodyEn: 'The user describes the report they need in plain Persian — no table names or schema knowledge required.', inFa: 'جمله فارسی', inEn: 'Persian sentence', outFa: 'درخواست ساخت‌یافته', outEn: 'Structured request', tech: ['Python', 'LLM'] },
+      { fa: 'بازیابی از ایندکس دانشی', en: 'Schema knowledge retrieval', edge: 'RETRIEVE', bodyFa: 'ایندکسی از ساختار دیتابیس سازمان — جدول، ستون، کلید و عنوان فارسی — تا مدل جدول درست را میان هزاران جدول پیدا کند.', bodyEn: 'An index of the organisation’s schema — tables, columns, keys and Persian titles — so the model can find the right table among thousands.', inFa: 'درخواست ساخت‌یافته', inEn: 'Structured request', outFa: 'جدول‌ها و مسیر join', outEn: 'Tables and join paths', tech: ['Vector Index', 'Schema Graph'] },
+      { fa: 'حلقه ایجنت و طرح کوئری', en: 'Agent loop / query plan', edge: 'PLAN', bodyFa: 'ایجنت یک طرح کوئری ساخت‌یافته می‌سازد و در صورت نیاز خودش آن را اصلاح می‌کند.', bodyEn: 'The agent builds a structured query plan and corrects itself when needed.', inFa: 'جدول‌ها و مسیر join', inEn: 'Tables and join paths', outFa: 'طرح کوئری JSON', outEn: 'JSON query plan', tech: ['Agent Loop', 'JSON Plan'] },
+      { fa: 'اعتبارسنجی T-SQL', en: 'Deterministic T-SQL validation', edge: 'VALIDATE', bodyFa: 'کوئری تولیدشده پیش از تحویل اعتبارسنجی می‌شود؛ خروجی مدل بدون بررسی پذیرفته نمی‌شود.', bodyEn: 'The generated query is validated before delivery — model output is never trusted blindly.', inFa: 'طرح کوئری JSON', inEn: 'JSON query plan', outFa: 'T-SQL معتبر', outEn: 'Valid T-SQL', tech: ['T-SQL', 'SQL Server'] },
+      { fa: 'تولید فایل RDL', en: 'RDL generation', edge: 'BUILD', bodyFa: 'خروجی نهایی یک فایل RDL است که Report Builder بدون خطا باز می‌کند.', bodyEn: 'The final output is an RDL file that Report Builder opens without errors.', inFa: 'T-SQL معتبر', inEn: 'Valid T-SQL', outFa: 'فایل RDL آماده', outEn: 'Ready RDL file', tech: ['SSRS / RDL', 'XML'] }
+    ]
+  },
+  {
+    fa: 'پایش IoT', en: 'IoT monitoring',
+    layers: [
+      { fa: 'گره ESP32', en: 'ESP32 node', edge: 'SENSORS', bodyFa: 'برد ESP32 داده حس‌گرها را می‌خواند و وضعیت خروجی‌ها را کنترل می‌کند.', bodyEn: 'The ESP32 board reads sensor data and drives the outputs.', inFa: 'حس‌گر فیزیکی', inEn: 'Physical sensors', outFa: 'بسته تلمتری', outEn: 'Telemetry packet', tech: ['ESP32', 'Arduino C++'] },
+      { fa: 'بروکر MQTT', en: 'MQTT broker', edge: 'PUB / SUB', bodyFa: 'پیام‌ها روی موضوع‌های MQTT منتشر می‌شوند تا مصرف‌کننده‌ها مستقل از یکدیگر بمانند.', bodyEn: 'Messages are published on MQTT topics so consumers stay independent of each other.', inFa: 'بسته تلمتری', inEn: 'Telemetry packet', outFa: 'جریان موضوع‌ها', outEn: 'Topic stream', tech: ['MQTT', 'Mosquitto'] },
+      { fa: 'تونل WireGuard', en: 'WireGuard tunnel', edge: 'ENCRYPTED', bodyFa: 'کل ترافیک داخل تونل رمزنگاری‌شده جابه‌جا می‌شود؛ هیچ پورتی روی اینترنت باز نمی‌ماند.', bodyEn: 'All traffic moves inside an encrypted tunnel — no port is left open on the internet.', inFa: 'جریان موضوع‌ها', inEn: 'Topic stream', outFa: 'جریان امن', outEn: 'Secured stream', tech: ['WireGuard', 'Zero Trust'] },
+      { fa: 'ذخیره سری زمانی', en: 'Time-series store', edge: 'WRITE', bodyFa: 'داده در یک پایگاه سری زمانی نگه داشته می‌شود تا روند بلندمدت قابل تحلیل باشد.', bodyEn: 'Data lands in a time-series database so long-term trends stay analysable.', inFa: 'جریان امن', inEn: 'Secured stream', outFa: 'سری زمانی', outEn: 'Time series', tech: ['InfluxDB'] },
+      { fa: 'داشبورد و هشدار', en: 'Dashboard and alerts', edge: 'QUERY', bodyFa: 'نمودارهای زنده و هشدارهای آستانه‌ای، برای دیدن وضعیت و واکنش سریع.', bodyEn: 'Live charts and threshold alerts for status at a glance and fast response.', inFa: 'سری زمانی', inEn: 'Time series', outFa: 'نمودار و هشدار', outEn: 'Charts and alerts', tech: ['Grafana'] }
+    ]
+  },
+  {
+    fa: 'ایجنت تحلیل وب‌سایت', en: 'site-recon',
+    layers: [
+      { fa: 'نشانی هدف', en: 'Target URL', edge: 'INPUT', bodyFa: 'کار با یک نشانی شروع می‌شود؛ همه مراحل روی دستگاه خود کاربر اجرا می‌شود.', bodyEn: 'It starts with a single URL — every step runs on the user’s own machine.', inFa: 'یک نشانی', inEn: 'One URL', outFa: 'صف پیمایش', outEn: 'Crawl queue', tech: ['CLI'] },
+      { fa: 'پیمایش محلی', en: 'Local crawler', edge: 'FETCH', bodyFa: 'صفحه‌ها به‌صورت محلی خوانده می‌شوند و شواهد خام روی همان دستگاه ذخیره می‌ماند.', bodyEn: 'Pages are fetched locally and raw evidence stays on the same machine.', inFa: 'صف پیمایش', inEn: 'Crawl queue', outFa: 'HTML و دارایی‌ها', outEn: 'HTML and assets', tech: ['Python', 'Headless'] },
+      { fa: 'استخراج و طبقه‌بندی', en: 'Extract and classify', edge: 'PARSE', bodyFa: 'ساختار صفحه، پیام‌ها و سیگنال‌های فنی از محتوا جدا و دسته‌بندی می‌شوند.', bodyEn: 'Page structure, messaging and technical signals are separated and categorised.', inFa: 'HTML و دارایی‌ها', inEn: 'HTML and assets', outFa: 'سیگنال ساخت‌یافته', outEn: 'Structured signals', tech: ['Parser', 'Heuristics'] },
+      { fa: 'تحلیل با مدل زبانی', en: 'LLM analysis', edge: 'REASON', bodyFa: 'مدل سیگنال‌ها را مثل یک مهندس بازاریابی می‌خواند و نقاط قوت و ضعف را توضیح می‌دهد.', bodyEn: 'The model reads those signals like a marketing engineer and explains strengths and gaps.', inFa: 'سیگنال ساخت‌یافته', inEn: 'Structured signals', outFa: 'یافته‌های تحلیلی', outEn: 'Analytical findings', tech: ['LLM', 'Prompt Chain'] },
+      { fa: 'گزارش مستند', en: 'Documented report', edge: 'REPORT', bodyFa: 'خروجی یک گزارش قابل تحویل است که هر ادعا به شواهد محلی وصل می‌شود.', bodyEn: 'The output is a deliverable report where each claim links back to local evidence.', inFa: 'یافته‌های تحلیلی', inEn: 'Analytical findings', outFa: 'گزارش نهایی', outEn: 'Final report', tech: ['Markdown', 'Report Build'] }
+    ]
+  }
+];
+
+const T = {
+  fa: { ctx: 'زمینه پروژه', ch: 'چالش‌های فنی', sol: 'رویکرد فنی', resp: 'نقش من', val: 'نتیجه', stack: 'استک', open: 'مشاهده مخزن', searchPh: 'جست‌وجو بین پروژه‌ها و بخش‌ها…', inLabel: 'ورودی', outLabel: 'خروجی', flowOn: 'توقف جریان', flowOff: 'پخش جریان', project: 'پروژه', section: 'بخش', all: 'همه' },
+  en: { ctx: 'Context', ch: 'Technical challenges', sol: 'Approach', resp: 'My role', val: 'Outcome', stack: 'Stack', open: 'View repository', searchPh: 'Search projects and sections…', inLabel: 'Input', outLabel: 'Output', flowOn: 'Stop flow', flowOff: 'Play flow', project: 'PROJECT', section: 'SECTION', all: 'All' }
+};
+
+const CATS = {
+  fa: [['all', 'همه'], ['ai', 'هوش مصنوعی'], ['security', 'امنیت'], ['web', 'وب'], ['database', 'پایگاه داده'], ['iot', 'IoT']],
+  en: [['all', 'All'], ['ai', 'AI'], ['security', 'Security'], ['web', 'Web'], ['database', 'Database'], ['iot', 'IoT']]
+};
+
+const SECTIONS = {
+  fa: [['expertise', 'حوزه‌های تخصصی'], ['projects', 'پروژه‌های منتخب'], ['opensource', 'مخازن کد'], ['certs', 'گواهینامه‌ها'], ['stack', 'استک فنی'], ['about', 'درباره من'], ['architecture', 'نقشه معماری زنده']],
+  en: [['expertise', 'Domains of work'], ['projects', 'Selected work'], ['opensource', 'Code repositories'], ['certs', 'Certificates'], ['stack', 'Technical stack'], ['about', 'About'], ['architecture', 'Live architecture map']]
+};
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.rootRef = React.createRef();
+    this.canvasRef = React.createRef();
+    this.anchorRef = React.createRef();
+    this.progRef = React.createRef();
+    this.spotRef = React.createRef();
+    this.clockRef = React.createRef();
+    this.clock2Ref = React.createRef();
+    this.palInputRef = React.createRef();
+    this.detRef = React.createRef();
+    this.state = { lang: 'fa', filter: 'all', sel: 6, data: null, palOpen: false, q: '', archTab: 0, archLayer: 0, flow: false, vw: typeof window !== 'undefined' ? window.innerWidth : 1280, menuOpen: false, pjClosed: false };
+  }
+
+  componentDidMount() {
+    this.applyAccent();
+    this.loadData();
+    this.initScene();
+    this.initKeys();
+    this.initClock();
+    const onRz = () => {
+      if (this._rzQ) return;
+      this._rzQ = true;
+      requestAnimationFrame(() => {
+        this._rzQ = false;
+        const w = window.innerWidth;
+        if (w !== this.state.vw) this.setState({ vw: w, menuOpen: w >= 880 ? false : this.state.menuOpen });
+      });
+    };
+    window.addEventListener('resize', onRz);
+    this._offRz = () => window.removeEventListener('resize', onRz);
+  }
+
+  componentDidUpdate(prev, ps) {
+    if (prev.accent !== this.props.accent || prev.portraitTone !== this.props.portraitTone) this.applyAccent();
+    if (ps && this.state.lang !== ps.lang && this.rootRef.current) this.syncDir();
+    if (ps && (ps.sel !== this.state.sel || ps.filter !== this.state.filter || ps.lang !== this.state.lang || (ps.pjClosed && !this.state.pjClosed))) {
+      const d = this.detRef.current;
+      if (d) {
+        d.scrollTop = 0;
+        if (d.animate && this.props.motion !== false) d.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 420, easing: 'cubic-bezier(.16,.86,.2,1)' });
+      }
+    }
+    if (this.state.palOpen && this.palInputRef.current) this.palInputRef.current.focus();
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._boot); clearInterval(this._clock); clearInterval(this._flow);
+    cancelAnimationFrame(this.raf);
+    if (this.ro) this.ro.disconnect();
+    if (this._off) this._off();
+    if (this._offRz) this._offRz();
+    if (this.renderer) this.renderer.dispose();
+  }
+
+  applyAccent() {
+    const el = this.rootRef.current; if (!el) return;
+    const a = this.props.accent || '#00E28A';
+    el.ownerDocument.documentElement.style.setProperty('--accent', a);
+    el.ownerDocument.documentElement.style.setProperty('--portrait-filter', this.props.portraitTone === 'رنگی' ? 'none' : 'grayscale(1) contrast(1.05)');
+    if (this.mats) this.mats.forEach(m => m.color.set(a));
+    this.syncDir();
+  }
+
+  syncDir() {
+    const el = this.rootRef.current; if (!el) return;
+    const en = this.state.lang === 'en';
+    el.setAttribute('dir', en ? 'ltr' : 'rtl');
+    el.setAttribute('lang', en ? 'en' : 'fa');
+    el.ownerDocument.documentElement.setAttribute('dir', en ? 'ltr' : 'rtl');
+  }
+
+  loadData() {
+    const take = () => { const d = window.__PORTFOLIO_DATA; if (d) this.setState({ data: d }); };
+    if (window.__PORTFOLIO_DATA) take();
+    else window.addEventListener('portfolio-data-ready', take, { once: true });
+    import('./projects-data.js').then(take).catch(() => {});
+  }
+
+  initClock() {
+    const tick = () => {
+      const s = new Date().toLocaleTimeString('en-GB', { timeZone: 'Asia/Tehran', hour12: false });
+      [this.clockRef.current, this.clock2Ref.current].forEach(n => { if (n) n.textContent = s; });
+    };
+    tick(); this._clock = setInterval(tick, 1000);
+  }
+
+  initKeys() {
+    const onKey = e => {
+      const k = (e.key || '').toLowerCase();
+      const typing = /input|textarea/i.test((document.activeElement || {}).tagName || '');
+      if (k === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); this.setState(s => ({ palOpen: !s.palOpen, q: '' })); return; }
+      if (k === 'escape' && this.state.palOpen) { this.setState({ palOpen: false }); return; }
+      if (typing) return;
+      if (k === 'arrowdown' || k === 'j') { e.preventDefault(); this.step(1); }
+      if (k === 'arrowup' || k === 'k') { e.preventDefault(); this.step(-1); }
+    };
+    window.addEventListener('keydown', onKey);
+    this._offKeys = () => window.removeEventListener('keydown', onKey);
+  }
+
+  step(d) {
+    const list = this.visible();
+    if (!list.length) return;
+    const i = Math.max(0, list.findIndex(p => p.id === this.state.sel));
+    const n = list[(i + d + list.length) % list.length];
+    this.setState({ sel: n.id });
+  }
+
+  list() {
+    const d = this.state.data;
+    if (!d) return [];
+    return (this.state.lang === 'en' ? d.EN : d.FA) || [];
+  }
+
+  visible() {
+    const f = this.state.filter;
+    return this.list().filter(p => f === 'all' || (p.cat || '').indexOf(f) >= 0);
+  }
+
+  softenRep(p) {
+    if (!p || p.id !== 6) return p;
+    const fix = s => typeof s === 'string' ? s.replace(/۳٬۴۲۸ جدول/g, 'هزاران جدول').replace(/3,428 tables/g, 'thousands of tables') : s;
+    const out = Object.assign({}, p);
+    out.ctx = fix(p.ctx);
+    if (p.ch) out.ch = p.ch.map(fix).filter(s => !/ایندکس دانشی|knowledge index/i.test(s));
+    if (p.sol) out.sol = p.sol.map(fix);
+    return out;
+  }
+
+  initScene() {
+    const THREE = window.THREE, cv = this.canvasRef.current;
+    if (!THREE || !cv) { this._boot = setTimeout(() => this.initScene(), 90); return; }
+    const accent = this.props.accent || '#00E28A';
+    const renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    this.renderer = renderer;
+    const scene = new THREE.Scene();
+    const cam = new THREE.PerspectiveCamera(40, 1, 0.1, 120);
+    cam.position.set(0, 0, 5.6);
+    const grp = new THREE.Group(); scene.add(grp);
+
+    const N = 744, PER = N / 3;
+    const PA = new Float32Array(N * 3), PB = new Float32Array(N * 3), PC = new Float32Array(N * 3);
+    const cur = new Float32Array(N * 3);
+    const GOLD = Math.PI * (3 - Math.sqrt(5));
+    const shellR = [1.52, 1.02, 0.6];
+    const cols = 28;
+    for (let i = 0; i < N; i++) {
+      const s = i % 3, k = Math.floor(i / 3);
+      const y = 1 - (k / (PER - 1)) * 2, rr = Math.sqrt(Math.max(0, 1 - y * y)), th = GOLD * k;
+      const R = shellR[s];
+      PA[i * 3] = Math.cos(th) * rr * R; PA[i * 3 + 1] = y * R; PA[i * 3 + 2] = Math.sin(th) * rr * R;
+      const R2 = 1.15 + s * 0.42 + Math.sin(k * 0.73) * 0.3;
+      PB[i * 3] = Math.cos(th * 1.31) * rr * R2 * 1.5;
+      PB[i * 3 + 1] = y * R2 * 1.25 + Math.sin(k * 0.41) * 0.14;
+      PB[i * 3 + 2] = Math.sin(th * 1.31) * rr * R2 * 1.5;
+      const col = i % cols, row = Math.floor(i / cols);
+      PC[i * 3] = (col / (cols - 1) - 0.5) * 5.6;
+      PC[i * 3 + 1] = (row / (Math.ceil(N / cols) - 1) - 0.5) * 3.1;
+      PC[i * 3 + 2] = Math.sin(col * 0.55 + row * 0.42) * 0.16;
+    }
+    cur.set(PA);
+
+    const posAttr = new THREE.BufferAttribute(cur, 3);
+    posAttr.setUsage(THREE.DynamicDrawUsage);
+
+    const dist = (P, a, b) => {
+      const dx = P[a * 3] - P[b * 3], dy = P[a * 3 + 1] - P[b * 3 + 1], dz = P[a * 3 + 2] - P[b * 3 + 2];
+      return Math.sqrt(dx * dx + dy * dy + dz * dz);
+    };
+    const idxB = [], idxC = [], seen = new Set();
+    for (let i = 0; i < N; i++) {
+      let best = -1, bd = 1e9, b2 = -1, bd2 = 1e9;
+      for (let j = 0; j < N; j++) {
+        if (j === i) continue;
+        const dd = dist(PB, i, j);
+        if (dd < bd) { b2 = best; bd2 = bd; best = j; bd = dd; } else if (dd < bd2) { b2 = j; bd2 = dd; }
+      }
+      [[best, bd, 0.9], [b2, bd2, 0.75]].forEach(([j, d, lim]) => {
+        if (j < 0 || d > lim) return;
+        const k = i < j ? i + '_' + j : j + '_' + i;
+        if (seen.has(k)) return; seen.add(k); idxB.push(i, j);
+      });
+      const col = i % cols;
+      if (col < cols - 1 && i + 1 < N) idxC.push(i, i + 1);
+      if (i + cols < N) idxC.push(i, i + cols);
+    }
+
+    const mkLines = (idx, color, op) => {
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', posAttr);
+      g.setIndex(idx);
+      const m = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: op });
+      const o = new THREE.LineSegments(g, m);
+      grp.add(o); return o;
+    };
+    const lnB = mkLines(idxB, accent, 0);
+    const lnC = mkLines(idxC, 0x8A9391, 0);
+
+    const shells = [];
+    [[1.52, 1, 0.2], [1.02, 1, 0.42], [0.6, 0, 0.75]].forEach((sh, i) => {
+      const g = new THREE.IcosahedronGeometry(sh[0], sh[1]);
+      const w = new THREE.WireframeGeometry(g);
+      const m = new THREE.LineSegments(w, new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: sh[2] }));
+      m.userData = { base: sh[2], sp: [0.0011 + i * 0.0007, 0.0016 - i * 0.0004, 0.0005 + i * 0.0003] };
+      grp.add(m); shells.push(m); g.dispose();
+    });
+
+    const pg = new THREE.BufferGeometry();
+    pg.setAttribute('position', posAttr);
+    const pts = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0xE7E9E8, size: 0.028, transparent: true, opacity: 0.5, sizeAttenuation: true }));
+    grp.add(pts);
+
+    const nucleus = new THREE.Mesh(new THREE.IcosahedronGeometry(0.2, 1), new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.85 }));
+    const halo = new THREE.Mesh(new THREE.SphereGeometry(0.42, 22, 22), new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.07 }));
+    grp.add(nucleus); grp.add(halo);
+    const ring = new THREE.LineLoop(
+      new THREE.BufferGeometry().setFromPoints(Array.from({ length: 108 }, (_, k) => {
+        const a = k / 108 * Math.PI * 2; return new THREE.Vector3(Math.cos(a) * 1.95, 0, Math.sin(a) * 1.95);
+      })),
+      new THREE.LineBasicMaterial({ color: 0xE7E9E8, transparent: true, opacity: 0.12 })
+    );
+    ring.rotation.x = 0.44; grp.add(ring);
+    const SIG = 46, sigPos = new Float32Array(SIG * 3), sig = [];
+    const nE = idxB.length / 2;
+    for (let k = 0; k < SIG; k++) sig.push({ e: Math.floor(Math.random() * nE), t: Math.random(), v: 0.004 + Math.random() * 0.009 });
+    const sigGeo = new THREE.BufferGeometry();
+    sigGeo.setAttribute('position', new THREE.BufferAttribute(sigPos, 3));
+    const sigPts = new THREE.Points(sigGeo, new THREE.PointsMaterial({ color: accent, size: 0.07, transparent: true, opacity: 0, sizeAttenuation: true, depthWrite: false }));
+    grp.add(sigPts);
+    this.mats = [lnB.material, nucleus.material, halo.material, sigPts.material].concat(shells.map(s => s.material));
+
+    let vw = 1, vh = 1, aRect = null, aDirty = true;
+    const size = () => {
+      vw = window.innerWidth; vh = window.innerHeight;
+      renderer.setSize(vw, vh, false);
+      cam.aspect = vw / vh; cam.updateProjectionMatrix();
+      aDirty = true;
+    };
+    size();
+    const mark = () => { aDirty = true; };
+    window.addEventListener('resize', size);
+    window.addEventListener('scroll', mark, { passive: true });
+    window.addEventListener('resize', () => { secT = null; });
+
+    let tx = 0, ty = 0, cx = 0, cy = 0, drag = false, lx = 0, ly = 0, mxn = 0.5, myn = 0.3;
+    const onMove = e => {
+      mxn = e.clientX / vw; myn = e.clientY / vh;
+      if (drag) { ty += (e.clientX - lx) * 0.0055; tx += (e.clientY - ly) * 0.0055; lx = e.clientX; ly = e.clientY; }
+      else { tx = (myn - 0.5) * -0.42; ty = (mxn - 0.5) * 0.62; }
+      if (!this._spotQ) {
+        this._spotQ = true;
+        requestAnimationFrame(() => {
+          this._spotQ = false;
+          const sp = this.spotRef.current;
+          if (sp) sp.style.background = 'radial-gradient(520px circle at ' + (mxn * 100).toFixed(1) + '% ' + (myn * 100).toFixed(1) + '%,rgba(0,226,138,.055),transparent 70%)';
+        });
+      }
+    };
+    const onDown = e => {
+      if (e.target && e.target.closest && e.target.closest('a,button,input,textarea,select')) return;
+      drag = true; lx = e.clientX; ly = e.clientY;
+    };
+    const onUp = () => { drag = false; };
+    window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('pointerdown', onDown, { passive: true });
+    window.addEventListener('pointerup', onUp, { passive: true });
+    this._off = () => {
+      window.removeEventListener('resize', size);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerdown', onDown);
+      window.removeEventListener('pointerup', onUp);
+      if (this._offKeys) this._offKeys();
+    };
+
+    const sstep = x => { const t = Math.min(1, Math.max(0, x)); return t * t * (3 - 2 * t); };
+    const visH = 2 * Math.tan((40 * Math.PI / 180) / 2) * 5.6;
+    let frame = 0, gx = 0, gy = 0, gs = 1, opa = 1, secT = null;
+
+    const loop = () => {
+      if (window.__pauseGL) { this.raf = requestAnimationFrame(loop); return; }
+      frame++;
+      const doc = document.documentElement;
+      const max = Math.max(1, doc.scrollHeight - window.innerHeight);
+      const sT = Math.min(1, Math.max(0, window.scrollY / max));
+      const motion = this.props.motion !== false;
+
+      const yS = window.scrollY;
+      if (!secT || frame % 45 === 1) {
+        const top = id => { const el = document.getElementById(id); return el ? el.getBoundingClientRect().top + yS : 1e6; };
+        secT = { e: top('expertise'), p: top('projects'), a: top('architecture') };
+      }
+      const pB = sstep((yS - (secT.e - vh * 0.95)) / (vh * 0.75));
+      const pC = sstep((yS - (secT.a - vh * 1.05)) / (vh * 0.8));
+      const dim = sstep((yS - (secT.p - vh * 0.4)) / (vh * 0.5)) * (1 - pC);
+      if (this._pB === undefined || Math.abs(pB - this._pB) > 0.0008 || Math.abs(pC - this._pC) > 0.0008) {
+        this._pB = pB; this._pC = pC;
+        for (let i = 0; i < N * 3; i++) {
+          const ab = PA[i] + (PB[i] - PA[i]) * pB;
+          cur[i] = ab + (PC[i] - ab) * pC;
+        }
+        posAttr.needsUpdate = true;
+      }
+
+      shells.forEach(s => {
+        s.material.opacity = s.userData.base * (1 - pB);
+        s.visible = s.material.opacity > 0.004;
+        if (motion && s.visible) { s.rotation.x += s.userData.sp[0]; s.rotation.y += s.userData.sp[1]; s.rotation.z += s.userData.sp[2]; }
+      });
+      lnB.material.opacity = 0.4 * pB * (1 - pC * 0.92);
+      lnC.material.opacity = 0.3 * pC;
+      pts.material.opacity = 0.46 + 0.18 * pB * (1 - pC) - 0.1 * pC;
+      const sigOp = 0.95 * pB * (1 - pC);
+      sigPts.material.opacity = sigOp;
+      sigPts.visible = sigOp > 0.01;
+      if (sigPts.visible) {
+        for (let k = 0; k < SIG; k++) {
+          const g = sig[k];
+          if (motion) g.t += g.v;
+          if (g.t > 1) { g.t = 0; g.e = Math.floor(Math.random() * nE); }
+          const a1 = idxB[g.e * 2] * 3, b1 = idxB[g.e * 2 + 1] * 3;
+          sigPos[k * 3] = cur[a1] + (cur[b1] - cur[a1]) * g.t;
+          sigPos[k * 3 + 1] = cur[a1 + 1] + (cur[b1 + 1] - cur[a1 + 1]) * g.t;
+          sigPos[k * 3 + 2] = cur[a1 + 2] + (cur[b1 + 2] - cur[a1 + 2]) * g.t;
+        }
+        sigGeo.attributes.position.needsUpdate = true;
+      }
+      nucleus.material.opacity = 0.85 * (1 - pB);
+      halo.material.opacity = 0.07 * (1 - pB);
+      ring.material.opacity = 0.12 * (1 - pB * 0.8);
+
+      cx += (tx - cx) * 0.055; cy += (ty - cy) * 0.055;
+      const spin = motion ? frame * 0.0009 : 0;
+      grp.rotation.x = cx + pC * 1.02;
+      grp.rotation.y = cy + spin;
+      grp.rotation.z = pC * 0.12;
+
+      const an = this.anchorRef.current;
+      let tX = 0, tY = 0, tS = 1;
+      if (an) {
+        if (aDirty || !aRect) { aRect = an.getBoundingClientRect(); aDirty = false; }
+        const r = aRect;
+        const aw = (r.width / vw) * visH * (vw / vh);
+        const nearS = Math.max(0.24, aw / 4.6);
+        const nearX = ((r.left + r.width / 2) / vw - 0.5) * visH * (vw / vh);
+        const nearY = -((r.top + r.height / 2) / vh - 0.5) * visH;
+        const f = sstep((window.scrollY - vh * 0.06) / (vh * 0.7));
+        const midS = Math.min(0.82, Math.max(0.5, 0.62 * Math.min(1.6, vw / vh)));
+        const farS = Math.min(1.25, Math.max(0.8, vw / 1150));
+        const s1 = nearS + (midS - nearS) * f;
+        tS = s1 + (farS - s1) * pC;
+        tX = nearX * (1 - f); tY = nearY * (1 - f);
+      }
+      gx += (tX - gx) * 0.08; gy += (tY - gy) * 0.08; gs += (tS - gs) * 0.08;
+      grp.position.set(gx, gy, 0);
+      grp.scale.setScalar(gs);
+
+      const tOpa = 1 - 0.06 * pB - 0.6 * dim - 0.18 * pC;
+      opa += (tOpa - opa) * 0.06;
+      const o2 = opa.toFixed(2);
+      if (o2 !== this._o2) { this._o2 = o2; cv.style.opacity = o2; }
+
+      const b = motion ? 1 + Math.sin(frame / 72) * 0.08 : 1;
+      nucleus.scale.setScalar(b); halo.scale.setScalar(motion ? 1 + Math.sin(frame / 72 + 1) * 0.15 : 1);
+      if (motion) ring.rotation.z += 0.0012;
+
+      const p3 = sT.toFixed(3);
+      if (p3 !== this._p3) {
+        this._p3 = p3;
+        const pr = this.progRef.current;
+        if (pr) pr.style.transform = 'scaleX(' + p3 + ')';
+      }
+
+      const tr0 = performance.now();
+      if (!this._skip || frame % 2 === 0) renderer.render(scene, cam);
+      this._ft = (this._ft || 0) * 0.9 + (performance.now() - tr0) * 0.1;
+      if (frame > 40 && this._ft > 28 && !this._lowQ) { this._lowQ = true; renderer.setPixelRatio(1); size(); }
+      else if (frame > 120 && this._ft > 28 && this._lowQ) this._skip = true;
+      this.raf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  toggleFlow() {
+    clearInterval(this._flow);
+    if (this.state.flow) { this.setState({ flow: false }); return; }
+    this.setState({ flow: true, archLayer: 0 });
+    this._flow = setInterval(() => {
+      this.setState(s => {
+        const n = ARCH[s.archTab].layers.length;
+        const nx = s.archLayer + 1;
+        if (nx >= n) { clearInterval(this._flow); return { archLayer: n - 1, flow: false }; }
+        return { archLayer: nx };
+      });
+    }, 1500);
+  }
+
+  revealRow(id) {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const el = document.querySelector('[data-pj="' + id + '"]');
+      if (el) window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + window.scrollY - 76), behavior: 'smooth' });
+    }));
+  }
+
+  jump(id) {
+    clearTimeout(this._jt);
+    this._jt = setTimeout(() => {
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const top = Math.max(0, el.getBoundingClientRect().top + window.scrollY - 88);
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }));
+    }, 50);
+  }
+
+  renderVals() {
+    const st = this.state, en = st.lang === 'en', t = en ? T.en : T.fa;
+    const list = this.list(), vis = this.visible();
+    const accent = this.props.accent || '#00E28A';
+
+    const effId = (() => { const i = vis.findIndex(p => p.id === st.sel); return i >= 0 ? st.sel : (vis[0] ? vis[0].id : null); })();
+    const mobile = st.vw < 880;
+    const closed = mobile && st.pjClosed;
+    const rows = vis.map((p, i) => {
+      const on = p.id === effId && !closed;
+      return {
+        key: p.id, id: String(p.id), num: String(i + 1).padStart(2, '0'), title: p.title, en: p.en, tag: p.tag,
+        bg: on ? 'rgba(15,21,19,.96)' : 'transparent',
+        bar: on ? accent : 'transparent',
+        titleColor: on ? '#E7E9E8' : '#9BA5A3',
+        numColor: on ? accent : '#4E5654',
+        mark: mobile ? (on ? '−' : '+') : (on ? '•' : ''),
+        markColor: on ? accent : '#4E5654',
+        onClick: () => {
+          if (mobile && p.id === effId) { this.setState(s2 => ({ pjClosed: !s2.pjClosed }), () => this.revealRow(p.id)); return; }
+          this.setState({ sel: p.id, pjClosed: false }, () => { if (mobile) this.revealRow(p.id); });
+        }
+      };
+    });
+    const openIdx = rows.findIndex(r => r.key === effId);
+    const splitAt = (!mobile || closed || openIdx < 0) ? rows.length : openIdx + 1;
+    const rowsA = rows.slice(0, splitAt), rowsB = rows.slice(splitAt);
+    let selIdx = vis.findIndex(p => p.id === st.sel);
+    if (selIdx < 0 && vis.length) selIdx = 0;
+    let sel = selIdx >= 0 ? vis[selIdx] : (list.find(p => p.id === st.sel) || null);
+    sel = this.softenRep(sel);
+    const wrap = a => (a || []).map((x, i) => ({ key: i, text: x }));
+    const det = sel ? {
+      num: (selIdx >= 0 ? String(selIdx + 1).padStart(2, '0') : '--') + ' / ' + String(vis.length).padStart(2, '0'),
+      tag: sel.tag || '', title: sel.title, en: sel.en, sum: sel.sum || '',
+      ctx: sel.ctx || '', hasCtx: !!sel.ctx,
+      ch: wrap(sel.ch), hasCh: !!(sel.ch && sel.ch.length),
+      sol: wrap(sel.sol), hasSol: !!(sel.sol && sel.sol.length),
+      resp: wrap(sel.resp), hasResp: !!(sel.resp && sel.resp.length),
+      val: sel.val || '', hasVal: !!sel.val,
+      stack: wrap(sel.stack), link: sel.link || '', hasLink: !!sel.link,
+      badge: sel.badge || '', hasBadge: !!sel.badge
+    } : { num: '--', tag: '', title: '', en: '', sum: '', ch: [], sol: [], resp: [], stack: [] };
+
+    const filters = (en ? CATS.en : CATS.fa).map(([id, label]) => {
+      const on = st.filter === id;
+      return { key: id, label: label, onClick: () => this.setState({ filter: id }),
+        border: on ? accent : '#232726', bg: on ? 'rgba(0,226,138,.08)' : 'transparent', color: on ? accent : '#8A9391' };
+    });
+
+    const tab = ARCH[st.archTab], L = tab.layers, li = Math.min(st.archLayer, L.length - 1);
+    const archTabs = ARCH.map((a, i) => {
+      const on = i === st.archTab;
+      return { key: i, label: en ? a.en : a.fa, onClick: () => { clearInterval(this._flow); this.setState({ archTab: i, archLayer: 0, flow: false }); },
+        border: on ? accent : '#232726', bg: on ? 'rgba(0,226,138,.08)' : 'transparent', color: on ? accent : '#8A9391' };
+    });
+    const archLayers = L.map((l, i) => {
+      const on = i === li;
+      return {
+        key: i, num: String(i + 1).padStart(2, '0'), title: en ? l.en : l.fa, en: en ? l.fa : l.en,
+        border: on ? accent : '#1A1D1D', bg: on ? 'rgba(13,18,16,.92)' : 'rgba(9,11,11,.72)',
+        titleColor: on ? '#E7E9E8' : '#9BA5A3', numColor: on ? accent : '#4E5654',
+        hasNext: i < L.length - 1, edge: l.edge,
+        wireColor: i === li || i === li - 1 ? 'rgba(0,226,138,.5)' : '#1F2423',
+        pulseOpacity: st.flow || i === li ? '1' : '0',
+        onClick: () => { clearInterval(this._flow); this.setState({ archLayer: i, flow: false }); }
+      };
+    });
+    const cl = L[li];
+    const archDet = {
+      kicker: (en ? tab.en : tab.fa) + ' · ' + String(li + 1).padStart(2, '0') + '/' + String(L.length).padStart(2, '0'),
+      title: en ? cl.en : cl.fa, en: en ? cl.fa : cl.en, body: en ? cl.bodyEn : cl.bodyFa,
+      input: en ? cl.inEn : cl.inFa, output: en ? cl.outEn : cl.outFa, tech: wrap(cl.tech)
+    };
+
+    const q = (st.q || '').trim().toLowerCase();
+    const pal = [];
+    (en ? SECTIONS.en : SECTIONS.fa).forEach(([id, label]) => {
+      if (!q || label.toLowerCase().indexOf(q) >= 0) pal.push({ key: 's' + id, kind: t.section, label: label, bg: 'transparent', onClick: () => { this.setState({ palOpen: false }); this.jump(id); } });
+    });
+    list.forEach(p => {
+      const hay = (p.title + ' ' + p.en + ' ' + (p.stack || []).join(' ') + ' ' + (p.cat || '')).toLowerCase();
+      if (!q || hay.indexOf(q) >= 0) pal.push({ key: 'p' + p.id, kind: t.project, label: p.title, bg: 'transparent', onClick: () => { this.setState({ palOpen: false, sel: p.id, filter: 'all' }); this.jump('projects'); } });
+    });
+
+    return {
+      rootRef: this.rootRef, canvasRef: this.canvasRef, anchorRef: this.anchorRef, progRef: this.progRef,
+      spotRef: this.spotRef, clockRef: this.clockRef, clock2Ref: this.clock2Ref, palInputRef: this.palInputRef,
+      isFa: !en, isEn: en, t: Object.assign({}, t, { archIntro: (ARCH[0].intro || {})[en ? 'en' : 'fa'] }),
+      langLabel: en ? 'FA' : 'EN', toggleLang: () => this.setState(s => ({ lang: s.lang === 'en' ? 'fa' : 'en' })),
+      isMobile: st.vw < 880, isDesk: st.vw >= 880, tapSize: st.vw < 880 ? '44px' : '36px',
+      menuOpen: st.menuOpen && st.vw < 880,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      menuBg: st.menuOpen ? 'rgba(0,226,138,.07)' : 'transparent',
+      menuBorder: st.menuOpen ? accent : '#232726',
+      menuInk: st.menuOpen ? accent : '#8A9391',
+      barTop: st.menuOpen ? 'translateY(5.4px) rotate(45deg)' : 'none',
+      barBottom: st.menuOpen ? 'translateY(-5.4px) rotate(-45deg)' : 'none',
+      barMidOpacity: st.menuOpen ? '0' : '1',
+      menuLinks: (en
+        ? [['expertise', 'Domains', '01'], ['projects', 'Work', '02'], ['about', 'About', '03']]
+        : [['expertise', 'تخصص‌ها', '01'], ['projects', 'پروژه‌ها', '02'], ['about', 'درباره', '03']]
+      ).map(([id, label, meta]) => ({ key: id, href: '#' + id, label: label, meta: meta, onClick: () => this.setState({ menuOpen: false }) })),
+      panelPos: st.vw < 880 ? 'static' : 'sticky',
+      panelMax: st.vw < 880 ? 'none' : 'min(74vh,760px)',
+      panelScroll: st.vw < 880 ? 'visible' : 'auto',
+      projectCount: String(vis.length).padStart(2, '0') + (en ? ' PROJECTS' : ' / ' + String(list.length).padStart(2, '0')),
+      rows: rows, rowsA: rowsA, rowsB: rowsB, hasRowsB: rowsB.length > 0, det: det, filters: filters,
+      showDet: !!sel && !closed, detRef: this.detRef,
+      pjCols: mobile ? 'minmax(0,1fr)' : 'minmax(0,5fr) minmax(0,7fr)',
+      pjGap: mobile ? '0px' : 'clamp(16px,1.8vw,24px)',
+      pjDetCol: mobile ? '1' : '2', pjDetRow: mobile ? '2' : '1',
+      pjListH: mobile ? 'auto' : 'min(78vh,780px)', pjDetH: mobile ? 'auto' : 'min(78vh,780px)',
+      pjDetBorder: mobile ? 'rgba(0,226,138,.28)' : '#1C2120',
+      expCols: st.vw >= 1100 ? 'repeat(6,minmax(0,1fr))' : (st.vw >= 640 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)'),
+      expSpan1: st.vw >= 1100 ? '2' : '1', expSpan2: st.vw >= 1100 ? '2' : '1', expSpan3: st.vw >= 1100 ? '2' : '1',
+      expSpan4: st.vw >= 1100 ? '3' : '1', expSpan5: st.vw >= 1100 ? '3' : (st.vw >= 640 ? '2' : '1'),
+      cardMove: e => {
+        const el = e.currentTarget, r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+        if (this.props.motion !== false) {
+          el.style.setProperty('--rx', ((0.5 - y) * 5).toFixed(2) + 'deg');
+          el.style.setProperty('--ry', ((x - 0.5) * 7).toFixed(2) + 'deg');
+        }
+      },
+      cardLeave: e => { const el = e.currentTarget; el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); el.style.setProperty('--my', '-20%'); },
+      stackGroups: STACK_GROUPS.map((g, i) => ({ key: i, label: g.label, items: wrap(g.items) })),
+      archTabs: archTabs, archLayers: archLayers, archDet: archDet,
+      archMeta: String(ARCH.length) + ' SYSTEMS · ' + String(L.length) + ' LAYERS',
+      flowLabel: st.flow ? t.flowOn : t.flowOff,
+      flowBorder: st.flow ? accent : '#232726', flowColor: st.flow ? accent : '#6E7A78',
+      toggleFlow: () => this.toggleFlow(),
+      palOpen: st.palOpen, q: st.q, palResults: pal.slice(0, 40),
+      onQ: e => this.setState({ q: e.target.value }),
+      openPal: () => this.setState({ palOpen: true, q: '' }),
+      closePal: () => this.setState({ palOpen: false }),
+      stop: e => e.stopPropagation()
+    };
+  }
+}
+</script>
+</body>
+</html>
