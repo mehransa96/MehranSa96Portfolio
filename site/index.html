@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>مهران سبزعلی | مهندس ارشد نرم‌افزار — هوش مصنوعی، امنیت، IoT</title>
-<meta name="description" content="کارنامه فنی مهران سبزعلی (GMTec): معماری سیستم‌های هوش مصنوعی، امنیت سایبری با مدرک CEH، پایگاه داده و SQL Server، و توسعه IoT. ۸ سال تجربه و ۲۳ پروژه عملیاتی.">
+<meta name="description" content="کارنامه فنی مهران سبزعلی (GMTec): معماری سیستم‌های هوش مصنوعی، امنیت سایبری با مدرک CEH، پایگاه داده و SQL Server، و توسعه IoT. ۸ سال تجربه و ۲۵ پروژه عملیاتی.">
 <meta name="author" content="Mehran Sabzali">
 <meta name="theme-color" content="#08090A">
 <link rel="canonical" href="https://gmtec.ir/">
 <meta property="og:title" content="مهران سبزعلی | مهندس ارشد نرم‌افزار">
-<meta property="og:description" content="هوش مصنوعی، امنیت سایبری، پایگاه داده و IoT — ۲۳ پروژه عملیاتی.">
+<meta property="og:description" content="هوش مصنوعی، امنیت سایبری، پایگاه داده و IoT — ۲۵ پروژه عملیاتی.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gmtec.ir/">
 <meta property="og:locale" content="fa_IR">
@@ -79,7 +79,7 @@
           <span data-l="en">Senior Software Engineer</span>
         </div>
         <div class="hero__meta" dir="ltr">
-          <span>TEHRAN, IR</span><span><b>|</b>AI · SECURITY · DATA · IOT</span><span><b>|</b>8 YEARS</span><span><b>|</b>23 PROJECTS</span>
+          <span>TEHRAN, IR</span><span><b>|</b>AI · SECURITY · DATA · IOT</span><span><b>|</b>8 YEARS</span><span><b>|</b>25 PROJECTS</span>
         </div>
         <div class="hero__cue" aria-hidden="true"><span>↓</span><span>SCROLL</span></div>
       </div>
@@ -90,8 +90,8 @@
     </div>
     <div class="marquee" dir="ltr" aria-hidden="true">
       <div class="marquee__track">
-        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>23 PROJECTS</span></div>
-        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>23 PROJECTS</span></div>
+        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>25 PROJECTS</span></div>
+        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>25 PROJECTS</span></div>
       </div>
     </div>
   </section>
@@ -176,7 +176,27 @@
       </div>
       <span class="sec-head__count" id="pjCount"></span>
     </div>
-    <div class="pills pj-filters" id="pjFilters" role="group" aria-label="Filter"></div>
+    <div class="pj-label">
+      <span class="pj-label__k"><span data-l="fa">پروژه‌های شاخص</span><span data-l="en">Featured</span></span>
+      <span class="pj-label__rule"></span>
+      <span class="pj-label__m mono" dir="ltr">FEATURED · 03</span>
+    </div>
+    <div class="feat" id="pjFeat"></div>
+    <div class="feat-dots" id="featDots" aria-label="Featured projects"></div>
+
+    <div class="pj-label pj-label--all">
+      <span class="pj-label__k"><span data-l="fa">همه پروژه‌ها</span><span data-l="en">All projects</span></span>
+      <span class="pj-label__rule"></span>
+      <span class="pj-label__m mono" dir="ltr">INDEX</span>
+    </div>
+    <div class="pj-bar">
+      <div class="pills pj-filters" id="pjFilters" role="group" aria-label="Filter"></div>
+      <label class="pj-search">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="6.4"></circle><line x1="15.8" y1="15.8" x2="20.5" y2="20.5"></line></svg>
+        <span class="sr-only">Search projects</span>
+        <input id="pjSearch" type="search" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
     <div class="pj-grid">
       <div class="pj-list" id="pjListA"></div>
       <article class="pj-det" id="pjDet" aria-live="polite"></article>
@@ -204,6 +224,22 @@
         <span class="row__desc">
           <span data-l="fa">دستیار هوش مصنوعی ساخت گزارش SSRS: از پرسش فارسی تا T-SQL اعتبارسنجی‌شده و فایل RDL آماده.</span>
           <span data-l="en">An AI assistant for building SSRS reports: from a Persian question to validated T-SQL and a ready RDL file.</span>
+        </span>
+        <span class="row__badge"><span data-l="fa">خصوصی</span><span data-l="en">Private</span></span>
+      </div>
+      <div class="row">
+        <span class="row__name" dir="ltr">GMTask</span>
+        <span class="row__desc">
+          <span data-l="fa">مدیریت کار، یادداشت و تقویم جلالی با دستیار هوش مصنوعی، برای اندروید و ویندوز با همگام‌سازی ابری.</span>
+          <span data-l="en">Tasks, notes and a Jalali calendar with an AI assistant, for Android and Windows with cloud sync.</span>
+        </span>
+        <span class="row__badge"><span data-l="fa">خصوصی</span><span data-l="en">Private</span></span>
+      </div>
+      <div class="row">
+        <span class="row__name" dir="ltr">DataBase_Kavosh</span>
+        <span class="row__desc">
+          <span data-l="fa">کاوشگر آفلاین ساختار پایگاه داده ERP: جست‌وجوی فارسی، گراف روابط، مسیریابی JOIN و دستیار T-SQL.</span>
+          <span data-l="en">Offline ERP schema explorer: Persian search, relationship graphs, JOIN path finding and a T-SQL assistant.</span>
         </span>
         <span class="row__badge"><span data-l="fa">خصوصی</span><span data-l="en">Private</span></span>
       </div>
@@ -301,8 +337,8 @@
       <span class="sub-head__meta" id="archMeta"></span>
     </div>
     <p class="arch__intro">
-      <span data-l="fa">سه سیستم واقعی، لایه به لایه. روی هر لایه بزنید تا ورودی، خروجی و ابزار آن را ببینید؛ «پخش جریان» مسیر داده را از ابتدا تا انتها حرکت می‌دهد.</span>
-      <span data-l="en">Three real systems, layer by layer. Click a layer to see its input, output and tooling; “play flow” walks the data path end to end.</span>
+      <span data-l="fa">چهار سیستم واقعی، لایه به لایه. روی هر لایه بزنید تا ورودی، خروجی و ابزار آن را ببینید؛ «پخش جریان» مسیر داده را از ابتدا تا انتها حرکت می‌دهد.</span>
+      <span data-l="en">Four real systems, layer by layer. Click a layer to see its input, output and tooling; “play flow” walks the data path end to end.</span>
     </p>
     <div class="pills arch__tabs">
       <div class="pills" id="archTabs" role="tablist" aria-label="Systems"></div>

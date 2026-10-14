@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>مهران سبزعلی | مهندس ارشد نرم‌افزار — هوش مصنوعی، امنیت، IoT</title>
-<meta name="description" content="کارنامه فنی مهران سبزعلی (GMTec): معماری سیستم‌های هوش مصنوعی، امنیت سایبری با مدرک CEH، پایگاه داده و SQL Server، و توسعه IoT. ۸ سال تجربه و ۲۳ پروژه عملیاتی.">
+<meta name="description" content="کارنامه فنی مهران سبزعلی (GMTec): معماری سیستم‌های هوش مصنوعی، امنیت سایبری با مدرک CEH، پایگاه داده و SQL Server، و توسعه IoT. ۸ سال تجربه و ۲۵ پروژه عملیاتی.">
 <meta name="author" content="Mehran Sabzali">
 <meta name="theme-color" content="#08090A">
 <link rel="canonical" href="https://gmtec.ir/">
 <meta property="og:title" content="مهران سبزعلی | مهندس ارشد نرم‌افزار">
-<meta property="og:description" content="هوش مصنوعی، امنیت سایبری، پایگاه داده و IoT — ۲۳ پروژه عملیاتی.">
+<meta property="og:description" content="هوش مصنوعی، امنیت سایبری، پایگاه داده و IoT — ۲۵ پروژه عملیاتی.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gmtec.ir/">
 <meta property="og:locale" content="fa_IR">
@@ -628,6 +628,264 @@ html[lang="fa"] .det__badges span,
 html[lang="fa"] .det__link,
 html[lang="fa"] .row__badge { font-family: var(--sans); letter-spacing: 0; }
 html[lang="fa"] .det__label, html[lang="fa"] .det__val-k { font-size: 12px; }
+
+/* =====================================================================
+   Projects v2 — featured showcase, toolbar, richer detail panel
+   ===================================================================== */
+
+/* Group labels inside the projects section */
+.pj-label { display: flex; align-items: center; gap: 14px; margin: 0 0 18px; }
+.pj-label--all { margin-top: clamp(44px, 5vw, 72px); }
+.pj-label__k { font-size: 14px; font-weight: 600; color: var(--ink-2); white-space: nowrap; }
+.pj-label__rule { flex: 1; height: 1px; background: linear-gradient(to left, transparent, var(--line-3)); }
+html[dir="ltr"] .pj-label__rule { background: linear-gradient(to right, var(--line-3), transparent); }
+.pj-label__m { font-size: 10.5px; letter-spacing: 2px; color: var(--mute-3); }
+
+.tag-new {
+  display: inline-flex; align-items: center; font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px;
+  color: #04110B; background: var(--accent); padding: 3px 7px; border-radius: 2px; line-height: 1.2; font-weight: 500;
+}
+html[lang="fa"] .tag-new { font-family: var(--sans); letter-spacing: 0; font-size: 11px; font-weight: 600; }
+.tag-new--sm { vertical-align: middle; margin-inline-start: 6px; padding: 2px 6px; font-size: 9px; }
+html[lang="fa"] .tag-new--sm { font-size: 10px; }
+
+/* ---------- Featured bento ---------- */
+.feat { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 18px); }
+.fcard {
+  position: relative; display: flex; flex-direction: column; min-width: 0;
+  border: 1px solid #1C2120; border-radius: 4px; overflow: hidden; cursor: pointer;
+  background:
+    radial-gradient(520px circle at var(--mx, 50%) var(--my, -20%), rgba(var(--accent-rgb), .09), transparent 60%),
+    linear-gradient(180deg, rgba(13, 17, 16, .82), rgba(8, 9, 10, .7));
+  transform: perspective(1200px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .55s var(--ease-out), border-color .35s ease;
+}
+.fcard:hover { border-color: rgba(var(--accent-rgb), .38); }
+.fcard:nth-child(1) { grid-column: span 7; grid-row: span 2; }
+.fcard:nth-child(2), .fcard:nth-child(3) { grid-column: span 5; }
+.fcard__vis {
+  position: relative; height: clamp(150px, 13vw, 190px); border-bottom: 1px solid #161A19; overflow: hidden;
+  background:
+    linear-gradient(rgba(var(--accent-rgb), .045) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(90deg, rgba(var(--accent-rgb), .045) 1px, transparent 1px) 0 0 / 22px 22px,
+    radial-gradient(120% 90% at 50% 0%, rgba(var(--accent-rgb), .08), transparent 70%);
+}
+.fcard:nth-child(1) .fcard__vis { height: auto; flex: 1 1 auto; min-height: clamp(220px, 22vw, 320px); }
+.fcard__vis .vis { position: absolute; inset: 6% 4%; width: 92%; height: 88%; }
+.fcard__idx { position: absolute; top: 12px; inset-inline-start: 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; color: var(--mute-3); }
+.fcard__body { display: flex; flex-direction: column; padding: clamp(20px, 2.2vw, 30px); gap: 10px; flex: 0 0 auto; }
+.fcard:not(:nth-child(1)) .fcard__body { flex: 1 1 auto; }
+.fcard__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.fcard__tag { font-family: var(--mono); font-size: 10px; letter-spacing: 1.8px; color: var(--mute-2); }
+.fcard__badge { font-size: 10.5px; color: var(--mute-2); border: 1px solid #2A302E; border-radius: 2px; padding: 2px 8px; }
+.fcard h3 { margin: 4px 0 0; font-size: clamp(19px, 1.8vw, 26px); font-weight: 600; line-height: 1.45; text-wrap: balance; }
+.fcard:nth-child(1) h3 { font-size: clamp(22px, 2.3vw, 32px); }
+.fcard__en { margin: 0; font-family: var(--mono); font-size: 11px; color: var(--mute); text-align: start; }
+.fcard__sum {
+  margin: 4px 0 0; font-size: 14px; line-height: 1.95; color: var(--ink-3); text-wrap: pretty;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.fcard:nth-child(1) .fcard__sum { -webkit-line-clamp: 4; font-size: 14.5px; }
+.fcard__facts {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; margin-top: 6px;
+  background: #161A19; border: 1px solid #161A19;
+}
+.fcard__facts > div { background: rgba(9, 11, 11, .92); padding: 10px 12px; min-width: 0; }
+.fcard__facts b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: clamp(17px, 1.6vw, 22px); font-weight: 500; color: var(--ink); text-align: start; }
+.fcard__facts span { display: block; font-size: 11px; color: var(--mute-2); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fcard__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 10px; flex-wrap: wrap; }
+.fcard__go {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 2px;
+  background: transparent; border: 0; border-bottom: 1px solid rgba(var(--accent-rgb), .3);
+  color: var(--accent); font-size: 13.5px; cursor: pointer;
+}
+.fcard__go span { transition: transform .3s var(--ease-out); }
+.fcard:hover .fcard__go span { transform: translateX(-4px); }
+html[dir="ltr"] .fcard:hover .fcard__go span { transform: translateX(4px); }
+
+@media (max-width: 1099.98px) and (min-width: 640px) {
+  .feat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fcard:nth-child(1) { grid-column: span 2; grid-row: auto; }
+  .fcard:nth-child(2), .fcard:nth-child(3) { grid-column: span 1; }
+  .fcard:nth-child(1) .fcard__vis { min-height: 230px; }
+}
+
+/* Mobile: a swipeable carousel with snap points and dots */
+.feat-dots { display: none; }
+@media (max-width: 639.98px) {
+  .feat {
+    display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    margin-inline: calc(var(--gutter) * -1); padding: 2px var(--gutter) 6px; scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+  .feat::-webkit-scrollbar { display: none; }
+  .fcard { flex: 0 0 86%; scroll-snap-align: center; transform: none; }
+  .fcard:nth-child(1) .fcard__vis, .fcard__vis { min-height: 0; height: 168px; flex: 0 0 auto; }
+  .fcard__body { flex: 1 1 auto; }
+  .fcard__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .feat-dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+  .feat-dots button {
+    width: 26px; height: 24px; padding: 0; border: 0; background: transparent; cursor: pointer; position: relative;
+  }
+  .feat-dots button::after {
+    content: ''; position: absolute; left: 3px; right: 3px; top: 11px; height: 2px; border-radius: 1px;
+    background: var(--line-3); transition: background .3s ease;
+  }
+  .feat-dots button[aria-current="true"]::after { background: var(--accent); }
+}
+
+/* ---------- SVG visuals (shared by featured cards and detail band) ---------- */
+.vis { display: block; overflow: visible; }
+.vis .v-ring { fill: none; stroke: rgba(231, 233, 232, .08); stroke-width: 1; stroke-dasharray: 2 5; }
+.vis .v-ring--in { stroke: rgba(var(--accent-rgb), .16); }
+.vis .v-edge { stroke: rgba(138, 147, 145, .28); stroke-width: 1; }
+.vis .v-edge--hot { stroke: rgba(var(--accent-rgb), .55); }
+.vis .v-spoke { stroke: rgba(var(--accent-rgb), .12); stroke-width: 1; }
+.vis .v-node { fill: #0B0E0D; stroke: rgba(231, 233, 232, .55); stroke-width: 1.2; }
+.vis .v-node--hot { fill: var(--accent); stroke: none; animation: vBlink 3.2s ease-in-out calc(var(--i) * .35s) infinite; }
+.vis .v-core { fill: var(--accent); }
+.vis .v-halo { fill: rgba(var(--accent-rgb), .12); transform-box: fill-box; transform-origin: center; animation: vBreath 3.4s ease-in-out infinite; }
+
+.vis .v-win { fill: rgba(12, 15, 14, .9); stroke: #232827; }
+.vis .v-win-bar { fill: #111514; }
+.vis .v-dot { fill: #2A302E; }
+.vis .v-box { fill: none; stroke: #3A423F; stroke-width: 1.2; }
+.vis .v-tick { fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 14; stroke-dashoffset: 14; animation: vTick 6s var(--ease-out) calc(var(--i) * .7s) infinite; }
+.vis .v-tick--big { stroke-width: 2.2; stroke-dasharray: 26; stroke-dashoffset: 0; animation: none; }
+.vis .v-line { fill: #3A423F; }
+.vis .v-line--dim { fill: #222726; }
+.vis .v-track { fill: #1A1F1E; }
+.vis .v-fill { fill: var(--accent); transform-box: fill-box; transform-origin: left; animation: vFill 6s var(--ease-out) infinite; }
+.vis .v-phone { fill: #0A0D0C; stroke: #2E3533; stroke-width: 1.4; }
+.vis .v-notch { fill: #1A1F1E; }
+.vis .v-day { fill: #151A19; }
+.vis .v-day--off { fill: rgba(224, 164, 88, .25); }
+.vis .v-day--busy { fill: rgba(var(--accent-rgb), .3); }
+.vis .v-day--today { fill: var(--accent); }
+.vis .v-pulse { fill: none; stroke: var(--accent); stroke-width: 1; transform-box: fill-box; transform-origin: center; animation: vPing 2.4s ease-out infinite; }
+.vis .v-chip { fill: rgba(var(--accent-rgb), .1); stroke: rgba(var(--accent-rgb), .35); }
+.vis .v-chip--dim { fill: #111514; stroke: #232827; }
+
+.vis .v-path { fill: none; stroke: rgba(var(--accent-rgb), .35); stroke-width: 1.6; stroke-linejoin: round; }
+.vis .v-path-flow { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 6 14; animation: vFlow 1.6s linear infinite; }
+.vis .v-table { fill: #0E1211; stroke: #3A423F; stroke-width: 1.2; }
+.vis .v-table--on { stroke: var(--accent); fill: rgba(var(--accent-rgb), .12); }
+.vis .v-table--end { fill: var(--accent); stroke: none; }
+.vis .v-label { font-family: var(--mono); font-size: 9px; letter-spacing: .8px; fill: var(--mute-2); }
+.vis .v-label--k { fill: var(--mute-3); letter-spacing: 1.6px; }
+.vis .v-label--stage { fill: var(--ink-2); font-size: 8.5px; }
+.vis .v-stage { fill: #0E1211; stroke: #2E3533; stroke-width: 1.2; animation: vStage 4.6s ease-in-out calc(var(--i) * .92s) infinite; }
+.vis .v-stage--check { stroke: rgba(var(--accent-rgb), .6); }
+.vis .v-packet { fill: var(--accent); filter: drop-shadow(0 0 6px rgba(0, 226, 138, .8)); }
+
+@keyframes vBlink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+@keyframes vBreath { 0%, 100% { transform: scale(1); opacity: .9; } 50% { transform: scale(1.35); opacity: .35; } }
+@keyframes vPing { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(1.8); opacity: 0; } }
+@keyframes vTick { 0%, 8% { stroke-dashoffset: 14; } 22%, 86% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 14; } }
+@keyframes vFill { 0% { transform: scaleX(.05); } 70%, 86% { transform: scaleX(1); } 100% { transform: scaleX(.05); } }
+@keyframes vFlow { to { stroke-dashoffset: -20; } }
+@keyframes vStage { 0%, 30%, 100% { stroke: #2E3533; fill: #0E1211; } 10%, 18% { stroke: var(--accent); fill: rgba(0, 226, 138, .1); } }
+
+/* ---------- Toolbar: filters + search ---------- */
+.pj-bar { display: flex; align-items: center; gap: 12px; margin: 0 0 22px; }
+.pj-bar .pj-filters { margin: 0; flex: 1 1 auto; min-width: 0; }
+.pill__n {
+  font-family: var(--mono); font-size: 10px; color: var(--mute-3); margin-inline-start: 8px;
+  min-width: 18px; text-align: center; transition: color .22s;
+}
+.pill[aria-pressed="true"] .pill__n { color: var(--accent); }
+.pill[data-empty] { opacity: .45; }
+.pj-search {
+  flex: 0 0 clamp(220px, 24vw, 300px); display: flex; align-items: center; gap: 10px;
+  min-height: 42px; padding: 0 14px; border: 1px solid var(--line-3); border-radius: 2px;
+  background: rgba(9, 11, 11, .7); color: var(--mute-2); transition: border-color .22s ease;
+}
+.pj-search:focus-within { border-color: rgba(var(--accent-rgb), .55); color: var(--accent); }
+.pj-search input {
+  flex: 1; min-width: 0; background: transparent; border: 0; outline: none;
+  color: var(--ink); font-family: var(--sans); font-size: 14px;
+}
+.pj-search input::placeholder { color: var(--mute-3); }
+.pj-search input::-webkit-search-cancel-button { filter: invert(.6); }
+@media (max-width: 879.98px) {
+  .pj-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .pj-search { flex: 0 0 auto; }
+  .pj-bar .pj-filters {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+    margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent);
+  }
+  .pj-bar .pj-filters::-webkit-scrollbar { display: none; }
+  .pj-bar .pill { flex: 0 0 auto; }
+}
+.pj-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 28px 22px; }
+.pj-empty b { font-weight: 500; font-size: 14px; color: var(--ink-3); }
+.pj-empty button {
+  background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--accent);
+  min-height: 40px; padding: 0 14px; cursor: pointer; font-size: 13px;
+}
+
+/* ---------- Detail panel ---------- */
+.det__band {
+  position: relative; height: clamp(150px, 15vw, 196px); overflow: hidden;
+  border-bottom: 1px solid #1A1F1E;
+  background:
+    linear-gradient(rgba(var(--accent-rgb), .045) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(90deg, rgba(var(--accent-rgb), .045) 1px, transparent 1px) 0 0 / 22px 22px,
+    radial-gradient(90% 120% at 50% 100%, rgba(var(--accent-rgb), .09), transparent 70%);
+}
+.det__band .vis { position: absolute; inset: 0; width: 100%; height: 100%; }
+.det__band .vis--tasks, .det__band .vis--graph, .det__band .vis--pipeline { inset: 8% 10% 4%; width: 80%; height: 88%; }
+.det__band-top {
+  position: absolute; inset: 0 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 14px clamp(18px, 2.4vw, 28px); font-family: var(--mono); font-size: 10.5px; letter-spacing: 1.5px; color: var(--mute-2);
+  background: linear-gradient(180deg, rgba(9, 11, 11, .9), transparent);
+}
+.det__band-top .det__badges span:not(.tag-new) { background: rgba(9, 11, 11, .8); }
+.det__glyph {
+  position: absolute; bottom: -18px; inset-inline-end: clamp(14px, 2vw, 24px);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(72px, 8vw, 112px); font-weight: 500; line-height: 1;
+  color: transparent; -webkit-text-stroke: 1px rgba(var(--accent-rgb), .22); pointer-events: none;
+}
+.pj-det .det { padding-top: clamp(20px, 2.4vw, 30px); }
+.det__plat { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; justify-content: flex-start; }
+.det__plat span {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; color: var(--ink-2);
+  border: 1px solid rgba(var(--accent-rgb), .3); background: rgba(var(--accent-rgb), .06); padding: 4px 9px; border-radius: 2px;
+}
+.det__plat .det__year { color: var(--mute-2); border-color: var(--line-3); background: transparent; }
+.det__facts {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; margin-top: 22px;
+  background: #171C1B; border: 1px solid #171C1B;
+}
+.det__facts > div { background: rgba(10, 13, 12, .95); padding: 14px 14px 12px; }
+.det__facts b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: clamp(20px, 2vw, 26px); font-weight: 500; color: var(--accent); text-align: start; }
+.det__facts span { display: block; font-size: 11.5px; color: var(--mute-2); margin-top: 4px; }
+@media (max-width: 479.98px) { .det__facts, .fcard__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.det__nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-top: 34px; padding-top: 18px; border-top: 1px solid #1A1F1E;
+}
+.det__nav button {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 14px;
+  background: transparent; border: 1px solid var(--line-3); border-radius: 2px; color: var(--ink-3);
+  font-size: 13px; cursor: pointer; transition: border-color .22s, color .22s;
+}
+.det__nav button:hover { border-color: var(--accent); color: var(--accent); }
+.det__nav-k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1.5px; color: var(--mute-3); }
+
+/* ---------- Repos rows: arrow nudge ---------- */
+a.row .row__end { transition: transform .3s var(--ease-out), color .3s ease; }
+a.row:hover .row__end { color: var(--accent); transform: translate(-3px, -3px); }
+html[dir="ltr"] a.row:hover .row__end { transform: translate(3px, -3px); }
+
+/* ---------- Scroll reveal (uses `translate` so it never fights card tilt transforms) ---------- */
+.rv { opacity: 0; }
+.rv.is-in { animation: rvIn .9s var(--ease-out) var(--d, 0ms) both; }
+@keyframes rvIn { from { opacity: 0; translate: 0 22px; } to { opacity: 1; translate: 0 0; } }
+/* Numeric facts sit on the same side as their labels in RTL. */
+html[dir="rtl"] .det__facts b, html[dir="rtl"] .fcard__facts b { text-align: right; }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Mehran Sabzali","alternateName":"مهران سبزعلی","jobTitle":"Senior Software Engineer","url":"https://gmtec.ir/","address":{"@type":"PostalAddress","addressLocality":"Tehran","addressCountry":"IR"},"sameAs":["https://github.com/mehransa96","https://www.linkedin.com/in/mehran-sabzali","https://t.me/Mehran_Sa96"]}
@@ -691,7 +949,7 @@ html[lang="fa"] .det__label, html[lang="fa"] .det__val-k { font-size: 12px; }
           <span data-l="en">Senior Software Engineer</span>
         </div>
         <div class="hero__meta" dir="ltr">
-          <span>TEHRAN, IR</span><span><b>|</b>AI · SECURITY · DATA · IOT</span><span><b>|</b>8 YEARS</span><span><b>|</b>23 PROJECTS</span>
+          <span>TEHRAN, IR</span><span><b>|</b>AI · SECURITY · DATA · IOT</span><span><b>|</b>8 YEARS</span><span><b>|</b>25 PROJECTS</span>
         </div>
         <div class="hero__cue" aria-hidden="true"><span>↓</span><span>SCROLL</span></div>
       </div>
@@ -702,8 +960,8 @@ html[lang="fa"] .det__label, html[lang="fa"] .det__val-k { font-size: 12px; }
     </div>
     <div class="marquee" dir="ltr" aria-hidden="true">
       <div class="marquee__track">
-        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>23 PROJECTS</span></div>
-        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>23 PROJECTS</span></div>
+        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>25 PROJECTS</span></div>
+        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>25 PROJECTS</span></div>
       </div>
     </div>
   </section>
@@ -788,7 +1046,27 @@ html[lang="fa"] .det__label, html[lang="fa"] .det__val-k { font-size: 12px; }
       </div>
       <span class="sec-head__count" id="pjCount"></span>
     </div>
-    <div class="pills pj-filters" id="pjFilters" role="group" aria-label="Filter"></div>
+    <div class="pj-label">
+      <span class="pj-label__k"><span data-l="fa">پروژه‌های شاخص</span><span data-l="en">Featured</span></span>
+      <span class="pj-label__rule"></span>
+      <span class="pj-label__m mono" dir="ltr">FEATURED · 03</span>
+    </div>
+    <div class="feat" id="pjFeat"></div>
+    <div class="feat-dots" id="featDots" aria-label="Featured projects"></div>
+
+    <div class="pj-label pj-label--all">
+      <span class="pj-label__k"><span data-l="fa">همه پروژه‌ها</span><span data-l="en">All projects</span></span>
+      <span class="pj-label__rule"></span>
+      <span class="pj-label__m mono" dir="ltr">INDEX</span>
+    </div>
+    <div class="pj-bar">
+      <div class="pills pj-filters" id="pjFilters" role="group" aria-label="Filter"></div>
+      <label class="pj-search">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="6.4"></circle><line x1="15.8" y1="15.8" x2="20.5" y2="20.5"></line></svg>
+        <span class="sr-only">Search projects</span>
+        <input id="pjSearch" type="search" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
     <div class="pj-grid">
       <div class="pj-list" id="pjListA"></div>
       <article class="pj-det" id="pjDet" aria-live="polite"></article>
@@ -816,6 +1094,22 @@ html[lang="fa"] .det__label, html[lang="fa"] .det__val-k { font-size: 12px; }
         <span class="row__desc">
           <span data-l="fa">دستیار هوش مصنوعی ساخت گزارش SSRS: از پرسش فارسی تا T-SQL اعتبارسنجی‌شده و فایل RDL آماده.</span>
           <span data-l="en">An AI assistant for building SSRS reports: from a Persian question to validated T-SQL and a ready RDL file.</span>
+        </span>
+        <span class="row__badge"><span data-l="fa">خصوصی</span><span data-l="en">Private</span></span>
+      </div>
+      <div class="row">
+        <span class="row__name" dir="ltr">GMTask</span>
+        <span class="row__desc">
+          <span data-l="fa">مدیریت کار، یادداشت و تقویم جلالی با دستیار هوش مصنوعی، برای اندروید و ویندوز با همگام‌سازی ابری.</span>
+          <span data-l="en">Tasks, notes and a Jalali calendar with an AI assistant, for Android and Windows with cloud sync.</span>
+        </span>
+        <span class="row__badge"><span data-l="fa">خصوصی</span><span data-l="en">Private</span></span>
+      </div>
+      <div class="row">
+        <span class="row__name" dir="ltr">DataBase_Kavosh</span>
+        <span class="row__desc">
+          <span data-l="fa">کاوشگر آفلاین ساختار پایگاه داده ERP: جست‌وجوی فارسی، گراف روابط، مسیریابی JOIN و دستیار T-SQL.</span>
+          <span data-l="en">Offline ERP schema explorer: Persian search, relationship graphs, JOIN path finding and a T-SQL assistant.</span>
         </span>
         <span class="row__badge"><span data-l="fa">خصوصی</span><span data-l="en">Private</span></span>
       </div>
@@ -913,8 +1207,8 @@ html[lang="fa"] .det__label, html[lang="fa"] .det__val-k { font-size: 12px; }
       <span class="sub-head__meta" id="archMeta"></span>
     </div>
     <p class="arch__intro">
-      <span data-l="fa">سه سیستم واقعی، لایه به لایه. روی هر لایه بزنید تا ورودی، خروجی و ابزار آن را ببینید؛ «پخش جریان» مسیر داده را از ابتدا تا انتها حرکت می‌دهد.</span>
-      <span data-l="en">Three real systems, layer by layer. Click a layer to see its input, output and tooling; “play flow” walks the data path end to end.</span>
+      <span data-l="fa">چهار سیستم واقعی، لایه به لایه. روی هر لایه بزنید تا ورودی، خروجی و ابزار آن را ببینید؛ «پخش جریان» مسیر داده را از ابتدا تا انتها حرکت می‌دهد.</span>
+      <span data-l="en">Four real systems, layer by layer. Click a layer to see its input, output and tooling; “play flow” walks the data path end to end.</span>
     </p>
     <div class="pills arch__tabs">
       <div class="pills" id="archTabs" role="tablist" aria-label="Systems"></div>
@@ -986,6 +1280,64 @@ html[lang="fa"] .det__label, html[lang="fa"] .det__val-k { font-size: 12px; }
 <script>
 // Project data for the portfolio pages. Business content only — no styling.
 const FA = [
+  {
+    id: 25, cat: 'app ai', tag: 'ANDROID / WINDOWS', isNew: true, featured: true, visual: 'tasks',
+    year: '2026', platforms: ['Android', 'Windows'],
+    title: 'GMTask — مدیریت کار، یادداشت و تقویم جلالی', en: 'GMTask — Persian-first tasks, notes & AI assistant',
+    sum: 'اپلیکیشن فارسی‌محور مدیریت کار، یادداشت و تقویم جلالی با دستیار هوش مصنوعی؛ یک نسخه برای اندروید و یک نسخه برای ویندوز که از طریق ابر با هم همگام می‌مانند.',
+    ctx: 'ابزاری برای کار روزمره: کارها، یادداشت‌ها و برنامه روز در یک جا، با تقویم شمسی دقیق و تعطیلات رسمی. اولویت طراحی این بود که برنامه بدون اینترنت کامل کار کند و داده هیچ کاربری در دسترس دیگری نباشد.',
+    ch: [
+      'همگام‌سازی چنددستگاهی بدون از دست رفتن داده: شناسه مستقل از دستگاه، صف تغییرات و ادغام «آخرین نوشتن برنده» همراه با ثبت حذف‌ها.',
+      'محاسبه دقیق تقویم جلالی و کارهای تکرارشونده، با آزمون رفت‌وبرگشت روزبه‌روز برای ۳۰ سال.',
+      'هوش مصنوعی بدون قربانی کردن حریم خصوصی: کلید API رمزنگاری‌شده در Android Keystore و ارسال هیچ داده‌ای به مدل بدون درخواست صریح کاربر.'
+    ],
+    sol: [
+      'Kotlin و Jetpack Compose برای اندروید و Compose Desktop برای ویندوز',
+      'Room با مهاجرت‌های صریح، WorkManager برای یادآورها و ویجت صفحه اصلی',
+      'Firestore با قوانین دسترسی فقط-مالک روی users/{uid}',
+      'دستیار چندارائه‌دهنده (Gemini، OpenAI، Claude) با اعتبارسنجی خروجی مدل، و تجزیه‌گر محلی برای افزودن سریع کار',
+      'گزارش بهره‌وری، نقشه حرارتی فعالیت، هدف روزانه و تایمر تمرکز'
+    ],
+    resp: [
+      'طراحی و توسعه کامل نسخه اندروید و ویندوز',
+      'ممیزی مهندسی و رفع مشکلات امنیتی و همگام‌سازی',
+      'نوشتن مجموعه آزمون‌های واحد و آزمون‌های دستگاه',
+      'CI و انتشار خودکار APK و نصب‌کننده ویندوز'
+    ],
+    val: 'یک اپ کامل و آفلاین‌محور روی دو پلتفرم با انتشار منظم نسخه‌ها؛ APK و نصب‌کننده ویندوز در هر نسخه خودکار ساخته و منتشر می‌شوند.',
+    facts: [['1.9', 'نسخه'], ['2', 'پلتفرم'], ['67', 'فایل آزمون'], ['3', 'ارائه‌دهنده AI']],
+    stack: ['Kotlin', 'Jetpack Compose', 'Compose Desktop', 'Room', 'WorkManager', 'Firebase', 'Gemini / OpenAI / Claude', 'GitHub Actions'],
+    badge: 'مخزن خصوصی'
+  },
+  {
+    id: 26, cat: 'database ai app', tag: 'DATABASE / DESKTOP', isNew: true, featured: true, visual: 'graph',
+    year: '2026', platforms: ['Windows', 'Android', 'Web'],
+    title: 'کاوشگر پایگاه داده (کاوش)', en: 'DataBase Kavosh — ERP schema explorer',
+    sum: 'اپلیکیشن مستقل کاوش ساختار پایگاه داده نرم‌افزار سازمانی: جست‌وجوی فارسی میان هزاران جدول و ده‌ها هزار ستون، گراف بصری روابط، مسیریابی JOIN و تولید T-SQL؛ کاملاً آفلاین.',
+    ctx: 'نوشتن هر گزارش روی ERP یعنی اول پیدا کردن جدول درست و مسیر اتصال جدول‌ها. کاوش این مرحله را از ساعت‌ها گشتن به چند ثانیه جست‌وجو می‌رساند و دانش تیم را هم در خودش نگه می‌دارد.',
+    ch: [
+      'جست‌وجوی فارسی دقیق با یکسان‌سازی حروف عربی و فارسی و ریشه‌یابی سبک، روی نام انگلیسی، عنوان فارسی و نام ستون‌ها.',
+      'پیدا کردن کوتاه‌ترین مسیر JOIN میان دو جدول، با هشدار برای مسیرهای بلند یا تأییدنشده.',
+      'دستیار کوئری‌نویسی که حتی با مدل زبانی ضعیف هم فقط کوئری معتبر تحویل بدهد.'
+    ],
+    sol: [
+      'پایگاه دانش YAML به‌عنوان منبع حقیقت و ایندکس SQLite که همیشه از آن بازساخته می‌شود',
+      'بک‌اند FastAPI و رابط React با گراف‌های D3 در چهار نما: نیرومحور، سلسله‌مراتبی، شعاعی و ERD',
+      'دستیار پنج‌مرحله‌ای: بازیابی، انتخاب، زمینه‌سازی، نگارش و بازبینی؛ هر کوئری کلمه‌به‌کلمه در برابر ساختار واقعی سنجیده می‌شود',
+      'اتصال به ارائه‌دهنده‌های مدل از طریق سه «گویش» API: OpenAI، Gemini و Anthropic',
+      'بسته‌بندی PyInstaller و نصب‌کننده NSIS بدون نیاز به دسترسی مدیر، و نسخه اندروید آفلاین'
+    ],
+    resp: [
+      'معماری پایگاه دانش، ایندکس و موتور جست‌وجو',
+      'طراحی رابط کاربری واکنش‌گرا و گراف‌های روابط',
+      'دستیار کوئری‌نویسی و بازبین T-SQL',
+      'بسته‌بندی و انتشار خودکار برای ویندوز و اندروید'
+    ],
+    val: 'نصب با یک کلیک روی ویندوز و اندروید، بدون پایتون، Node.js یا اینترنت؛ دانشی که کاربر ثبت می‌کند با به‌روزرسانی از بین نمی‌رود.',
+    facts: [['3.2', 'نسخه'], ['4', 'نمای گراف'], ['5', 'مرحله دستیار'], ['100%', 'آفلاین']],
+    stack: ['Python', 'FastAPI', 'SQLite', 'React', 'D3.js', 'Tailwind', 'sqlglot', 'PyInstaller', 'Android WebView'],
+    badge: 'مخزن خصوصی'
+  },
   {
     id: 1, cat: 'web security', tag: 'ENTERPRISE',
     title: 'سامانه مالی سازمانی', en: 'Enterprise Financial WebApp',
@@ -1112,7 +1464,7 @@ const FA = [
     stack: ['Python', 'LangChain', 'OpenAI API', 'FastAPI', 'Selenium', 'GSC API', 'Airtable', 'Cron']
   },
   {
-    id: 6, cat: 'ai database', tag: 'AI / DATABASE',
+    id: 6, featured: true, visual: 'pipeline', cat: 'ai database', tag: 'AI / DATABASE',
     title: 'دستیار هوشمند ساخت گزارش SSRS', en: 'RepBuilderAssis — SSRS Report Assistant',
     sum: 'دستیاری که پرسش فارسی کاربر را روی دیتابیس ERP به T-SQL اعتبارسنجی‌شده و فایل RDL آماده تبدیل می‌کند.',
     ctx: 'گزارش‌های سازمانی روی یک ERP فارسی با ۳٬۴۲۸ جدول ساخته می‌شوند؛ نوشتن هر گزارش یعنی پیدا کردن جدول درست میان هزاران جدول و بعد ساختن فایل RDL. این ابزار همان مسیر را از یک پرسش فارسی شروع می‌کند.',
@@ -1487,6 +1839,64 @@ const FA = [
 
 const EN = [
   {
+    id: 25, cat: 'app ai', tag: 'ANDROID / WINDOWS', isNew: true, featured: true, visual: 'tasks',
+    year: '2026', platforms: ['Android', 'Windows'],
+    title: 'GMTask — tasks, notes & Jalali calendar', en: 'Persian-first productivity app with an AI assistant',
+    sum: 'A Persian-first app for tasks, notes and the Jalali calendar with an AI assistant — one build for Android and one for Windows, kept in sync through the cloud.',
+    ctx: 'A tool for everyday work: tasks, notes and the day’s plan in one place, with an exact Persian calendar and official holidays. The design priorities were that it works fully offline and that no user’s data is ever reachable by anyone else.',
+    ch: [
+      'Multi-device sync without data loss: device-independent ids, an outbox of changes and last-write-wins merging with tombstones for deletions.',
+      'Exact Jalali calendar maths and recurring tasks, backed by a day-by-day round-trip test across 30 years.',
+      'AI without giving up privacy: API keys encrypted with the Android Keystore, and nothing sent to a model unless the user explicitly asks.'
+    ],
+    sol: [
+      'Kotlin and Jetpack Compose on Android, Compose Desktop on Windows',
+      'Room with explicit migrations, WorkManager for reminders, and a home-screen widget',
+      'Firestore with owner-only rules on users/{uid}',
+      'Multi-provider assistant (Gemini, OpenAI, Claude) with validated model output, plus an on-device parser for quick-add',
+      'Productivity reports, an activity heatmap, a daily goal and a focus timer'
+    ],
+    resp: [
+      'End-to-end design and development of the Android and Windows apps',
+      'Engineering audit and fixes across security and sync',
+      'Unit and instrumented test suites',
+      'CI and automated releases of the APK and Windows installer'
+    ],
+    val: 'A complete offline-first app on two platforms with regular releases; every version builds and publishes the APK and Windows installer automatically.',
+    facts: [['1.9', 'Version'], ['2', 'Platforms'], ['67', 'Test files'], ['3', 'AI providers']],
+    stack: ['Kotlin', 'Jetpack Compose', 'Compose Desktop', 'Room', 'WorkManager', 'Firebase', 'Gemini / OpenAI / Claude', 'GitHub Actions'],
+    badge: 'Private repo'
+  },
+  {
+    id: 26, cat: 'database ai app', tag: 'DATABASE / DESKTOP', isNew: true, featured: true, visual: 'graph',
+    year: '2026', platforms: ['Windows', 'Android', 'Web'],
+    title: 'DataBase Kavosh', en: 'ERP database schema explorer',
+    sum: 'A standalone explorer for an enterprise ERP database: Persian search across thousands of tables and tens of thousands of columns, a visual relationship graph, JOIN path finding and T-SQL generation — fully offline.',
+    ctx: 'Every ERP report starts with finding the right tables and how they join. Kavosh turns hours of digging into seconds of search, and keeps the team’s knowledge inside the tool.',
+    ch: [
+      'Accurate Persian search with Arabic/Persian letter normalisation and light stemming, across English names, Persian titles and column names.',
+      'Finding the shortest JOIN path between two tables, with warnings for long or unverified routes.',
+      'A query-writing assistant that only ever delivers valid queries, even with a weak language model.'
+    ],
+    sol: [
+      'YAML knowledge base as the source of truth, with a SQLite index always rebuilt from it',
+      'FastAPI backend and a React UI with D3 graphs in four views: force, hierarchical, radial and ERD',
+      'Five-stage assistant — retrieve, select, ground, draft, verify — where every query is checked word by word against the real schema',
+      'Model providers through three API “dialects”: OpenAI, Gemini and Anthropic',
+      'PyInstaller build and an NSIS installer that needs no admin rights, plus an offline Android build'
+    ],
+    resp: [
+      'Knowledge base, index and search engine architecture',
+      'Responsive UI design and relationship graphs',
+      'Query assistant and T-SQL verifier',
+      'Packaging and automated releases for Windows and Android'
+    ],
+    val: 'One-click install on Windows and Android with no Python, Node.js or internet required; knowledge the user records survives every update.',
+    facts: [['3.2', 'Version'], ['4', 'Graph views'], ['5', 'Assistant stages'], ['100%', 'Offline']],
+    stack: ['Python', 'FastAPI', 'SQLite', 'React', 'D3.js', 'Tailwind', 'sqlglot', 'PyInstaller', 'Android WebView'],
+    badge: 'Private repo'
+  },
+  {
     id: 1, cat: 'web security', tag: 'ENTERPRISE',
     title: 'Enterprise financial web app', en: 'Multi-layer platform on SQL Server',
     sum: 'A financial platform for large organisations with layered architecture, banking-grade security and advanced reporting on SQL Server.',
@@ -1612,7 +2022,7 @@ const EN = [
     stack: ['Python', 'LangChain', 'OpenAI API', 'FastAPI', 'Selenium', 'GSC API', 'Airtable', 'Cron']
   },
   {
-    id: 6, cat: 'ai database', tag: 'AI / DATABASE',
+    id: 6, featured: true, visual: 'pipeline', cat: 'ai database', tag: 'AI / DATABASE',
     title: 'RepBuilderAssis', en: 'AI assistant for SSRS reports',
     sum: 'An assistant that turns a natural-language question about an ERP database into validated T-SQL and a ready RDL report file.',
     ctx: 'Enterprise reports are built against a Persian ERP with 3,428 tables. Writing one means finding the right tables among thousands, then producing an RDL file. This tool starts that path from a plain question.',
@@ -2313,17 +2723,27 @@ if (typeof window !== 'undefined') {
         { fa: 'تحلیل با مدل زبانی', en: 'LLM analysis', edge: 'REASON', bodyFa: 'مدل سیگنال‌ها را مثل یک مهندس بازاریابی می‌خواند و نقاط قوت و ضعف را توضیح می‌دهد.', bodyEn: 'The model reads those signals like a marketing engineer and explains strengths and gaps.', inFa: 'سیگنال ساخت‌یافته', inEn: 'Structured signals', outFa: 'یافته‌های تحلیلی', outEn: 'Analytical findings', tech: ['LLM', 'Prompt Chain'] },
         { fa: 'گزارش مستند', en: 'Documented report', edge: 'REPORT', bodyFa: 'خروجی یک گزارش قابل تحویل است که هر ادعا به شواهد محلی وصل می‌شود.', bodyEn: 'The output is a deliverable report where each claim links back to local evidence.', inFa: 'یافته‌های تحلیلی', inEn: 'Analytical findings', outFa: 'گزارش نهایی', outEn: 'Final report', tech: ['Markdown', 'Report Build'] }
       ]
+    },
+    {
+      fa: 'دستیار کوئری کاوش', en: 'Kavosh query assistant',
+      layers: [
+        { fa: 'بازیابی جدول‌های نامزد', en: 'Candidate retrieval', edge: 'RETRIEVE', bodyFa: 'جدول‌های نامزد با جست‌وجوی فارسی خود برنامه پیدا می‌شوند؛ در این مرحله هیچ مدل زبانی دخالت ندارد.', bodyEn: 'Candidate tables come from the app’s own Persian search — no language model is involved at this stage.', inFa: 'پرسش فارسی', inEn: 'Persian question', outFa: 'جدول‌های نامزد', outEn: 'Candidate tables', tech: ['Full-text Index', 'Persian Stemming'] },
+        { fa: 'انتخاب محدود', en: 'Constrained selection', edge: 'SELECT', bodyFa: 'مدل فقط از میان همان نامزدها انتخاب می‌کند؛ هر نامی که در فهرست نباشد دور ریخته می‌شود.', bodyEn: 'The model may only choose among those candidates; any name outside the list is discarded.', inFa: 'جدول‌های نامزد', inEn: 'Candidate tables', outFa: 'جدول‌های منتخب', outEn: 'Chosen tables', tech: ['LLM', 'Allow-list'] },
+        { fa: 'زمینه‌سازی', en: 'Grounding', edge: 'GROUND', bodyFa: 'ستون‌ها، کلیدها، مقادیر کددار و شرط‌های JOIN از ایندکس بیرون کشیده می‌شوند؛ مدل JOIN نمی‌سازد، JOIN به او داده می‌شود.', bodyEn: 'Columns, keys, coded values and JOIN conditions are pulled from the index — the model never invents a JOIN, it is given one.', inFa: 'جدول‌های منتخب', inEn: 'Chosen tables', outFa: 'زمینه دقیق', outEn: 'Exact context', tech: ['SQLite Index', 'Join Graph'] },
+        { fa: 'نگارش کوئری', en: 'Drafting', edge: 'DRAFT', bodyFa: 'مدل با همین زمینه کوئری T-SQL را می‌نویسد.', bodyEn: 'The model writes the T-SQL query from that context alone.', inFa: 'زمینه دقیق', inEn: 'Exact context', outFa: 'پیش‌نویس T-SQL', outEn: 'T-SQL draft', tech: ['OpenAI / Gemini / Anthropic'] },
+        { fa: 'بازبینی و تصحیح', en: 'Verify and retry', edge: 'VERIFY', bodyFa: 'هر نام جدول، ستون و مسیر JOIN با ساختار واقعی سنجیده می‌شود؛ متن ایراد به مدل برمی‌گردد تا دور بعد تصحیح کند.', bodyEn: 'Every table, column and JOIN path is checked against the real schema; the error text goes back to the model for the next round.', inFa: 'پیش‌نویس T-SQL', inEn: 'T-SQL draft', outFa: 'کوئری تأییدشده', outEn: 'Verified query', tech: ['sqlglot', 'Schema Check'] }
+      ]
     }
   ];
 
   var T = {
-    fa: { ctx: 'زمینه پروژه', ch: 'چالش‌های فنی', sol: 'رویکرد فنی', resp: 'نقش من', val: 'نتیجه', stack: 'استک', open: 'مشاهده مخزن', searchPh: 'جست‌وجو بین پروژه‌ها و بخش‌ها…', inLabel: 'ورودی', outLabel: 'خروجی', flowOn: 'توقف جریان', flowOff: 'پخش جریان', project: 'پروژه', section: 'بخش', empty: 'نتیجه‌ای پیدا نشد.', title: 'مهران سبزعلی | مهندس ارشد نرم‌افزار — هوش مصنوعی، امنیت، IoT' },
-    en: { ctx: 'Context', ch: 'Technical challenges', sol: 'Approach', resp: 'My role', val: 'Outcome', stack: 'Stack', open: 'View repository', searchPh: 'Search projects and sections…', inLabel: 'Input', outLabel: 'Output', flowOn: 'Stop flow', flowOff: 'Play flow', project: 'PROJECT', section: 'SECTION', empty: 'No results.', title: 'Mehran Sabzali | Senior Software Engineer — AI, Security, IoT' }
+    fa: { ctx: 'زمینه پروژه', ch: 'چالش‌های فنی', sol: 'رویکرد فنی', resp: 'نقش من', val: 'نتیجه', stack: 'استک', open: 'مشاهده مخزن', searchPh: 'جست‌وجو بین پروژه‌ها و بخش‌ها…', inLabel: 'ورودی', outLabel: 'خروجی', flowOn: 'توقف جریان', flowOff: 'پخش جریان', project: 'پروژه', section: 'بخش', empty: 'نتیجه‌ای پیدا نشد.', isNew: 'جدید', details: 'جزئیات پروژه', prev: 'قبلی', next: 'بعدی', noMatch: 'پروژه‌ای با این مشخصات پیدا نشد.', reset: 'پاک کردن فیلترها', searchPj: 'جست‌وجو در پروژه‌ها، فناوری‌ها…', title: 'مهران سبزعلی | مهندس ارشد نرم‌افزار — هوش مصنوعی، امنیت، IoT' },
+    en: { ctx: 'Context', ch: 'Technical challenges', sol: 'Approach', resp: 'My role', val: 'Outcome', stack: 'Stack', open: 'View repository', searchPh: 'Search projects and sections…', inLabel: 'Input', outLabel: 'Output', flowOn: 'Stop flow', flowOff: 'Play flow', project: 'PROJECT', section: 'SECTION', empty: 'No results.', isNew: 'NEW', details: 'Project details', prev: 'Previous', next: 'Next', noMatch: 'No project matches these filters.', reset: 'Clear filters', searchPj: 'Search projects, technologies…', title: 'Mehran Sabzali | Senior Software Engineer — AI, Security, IoT' }
   };
 
   var CATS = {
-    fa: [['all', 'همه'], ['ai', 'هوش مصنوعی'], ['security', 'امنیت'], ['web', 'وب'], ['database', 'پایگاه داده'], ['iot', 'IoT']],
-    en: [['all', 'All'], ['ai', 'AI'], ['security', 'Security'], ['web', 'Web'], ['database', 'Database'], ['iot', 'IoT']]
+    fa: [['all', 'همه'], ['ai', 'هوش مصنوعی'], ['security', 'امنیت'], ['web', 'وب'], ['database', 'پایگاه داده'], ['app', 'اپلیکیشن'], ['iot', 'IoT']],
+    en: [['all', 'All'], ['ai', 'AI'], ['security', 'Security'], ['web', 'Web'], ['database', 'Database'], ['app', 'Apps'], ['iot', 'IoT']]
   };
 
   var SECTIONS = {
@@ -2334,7 +2754,7 @@ if (typeof window !== 'undefined') {
   var DEFAULT_PROJECT = 6; // RepBuilderAssis opens by default.
 
   var state = {
-    lang: 'fa', filter: 'all', sel: DEFAULT_PROJECT, pjClosed: false,
+    lang: 'fa', filter: 'all', pq: '', sel: DEFAULT_PROJECT, pjClosed: false,
     archTab: 0, archLayer: 0, flow: false,
     palOpen: false, q: '', palIdx: 0
   };
@@ -2358,9 +2778,15 @@ if (typeof window !== 'undefined') {
   // ---------- Data ----------
   function data() { return window.__PORTFOLIO_DATA || { FA: [], EN: [] }; }
   function list() { var d = data(); return (state.lang === 'en' ? d.EN : d.FA) || []; }
+  function inCat(p, f) { return f === 'all' || (p.cat || '').split(' ').indexOf(f) >= 0; }
+  function matchesQuery(p, q) {
+    if (!q) return true;
+    var hay = [p.title, p.en, p.tag, p.sum, (p.stack || []).join(' '), (p.platforms || []).join(' ')].join(' ').toLowerCase();
+    return q.split(/\s+/).every(function (w) { return hay.indexOf(w) >= 0; });
+  }
   function visible() {
-    var f = state.filter;
-    return list().filter(function (p) { return f === 'all' || (p.cat || '').split(' ').indexOf(f) >= 0; });
+    var f = state.filter, q = (state.pq || '').trim().toLowerCase();
+    return list().filter(function (p) { return inCat(p, f) && matchesQuery(p, q); });
   }
   // Lighter technical detail for RepBuilderAssis (agreed in the design review).
   function softenRep(p) {
@@ -2371,6 +2797,170 @@ if (typeof window !== 'undefined') {
     if (p.ch) out.ch = p.ch.map(fix).filter(function (s) { return !/ایندکس دانشی|knowledge index/i.test(s); });
     if (p.sol) out.sol = p.sol.map(fix);
     return out;
+  }
+
+  // ---------- Project visuals ----------
+  // Seeded PRNG so every project gets the same signature drawing on every visit.
+  function rng(seed) {
+    var s = (seed * 2654435761) >>> 0 || 1;
+    return function () { s ^= s << 13; s >>>= 0; s ^= s >> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; };
+  }
+
+  // A unique constellation per project: an orbit of nodes, chords between them and a lit core.
+  function sigilSvg(p) {
+    var r = rng(p.id * 97 + 13), n = 6 + Math.floor(r() * 5), cx = 200, cy = 110, R = 78, pts = [], h = '';
+    for (var i = 0; i < n; i++) {
+      var a = (i / n) * Math.PI * 2 + r() * 0.5, rr = R * (0.72 + r() * 0.34);
+      pts.push([cx + Math.cos(a) * rr * 1.55, cy + Math.sin(a) * rr]);
+    }
+    h += '<ellipse cx="200" cy="110" rx="128" ry="84" class="v-ring"/><ellipse cx="200" cy="110" rx="70" ry="46" class="v-ring v-ring--in"/>';
+    for (i = 0; i < n; i++) {
+      var j = (i + 1 + Math.floor(r() * (n - 2))) % n;
+      h += '<line x1="' + pts[i][0].toFixed(1) + '" y1="' + pts[i][1].toFixed(1) + '" x2="' + pts[j][0].toFixed(1) + '" y2="' + pts[j][1].toFixed(1) + '" class="v-edge' + (i % 3 === 0 ? ' v-edge--hot' : '') + '"/>';
+      h += '<line x1="200" y1="110" x2="' + pts[i][0].toFixed(1) + '" y2="' + pts[i][1].toFixed(1) + '" class="v-spoke"/>';
+    }
+    pts.forEach(function (q, k) {
+      h += '<circle cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="' + (k % 3 === 0 ? 3.6 : 2.4) + '" class="v-node' + (k % 3 === 0 ? ' v-node--hot' : '') + '" style="--i:' + k + '"/>';
+    });
+    h += '<circle cx="200" cy="110" r="9" class="v-core"/><circle cx="200" cy="110" r="18" class="v-halo"/>';
+    return '<svg class="vis vis--sigil" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + h + '</svg>';
+  }
+
+  // GMTask: Jalali month grid on a phone, a checklist ticking itself off, and the desktop window behind.
+  function tasksSvg() {
+    var h = '<rect x="168" y="22" width="206" height="150" rx="6" class="v-win"/><rect x="168" y="22" width="206" height="16" rx="6" class="v-win-bar"/>';
+    h += '<circle cx="180" cy="30" r="2.4" class="v-dot"/><circle cx="189" cy="30" r="2.4" class="v-dot"/>';
+    for (var k = 0; k < 4; k++) {
+      var y = 56 + k * 26;
+      h += '<rect x="246" y="' + y + '" width="11" height="11" rx="2" class="v-box"/>';
+      h += '<path d="M248.5 ' + (y + 5.5) + ' l2.6 2.8 l4.6 -5.4" class="v-tick" style="--i:' + k + '"/>';
+      h += '<rect x="265" y="' + (y + 2) + '" width="' + (88 - k * 13) + '" height="3" rx="1.5" class="v-line"/>';
+      h += '<rect x="265" y="' + (y + 8) + '" width="' + (52 - k * 6) + '" height="2" rx="1" class="v-line v-line--dim"/>';
+    }
+    h += '<rect x="246" y="158" width="108" height="3" rx="1.5" class="v-track"/><rect x="246" y="158" width="108" height="3" rx="1.5" class="v-fill"/>';
+    h += '<rect x="40" y="30" width="112" height="178" rx="14" class="v-phone"/><rect x="72" y="36" width="48" height="5" rx="2.5" class="v-notch"/>';
+    h += '<rect x="52" y="52" width="58" height="5" rx="2.5" class="v-line"/><rect x="52" y="61" width="34" height="3" rx="1.5" class="v-line v-line--dim"/>';
+    for (var d = 0; d < 35; d++) {
+      var c = d % 7, row = Math.floor(d / 7), x = 52 + c * 12.4, yy = 76 + row * 13;
+      var cls = d === 17 ? 'v-day v-day--today' : (d === 6 || d === 13 || d === 20 || d === 27 || d === 34) ? 'v-day v-day--off' : ([3, 9, 15, 22, 24, 30].indexOf(d) >= 0 ? 'v-day v-day--busy' : 'v-day');
+      h += '<rect x="' + x.toFixed(1) + '" y="' + yy + '" width="9" height="9" rx="2" class="' + cls + '"/>';
+    }
+    h += '<circle cx="' + (52 + 3 * 12.4 + 4.5).toFixed(1) + '" cy="' + (76 + 2 * 13 + 4.5) + '" r="9" class="v-pulse"/>';
+    h += '<rect x="52" y="148" width="88" height="22" rx="5" class="v-chip"/><rect x="59" y="157" width="40" height="3" rx="1.5" class="v-line"/>';
+    h += '<rect x="52" y="176" width="88" height="22" rx="5" class="v-chip v-chip--dim"/>';
+    return '<svg class="vis vis--tasks" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + h + '</svg>';
+  }
+
+  // Kavosh: a schema graph with the shortest JOIN path lighting up between two tables.
+  function graphSvg() {
+    var N = [[46, 62, 'FIN3.Voucher'], [118, 34], [172, 92, ''], [96, 132], [40, 176], [236, 46], [250, 150, ''], [310, 98], [356, 44], [362, 172, 'GNR.Party'], [180, 188], [292, 196]];
+    var E = [[0, 1], [0, 3], [1, 2], [2, 3], [3, 4], [1, 5], [2, 6], [5, 7], [6, 7], [7, 8], [7, 9], [6, 10], [10, 4], [6, 11], [11, 9], [5, 8]];
+    var P = [[0, 3], [3, 2], [2, 6], [6, 7], [7, 9]];
+    var h = '';
+    E.forEach(function (e) { h += '<line x1="' + N[e[0]][0] + '" y1="' + N[e[0]][1] + '" x2="' + N[e[1]][0] + '" y2="' + N[e[1]][1] + '" class="v-edge"/>'; });
+    var d = 'M' + N[P[0][0]][0] + ' ' + N[P[0][0]][1];
+    P.forEach(function (e) { d += ' L' + N[e[1]][0] + ' ' + N[e[1]][1]; });
+    h += '<path d="' + d + '" class="v-path"/><path d="' + d + '" class="v-path-flow"/>';
+    N.forEach(function (n, i) {
+      var onPath = [0, 3, 2, 6, 7, 9].indexOf(i) >= 0, end = i === 0 || i === 9;
+      h += '<rect x="' + (n[0] - (end ? 8 : 5)) + '" y="' + (n[1] - (end ? 8 : 5)) + '" width="' + (end ? 16 : 10) + '" height="' + (end ? 16 : 10) + '" rx="' + (end ? 4 : 2.5) + '" class="v-table' + (onPath ? ' v-table--on' : '') + (end ? ' v-table--end' : '') + '" style="--i:' + i + '"/>';
+      if (n[2]) h += '<text x="' + n[0] + '" y="' + (n[1] + (n[1] > 150 ? -16 : 24)) + '" class="v-label" text-anchor="middle">' + n[2] + '</text>';
+    });
+    h += '<text x="200" y="18" class="v-label v-label--k" text-anchor="middle">JOIN PATH · 5 HOPS</text>';
+    return '<svg class="vis vis--graph" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + h + '</svg>';
+  }
+
+  // RepBuilderAssis: question → retrieval → plan → validated T-SQL → RDL, with a packet travelling the line.
+  var svgUid = 0;
+  function pipelineSvg() {
+    var rid = 'pipe-route-' + (++svgUid);
+    var S = [['PROMPT', 52, 70], ['RETRIEVE', 128, 150], ['PLAN', 200, 70], ['VALIDATE', 272, 150], ['RDL', 348, 70]];
+    var d = 'M' + S.map(function (s) { return s[1] + ' ' + s[2]; }).join(' L');
+    var h = '<path id="' + rid + '" d="' + d + '" class="v-path"/><path d="' + d + '" class="v-path-flow"/>';
+    S.forEach(function (s, i) {
+      h += '<rect x="' + (s[1] - 32) + '" y="' + (s[2] - 15) + '" width="64" height="30" rx="5" class="v-stage' + (i === 3 ? ' v-stage--check' : '') + '" style="--i:' + i + '"/>';
+      h += '<text x="' + s[1] + '" y="' + (s[2] + 3.5) + '" class="v-label v-label--stage" text-anchor="middle">' + s[0] + '</text>';
+      h += '<text x="' + s[1] + '" y="' + (s[2] + (s[2] < 100 ? -24 : 32)) + '" class="v-label" text-anchor="middle">0' + (i + 1) + '</text>';
+    });
+    h += '<path d="M262 151 l6 6 l12 -13" class="v-tick v-tick--big"/>';
+    h += '<circle r="5" class="v-packet"><animateMotion dur="4.6s" repeatCount="indefinite" rotate="auto"><mpath href="#' + rid + '"/></animateMotion></circle>';
+    h += '<text x="200" y="208" class="v-label v-label--k" text-anchor="middle">SELECT … FROM … JOIN … ✓</text>';
+    return '<svg class="vis vis--pipeline" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + h + '</svg>';
+  }
+
+  function visualFor(p) {
+    if (p.visual === 'tasks') return tasksSvg();
+    if (p.visual === 'graph') return graphSvg();
+    if (p.visual === 'pipeline') return pipelineSvg();
+    return sigilSvg(p);
+  }
+
+  // ---------- Featured showcase ----------
+  function renderFeatured() {
+    var tx = t(), feats = list().filter(function (p) { return p.featured; });
+    feats.sort(function (a, b) { return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0); });
+    $('pjFeat').innerHTML = feats.map(function (p, i) {
+      var facts = (p.facts || []).map(function (f) { return '<div><b dir="ltr">' + esc(f[0]) + '</b><span>' + esc(f[1]) + '</span></div>'; }).join('');
+      var chips = (p.platforms && p.platforms.length ? p.platforms : (p.stack || []).slice(0, 4))
+        .map(function (s) { return '<span class="chip">' + esc(s) + '</span>'; }).join('');
+      return '<article class="fcard" data-feat="' + p.id + '" style="--d:' + (i * 90) + 'ms">' +
+        '<div class="fcard__vis">' + visualFor(p) + '<span class="fcard__idx" dir="ltr">' + pad(i + 1) + ' / ' + pad(feats.length) + '</span></div>' +
+        '<div class="fcard__body">' +
+        '<div class="fcard__meta"><span class="fcard__tag" dir="ltr">' + esc(p.tag) + '</span>' +
+        (p.isNew ? '<span class="tag-new">' + esc(tx.isNew) + '</span>' : '') +
+        (p.badge ? '<span class="fcard__badge">' + esc(p.badge) + '</span>' : '') + '</div>' +
+        '<h3>' + esc(p.title) + '</h3>' +
+        '<p class="fcard__en" dir="ltr">' + esc(p.en) + '</p>' +
+        '<p class="fcard__sum">' + esc(p.sum) + '</p>' +
+        (facts ? '<div class="fcard__facts">' + facts + '</div>' : '') +
+        '<div class="fcard__foot"><div class="chips" dir="ltr">' + chips + '</div>' +
+        '<button type="button" class="fcard__go" data-open="' + p.id + '">' + esc(tx.details) + ' <span aria-hidden="true">' + (state.lang === 'en' ? '→' : '←') + '</span></button></div>' +
+        '</div></article>';
+    }).join('');
+    $('featDots').innerHTML = feats.map(function (p, i) {
+      return '<button type="button" data-dot="' + i + '" aria-label="' + (i + 1) + '"' + (i === 0 ? ' aria-current="true"' : '') + '></button>';
+    }).join('');
+    initTilt($('pjFeat').querySelectorAll('.fcard'));
+    observeReveal($('pjFeat').querySelectorAll('.fcard'));
+  }
+
+  function openProject(id) {
+    state.sel = id; state.filter = 'all'; state.pq = ''; state.pjClosed = false;
+    $('pjSearch').value = '';
+    renderProjects({ force: true });
+    if (isMobile()) { revealRow(id); return; }
+    var grid = document.querySelector('.pj-grid');
+    window.scrollTo({ top: Math.max(0, grid.getBoundingClientRect().top + window.scrollY - 84), behavior: mqReduced.matches ? 'auto' : 'smooth' });
+    var row = document.querySelector('[data-pj="' + id + '"]');
+    if (row) row.scrollIntoView({ block: 'nearest' });
+  }
+
+  function initFeatured() {
+    var box = $('pjFeat');
+    box.addEventListener('click', function (e) {
+      var card = e.target.closest('[data-feat]');
+      if (card) openProject(Number(card.getAttribute('data-feat')));
+    });
+    // Mobile carousel: keep the dots in step with the swipe position.
+    var q = false;
+    box.addEventListener('scroll', function () {
+      if (q) return; q = true;
+      requestAnimationFrame(function () {
+        q = false;
+        var cards = box.querySelectorAll('.fcard'), mid = box.getBoundingClientRect().left + box.clientWidth / 2, best = 0, bd = 1e9;
+        Array.prototype.forEach.call(cards, function (c, i) {
+          var r = c.getBoundingClientRect(), dd = Math.abs(r.left + r.width / 2 - mid);
+          if (dd < bd) { bd = dd; best = i; }
+        });
+        Array.prototype.forEach.call($('featDots').children, function (b, i) { b.setAttribute('aria-current', String(i === best)); });
+      });
+    }, { passive: true });
+    $('featDots').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-dot]');
+      if (!b) return;
+      var c = box.querySelectorAll('.fcard')[Number(b.getAttribute('data-dot'))];
+      if (c) box.scrollTo({ left: c.offsetLeft - box.offsetLeft - (box.clientWidth - c.clientWidth) / 2, behavior: 'smooth' });
+    });
   }
 
   // ---------- Projects ----------
@@ -2384,7 +2974,8 @@ if (typeof window !== 'undefined') {
     return '<button type="button" class="pj-row' + (on ? ' is-on' : '') + '" data-pj="' + p.id + '"' +
       (mobile ? ' aria-expanded="' + on + '" aria-controls="pjDet"' : ' aria-current="' + (on ? 'true' : 'false') + '"') + '>' +
       '<span class="pj-row__num">' + pad(i + 1) + '</span>' +
-      '<span class="pj-row__txt"><span class="pj-row__title">' + esc(p.title) + '</span>' +
+      '<span class="pj-row__txt"><span class="pj-row__title">' + esc(p.title) +
+      (p.isNew ? ' <span class="tag-new tag-new--sm">' + esc(t().isNew) + '</span>' : '') + '</span>' +
       '<span class="pj-row__en" dir="ltr">' + esc(p.en) + '</span></span>' +
       '<span class="pj-row__end"><span class="pj-row__tag">' + esc(p.tag) + '</span>' +
       '<span class="pj-row__mark" aria-hidden="true">' + mark + '</span></span>' +
@@ -2398,13 +2989,23 @@ if (typeof window !== 'undefined') {
   function label(txt) { return '<div class="det__label"><span>' + esc(txt) + '</span></div>'; }
 
   function detailHtml(p, idx, total) {
-    var tx = t(), h = '';
+    var tx = t(), en = state.lang === 'en', h = '';
+    h += '<div class="det__band">' + visualFor(p) +
+      '<div class="det__band-top"><span class="det__num">' + (idx >= 0 ? pad(idx + 1) : '--') + ' / ' + pad(total) + '</span>' +
+      '<span class="det__badges">' + (p.isNew ? '<span class="tag-new">' + esc(tx.isNew) + '</span>' : '') +
+      (p.badge ? '<span>' + esc(p.badge) + '</span>' : '') + '<span dir="ltr">' + esc(p.tag || '') + '</span></span></div>' +
+      '<span class="det__glyph" dir="ltr" aria-hidden="true">' + pad(p.id) + '</span></div>';
     h += '<div class="det">';
-    h += '<div class="det__meta"><span class="det__num">' + (idx >= 0 ? pad(idx + 1) : '--') + ' / ' + pad(total) + '</span>';
-    h += '<span class="det__badges">' + (p.badge ? '<span>' + esc(p.badge) + '</span>' : '') + '<span>' + esc(p.tag || '') + '</span></span></div>';
     h += '<h3>' + esc(p.title) + '</h3>';
     h += '<div class="det__en" dir="ltr">' + esc(p.en) + '</div>';
+    if ((p.platforms && p.platforms.length) || p.year) {
+      h += '<div class="det__plat" dir="ltr">' + (p.platforms || []).map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') +
+        (p.year ? '<span class="det__year">' + esc(p.year) + '</span>' : '') + '</div>';
+    }
     h += '<p class="det__sum">' + esc(p.sum || '') + '</p>';
+    if (p.facts && p.facts.length) {
+      h += '<div class="det__facts">' + p.facts.map(function (f) { return '<div><b dir="ltr">' + esc(f[0]) + '</b><span>' + esc(f[1]) + '</span></div>'; }).join('') + '</div>';
+    }
     if (p.ctx) h += label(tx.ctx) + '<p class="det__ctx">' + esc(p.ctx) + '</p>';
     if (p.ch && p.ch.length) h += label(tx.ch) + bullets(p.ch, 'det__bullets--accent');
     if (p.sol && p.sol.length) h += label(tx.sol) + bullets(p.sol);
@@ -2412,6 +3013,12 @@ if (typeof window !== 'undefined') {
     if (p.val) h += '<div class="det__val"><div class="det__val-k">' + esc(tx.val) + '</div><div class="det__val-v">' + esc(p.val) + '</div></div>';
     h += label(tx.stack) + '<div class="det__stack" dir="ltr">' + (p.stack || []).map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') + '</div>';
     if (p.link) h += '<a class="det__link" href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(tx.open) + ' <span aria-hidden="true">↗</span></a>';
+    if (total > 1) {
+      h += '<div class="det__nav">' +
+        '<button type="button" data-step="-1"><span aria-hidden="true">' + (en ? '←' : '→') + '</span> ' + esc(tx.prev) + '</button>' +
+        '<span class="det__nav-k" dir="ltr">' + pad(idx + 1) + ' / ' + pad(total) + '</span>' +
+        '<button type="button" data-step="1">' + esc(tx.next) + ' <span aria-hidden="true">' + (en ? '→' : '←') + '</span></button></div>';
+    }
     h += '</div>';
     return h;
   }
@@ -2423,10 +3030,13 @@ if (typeof window !== 'undefined') {
     var mobile = isMobile(), closed = mobile && state.pjClosed;
     var effId = effectiveSel(vis);
 
-    $('pjCount').textContent = pad(vis.length) + (en ? ' PROJECTS' : ' / ' + pad(all.length));
+    $('pjCount').textContent = pad(vis.length) + (en ? ' / ' + pad(all.length) + ' PROJECTS' : ' / ' + pad(all.length));
 
+    var q = (state.pq || '').trim().toLowerCase();
     $('pjFilters').innerHTML = CATS[state.lang].map(function (c) {
-      return '<button type="button" class="pill" data-filter="' + c[0] + '" aria-pressed="' + (state.filter === c[0]) + '">' + esc(c[1]) + '</button>';
+      var n = all.filter(function (p) { return inCat(p, c[0]) && matchesQuery(p, q); }).length;
+      return '<button type="button" class="pill" data-filter="' + c[0] + '" aria-pressed="' + (state.filter === c[0]) + '"' + (n ? '' : ' data-empty') + '>' +
+        esc(c[1]) + '<span class="pill__n" dir="ltr">' + n + '</span></button>';
     }).join('');
 
     var rows = vis.map(function (p, i) { return rowHtml(p, i, p.id === effId && !closed, mobile); });
@@ -2434,7 +3044,8 @@ if (typeof window !== 'undefined') {
     for (var i = 0; i < vis.length; i++) if (vis[i].id === effId) openIdx = i;
     var splitAt = (!mobile || closed || openIdx < 0) ? rows.length : openIdx + 1;
     var focusedId = document.activeElement && document.activeElement.getAttribute && document.activeElement.getAttribute('data-pj');
-    $('pjListA').innerHTML = rows.slice(0, splitAt).join('');
+    $('pjListA').innerHTML = rows.length ? rows.slice(0, splitAt).join('') :
+      '<div class="pj-empty"><b>' + esc(tx.noMatch) + '</b><button type="button" data-reset>' + esc(tx.reset) + '</button></div>';
     $('pjListB').innerHTML = rows.slice(splitAt).join('');
     if (focusedId) {
       var keep = document.querySelector('[data-pj="' + (opts.focusId || focusedId) + '"]');
@@ -2452,7 +3063,7 @@ if (typeof window !== 'undefined') {
     }
     det.hidden = false;
     var key = sel.id + '|' + state.filter + '|' + state.lang + '|' + vis.length;
-    if (key !== lastDetKey) {
+    if (key !== lastDetKey || opts.force) {
       det.innerHTML = detailHtml(sel, selIdx, vis.length);
       det.scrollTop = 0;
       if (lastDetKey && det.animate && !mqReduced.matches) {
@@ -2486,10 +3097,10 @@ if (typeof window !== 'undefined') {
     if (mobile) revealRow(id);
   }
 
-  function step(d) {
+  function step(d, fromDetail) {
     var vis = visible();
     if (!vis.length) return;
-    var ae = document.activeElement, focused = ae && ae.getAttribute && Number(ae.getAttribute('data-pj'));
+    var ae = document.activeElement, focused = !fromDetail && ae && ae.getAttribute && Number(ae.getAttribute('data-pj'));
     var cur = focused || effectiveSel(vis), i = 0;
     for (var n = 0; n < vis.length; n++) if (vis[n].id === cur) i = n;
     var next = vis[(i + d + vis.length) % vis.length];
@@ -2497,7 +3108,7 @@ if (typeof window !== 'undefined') {
     state.pjClosed = false;
     renderProjects({ focusId: next.id });
     var row = document.querySelector('[data-pj="' + next.id + '"]');
-    if (row) row.focus({ preventScroll: true });
+    if (row && !fromDetail) row.focus({ preventScroll: true });
     if (row && !isMobile()) row.scrollIntoView({ block: 'nearest' });
     if (isMobile()) revealRow(next.id);
   }
@@ -2508,18 +3119,60 @@ if (typeof window !== 'undefined') {
       if (!b) return;
       state.filter = b.getAttribute('data-filter');
       renderProjects();
+      b = document.querySelector('[data-filter="' + state.filter + '"]');
+      if (b && b.scrollIntoView && isMobile()) b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    });
+    var st = 0;
+    $('pjSearch').addEventListener('input', function (e) {
+      clearTimeout(st);
+      var v = e.target.value;
+      st = setTimeout(function () { state.pq = v; renderProjects(); }, 120);
     });
     ['pjListA', 'pjListB'].forEach(function (id) {
       $(id).addEventListener('click', function (e) {
+        if (e.target.closest('[data-reset]')) {
+          state.filter = 'all'; state.pq = ''; $('pjSearch').value = ''; renderProjects(); return;
+        }
         var b = e.target.closest('[data-pj]');
         if (b) selectProject(Number(b.getAttribute('data-pj')));
       });
     });
+    $('pjDet').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-step]');
+      if (b) step(Number(b.getAttribute('data-step')), true);
+    });
+    initFeatured();
     var wasMobile = isMobile();
     var onBp = function () {
       if (isMobile() !== wasMobile) { wasMobile = isMobile(); state.pjClosed = false; lastDetKey = ''; renderProjects(); }
     };
     if (mqMobile.addEventListener) mqMobile.addEventListener('change', onBp); else mqMobile.addListener(onBp);
+  }
+
+  // ---------- Scroll reveal ----------
+  var revealIO = null;
+  function observeReveal(nodes) {
+    if (!revealIO) return;
+    Array.prototype.forEach.call(nodes, function (el) {
+      if (el.classList.contains('is-in')) return;
+      el.classList.add('rv');
+      revealIO.observe(el);
+    });
+  }
+  function initReveal() {
+    if (!('IntersectionObserver' in window) || mqReduced.matches) return;
+    revealIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('is-in');
+        revealIO.unobserve(en.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    // Stagger siblings inside the same group.
+    ['.exp-grid > .xcard', '#opensource .row', '#certs .tile', '#stack .row', '.tiles--values .tile'].forEach(function (sel) {
+      Array.prototype.forEach.call(document.querySelectorAll(sel), function (el, i) { el.style.setProperty('--d', (i % 6) * 80 + 'ms'); });
+    });
+    observeReveal(document.querySelectorAll('.sec-head, .sub-head, .xcard, .pj-label, .pj-bar, .pj-grid, #opensource .row, .tile, #stack .row, .about__frame, .about__text > div, .arch__intro, .arch__grid, .cta'));
   }
 
   // ---------- Stack ----------
@@ -2737,9 +3390,9 @@ if (typeof window !== 'undefined') {
     });
   }
 
-  // ---------- Expertise cards: pointer light + tilt ----------
-  function initCards() {
-    Array.prototype.forEach.call(document.querySelectorAll('.xcard'), function (el) {
+  // ---------- Cards: pointer light + tilt ----------
+  function initTilt(nodes) {
+    Array.prototype.forEach.call(nodes, function (el) {
       el.addEventListener('pointermove', function (e) {
         if (e.pointerType !== 'mouse') return;
         var r = el.getBoundingClientRect();
@@ -2747,8 +3400,8 @@ if (typeof window !== 'undefined') {
         el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
         el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
         if (!mqReduced.matches) {
-          el.style.setProperty('--rx', ((0.5 - y) * 5).toFixed(2) + 'deg');
-          el.style.setProperty('--ry', ((x - 0.5) * 7).toFixed(2) + 'deg');
+          el.style.setProperty('--rx', ((0.5 - y) * 4).toFixed(2) + 'deg');
+          el.style.setProperty('--ry', ((x - 0.5) * 6).toFixed(2) + 'deg');
         }
       });
       el.addEventListener('pointerleave', function () {
@@ -2780,7 +3433,9 @@ if (typeof window !== 'undefined') {
     $('langBtn').setAttribute('aria-label', en ? 'فارسی' : 'English');
     document.title = t().title;
     $('palInput').placeholder = t().searchPh;
+    $('pjSearch').placeholder = t().searchPj;
     lastDetKey = '';
+    renderFeatured();
     renderProjects();
     renderArch();
     if (state.palOpen) renderPal();
@@ -2803,7 +3458,8 @@ if (typeof window !== 'undefined') {
     initPal();
     initHeader();
     initKeys();
-    initCards();
+    initTilt(document.querySelectorAll('.xcard'));
+    initReveal();
     initClock();
     setLang(lang, false);
     $('langBtn').addEventListener('click', function () { setLang(state.lang === 'en' ? 'fa' : 'en', true); });

@@ -39,17 +39,27 @@
         { fa: 'تحلیل با مدل زبانی', en: 'LLM analysis', edge: 'REASON', bodyFa: 'مدل سیگنال‌ها را مثل یک مهندس بازاریابی می‌خواند و نقاط قوت و ضعف را توضیح می‌دهد.', bodyEn: 'The model reads those signals like a marketing engineer and explains strengths and gaps.', inFa: 'سیگنال ساخت‌یافته', inEn: 'Structured signals', outFa: 'یافته‌های تحلیلی', outEn: 'Analytical findings', tech: ['LLM', 'Prompt Chain'] },
         { fa: 'گزارش مستند', en: 'Documented report', edge: 'REPORT', bodyFa: 'خروجی یک گزارش قابل تحویل است که هر ادعا به شواهد محلی وصل می‌شود.', bodyEn: 'The output is a deliverable report where each claim links back to local evidence.', inFa: 'یافته‌های تحلیلی', inEn: 'Analytical findings', outFa: 'گزارش نهایی', outEn: 'Final report', tech: ['Markdown', 'Report Build'] }
       ]
+    },
+    {
+      fa: 'دستیار کوئری کاوش', en: 'Kavosh query assistant',
+      layers: [
+        { fa: 'بازیابی جدول‌های نامزد', en: 'Candidate retrieval', edge: 'RETRIEVE', bodyFa: 'جدول‌های نامزد با جست‌وجوی فارسی خود برنامه پیدا می‌شوند؛ در این مرحله هیچ مدل زبانی دخالت ندارد.', bodyEn: 'Candidate tables come from the app’s own Persian search — no language model is involved at this stage.', inFa: 'پرسش فارسی', inEn: 'Persian question', outFa: 'جدول‌های نامزد', outEn: 'Candidate tables', tech: ['Full-text Index', 'Persian Stemming'] },
+        { fa: 'انتخاب محدود', en: 'Constrained selection', edge: 'SELECT', bodyFa: 'مدل فقط از میان همان نامزدها انتخاب می‌کند؛ هر نامی که در فهرست نباشد دور ریخته می‌شود.', bodyEn: 'The model may only choose among those candidates; any name outside the list is discarded.', inFa: 'جدول‌های نامزد', inEn: 'Candidate tables', outFa: 'جدول‌های منتخب', outEn: 'Chosen tables', tech: ['LLM', 'Allow-list'] },
+        { fa: 'زمینه‌سازی', en: 'Grounding', edge: 'GROUND', bodyFa: 'ستون‌ها، کلیدها، مقادیر کددار و شرط‌های JOIN از ایندکس بیرون کشیده می‌شوند؛ مدل JOIN نمی‌سازد، JOIN به او داده می‌شود.', bodyEn: 'Columns, keys, coded values and JOIN conditions are pulled from the index — the model never invents a JOIN, it is given one.', inFa: 'جدول‌های منتخب', inEn: 'Chosen tables', outFa: 'زمینه دقیق', outEn: 'Exact context', tech: ['SQLite Index', 'Join Graph'] },
+        { fa: 'نگارش کوئری', en: 'Drafting', edge: 'DRAFT', bodyFa: 'مدل با همین زمینه کوئری T-SQL را می‌نویسد.', bodyEn: 'The model writes the T-SQL query from that context alone.', inFa: 'زمینه دقیق', inEn: 'Exact context', outFa: 'پیش‌نویس T-SQL', outEn: 'T-SQL draft', tech: ['OpenAI / Gemini / Anthropic'] },
+        { fa: 'بازبینی و تصحیح', en: 'Verify and retry', edge: 'VERIFY', bodyFa: 'هر نام جدول، ستون و مسیر JOIN با ساختار واقعی سنجیده می‌شود؛ متن ایراد به مدل برمی‌گردد تا دور بعد تصحیح کند.', bodyEn: 'Every table, column and JOIN path is checked against the real schema; the error text goes back to the model for the next round.', inFa: 'پیش‌نویس T-SQL', inEn: 'T-SQL draft', outFa: 'کوئری تأییدشده', outEn: 'Verified query', tech: ['sqlglot', 'Schema Check'] }
+      ]
     }
   ];
 
   var T = {
-    fa: { ctx: 'زمینه پروژه', ch: 'چالش‌های فنی', sol: 'رویکرد فنی', resp: 'نقش من', val: 'نتیجه', stack: 'استک', open: 'مشاهده مخزن', searchPh: 'جست‌وجو بین پروژه‌ها و بخش‌ها…', inLabel: 'ورودی', outLabel: 'خروجی', flowOn: 'توقف جریان', flowOff: 'پخش جریان', project: 'پروژه', section: 'بخش', empty: 'نتیجه‌ای پیدا نشد.', title: 'مهران سبزعلی | مهندس ارشد نرم‌افزار — هوش مصنوعی، امنیت، IoT' },
-    en: { ctx: 'Context', ch: 'Technical challenges', sol: 'Approach', resp: 'My role', val: 'Outcome', stack: 'Stack', open: 'View repository', searchPh: 'Search projects and sections…', inLabel: 'Input', outLabel: 'Output', flowOn: 'Stop flow', flowOff: 'Play flow', project: 'PROJECT', section: 'SECTION', empty: 'No results.', title: 'Mehran Sabzali | Senior Software Engineer — AI, Security, IoT' }
+    fa: { ctx: 'زمینه پروژه', ch: 'چالش‌های فنی', sol: 'رویکرد فنی', resp: 'نقش من', val: 'نتیجه', stack: 'استک', open: 'مشاهده مخزن', searchPh: 'جست‌وجو بین پروژه‌ها و بخش‌ها…', inLabel: 'ورودی', outLabel: 'خروجی', flowOn: 'توقف جریان', flowOff: 'پخش جریان', project: 'پروژه', section: 'بخش', empty: 'نتیجه‌ای پیدا نشد.', isNew: 'جدید', details: 'جزئیات پروژه', prev: 'قبلی', next: 'بعدی', noMatch: 'پروژه‌ای با این مشخصات پیدا نشد.', reset: 'پاک کردن فیلترها', searchPj: 'جست‌وجو در پروژه‌ها، فناوری‌ها…', title: 'مهران سبزعلی | مهندس ارشد نرم‌افزار — هوش مصنوعی، امنیت، IoT' },
+    en: { ctx: 'Context', ch: 'Technical challenges', sol: 'Approach', resp: 'My role', val: 'Outcome', stack: 'Stack', open: 'View repository', searchPh: 'Search projects and sections…', inLabel: 'Input', outLabel: 'Output', flowOn: 'Stop flow', flowOff: 'Play flow', project: 'PROJECT', section: 'SECTION', empty: 'No results.', isNew: 'NEW', details: 'Project details', prev: 'Previous', next: 'Next', noMatch: 'No project matches these filters.', reset: 'Clear filters', searchPj: 'Search projects, technologies…', title: 'Mehran Sabzali | Senior Software Engineer — AI, Security, IoT' }
   };
 
   var CATS = {
-    fa: [['all', 'همه'], ['ai', 'هوش مصنوعی'], ['security', 'امنیت'], ['web', 'وب'], ['database', 'پایگاه داده'], ['iot', 'IoT']],
-    en: [['all', 'All'], ['ai', 'AI'], ['security', 'Security'], ['web', 'Web'], ['database', 'Database'], ['iot', 'IoT']]
+    fa: [['all', 'همه'], ['ai', 'هوش مصنوعی'], ['security', 'امنیت'], ['web', 'وب'], ['database', 'پایگاه داده'], ['app', 'اپلیکیشن'], ['iot', 'IoT']],
+    en: [['all', 'All'], ['ai', 'AI'], ['security', 'Security'], ['web', 'Web'], ['database', 'Database'], ['app', 'Apps'], ['iot', 'IoT']]
   };
 
   var SECTIONS = {
@@ -60,7 +70,7 @@
   var DEFAULT_PROJECT = 6; // RepBuilderAssis opens by default.
 
   var state = {
-    lang: 'fa', filter: 'all', sel: DEFAULT_PROJECT, pjClosed: false,
+    lang: 'fa', filter: 'all', pq: '', sel: DEFAULT_PROJECT, pjClosed: false,
     archTab: 0, archLayer: 0, flow: false,
     palOpen: false, q: '', palIdx: 0
   };
@@ -84,9 +94,15 @@
   // ---------- Data ----------
   function data() { return window.__PORTFOLIO_DATA || { FA: [], EN: [] }; }
   function list() { var d = data(); return (state.lang === 'en' ? d.EN : d.FA) || []; }
+  function inCat(p, f) { return f === 'all' || (p.cat || '').split(' ').indexOf(f) >= 0; }
+  function matchesQuery(p, q) {
+    if (!q) return true;
+    var hay = [p.title, p.en, p.tag, p.sum, (p.stack || []).join(' '), (p.platforms || []).join(' ')].join(' ').toLowerCase();
+    return q.split(/\s+/).every(function (w) { return hay.indexOf(w) >= 0; });
+  }
   function visible() {
-    var f = state.filter;
-    return list().filter(function (p) { return f === 'all' || (p.cat || '').split(' ').indexOf(f) >= 0; });
+    var f = state.filter, q = (state.pq || '').trim().toLowerCase();
+    return list().filter(function (p) { return inCat(p, f) && matchesQuery(p, q); });
   }
   // Lighter technical detail for RepBuilderAssis (agreed in the design review).
   function softenRep(p) {
@@ -97,6 +113,170 @@
     if (p.ch) out.ch = p.ch.map(fix).filter(function (s) { return !/ایندکس دانشی|knowledge index/i.test(s); });
     if (p.sol) out.sol = p.sol.map(fix);
     return out;
+  }
+
+  // ---------- Project visuals ----------
+  // Seeded PRNG so every project gets the same signature drawing on every visit.
+  function rng(seed) {
+    var s = (seed * 2654435761) >>> 0 || 1;
+    return function () { s ^= s << 13; s >>>= 0; s ^= s >> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; };
+  }
+
+  // A unique constellation per project: an orbit of nodes, chords between them and a lit core.
+  function sigilSvg(p) {
+    var r = rng(p.id * 97 + 13), n = 6 + Math.floor(r() * 5), cx = 200, cy = 110, R = 78, pts = [], h = '';
+    for (var i = 0; i < n; i++) {
+      var a = (i / n) * Math.PI * 2 + r() * 0.5, rr = R * (0.72 + r() * 0.34);
+      pts.push([cx + Math.cos(a) * rr * 1.55, cy + Math.sin(a) * rr]);
+    }
+    h += '<ellipse cx="200" cy="110" rx="128" ry="84" class="v-ring"/><ellipse cx="200" cy="110" rx="70" ry="46" class="v-ring v-ring--in"/>';
+    for (i = 0; i < n; i++) {
+      var j = (i + 1 + Math.floor(r() * (n - 2))) % n;
+      h += '<line x1="' + pts[i][0].toFixed(1) + '" y1="' + pts[i][1].toFixed(1) + '" x2="' + pts[j][0].toFixed(1) + '" y2="' + pts[j][1].toFixed(1) + '" class="v-edge' + (i % 3 === 0 ? ' v-edge--hot' : '') + '"/>';
+      h += '<line x1="200" y1="110" x2="' + pts[i][0].toFixed(1) + '" y2="' + pts[i][1].toFixed(1) + '" class="v-spoke"/>';
+    }
+    pts.forEach(function (q, k) {
+      h += '<circle cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="' + (k % 3 === 0 ? 3.6 : 2.4) + '" class="v-node' + (k % 3 === 0 ? ' v-node--hot' : '') + '" style="--i:' + k + '"/>';
+    });
+    h += '<circle cx="200" cy="110" r="9" class="v-core"/><circle cx="200" cy="110" r="18" class="v-halo"/>';
+    return '<svg class="vis vis--sigil" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + h + '</svg>';
+  }
+
+  // GMTask: Jalali month grid on a phone, a checklist ticking itself off, and the desktop window behind.
+  function tasksSvg() {
+    var h = '<rect x="168" y="22" width="206" height="150" rx="6" class="v-win"/><rect x="168" y="22" width="206" height="16" rx="6" class="v-win-bar"/>';
+    h += '<circle cx="180" cy="30" r="2.4" class="v-dot"/><circle cx="189" cy="30" r="2.4" class="v-dot"/>';
+    for (var k = 0; k < 4; k++) {
+      var y = 56 + k * 26;
+      h += '<rect x="246" y="' + y + '" width="11" height="11" rx="2" class="v-box"/>';
+      h += '<path d="M248.5 ' + (y + 5.5) + ' l2.6 2.8 l4.6 -5.4" class="v-tick" style="--i:' + k + '"/>';
+      h += '<rect x="265" y="' + (y + 2) + '" width="' + (88 - k * 13) + '" height="3" rx="1.5" class="v-line"/>';
+      h += '<rect x="265" y="' + (y + 8) + '" width="' + (52 - k * 6) + '" height="2" rx="1" class="v-line v-line--dim"/>';
+    }
+    h += '<rect x="246" y="158" width="108" height="3" rx="1.5" class="v-track"/><rect x="246" y="158" width="108" height="3" rx="1.5" class="v-fill"/>';
+    h += '<rect x="40" y="30" width="112" height="178" rx="14" class="v-phone"/><rect x="72" y="36" width="48" height="5" rx="2.5" class="v-notch"/>';
+    h += '<rect x="52" y="52" width="58" height="5" rx="2.5" class="v-line"/><rect x="52" y="61" width="34" height="3" rx="1.5" class="v-line v-line--dim"/>';
+    for (var d = 0; d < 35; d++) {
+      var c = d % 7, row = Math.floor(d / 7), x = 52 + c * 12.4, yy = 76 + row * 13;
+      var cls = d === 17 ? 'v-day v-day--today' : (d === 6 || d === 13 || d === 20 || d === 27 || d === 34) ? 'v-day v-day--off' : ([3, 9, 15, 22, 24, 30].indexOf(d) >= 0 ? 'v-day v-day--busy' : 'v-day');
+      h += '<rect x="' + x.toFixed(1) + '" y="' + yy + '" width="9" height="9" rx="2" class="' + cls + '"/>';
+    }
+    h += '<circle cx="' + (52 + 3 * 12.4 + 4.5).toFixed(1) + '" cy="' + (76 + 2 * 13 + 4.5) + '" r="9" class="v-pulse"/>';
+    h += '<rect x="52" y="148" width="88" height="22" rx="5" class="v-chip"/><rect x="59" y="157" width="40" height="3" rx="1.5" class="v-line"/>';
+    h += '<rect x="52" y="176" width="88" height="22" rx="5" class="v-chip v-chip--dim"/>';
+    return '<svg class="vis vis--tasks" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + h + '</svg>';
+  }
+
+  // Kavosh: a schema graph with the shortest JOIN path lighting up between two tables.
+  function graphSvg() {
+    var N = [[46, 62, 'FIN3.Voucher'], [118, 34], [172, 92, ''], [96, 132], [40, 176], [236, 46], [250, 150, ''], [310, 98], [356, 44], [362, 172, 'GNR.Party'], [180, 188], [292, 196]];
+    var E = [[0, 1], [0, 3], [1, 2], [2, 3], [3, 4], [1, 5], [2, 6], [5, 7], [6, 7], [7, 8], [7, 9], [6, 10], [10, 4], [6, 11], [11, 9], [5, 8]];
+    var P = [[0, 3], [3, 2], [2, 6], [6, 7], [7, 9]];
+    var h = '';
+    E.forEach(function (e) { h += '<line x1="' + N[e[0]][0] + '" y1="' + N[e[0]][1] + '" x2="' + N[e[1]][0] + '" y2="' + N[e[1]][1] + '" class="v-edge"/>'; });
+    var d = 'M' + N[P[0][0]][0] + ' ' + N[P[0][0]][1];
+    P.forEach(function (e) { d += ' L' + N[e[1]][0] + ' ' + N[e[1]][1]; });
+    h += '<path d="' + d + '" class="v-path"/><path d="' + d + '" class="v-path-flow"/>';
+    N.forEach(function (n, i) {
+      var onPath = [0, 3, 2, 6, 7, 9].indexOf(i) >= 0, end = i === 0 || i === 9;
+      h += '<rect x="' + (n[0] - (end ? 8 : 5)) + '" y="' + (n[1] - (end ? 8 : 5)) + '" width="' + (end ? 16 : 10) + '" height="' + (end ? 16 : 10) + '" rx="' + (end ? 4 : 2.5) + '" class="v-table' + (onPath ? ' v-table--on' : '') + (end ? ' v-table--end' : '') + '" style="--i:' + i + '"/>';
+      if (n[2]) h += '<text x="' + n[0] + '" y="' + (n[1] + (n[1] > 150 ? -16 : 24)) + '" class="v-label" text-anchor="middle">' + n[2] + '</text>';
+    });
+    h += '<text x="200" y="18" class="v-label v-label--k" text-anchor="middle">JOIN PATH · 5 HOPS</text>';
+    return '<svg class="vis vis--graph" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + h + '</svg>';
+  }
+
+  // RepBuilderAssis: question → retrieval → plan → validated T-SQL → RDL, with a packet travelling the line.
+  var svgUid = 0;
+  function pipelineSvg() {
+    var rid = 'pipe-route-' + (++svgUid);
+    var S = [['PROMPT', 52, 70], ['RETRIEVE', 128, 150], ['PLAN', 200, 70], ['VALIDATE', 272, 150], ['RDL', 348, 70]];
+    var d = 'M' + S.map(function (s) { return s[1] + ' ' + s[2]; }).join(' L');
+    var h = '<path id="' + rid + '" d="' + d + '" class="v-path"/><path d="' + d + '" class="v-path-flow"/>';
+    S.forEach(function (s, i) {
+      h += '<rect x="' + (s[1] - 32) + '" y="' + (s[2] - 15) + '" width="64" height="30" rx="5" class="v-stage' + (i === 3 ? ' v-stage--check' : '') + '" style="--i:' + i + '"/>';
+      h += '<text x="' + s[1] + '" y="' + (s[2] + 3.5) + '" class="v-label v-label--stage" text-anchor="middle">' + s[0] + '</text>';
+      h += '<text x="' + s[1] + '" y="' + (s[2] + (s[2] < 100 ? -24 : 32)) + '" class="v-label" text-anchor="middle">0' + (i + 1) + '</text>';
+    });
+    h += '<path d="M262 151 l6 6 l12 -13" class="v-tick v-tick--big"/>';
+    h += '<circle r="5" class="v-packet"><animateMotion dur="4.6s" repeatCount="indefinite" rotate="auto"><mpath href="#' + rid + '"/></animateMotion></circle>';
+    h += '<text x="200" y="208" class="v-label v-label--k" text-anchor="middle">SELECT … FROM … JOIN … ✓</text>';
+    return '<svg class="vis vis--pipeline" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + h + '</svg>';
+  }
+
+  function visualFor(p) {
+    if (p.visual === 'tasks') return tasksSvg();
+    if (p.visual === 'graph') return graphSvg();
+    if (p.visual === 'pipeline') return pipelineSvg();
+    return sigilSvg(p);
+  }
+
+  // ---------- Featured showcase ----------
+  function renderFeatured() {
+    var tx = t(), feats = list().filter(function (p) { return p.featured; });
+    feats.sort(function (a, b) { return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0); });
+    $('pjFeat').innerHTML = feats.map(function (p, i) {
+      var facts = (p.facts || []).map(function (f) { return '<div><b dir="ltr">' + esc(f[0]) + '</b><span>' + esc(f[1]) + '</span></div>'; }).join('');
+      var chips = (p.platforms && p.platforms.length ? p.platforms : (p.stack || []).slice(0, 4))
+        .map(function (s) { return '<span class="chip">' + esc(s) + '</span>'; }).join('');
+      return '<article class="fcard" data-feat="' + p.id + '" style="--d:' + (i * 90) + 'ms">' +
+        '<div class="fcard__vis">' + visualFor(p) + '<span class="fcard__idx" dir="ltr">' + pad(i + 1) + ' / ' + pad(feats.length) + '</span></div>' +
+        '<div class="fcard__body">' +
+        '<div class="fcard__meta"><span class="fcard__tag" dir="ltr">' + esc(p.tag) + '</span>' +
+        (p.isNew ? '<span class="tag-new">' + esc(tx.isNew) + '</span>' : '') +
+        (p.badge ? '<span class="fcard__badge">' + esc(p.badge) + '</span>' : '') + '</div>' +
+        '<h3>' + esc(p.title) + '</h3>' +
+        '<p class="fcard__en" dir="ltr">' + esc(p.en) + '</p>' +
+        '<p class="fcard__sum">' + esc(p.sum) + '</p>' +
+        (facts ? '<div class="fcard__facts">' + facts + '</div>' : '') +
+        '<div class="fcard__foot"><div class="chips" dir="ltr">' + chips + '</div>' +
+        '<button type="button" class="fcard__go" data-open="' + p.id + '">' + esc(tx.details) + ' <span aria-hidden="true">' + (state.lang === 'en' ? '→' : '←') + '</span></button></div>' +
+        '</div></article>';
+    }).join('');
+    $('featDots').innerHTML = feats.map(function (p, i) {
+      return '<button type="button" data-dot="' + i + '" aria-label="' + (i + 1) + '"' + (i === 0 ? ' aria-current="true"' : '') + '></button>';
+    }).join('');
+    initTilt($('pjFeat').querySelectorAll('.fcard'));
+    observeReveal($('pjFeat').querySelectorAll('.fcard'));
+  }
+
+  function openProject(id) {
+    state.sel = id; state.filter = 'all'; state.pq = ''; state.pjClosed = false;
+    $('pjSearch').value = '';
+    renderProjects({ force: true });
+    if (isMobile()) { revealRow(id); return; }
+    var grid = document.querySelector('.pj-grid');
+    window.scrollTo({ top: Math.max(0, grid.getBoundingClientRect().top + window.scrollY - 84), behavior: mqReduced.matches ? 'auto' : 'smooth' });
+    var row = document.querySelector('[data-pj="' + id + '"]');
+    if (row) row.scrollIntoView({ block: 'nearest' });
+  }
+
+  function initFeatured() {
+    var box = $('pjFeat');
+    box.addEventListener('click', function (e) {
+      var card = e.target.closest('[data-feat]');
+      if (card) openProject(Number(card.getAttribute('data-feat')));
+    });
+    // Mobile carousel: keep the dots in step with the swipe position.
+    var q = false;
+    box.addEventListener('scroll', function () {
+      if (q) return; q = true;
+      requestAnimationFrame(function () {
+        q = false;
+        var cards = box.querySelectorAll('.fcard'), mid = box.getBoundingClientRect().left + box.clientWidth / 2, best = 0, bd = 1e9;
+        Array.prototype.forEach.call(cards, function (c, i) {
+          var r = c.getBoundingClientRect(), dd = Math.abs(r.left + r.width / 2 - mid);
+          if (dd < bd) { bd = dd; best = i; }
+        });
+        Array.prototype.forEach.call($('featDots').children, function (b, i) { b.setAttribute('aria-current', String(i === best)); });
+      });
+    }, { passive: true });
+    $('featDots').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-dot]');
+      if (!b) return;
+      var c = box.querySelectorAll('.fcard')[Number(b.getAttribute('data-dot'))];
+      if (c) box.scrollTo({ left: c.offsetLeft - box.offsetLeft - (box.clientWidth - c.clientWidth) / 2, behavior: 'smooth' });
+    });
   }
 
   // ---------- Projects ----------
@@ -110,7 +290,8 @@
     return '<button type="button" class="pj-row' + (on ? ' is-on' : '') + '" data-pj="' + p.id + '"' +
       (mobile ? ' aria-expanded="' + on + '" aria-controls="pjDet"' : ' aria-current="' + (on ? 'true' : 'false') + '"') + '>' +
       '<span class="pj-row__num">' + pad(i + 1) + '</span>' +
-      '<span class="pj-row__txt"><span class="pj-row__title">' + esc(p.title) + '</span>' +
+      '<span class="pj-row__txt"><span class="pj-row__title">' + esc(p.title) +
+      (p.isNew ? ' <span class="tag-new tag-new--sm">' + esc(t().isNew) + '</span>' : '') + '</span>' +
       '<span class="pj-row__en" dir="ltr">' + esc(p.en) + '</span></span>' +
       '<span class="pj-row__end"><span class="pj-row__tag">' + esc(p.tag) + '</span>' +
       '<span class="pj-row__mark" aria-hidden="true">' + mark + '</span></span>' +
@@ -124,13 +305,23 @@
   function label(txt) { return '<div class="det__label"><span>' + esc(txt) + '</span></div>'; }
 
   function detailHtml(p, idx, total) {
-    var tx = t(), h = '';
+    var tx = t(), en = state.lang === 'en', h = '';
+    h += '<div class="det__band">' + visualFor(p) +
+      '<div class="det__band-top"><span class="det__num">' + (idx >= 0 ? pad(idx + 1) : '--') + ' / ' + pad(total) + '</span>' +
+      '<span class="det__badges">' + (p.isNew ? '<span class="tag-new">' + esc(tx.isNew) + '</span>' : '') +
+      (p.badge ? '<span>' + esc(p.badge) + '</span>' : '') + '<span dir="ltr">' + esc(p.tag || '') + '</span></span></div>' +
+      '<span class="det__glyph" dir="ltr" aria-hidden="true">' + pad(p.id) + '</span></div>';
     h += '<div class="det">';
-    h += '<div class="det__meta"><span class="det__num">' + (idx >= 0 ? pad(idx + 1) : '--') + ' / ' + pad(total) + '</span>';
-    h += '<span class="det__badges">' + (p.badge ? '<span>' + esc(p.badge) + '</span>' : '') + '<span>' + esc(p.tag || '') + '</span></span></div>';
     h += '<h3>' + esc(p.title) + '</h3>';
     h += '<div class="det__en" dir="ltr">' + esc(p.en) + '</div>';
+    if ((p.platforms && p.platforms.length) || p.year) {
+      h += '<div class="det__plat" dir="ltr">' + (p.platforms || []).map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') +
+        (p.year ? '<span class="det__year">' + esc(p.year) + '</span>' : '') + '</div>';
+    }
     h += '<p class="det__sum">' + esc(p.sum || '') + '</p>';
+    if (p.facts && p.facts.length) {
+      h += '<div class="det__facts">' + p.facts.map(function (f) { return '<div><b dir="ltr">' + esc(f[0]) + '</b><span>' + esc(f[1]) + '</span></div>'; }).join('') + '</div>';
+    }
     if (p.ctx) h += label(tx.ctx) + '<p class="det__ctx">' + esc(p.ctx) + '</p>';
     if (p.ch && p.ch.length) h += label(tx.ch) + bullets(p.ch, 'det__bullets--accent');
     if (p.sol && p.sol.length) h += label(tx.sol) + bullets(p.sol);
@@ -138,6 +329,12 @@
     if (p.val) h += '<div class="det__val"><div class="det__val-k">' + esc(tx.val) + '</div><div class="det__val-v">' + esc(p.val) + '</div></div>';
     h += label(tx.stack) + '<div class="det__stack" dir="ltr">' + (p.stack || []).map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') + '</div>';
     if (p.link) h += '<a class="det__link" href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(tx.open) + ' <span aria-hidden="true">↗</span></a>';
+    if (total > 1) {
+      h += '<div class="det__nav">' +
+        '<button type="button" data-step="-1"><span aria-hidden="true">' + (en ? '←' : '→') + '</span> ' + esc(tx.prev) + '</button>' +
+        '<span class="det__nav-k" dir="ltr">' + pad(idx + 1) + ' / ' + pad(total) + '</span>' +
+        '<button type="button" data-step="1">' + esc(tx.next) + ' <span aria-hidden="true">' + (en ? '→' : '←') + '</span></button></div>';
+    }
     h += '</div>';
     return h;
   }
@@ -149,10 +346,13 @@
     var mobile = isMobile(), closed = mobile && state.pjClosed;
     var effId = effectiveSel(vis);
 
-    $('pjCount').textContent = pad(vis.length) + (en ? ' PROJECTS' : ' / ' + pad(all.length));
+    $('pjCount').textContent = pad(vis.length) + (en ? ' / ' + pad(all.length) + ' PROJECTS' : ' / ' + pad(all.length));
 
+    var q = (state.pq || '').trim().toLowerCase();
     $('pjFilters').innerHTML = CATS[state.lang].map(function (c) {
-      return '<button type="button" class="pill" data-filter="' + c[0] + '" aria-pressed="' + (state.filter === c[0]) + '">' + esc(c[1]) + '</button>';
+      var n = all.filter(function (p) { return inCat(p, c[0]) && matchesQuery(p, q); }).length;
+      return '<button type="button" class="pill" data-filter="' + c[0] + '" aria-pressed="' + (state.filter === c[0]) + '"' + (n ? '' : ' data-empty') + '>' +
+        esc(c[1]) + '<span class="pill__n" dir="ltr">' + n + '</span></button>';
     }).join('');
 
     var rows = vis.map(function (p, i) { return rowHtml(p, i, p.id === effId && !closed, mobile); });
@@ -160,7 +360,8 @@
     for (var i = 0; i < vis.length; i++) if (vis[i].id === effId) openIdx = i;
     var splitAt = (!mobile || closed || openIdx < 0) ? rows.length : openIdx + 1;
     var focusedId = document.activeElement && document.activeElement.getAttribute && document.activeElement.getAttribute('data-pj');
-    $('pjListA').innerHTML = rows.slice(0, splitAt).join('');
+    $('pjListA').innerHTML = rows.length ? rows.slice(0, splitAt).join('') :
+      '<div class="pj-empty"><b>' + esc(tx.noMatch) + '</b><button type="button" data-reset>' + esc(tx.reset) + '</button></div>';
     $('pjListB').innerHTML = rows.slice(splitAt).join('');
     if (focusedId) {
       var keep = document.querySelector('[data-pj="' + (opts.focusId || focusedId) + '"]');
@@ -178,7 +379,7 @@
     }
     det.hidden = false;
     var key = sel.id + '|' + state.filter + '|' + state.lang + '|' + vis.length;
-    if (key !== lastDetKey) {
+    if (key !== lastDetKey || opts.force) {
       det.innerHTML = detailHtml(sel, selIdx, vis.length);
       det.scrollTop = 0;
       if (lastDetKey && det.animate && !mqReduced.matches) {
@@ -212,10 +413,10 @@
     if (mobile) revealRow(id);
   }
 
-  function step(d) {
+  function step(d, fromDetail) {
     var vis = visible();
     if (!vis.length) return;
-    var ae = document.activeElement, focused = ae && ae.getAttribute && Number(ae.getAttribute('data-pj'));
+    var ae = document.activeElement, focused = !fromDetail && ae && ae.getAttribute && Number(ae.getAttribute('data-pj'));
     var cur = focused || effectiveSel(vis), i = 0;
     for (var n = 0; n < vis.length; n++) if (vis[n].id === cur) i = n;
     var next = vis[(i + d + vis.length) % vis.length];
@@ -223,7 +424,7 @@
     state.pjClosed = false;
     renderProjects({ focusId: next.id });
     var row = document.querySelector('[data-pj="' + next.id + '"]');
-    if (row) row.focus({ preventScroll: true });
+    if (row && !fromDetail) row.focus({ preventScroll: true });
     if (row && !isMobile()) row.scrollIntoView({ block: 'nearest' });
     if (isMobile()) revealRow(next.id);
   }
@@ -234,18 +435,60 @@
       if (!b) return;
       state.filter = b.getAttribute('data-filter');
       renderProjects();
+      b = document.querySelector('[data-filter="' + state.filter + '"]');
+      if (b && b.scrollIntoView && isMobile()) b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    });
+    var st = 0;
+    $('pjSearch').addEventListener('input', function (e) {
+      clearTimeout(st);
+      var v = e.target.value;
+      st = setTimeout(function () { state.pq = v; renderProjects(); }, 120);
     });
     ['pjListA', 'pjListB'].forEach(function (id) {
       $(id).addEventListener('click', function (e) {
+        if (e.target.closest('[data-reset]')) {
+          state.filter = 'all'; state.pq = ''; $('pjSearch').value = ''; renderProjects(); return;
+        }
         var b = e.target.closest('[data-pj]');
         if (b) selectProject(Number(b.getAttribute('data-pj')));
       });
     });
+    $('pjDet').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-step]');
+      if (b) step(Number(b.getAttribute('data-step')), true);
+    });
+    initFeatured();
     var wasMobile = isMobile();
     var onBp = function () {
       if (isMobile() !== wasMobile) { wasMobile = isMobile(); state.pjClosed = false; lastDetKey = ''; renderProjects(); }
     };
     if (mqMobile.addEventListener) mqMobile.addEventListener('change', onBp); else mqMobile.addListener(onBp);
+  }
+
+  // ---------- Scroll reveal ----------
+  var revealIO = null;
+  function observeReveal(nodes) {
+    if (!revealIO) return;
+    Array.prototype.forEach.call(nodes, function (el) {
+      if (el.classList.contains('is-in')) return;
+      el.classList.add('rv');
+      revealIO.observe(el);
+    });
+  }
+  function initReveal() {
+    if (!('IntersectionObserver' in window) || mqReduced.matches) return;
+    revealIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('is-in');
+        revealIO.unobserve(en.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    // Stagger siblings inside the same group.
+    ['.exp-grid > .xcard', '#opensource .row', '#certs .tile', '#stack .row', '.tiles--values .tile'].forEach(function (sel) {
+      Array.prototype.forEach.call(document.querySelectorAll(sel), function (el, i) { el.style.setProperty('--d', (i % 6) * 80 + 'ms'); });
+    });
+    observeReveal(document.querySelectorAll('.sec-head, .sub-head, .xcard, .pj-label, .pj-bar, .pj-grid, #opensource .row, .tile, #stack .row, .about__frame, .about__text > div, .arch__intro, .arch__grid, .cta'));
   }
 
   // ---------- Stack ----------
@@ -463,9 +706,9 @@
     });
   }
 
-  // ---------- Expertise cards: pointer light + tilt ----------
-  function initCards() {
-    Array.prototype.forEach.call(document.querySelectorAll('.xcard'), function (el) {
+  // ---------- Cards: pointer light + tilt ----------
+  function initTilt(nodes) {
+    Array.prototype.forEach.call(nodes, function (el) {
       el.addEventListener('pointermove', function (e) {
         if (e.pointerType !== 'mouse') return;
         var r = el.getBoundingClientRect();
@@ -473,8 +716,8 @@
         el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
         el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
         if (!mqReduced.matches) {
-          el.style.setProperty('--rx', ((0.5 - y) * 5).toFixed(2) + 'deg');
-          el.style.setProperty('--ry', ((x - 0.5) * 7).toFixed(2) + 'deg');
+          el.style.setProperty('--rx', ((0.5 - y) * 4).toFixed(2) + 'deg');
+          el.style.setProperty('--ry', ((x - 0.5) * 6).toFixed(2) + 'deg');
         }
       });
       el.addEventListener('pointerleave', function () {
@@ -506,7 +749,9 @@
     $('langBtn').setAttribute('aria-label', en ? 'فارسی' : 'English');
     document.title = t().title;
     $('palInput').placeholder = t().searchPh;
+    $('pjSearch').placeholder = t().searchPj;
     lastDetKey = '';
+    renderFeatured();
     renderProjects();
     renderArch();
     if (state.palOpen) renderPal();
@@ -529,7 +774,8 @@
     initPal();
     initHeader();
     initKeys();
-    initCards();
+    initTilt(document.querySelectorAll('.xcard'));
+    initReveal();
     initClock();
     setLang(lang, false);
     $('langBtn').addEventListener('click', function () { setLang(state.lang === 'en' ? 'fa' : 'en', true); });

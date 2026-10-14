@@ -1,6 +1,64 @@
 // Project data for the portfolio pages. Business content only — no styling.
 const FA = [
   {
+    id: 25, cat: 'app ai', tag: 'ANDROID / WINDOWS', isNew: true, featured: true, visual: 'tasks',
+    year: '2026', platforms: ['Android', 'Windows'],
+    title: 'GMTask — مدیریت کار، یادداشت و تقویم جلالی', en: 'GMTask — Persian-first tasks, notes & AI assistant',
+    sum: 'اپلیکیشن فارسی‌محور مدیریت کار، یادداشت و تقویم جلالی با دستیار هوش مصنوعی؛ یک نسخه برای اندروید و یک نسخه برای ویندوز که از طریق ابر با هم همگام می‌مانند.',
+    ctx: 'ابزاری برای کار روزمره: کارها، یادداشت‌ها و برنامه روز در یک جا، با تقویم شمسی دقیق و تعطیلات رسمی. اولویت طراحی این بود که برنامه بدون اینترنت کامل کار کند و داده هیچ کاربری در دسترس دیگری نباشد.',
+    ch: [
+      'همگام‌سازی چنددستگاهی بدون از دست رفتن داده: شناسه مستقل از دستگاه، صف تغییرات و ادغام «آخرین نوشتن برنده» همراه با ثبت حذف‌ها.',
+      'محاسبه دقیق تقویم جلالی و کارهای تکرارشونده، با آزمون رفت‌وبرگشت روزبه‌روز برای ۳۰ سال.',
+      'هوش مصنوعی بدون قربانی کردن حریم خصوصی: کلید API رمزنگاری‌شده در Android Keystore و ارسال هیچ داده‌ای به مدل بدون درخواست صریح کاربر.'
+    ],
+    sol: [
+      'Kotlin و Jetpack Compose برای اندروید و Compose Desktop برای ویندوز',
+      'Room با مهاجرت‌های صریح، WorkManager برای یادآورها و ویجت صفحه اصلی',
+      'Firestore با قوانین دسترسی فقط-مالک روی users/{uid}',
+      'دستیار چندارائه‌دهنده (Gemini، OpenAI، Claude) با اعتبارسنجی خروجی مدل، و تجزیه‌گر محلی برای افزودن سریع کار',
+      'گزارش بهره‌وری، نقشه حرارتی فعالیت، هدف روزانه و تایمر تمرکز'
+    ],
+    resp: [
+      'طراحی و توسعه کامل نسخه اندروید و ویندوز',
+      'ممیزی مهندسی و رفع مشکلات امنیتی و همگام‌سازی',
+      'نوشتن مجموعه آزمون‌های واحد و آزمون‌های دستگاه',
+      'CI و انتشار خودکار APK و نصب‌کننده ویندوز'
+    ],
+    val: 'یک اپ کامل و آفلاین‌محور روی دو پلتفرم با انتشار منظم نسخه‌ها؛ APK و نصب‌کننده ویندوز در هر نسخه خودکار ساخته و منتشر می‌شوند.',
+    facts: [['1.9', 'نسخه'], ['2', 'پلتفرم'], ['67', 'فایل آزمون'], ['3', 'ارائه‌دهنده AI']],
+    stack: ['Kotlin', 'Jetpack Compose', 'Compose Desktop', 'Room', 'WorkManager', 'Firebase', 'Gemini / OpenAI / Claude', 'GitHub Actions'],
+    badge: 'مخزن خصوصی'
+  },
+  {
+    id: 26, cat: 'database ai app', tag: 'DATABASE / DESKTOP', isNew: true, featured: true, visual: 'graph',
+    year: '2026', platforms: ['Windows', 'Android', 'Web'],
+    title: 'کاوشگر پایگاه داده (کاوش)', en: 'DataBase Kavosh — ERP schema explorer',
+    sum: 'اپلیکیشن مستقل کاوش ساختار پایگاه داده نرم‌افزار سازمانی: جست‌وجوی فارسی میان هزاران جدول و ده‌ها هزار ستون، گراف بصری روابط، مسیریابی JOIN و تولید T-SQL؛ کاملاً آفلاین.',
+    ctx: 'نوشتن هر گزارش روی ERP یعنی اول پیدا کردن جدول درست و مسیر اتصال جدول‌ها. کاوش این مرحله را از ساعت‌ها گشتن به چند ثانیه جست‌وجو می‌رساند و دانش تیم را هم در خودش نگه می‌دارد.',
+    ch: [
+      'جست‌وجوی فارسی دقیق با یکسان‌سازی حروف عربی و فارسی و ریشه‌یابی سبک، روی نام انگلیسی، عنوان فارسی و نام ستون‌ها.',
+      'پیدا کردن کوتاه‌ترین مسیر JOIN میان دو جدول، با هشدار برای مسیرهای بلند یا تأییدنشده.',
+      'دستیار کوئری‌نویسی که حتی با مدل زبانی ضعیف هم فقط کوئری معتبر تحویل بدهد.'
+    ],
+    sol: [
+      'پایگاه دانش YAML به‌عنوان منبع حقیقت و ایندکس SQLite که همیشه از آن بازساخته می‌شود',
+      'بک‌اند FastAPI و رابط React با گراف‌های D3 در چهار نما: نیرومحور، سلسله‌مراتبی، شعاعی و ERD',
+      'دستیار پنج‌مرحله‌ای: بازیابی، انتخاب، زمینه‌سازی، نگارش و بازبینی؛ هر کوئری کلمه‌به‌کلمه در برابر ساختار واقعی سنجیده می‌شود',
+      'اتصال به ارائه‌دهنده‌های مدل از طریق سه «گویش» API: OpenAI، Gemini و Anthropic',
+      'بسته‌بندی PyInstaller و نصب‌کننده NSIS بدون نیاز به دسترسی مدیر، و نسخه اندروید آفلاین'
+    ],
+    resp: [
+      'معماری پایگاه دانش، ایندکس و موتور جست‌وجو',
+      'طراحی رابط کاربری واکنش‌گرا و گراف‌های روابط',
+      'دستیار کوئری‌نویسی و بازبین T-SQL',
+      'بسته‌بندی و انتشار خودکار برای ویندوز و اندروید'
+    ],
+    val: 'نصب با یک کلیک روی ویندوز و اندروید، بدون پایتون، Node.js یا اینترنت؛ دانشی که کاربر ثبت می‌کند با به‌روزرسانی از بین نمی‌رود.',
+    facts: [['3.2', 'نسخه'], ['4', 'نمای گراف'], ['5', 'مرحله دستیار'], ['100%', 'آفلاین']],
+    stack: ['Python', 'FastAPI', 'SQLite', 'React', 'D3.js', 'Tailwind', 'sqlglot', 'PyInstaller', 'Android WebView'],
+    badge: 'مخزن خصوصی'
+  },
+  {
     id: 1, cat: 'web security', tag: 'ENTERPRISE',
     title: 'سامانه مالی سازمانی', en: 'Enterprise Financial WebApp',
     sum: 'سامانه مالی جامع برای سازمان‌های بزرگ با معماری چندلایه، امنیت سطح بانکی و گزارش‌گیری پیشرفته روی SQL Server.',
@@ -126,7 +184,7 @@ const FA = [
     stack: ['Python', 'LangChain', 'OpenAI API', 'FastAPI', 'Selenium', 'GSC API', 'Airtable', 'Cron']
   },
   {
-    id: 6, cat: 'ai database', tag: 'AI / DATABASE',
+    id: 6, featured: true, visual: 'pipeline', cat: 'ai database', tag: 'AI / DATABASE',
     title: 'دستیار هوشمند ساخت گزارش SSRS', en: 'RepBuilderAssis — SSRS Report Assistant',
     sum: 'دستیاری که پرسش فارسی کاربر را روی دیتابیس ERP به T-SQL اعتبارسنجی‌شده و فایل RDL آماده تبدیل می‌کند.',
     ctx: 'گزارش‌های سازمانی روی یک ERP فارسی با ۳٬۴۲۸ جدول ساخته می‌شوند؛ نوشتن هر گزارش یعنی پیدا کردن جدول درست میان هزاران جدول و بعد ساختن فایل RDL. این ابزار همان مسیر را از یک پرسش فارسی شروع می‌کند.',
@@ -501,6 +559,64 @@ const FA = [
 
 const EN = [
   {
+    id: 25, cat: 'app ai', tag: 'ANDROID / WINDOWS', isNew: true, featured: true, visual: 'tasks',
+    year: '2026', platforms: ['Android', 'Windows'],
+    title: 'GMTask — tasks, notes & Jalali calendar', en: 'Persian-first productivity app with an AI assistant',
+    sum: 'A Persian-first app for tasks, notes and the Jalali calendar with an AI assistant — one build for Android and one for Windows, kept in sync through the cloud.',
+    ctx: 'A tool for everyday work: tasks, notes and the day’s plan in one place, with an exact Persian calendar and official holidays. The design priorities were that it works fully offline and that no user’s data is ever reachable by anyone else.',
+    ch: [
+      'Multi-device sync without data loss: device-independent ids, an outbox of changes and last-write-wins merging with tombstones for deletions.',
+      'Exact Jalali calendar maths and recurring tasks, backed by a day-by-day round-trip test across 30 years.',
+      'AI without giving up privacy: API keys encrypted with the Android Keystore, and nothing sent to a model unless the user explicitly asks.'
+    ],
+    sol: [
+      'Kotlin and Jetpack Compose on Android, Compose Desktop on Windows',
+      'Room with explicit migrations, WorkManager for reminders, and a home-screen widget',
+      'Firestore with owner-only rules on users/{uid}',
+      'Multi-provider assistant (Gemini, OpenAI, Claude) with validated model output, plus an on-device parser for quick-add',
+      'Productivity reports, an activity heatmap, a daily goal and a focus timer'
+    ],
+    resp: [
+      'End-to-end design and development of the Android and Windows apps',
+      'Engineering audit and fixes across security and sync',
+      'Unit and instrumented test suites',
+      'CI and automated releases of the APK and Windows installer'
+    ],
+    val: 'A complete offline-first app on two platforms with regular releases; every version builds and publishes the APK and Windows installer automatically.',
+    facts: [['1.9', 'Version'], ['2', 'Platforms'], ['67', 'Test files'], ['3', 'AI providers']],
+    stack: ['Kotlin', 'Jetpack Compose', 'Compose Desktop', 'Room', 'WorkManager', 'Firebase', 'Gemini / OpenAI / Claude', 'GitHub Actions'],
+    badge: 'Private repo'
+  },
+  {
+    id: 26, cat: 'database ai app', tag: 'DATABASE / DESKTOP', isNew: true, featured: true, visual: 'graph',
+    year: '2026', platforms: ['Windows', 'Android', 'Web'],
+    title: 'DataBase Kavosh', en: 'ERP database schema explorer',
+    sum: 'A standalone explorer for an enterprise ERP database: Persian search across thousands of tables and tens of thousands of columns, a visual relationship graph, JOIN path finding and T-SQL generation — fully offline.',
+    ctx: 'Every ERP report starts with finding the right tables and how they join. Kavosh turns hours of digging into seconds of search, and keeps the team’s knowledge inside the tool.',
+    ch: [
+      'Accurate Persian search with Arabic/Persian letter normalisation and light stemming, across English names, Persian titles and column names.',
+      'Finding the shortest JOIN path between two tables, with warnings for long or unverified routes.',
+      'A query-writing assistant that only ever delivers valid queries, even with a weak language model.'
+    ],
+    sol: [
+      'YAML knowledge base as the source of truth, with a SQLite index always rebuilt from it',
+      'FastAPI backend and a React UI with D3 graphs in four views: force, hierarchical, radial and ERD',
+      'Five-stage assistant — retrieve, select, ground, draft, verify — where every query is checked word by word against the real schema',
+      'Model providers through three API “dialects”: OpenAI, Gemini and Anthropic',
+      'PyInstaller build and an NSIS installer that needs no admin rights, plus an offline Android build'
+    ],
+    resp: [
+      'Knowledge base, index and search engine architecture',
+      'Responsive UI design and relationship graphs',
+      'Query assistant and T-SQL verifier',
+      'Packaging and automated releases for Windows and Android'
+    ],
+    val: 'One-click install on Windows and Android with no Python, Node.js or internet required; knowledge the user records survives every update.',
+    facts: [['3.2', 'Version'], ['4', 'Graph views'], ['5', 'Assistant stages'], ['100%', 'Offline']],
+    stack: ['Python', 'FastAPI', 'SQLite', 'React', 'D3.js', 'Tailwind', 'sqlglot', 'PyInstaller', 'Android WebView'],
+    badge: 'Private repo'
+  },
+  {
     id: 1, cat: 'web security', tag: 'ENTERPRISE',
     title: 'Enterprise financial web app', en: 'Multi-layer platform on SQL Server',
     sum: 'A financial platform for large organisations with layered architecture, banking-grade security and advanced reporting on SQL Server.',
@@ -626,7 +742,7 @@ const EN = [
     stack: ['Python', 'LangChain', 'OpenAI API', 'FastAPI', 'Selenium', 'GSC API', 'Airtable', 'Cron']
   },
   {
-    id: 6, cat: 'ai database', tag: 'AI / DATABASE',
+    id: 6, featured: true, visual: 'pipeline', cat: 'ai database', tag: 'AI / DATABASE',
     title: 'RepBuilderAssis', en: 'AI assistant for SSRS reports',
     sum: 'An assistant that turns a natural-language question about an ERP database into validated T-SQL and a ready RDL report file.',
     ctx: 'Enterprise reports are built against a Persian ERP with 3,428 tables. Writing one means finding the right tables among thousands, then producing an RDL file. This tool starts that path from a plain question.',
