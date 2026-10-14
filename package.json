@@ -1,0 +1,10 @@
+{
+  "name": "gmtec-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mehran Sabzali (GMTec) portfolio — static site plus single-file standalone build",
+  "scripts": {
+    "build": "node scripts/build-standalone.mjs",
+    "serve": "http-server site -p 8080 -c-1"
+  }
+}
