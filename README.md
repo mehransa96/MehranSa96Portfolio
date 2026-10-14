@@ -31,3 +31,9 @@ To host the single-file version, rename `dist/portfolio-fa-standalone.html` to `
 - Projects: desktop shows the list and a detail panel side by side; on mobile the detail opens under the tapped row (tap again to close). RepBuilderAssis opens by default.
 - Keyboard: Ctrl/⌘ + K opens search (↑ ↓ to move, Enter to open, Esc to close); ↑ ↓ / j k step through projects while the project list has focus.
 - Motion respects `prefers-reduced-motion`; the 3D scene lowers its quality automatically on slow devices.
+
+## GitHub Pages
+
+`.github/workflows/pages.yml` publishes `site/` (plus the single-file build at `/standalone.html`) on every push to `main`.
+One-time setup in the repository: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+Pages on a private repository needs a paid GitHub plan; on the free plan, make the repository public first.
