@@ -756,6 +756,7 @@
     renderArch();
     if (state.palOpen) renderPal();
     if (core) core.refresh();
+    window.dispatchEvent(new CustomEvent('gm:lang', { detail: state.lang }));
     if (persist) { try { localStorage.setItem('gm-lang', state.lang); } catch (e) { /* storage unavailable */ } }
   }
 
@@ -785,6 +786,7 @@
         canvas: $('core'), anchor: $('anchor'), spot: $('spot'),
         accent: accent, motion: !mqReduced.matches
       });
+      window.__gmCore = core;
       var onMotion = function () { if (core) core.setMotion(!mqReduced.matches); };
       if (mqReduced.addEventListener) mqReduced.addEventListener('change', onMotion);
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (core) core.refresh(); });

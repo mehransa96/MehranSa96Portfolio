@@ -112,6 +112,14 @@
     var ring = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(ringPts), new THREE.LineBasicMaterial({ color: 0xE7E9E8, transparent: true, opacity: 0.12 }));
     ring.rotation.x = 0.44; grp.add(ring);
 
+    // Pulse wave: a ring that expands through the shells when the core is clicked.
+    var waveGeo = new THREE.BufferGeometry().setFromPoints(ringPts);
+    var waves = [0, 1].map(function () {
+      var w = new THREE.LineLoop(waveGeo, new THREE.LineBasicMaterial({ color: accent, transparent: true, opacity: 0, depthWrite: false }));
+      w.rotation.x = Math.PI / 2; w.visible = false; grp.add(w); return w;
+    });
+    var pulse = -1, boost = 0, boostT = 0, spinAcc = 0;
+
     // Signals: small points travelling along network edges.
     var SIG = 46, sigPos = new Float32Array(SIG * 3), sig = [];
     var nE = idxB.length / 2;
@@ -147,11 +155,20 @@
         });
       }
     }
+    var downX = 0, downY = 0, downT = 0;
     function onDown(e) {
       if (e.target && e.target.closest && e.target.closest('a,button,input,textarea,select,[role="dialog"]')) return;
-      drag = true; lx = e.clientX; ly = e.clientY;
+      drag = true; lx = downX = e.clientX; ly = downY = e.clientY; downT = performance.now();
     }
-    function onUp() { drag = false; }
+    function onUp(e) {
+      var wasDrag = drag;
+      drag = false;
+      // A short, still press on the hero core counts as a click: send a pulse through it.
+      if (!wasDrag || !e || e.type !== 'pointerup' || !aRect) return;
+      if (Math.abs(e.clientX - downX) > 6 || Math.abs(e.clientY - downY) > 6 || performance.now() - downT > 450) return;
+      var r = opts.anchor && opts.anchor.getBoundingClientRect();
+      if (r && e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) api.ping();
+    }
     window.addEventListener('pointermove', onMove, { passive: true });
     window.addEventListener('pointerdown', onDown, { passive: true });
     window.addEventListener('pointerup', onUp, { passive: true });
@@ -159,6 +176,7 @@
 
     function sstep(x) { var t = Math.min(1, Math.max(0, x)); return t * t * (3 - 2 * t); }
     var visH = 2 * Math.tan((40 * Math.PI / 180) / 2) * 5.6;
+    var fps = 60, lastT = 0, stats = { nodes: N, edges: idxB.length / 2, yaw: 0, pitch: 0, fps: 60, phase: 'CORE', morph: 0 };
     var frame = 0, gx = 0, gy = 0, gs = 1, opa = 1, lastPB, lastPC, lastO2, ft = 0, lowQ = false, skip = false, raf = 0;
 
     function top(id) {
@@ -212,7 +230,9 @@
       ring.material.opacity = 0.12 * (1 - pB * 0.8);
 
       cx += (tx - cx) * 0.055; cy += (ty - cy) * 0.055;
-      var spin = motion ? frame * 0.0009 : 0;
+      boost += (boostT - boost) * 0.05;
+      if (motion) spinAcc += 0.0009 * (1 + boost * 4);
+      var spin = spinAcc;
       grp.rotation.x = cx + pC * 1.02;
       grp.rotation.y = cy + spin;
       grp.rotation.z = pC * 0.12;
@@ -244,6 +264,21 @@
       if (o2 !== lastO2) { lastO2 = o2; cv.style.opacity = o2; }
 
       var b = motion ? 1 + Math.sin(frame / 72) * 0.08 : 1;
+      if (pulse >= 0) {
+        pulse += 0.018;
+        var k2 = Math.max(0, 1 - pulse);
+        b *= 1 + Math.sin(Math.min(1, pulse * 3) * Math.PI) * 0.9 * k2;
+        shells.forEach(function (sh, n) {
+          var ph = Math.max(0, pulse * 1.6 - n * 0.16);
+          sh.scale.setScalar(1 + Math.sin(Math.min(1, ph) * Math.PI) * 0.14 * k2);
+        });
+        waves.forEach(function (w, n) {
+          var ph = pulse - n * 0.22;
+          w.visible = ph > 0 && ph < 1;
+          if (w.visible) { w.scale.setScalar(0.15 + ph * 1.35); w.material.opacity = (1 - ph) * 0.75 * (1 - pB); }
+        });
+        if (pulse >= 1.3) { pulse = -1; waves.forEach(function (w) { w.visible = false; }); shells.forEach(function (sh) { sh.scale.setScalar(1); }); }
+      }
       nucleus.scale.setScalar(b);
       halo.scale.setScalar(motion ? 1 + Math.sin(frame / 72 + 1) * 0.15 : 1);
       if (motion) ring.rotation.z += 0.0012;
@@ -252,12 +287,26 @@
       var t0 = performance.now();
       if (!skip || frame % 2 === 0) renderer.render(scene, cam);
       ft = ft * 0.9 + (performance.now() - t0) * 0.1;
+      var now = performance.now();
+      if (lastT) fps = fps * 0.92 + (1000 / Math.max(1, now - lastT)) * 0.08;
+      lastT = now;
+      stats.yaw = ((grp.rotation.y * 180 / Math.PI) % 360 + 360) % 360;
+      stats.pitch = grp.rotation.x * 180 / Math.PI;
+      stats.fps = fps;
+      stats.phase = pC > 0.5 ? 'LATTICE' : pB > 0.5 ? 'NETWORK' : 'CORE';
+      stats.morph = pB * 0.5 + pC * 0.5;
       if (frame > 40 && ft > 28 && !lowQ) { lowQ = true; renderer.setPixelRatio(1); size(); }
       else if (frame > 120 && ft > 28 && lowQ) skip = true;
     }
     loop();
 
-    return {
+    var api = {
+      ping: function () {
+        pulse = 0;
+        window.dispatchEvent(new CustomEvent('core:ping'));
+      },
+      boost: function (on) { boostT = on ? 1 : 0; },
+      stats: function () { return stats; },
       refresh: function () { secT = null; aDirty = true; },
       setMotion: function (m) { motion = m !== false; },
       destroy: function () {
@@ -271,6 +320,7 @@
         renderer.dispose();
       }
     };
+    return api;
   }
 
   window.GMCore = { init: init };

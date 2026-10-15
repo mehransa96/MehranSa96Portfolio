@@ -15,6 +15,7 @@
 <meta property="og:locale" content="fa_IR">
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="preload" href="assets/fonts/vazirmatn-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{if(!sessionStorage.getItem('gm-boot')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){var R=document.documentElement;R.classList.add('is-booting');setTimeout(function(){R.classList.remove('is-booting')},3000)}}catch(e){}</script>
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/main.css">
 <script type="application/ld+json">
@@ -73,19 +74,34 @@
     <div class="hero__grid">
       <div>
         <div class="hero__kicker"><span class="dot"></span><span>CEH CERTIFIED · SENIOR SOFTWARE ENGINEER</span></div>
-        <h1 class="hero__name" dir="ltr">Mehran Sabzali</h1>
+        <h1 class="hero__name" dir="ltr" id="heroName" aria-label="Mehran Sabzali">Mehran Sabzali</h1>
         <div class="hero__role">
           <span data-l="fa">مهران سبزعلی — مهندس ارشد نرم‌افزار</span>
           <span data-l="en">Senior Software Engineer</span>
         </div>
+        <div class="hero__rot" aria-live="off">
+          <span class="hero__rot-k"><span data-l="fa">تمرکز بر</span><span data-l="en">Focused on</span></span>
+          <span class="rot" id="heroRot"><span class="rot__w is-on" data-l="fa">هوش مصنوعی و LLM</span><span class="rot__w is-on" data-l="en">AI &amp; LLM systems</span></span>
+          <span class="rot__caret" aria-hidden="true"></span>
+        </div>
         <div class="hero__meta" dir="ltr">
-          <span>TEHRAN, IR</span><span><b>|</b>AI · SECURITY · DATA · IOT</span><span><b>|</b>8 YEARS</span><span><b>|</b>25 PROJECTS</span>
+          <span>TEHRAN, IR</span><span class="hero__domains"><b>|</b><i data-dom="0">AI</i> · <i data-dom="1">SECURITY</i> · <i data-dom="2">DATA</i> · <i data-dom="3">IOT</i></span><span><b>|</b><em data-count="8">8</em> YEARS</span><span><b>|</b><em data-count="25">25</em> PROJECTS</span>
         </div>
         <div class="hero__cue" aria-hidden="true"><span>↓</span><span>SCROLL</span></div>
       </div>
       <div class="hero__stage">
-        <div class="hero__anchor" id="anchor"></div>
-        <div class="hero__caption" dir="ltr" aria-hidden="true"><span>NESTED CORE · WEBGL</span><span>DRAG TO ORBIT</span></div>
+        <div class="hero__anchor" id="anchor">
+          <div class="hud" id="hud" aria-hidden="true">
+            <span class="hud__c hud__c--tl"></span><span class="hud__c hud__c--tr"></span><span class="hud__c hud__c--bl"></span><span class="hud__c hud__c--br"></span>
+            <div class="hud__r hud__r--tl" dir="ltr"><span>YAW <b data-hud="yaw">000.0°</b></span><span>PITCH <b data-hud="pitch">+00.0°</b></span></div>
+            <div class="hud__r hud__r--tr" dir="ltr"><span><i class="hud__live"></i>LIVE</span><span><b data-hud="fps">60</b> FPS</span></div>
+            <div class="hud__r hud__r--bl" dir="ltr"><span>NODES <b data-hud="nodes">744</b></span><span>EDGES <b data-hud="edges">—</b></span></div>
+            <div class="hud__r hud__r--br" dir="ltr"><span>PHASE <b data-hud="phase">CORE</b></span><span>FOCUS <b data-hud="focus">AI</b></span></div>
+            <span class="hud__reticle"></span>
+            <span class="hud__ping" id="hudPing"></span>
+          </div>
+        </div>
+        <div class="hero__caption" dir="ltr" aria-hidden="true"><span>NESTED CORE · WEBGL</span><span><span class="cap-fine">DRAG TO ORBIT · CLICK TO PULSE</span><span class="cap-touch">TAP TO PULSE</span></span></div>
       </div>
     </div>
     <div class="marquee" dir="ltr" aria-hidden="true">
@@ -402,5 +418,6 @@
 <script src="js/projects-data.js" defer></script>
 <script src="js/core3d.js" defer></script>
 <script src="js/main.js" defer></script>
+<script src="js/hero.js" defer></script>
 </body>
 </html>

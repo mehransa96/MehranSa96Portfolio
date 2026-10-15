@@ -9,7 +9,8 @@ Single-page bilingual (FA / EN) portfolio with an interactive WebGL core, built 
 | `site/` | The website. Plain HTML/CSS/JS, no build step — upload the folder as-is to any static host. |
 | `site/js/projects-data.js` | All 25 projects (FA + EN). Edit project content here. |
 | `site/js/main.js` | Projects browser, language switch, search palette (Ctrl/⌘ + K), architecture map, mobile menu. |
-| `site/js/core3d.js` | The three.js wireframe core that morphs with scroll (core → node network → flat lattice). |
+| `site/js/core3d.js` | The three.js wireframe core that morphs with scroll (core → node network → flat lattice); click it to send a pulse. |
+| `site/js/hero.js` | Home-page interactions: once-per-session boot sequence, name decode, rotating focus line, live HUD around the core, count-up stats, cursor ring. |
 | `site/vendor/three.min.js` | three.js r149, self-hosted. |
 | `site/assets/` | Logo, portrait and self-hosted fonts (Vazirmatn, Space Grotesk, IBM Plex Mono). |
 | `dist/portfolio-fa-standalone.html` | Everything above inlined into one file — works offline or from any host. |
