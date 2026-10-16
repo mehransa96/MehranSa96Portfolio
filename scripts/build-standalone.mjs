@@ -16,7 +16,7 @@ const dataUri = (file) => {
   return `data:${mime};base64,${readFileSync(file).toString('base64')}`;
 };
 
-const isLocal = (ref) => !/^(?:[a-z]+:)?\/\//i.test(ref) && !ref.startsWith('data:') && !ref.startsWith('#');
+const isLocal = (ref) => !/^(?:[a-z]+:)?\/\//i.test(ref) && !ref.startsWith('data:') && !ref.startsWith('#') && !ref.startsWith('%23');
 
 const inlineCss = (cssFile) => {
   const css = readFileSync(cssFile, 'utf8');

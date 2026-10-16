@@ -28,12 +28,12 @@
     try { seen = sessionStorage.getItem('gm-boot') === '1'; sessionStorage.setItem('gm-boot', '1'); } catch (e) { seen = true; }
     if (seen || reduced) { done(); return; }
 
-    var stats = core() && core().stats ? core().stats() : { nodes: 744, edges: 0 };
+    var stats = core() && core().stats ? core().stats() : { nodes: 32000 };
     var lines = [
       ['> gmtec.core --init', ''],
-      ['geometry', stats.nodes + ' nodes'],
-      ['network', (stats.edges || '1k+') + ' edges'],
-      ['shaders', 'webgl ready'],
+      ['particles', Number(stats.nodes).toLocaleString('en-US')],
+      ['shaders', 'glsl compiled'],
+      ['emblem', 'sampled'],
       ['status', 'online']
     ];
     var el = document.createElement('div');
@@ -195,7 +195,7 @@
       cells.yaw.textContent = fmt(st.yaw, 5) + '°';
       cells.pitch.textContent = (st.pitch < 0 ? '−' : '+') + fmt(st.pitch, 4) + '°';
       cells.fps.textContent = String(Math.min(144, Math.round(st.fps)));
-      cells.nodes.textContent = String(st.nodes);
+      cells.nodes.textContent = Number(st.nodes).toLocaleString('en-US');
       cells.edges.textContent = String(st.edges);
       cells.phase.textContent = st.phase;
     }, 120);
@@ -267,7 +267,21 @@
     }
   }
 
+  // ---------- Magnetic header buttons ----------
+  function initMagnetic() {
+    if (!finePointer || reduced) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.hbtn, .brand'), function (el) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width / 2)) / r.width, dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+        el.style.transform = 'translate(' + (dx * 6).toFixed(1) + 'px,' + (dy * 5).toFixed(1) + 'px)';
+      });
+      el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+    });
+  }
+
   function init() {
+    initMagnetic();
     var name = initName();
     initRotator();
     initHud();

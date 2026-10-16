@@ -1,6 +1,6 @@
 # GMTec — Mehran Sabzali portfolio
 
-Single-page bilingual (FA / EN) portfolio with an interactive WebGL core, built from the Claude Design handoff in `design/`.
+Single-page bilingual (FA / EN) portfolio with an interactive WebGL particle core, built from the Claude Design handoff in `design/`.
 
 ## Layout
 
@@ -9,7 +9,7 @@ Single-page bilingual (FA / EN) portfolio with an interactive WebGL core, built 
 | `site/` | The website. Plain HTML/CSS/JS, no build step — upload the folder as-is to any static host. |
 | `site/js/projects-data.js` | All 25 projects (FA + EN). Edit project content here. |
 | `site/js/main.js` | Projects browser, language switch, search palette (Ctrl/⌘ + K), architecture map, mobile menu. |
-| `site/js/core3d.js` | The three.js wireframe core that morphs with scroll (core → node network → flat lattice); click it to send a pulse. |
+| `site/js/core3d.js` | The particle core: 32k GPU particles in custom GLSL (14k on mobile) that morph with scroll — core → spiral galaxy → wave grid → the GM emblem sampled from the logo. The cursor parts the field and tethers to nearby particles; click sends a shockwave; quality adapts to the device. |
 | `site/js/hero.js` | Home-page interactions: once-per-session boot sequence, name decode, rotating focus line, live HUD around the core, count-up stats, cursor ring. |
 | `site/vendor/three.min.js` | three.js r149, self-hosted. |
 | `site/assets/` | Logo, portrait and self-hosted fonts (Vazirmatn, Space Grotesk, IBM Plex Mono). |
