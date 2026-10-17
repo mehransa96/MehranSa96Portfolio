@@ -28,7 +28,7 @@
 
   var VERT = [
     'uniform float uTime, uSize, uPR, uMouseK, uAspect, uPulseT, uFlow;',
-    'uniform vec3 uM; uniform vec2 uMouse, uVel, uPulseC; uniform vec3 uAccent;',
+    'uniform vec3 uM; uniform vec2 uMouse, uVel, uPulseC; uniform vec3 uAccent, uInk;',
     'attribute vec3 aB, aC, aD, aCol; attribute vec4 aRnd;',
     'varying vec3 vCol; varying float vA;',
     'float ez(float x){ x = clamp(x, 0.0, 1.0); return x * x * (3.0 - 2.0 * x); }',
@@ -53,9 +53,9 @@
     '  }',
     '  gl_Position = projectionMatrix * mv;',
     '  gl_PointSize = uSize * aRnd.y * (1.0 + glow * 0.8) * (1.0 + 0.3 * t3) * uPR * (5.6 / -mv.z);',
-    '  vec3 base = mix(uAccent, vec3(0.906, 0.914, 0.910), step(0.86, aRnd.w));',
+    '  vec3 base = mix(uAccent, uInk, step(0.86, aRnd.w));',
     '  base = mix(base, uAccent * 0.5, step(aRnd.w, 0.25));',
-    '  vCol = mix(base, aCol, t3) + glow * vec3(0.18, 0.26, 0.22);',
+    '  vCol = mix(base, aCol, t3) + glow * mix(uAccent, uInk, 0.5) * 0.26;',
     '  float depth = clamp((-mv.z - 3.4) / 4.4, 0.0, 1.0);',
     '  float tw = 0.82 + 0.18 * sin(uTime * 1.6 + s * 41.0);',
     '  vA = (0.38 + 0.46 * s) * (0.8 + glow) * (1.0 - depth * 0.6) * mix(tw, 1.0, t3);',
@@ -85,7 +85,7 @@
       cv.style.display = 'none';
       return null;
     }
-    var PR = Math.min(window.devicePixelRatio || 1, 1.75);
+    var PR = Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 1.75);
     renderer.setPixelRatio(PR);
 
     var scene = new THREE.Scene();
@@ -101,6 +101,9 @@
     var RND = new Float32Array(N * 4), COL = new Float32Array(N * 3);
     var R = mulberry(20260914);
     var accent = new THREE.Color(opts.accent || '#00E28A');
+    // Text colour of the active theme (light particles and the white parts of the emblem).
+    var inkCss = (getComputedStyle(document.documentElement).getPropertyValue('--ink') || '').trim();
+    var ink = new THREE.Color(inkCss || '#E7E9E8');
     var i, j, u, v, r, th;
     var gauss = function () { return (R() + R() + R() - 1.5) / 1.5; };
 
@@ -172,13 +175,20 @@
       uTime: { value: 0 }, uSize: { value: (small || coarse) ? 2.7 : 2.3 }, uPR: { value: PR },
       uMouse: { value: new THREE.Vector2(9, 9) }, uVel: { value: new THREE.Vector2() }, uMouseK: { value: 0 }, uAspect: { value: 1 },
       uPulseT: { value: -1 }, uPulseC: { value: new THREE.Vector2() }, uFlow: { value: 1 },
-      uM: { value: new THREE.Vector3() }, uAccent: { value: new THREE.Vector3(accent.r, accent.g, accent.b) },
+      uM: { value: new THREE.Vector3() }, uAccent: { value: new THREE.Vector3(accent.r, accent.g, accent.b) }, uInk: { value: new THREE.Vector3(ink.r, ink.g, ink.b) },
       uOpacity: { value: 1 }
     };
-    var mat = new THREE.ShaderMaterial({
+    // Additive glow that never writes alpha: the light adds to whatever page colour is behind the
+    // canvas (needed for coloured theme backgrounds; on black it looks the same as plain additive).
+    var GLOW = {
+      blending: THREE.CustomBlending, blendEquation: THREE.AddEquation,
+      blendSrc: THREE.SrcAlphaFactor, blendDst: THREE.OneFactor,
+      blendSrcAlpha: THREE.ZeroFactor, blendDstAlpha: THREE.OneFactor
+    };
+    var mat = new THREE.ShaderMaterial(Object.assign({
       uniforms: U, vertexShader: VERT, fragmentShader: FRAG,
-      transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending
-    });
+      transparent: true, depthWrite: false, depthTest: false
+    }, GLOW));
     var points = new THREE.Points(geo, mat);
     points.frustumCulled = false;
     grp.add(points);
@@ -207,8 +217,11 @@
             D[jj] = ((pool[pi] + rr2()) / W - 0.5) * span;
             D[jj + 1] = -((pool[pi + 1] + rr2()) / H - 0.5) * span * H / W;
             D[jj + 2] = (rr2() - 0.5) * 0.1;
-            var cr = pool[pi + 2] / 255, cg = pool[pi + 3] / 255, cb = pool[pi + 4] / 255, mx = Math.max(cr, cg, cb) || 1;
-            COL[jj] = cr / mx; COL[jj + 1] = cg / mx; COL[jj + 2] = cb / mx;
+            // Recolour from the theme: saturated (brand green) pixels -> accent, neutral pixels -> ink.
+            var cr = pool[pi + 2] / 255, cg = pool[pi + 3] / 255, cb = pool[pi + 4] / 255;
+            var mx = Math.max(cr, cg, cb), mn = Math.min(cr, cg, cb), sat = mx > 0 ? (mx - mn) / mx : 0;
+            var src = sat > 0.35 ? accent : ink;
+            COL[jj] = src.r; COL[jj + 1] = src.g; COL[jj + 2] = src.b;
           }
           attrD.needsUpdate = true; attrCol.needsUpdate = true;
         } catch (e) { /* cross-origin canvas (file://): keep the knot */ }
@@ -225,7 +238,7 @@
     lgeo.setAttribute('position', new THREE.BufferAttribute(lpos, 3).setUsage(THREE.DynamicDrawUsage));
     lgeo.setAttribute('color', new THREE.BufferAttribute(lcol, 3).setUsage(THREE.DynamicDrawUsage));
     lgeo.setDrawRange(0, 0);
-    var lines = new THREE.LineSegments(lgeo, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending }));
+    var lines = new THREE.LineSegments(lgeo, new THREE.LineBasicMaterial(Object.assign({ vertexColors: true, transparent: true, depthWrite: false, depthTest: false }, GLOW)));
     lines.frustumCulled = false;
     cam.add(lines);
     var cand = new Float32Array(SUB * 4), candN = 0, linkCount = 0;
@@ -298,16 +311,30 @@
 
     // ---------- Sizing, input ----------
     var vw = 1, vh = 1, aRect = null, aDirty = true, secT = null;
-    function size() {
-      vw = window.innerWidth; vh = window.innerHeight;
+    var anc = { top: 0, left: 0, w: 1, h: 1 };
+    function measure() {
+      // Document-relative anchor box: read once, then derived from scrollY each frame (no layout reads while scrolling).
+      if (opts.anchor) {
+        var r0 = opts.anchor.getBoundingClientRect();
+        anc = { top: r0.top + window.scrollY, left: r0.left, w: r0.width, h: r0.height };
+      }
+      secT = null;
+    }
+    function size(force) {
+      var nw = window.innerWidth, nh = cv.clientHeight || window.innerHeight;
+      // Mobile address-bar show/hide only changes the visual viewport; the canvas (100lvh) keeps its size.
+      if (!force && nw === vw && Math.abs(nh - vh) < 2) { measure(); return; }
+      vw = nw; vh = nh;
       renderer.setSize(vw, vh, false);
       cam.aspect = vw / vh; cam.updateProjectionMatrix();
       U.uAspect.value = vw / vh;
-      aDirty = true; secT = null;
+      measure();
     }
-    size();
-    function mark() { aDirty = true; }
-    window.addEventListener('resize', size);
+    size(true);
+    function mark() {}
+    var rzT = 0;
+    window.addEventListener('resize', function () { clearTimeout(rzT); rzT = setTimeout(size, 120); });
+    if ('ResizeObserver' in window) new ResizeObserver(function () { measure(); }).observe(document.body);
     window.addEventListener('scroll', mark, { passive: true });
 
     var tx = 0, ty = 0, cx = 0, cy = 0, drag = false, lx = 0, ly = 0, spotQ = false, mxn = 0.5, myn = 0.3;
@@ -344,6 +371,29 @@
       if (r && e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) api.ping();
     }
     function onLeave() { mouseTarget = 0; }
+    function onTouch(e) {
+      var t = e.touches && e.touches[0];
+      if (!t) return;
+      mxn = t.clientX / vw; myn = t.clientY / vh;
+      mNdcX = mxn * 2 - 1; mNdcY = -(myn * 2 - 1);
+      if (e.type === 'touchstart') { mSm.x = mNdcX; mSm.y = mNdcY; }
+      mouseTarget = motion ? 0.9 : 0.5;
+    }
+    function onTouchEnd(e) { if (!e.touches || !e.touches.length) mouseTarget = 0; }
+    window.addEventListener('touchstart', onTouch, { passive: true });
+    window.addEventListener('touchmove', onTouch, { passive: true });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    window.addEventListener('touchcancel', onTouchEnd, { passive: true });
+    // Tilt parallax on phones that expose orientation without a permission prompt (Android).
+    if (coarse && motion && 'DeviceOrientationEvent' in window && typeof DeviceOrientationEvent.requestPermission !== 'function') {
+      var base = null;
+      window.addEventListener('deviceorientation', function (e) {
+        if (e.beta == null || e.gamma == null || drag) return;
+        if (!base) base = { b: e.beta, g: e.gamma };
+        tx = Math.max(-0.45, Math.min(0.45, (e.beta - base.b) / 60 * -0.42));
+        ty = Math.max(-0.6, Math.min(0.6, (e.gamma - base.g) / 45 * 0.6));
+      }, { passive: true });
+    }
     window.addEventListener('pointermove', onMove, { passive: true });
     window.addEventListener('pointerdown', onDown, { passive: true });
     window.addEventListener('pointerup', onUp, { passive: true });
@@ -356,7 +406,7 @@
     var gx = 0, gy = 0, gs = 1, opa = 1, lastO2, raf = 0, frame = 0;
     var time = 0, lastT = 0, fps = 60, slowFor = 0, quality = 2;
     var boost = 0, boostT = 0, spinAcc = 0, pulseT = -1;
-    var mS = new THREE.Vector3(), mSm = new THREE.Vector2(9, 9);
+    var mS = new THREE.Vector3(), mSm = new THREE.Vector2(9, 9), energy = 0, lastScrollY = window.scrollY;
     var euler = new THREE.Euler(), qI = new THREE.Quaternion(), qE = new THREE.Quaternion();
     var stats = { nodes: N, edges: 0, yaw: 0, pitch: 0, fps: 60, phase: 'CORE', morph: 0 };
 
@@ -374,8 +424,8 @@
       frame++;
 
       var yS = window.scrollY;
-      if (!secT || frame % 45 === 1) {
-        var maxS = Math.max(1, document.documentElement.scrollHeight - vh);
+      if (!secT) {
+        var maxS = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
         secT = { e: top('expertise'), p: top('projects'), a: top('architecture'), max: maxS };
       }
       var pB = sstep((yS - (secT.e - vh * 0.95)) / (vh * 0.75));
@@ -390,9 +440,13 @@
 
       // Motion: flow field, spin, mouse field strength, pulse.
       boost = damp(boost, boostT, 3, dt);
-      if (motion) { time += dt * (1 + boost * 1.5); spinAcc += dt * 0.055 * (1 + boost * 4) * (1 - pD); }
+      // Scroll energy: a fast flick stirs the field, then it settles.
+      var sv = (yS - lastScrollY) / Math.max(dt, 1e-3);
+      lastScrollY = yS;
+      energy = damp(energy, Math.min(1, Math.abs(sv) / 2400), Math.abs(sv) / 2400 > energy ? 8 : 2.2, dt);
+      if (motion) { time += dt * (1 + boost * 1.5 + energy * 1.2); spinAcc += dt * 0.055 * (1 + boost * 4 + energy * 3) * (1 - pD); }
       U.uTime.value = time;
-      U.uFlow.value = motion ? 1 + boost * 1.4 : 0;
+      U.uFlow.value = motion ? 1 + boost * 1.4 + energy * 1.8 : 0;
       U.uMouseK.value = damp(U.uMouseK.value, mouseTarget * (1 - dim * 0.7), 4, dt);
       // Spring-smoothed cursor + its velocity (for the wake behind fast moves).
       if (mSm.x > 5) { mSm.x = mNdcX; mSm.y = mNdcY; }
@@ -414,8 +468,7 @@
       // Sit inside the hero anchor box at the top, drift to the viewport centre as the page scrolls.
       var tX = 0, tY = 0, tS = 1, an = opts.anchor;
       if (an) {
-        if (aDirty || !aRect) { aRect = an.getBoundingClientRect(); aDirty = false; }
-        var r = aRect, visW = visH * (vw / vh);
+        var r = { left: anc.left, top: anc.top - yS, width: anc.w, height: anc.h }, visW = visH * (vw / vh);
         var aw = (r.width / vw) * visW;
         var nearS = Math.max(0.24, aw / 4.5);
         var nearX = ((r.left + r.width / 2) / vw - 0.5) * visW;
@@ -432,7 +485,7 @@
       grp.position.set(gx, gy, 0);
       grp.scale.setScalar(gs);
 
-      var tOpa = 1 - 0.06 * pB - 0.6 * dim - 0.15 * pC + 0.1 * pD;
+      var tOpa = 1 - 0.06 * pB - (coarse || small ? 0.8 : 0.7) * dim - 0.15 * pC + 0.1 * pD;
       opa = damp(opa, tOpa, 3.5, dt);
       var o2 = Math.min(1, opa).toFixed(2);
       if (o2 !== lastO2) { lastO2 = o2; cv.style.opacity = o2; }
@@ -469,11 +522,12 @@
         if (inside) U.uPulseC.value.set(mNdcX, mNdcY);
         else if (r) U.uPulseC.value.set(((r.left + r.width / 2) / vw) * 2 - 1, -(((r.top + r.height / 2) / vh) * 2 - 1));
         pulseT = 0;
+        if (coarse && navigator.vibrate) { try { navigator.vibrate(8); } catch (e) { /* not allowed */ } }
         window.dispatchEvent(new CustomEvent('core:ping'));
       },
       boost: function (on) { boostT = on ? 1 : 0; },
       stats: function () { return stats; },
-      refresh: function () { secT = null; aDirty = true; },
+      refresh: function () { measure(); },
       setMotion: function (m) { motion = m !== false; },
       destroy: function () {
         cancelAnimationFrame(raf);

@@ -1019,3 +1019,145 @@ html.is-booting .hero * { animation-play-state: paused !important; }
 @media (max-width: 999.98px) and (orientation: portrait) {
   .hero__grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* =====================================================================
+   v4 — header order follows the reading direction, off-canvas drawer
+   ===================================================================== */
+/* Brand and nav sit together at the start edge (right in Persian); actions at the end. */
+.hdr__bar { justify-content: flex-start; }
+.nav { margin-inline-start: clamp(22px, 3vw, 48px); }
+.hdr__actions { margin-inline-start: auto; }
+/* Constant header height: compact only changes the surface, never the layout (no scroll jump). */
+.hdr.is-compact .hdr__bar { min-height: 58px; padding-top: 12px; padding-bottom: 12px; }
+.hdr.is-compact .brand img { height: 26px; }
+@media (max-width: 879.98px) {
+  .hdr__bar { gap: 10px; }
+  .hbtn--menu { order: -1; }
+}
+
+/* Menu icon: three lines that draw in from the start edge */
+.hbtn--menu span { transform-origin: center; }
+.hbtn--menu span:nth-child(2) { width: 11px; align-self: center; }
+html[dir="rtl"] .hbtn--menu { align-items: flex-end; padding-inline: 13px; }
+html[dir="ltr"] .hbtn--menu { align-items: flex-start; padding-inline: 13px; }
+.hbtn--menu:hover span:nth-child(2) { width: 16px; }
+
+/* Drawer */
+.drawer-scrim {
+  position: fixed; inset: 0; z-index: 65; background: rgba(4, 5, 5, .62);
+  opacity: 0; pointer-events: none; transition: opacity .45s ease;
+}
+.drawer-scrim.is-open { opacity: 1; pointer-events: auto; }
+.drawer {
+  position: fixed; top: 0; bottom: 0; inset-inline-start: 0; z-index: 70;
+  width: min(86vw, 380px); display: flex; flex-direction: column;
+  background: linear-gradient(180deg, rgba(12, 15, 14, .985), rgba(8, 9, 10, .99));
+  border-inline-end: 1px solid var(--line);
+  box-shadow: 0 0 80px rgba(0, 0, 0, .55);
+  padding: max(14px, env(safe-area-inset-top)) clamp(18px, 5vw, 26px) max(22px, env(safe-area-inset-bottom));
+  transform: translateX(calc(100% + 40px)); visibility: hidden;
+  transition: transform .55s cubic-bezier(.22, 1, .36, 1), visibility 0s linear .55s;
+  overscroll-behavior: contain; overflow-y: auto;
+}
+html[dir="ltr"] .drawer { transform: translateX(calc(-100% - 40px)); }
+.drawer.is-open, html[dir="ltr"] .drawer.is-open {
+  transform: translateX(var(--dx, 0px)); visibility: visible;
+  transition: transform .55s cubic-bezier(.22, 1, .36, 1), visibility 0s;
+}
+.drawer.is-dragging { transition: none !important; }
+.drawer::before {
+  content: ''; position: absolute; inset-block: 0; inset-inline-end: -1px; width: 1px;
+  background: linear-gradient(180deg, transparent, var(--accent) 30%, transparent 75%); opacity: .5;
+}
+.drawer__top { display: flex; align-items: center; justify-content: space-between; min-height: 58px; margin-bottom: clamp(18px, 5vh, 40px); }
+.drawer__close { width: 44px; height: 44px; }
+.drawer__close:hover { border-color: var(--accent); color: var(--accent); }
+.drawer__nav { display: flex; flex-direction: column; }
+.drawer__nav a {
+  position: relative; display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 12px;
+  min-height: 64px; padding: 6px 2px; border-bottom: 1px solid var(--line-2);
+  font-size: clamp(22px, 6vw, 28px); font-weight: 600; color: var(--ink);
+}
+.drawer__nav a .mono { font-size: 11px; letter-spacing: 1.5px; color: var(--accent); font-weight: 400; }
+.drawer__go { width: 10px; height: 10px; border-top: 1px solid var(--mute-2); border-inline-start: 1px solid var(--mute-2); transform: rotate(-45deg); transition: transform .35s var(--ease-out), border-color .3s; }
+html[dir="rtl"] .drawer__go { transform: rotate(-45deg) scaleX(-1); }
+html[dir="ltr"] .drawer__go { transform: rotate(135deg); }
+.drawer__nav a:hover .drawer__go, .drawer__nav a:focus-visible .drawer__go { border-color: var(--accent); }
+.drawer__nav a::after {
+  content: ''; position: absolute; inset-inline-start: 0; bottom: -1px; height: 1px; width: 100%;
+  background: var(--accent); transform: scaleX(0); transform-origin: var(--origin, right); transition: transform .5s var(--ease-out);
+}
+html[dir="ltr"] .drawer__nav a::after { --origin: left; }
+.drawer__nav a:hover::after, .drawer__nav a:active::after { transform: scaleX(1); }
+.drawer__nav a:active { color: var(--accent); }
+.drawer__foot { margin-top: auto; padding-top: 28px; }
+.drawer__links { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
+.drawer__links a { display: flex; align-items: center; min-height: 44px; font-size: 14px; color: var(--ink-3); border-bottom: 1px solid var(--line-2); }
+.drawer__meta { margin-top: 20px; font-size: 10px; letter-spacing: 2px; color: var(--mute-3); }
+/* Staggered entrance */
+.drawer.is-open .drawer__nav a, .drawer.is-open .drawer__foot { animation: drawerIn .6s var(--ease-out) calc(.12s + var(--i, 0) * .06s) both; }
+@keyframes drawerIn { from { opacity: 0; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
+html.is-locked, html.is-locked body { overflow: hidden; }
+@media (min-width: 880px) { .drawer, .drawer-scrim { display: none; } }
+
+/* ---------- Mobile performance & stability ---------- */
+/* The canvas uses the large viewport height, so the address bar showing/hiding never resizes it. */
+.bg-canvas { inset: auto; top: 0; left: 0; width: 100%; height: 100vh; height: 100lvh; }
+/* Live blur over an animating WebGL canvas is re-computed every frame; touch devices get solid surfaces instead. */
+@media (max-width: 879.98px), (pointer: coarse) {
+  .hdr { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(8, 9, 10, .94); }
+  .hdr.is-compact { background: rgba(8, 9, 10, .97); }
+  .arch__panel, .cta, .pal { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .arch__panel, .cta { background: rgba(10, 12, 12, .94); }
+  .grain { display: none; }
+}
+/* Touch feedback: everything tappable answers instantly. */
+@media (hover: none) {
+  .pj-row:active, .layer:active, .pill:active, .fcard:active, .row:active, .tile:active { background-color: rgba(var(--accent-rgb), .06); }
+  .fcard:active, .xcard:active { transform: scale(.985); transition-duration: .15s; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+}
+
+/* ---------- UX pass ---------- */
+/* In Persian, Latin labels and chip groups hug the right edge like the headings above them. */
+html[dir="rtl"] .chips, html[dir="rtl"] .stack-items, html[dir="rtl"] .det__stack,
+html[dir="rtl"] .arch__tech, html[dir="rtl"] .det__plat, html[dir="rtl"] .fcard__foot .chips { justify-content: flex-end; }
+html[dir="rtl"] .row__name, html[dir="rtl"] .det__en, html[dir="rtl"] .fcard__en,
+html[dir="rtl"] .layer__en, html[dir="rtl"] .arch__en, html[dir="rtl"] .pj-row__en { text-align: right; }
+@media (max-width: 879.98px) {
+  .row__name, .row--stack .row__name { flex-basis: 100%; }
+  /* Architecture tabs: one swipeable row, play button under it */
+  .arch__tabs { flex-direction: column; align-items: stretch; }
+  .arch__tabs > #archTabs {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+    margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent);
+  }
+  .arch__tabs > #archTabs::-webkit-scrollbar { display: none; }
+  .arch__tabs > #archTabs .pill { flex: 0 0 auto; }
+  .arch__flow { margin-inline-start: 0; align-self: flex-start; }
+}
+/* Comfortable touch targets */
+.pill { min-height: 44px; }
+.ftr__links a, .sub-head a.mono { min-height: 44px; }
+
+/* Back to top: appears after the hero, ring shows reading progress */
+.totop {
+  position: fixed; z-index: 45; bottom: max(18px, env(safe-area-inset-bottom)); inset-inline-end: clamp(14px, 3vw, 28px);
+  width: 48px; height: 48px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  background: rgba(10, 12, 12, .9); color: var(--ink-2);
+  opacity: 0; transform: translateY(14px) scale(.9); pointer-events: none;
+  transition: opacity .35s ease, transform .45s var(--ease-out), color .25s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
+}
+.totop.is-on { opacity: 1; transform: none; pointer-events: auto; }
+.totop:hover { color: var(--accent); }
+.totop svg { width: 100%; height: 100%; display: block; transform: rotate(-90deg); }
+.totop__track { fill: none; stroke: var(--line-3); stroke-width: 1.5; }
+.totop__ring { fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--p, 0)); transition: stroke-dashoffset .15s linear; }
+.totop__arrow { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transform: rotate(90deg); transform-origin: 20px 20px; }
+html.is-locked .totop { opacity: 0; pointer-events: none; }
+
+/* Language switch crossfade */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .35s; }

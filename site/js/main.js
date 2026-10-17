@@ -649,39 +649,89 @@
   }
 
   // ---------- Header: mobile menu, progress ----------
-  function closeMenu() {
-    var btn = $('menuBtn');
-    if (btn.getAttribute('aria-expanded') !== 'true') return;
-    btn.setAttribute('aria-expanded', 'false');
-    $('mmenu').hidden = true;
+  // ---------- Drawer menu (slides in from the start edge: right in Persian, left in English) ----------
+  var drawerReturn = null;
+  function menuIsOpen() { return $('menuBtn').getAttribute('aria-expanded') === 'true'; }
+  function setDrawer(open) {
+    var btn = $('menuBtn'), d = $('mmenu'), scrim = $('scrim');
+    if (open === menuIsOpen()) return;
+    btn.setAttribute('aria-expanded', String(open));
+    d.classList.toggle('is-open', open);
+    scrim.classList.toggle('is-open', open);
+    d.setAttribute('aria-hidden', String(!open));
+    if (open) { d.removeAttribute('inert'); } else { d.setAttribute('inert', ''); }
+    d.style.removeProperty('--dx');
+    root.classList.toggle('is-locked', open);
+    if (open) {
+      drawerReturn = document.activeElement;
+      setTimeout(function () { var f = d.querySelector('.drawer__nav a'); if (f) f.focus({ preventScroll: true }); }, 60);
+    } else if (drawerReturn && drawerReturn.focus) {
+      drawerReturn.focus({ preventScroll: true });
+    }
   }
+  function closeMenu() { setDrawer(false); }
   function initHeader() {
-    var btn = $('menuBtn'), menu = $('mmenu');
-    btn.addEventListener('click', function () {
-      var open = btn.getAttribute('aria-expanded') !== 'true';
-      btn.setAttribute('aria-expanded', String(open));
-      menu.hidden = !open;
-    });
-    // Collapse the menu first, then scroll: the header shrinks when it closes, which would shift the anchor target.
-    menu.addEventListener('click', function (e) {
+    var btn = $('menuBtn'), d = $('mmenu');
+    btn.addEventListener('click', function () { setDrawer(!menuIsOpen()); });
+    $('drawerClose').addEventListener('click', closeMenu);
+    $('scrim').addEventListener('click', closeMenu);
+    d.addEventListener('click', function (e) {
       var a = e.target.closest('a[href^="#"]');
       if (!a) return;
       e.preventDefault();
       closeMenu();
       jump(a.getAttribute('href').slice(1));
     });
+    // Keep keyboard focus inside the open drawer.
+    d.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var f = d.querySelectorAll('a, button'), first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    // Swipe the drawer back toward its edge to close it; it follows the finger.
+    var x0 = 0, y0 = 0, dx = 0, tracking = false, horizontal = null;
+    d.addEventListener('touchstart', function (e) {
+      if (!menuIsOpen()) return;
+      tracking = true; horizontal = null; dx = 0;
+      x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+    }, { passive: true });
+    d.addEventListener('touchmove', function (e) {
+      if (!tracking) return;
+      var mx = e.touches[0].clientX - x0, my = e.touches[0].clientY - y0;
+      if (horizontal === null && (Math.abs(mx) > 8 || Math.abs(my) > 8)) horizontal = Math.abs(mx) > Math.abs(my);
+      if (!horizontal) return;
+      var rtl = root.getAttribute('dir') === 'rtl';
+      dx = rtl ? Math.max(0, mx) : Math.min(0, mx);
+      d.classList.add('is-dragging');
+      d.style.setProperty('--dx', dx + 'px');
+      $('scrim').style.opacity = String(Math.max(0, 1 - Math.abs(dx) / d.offsetWidth));
+    }, { passive: true });
+    d.addEventListener('touchend', function () {
+      if (!tracking) return;
+      tracking = false;
+      d.classList.remove('is-dragging');
+      $('scrim').style.opacity = '';
+      if (Math.abs(dx) > d.offsetWidth * 0.28) closeMenu();
+      else d.style.removeProperty('--dx');
+    });
     var onBp = function () { if (!isMobile()) closeMenu(); };
     if (mqMobile.addEventListener) mqMobile.addEventListener('change', onBp); else mqMobile.addListener(onBp);
-    document.addEventListener('click', function (e) {
-      if (!menu.hidden && !e.target.closest('#hdr')) closeMenu();
-    });
 
-    var bar = $('progress'), q = false, last = '';
+    var bar = $('progress'), q = false, last = '', toTop = $('toTop');
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: mqReduced.matches ? 'auto' : 'smooth' });
+      var b = document.querySelector('.brand'); if (b) b.focus({ preventScroll: true });
+    });
     var update = function () {
       q = false;
       var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
       var p = Math.min(1, Math.max(0, window.scrollY / max)).toFixed(3);
-      if (p !== last) { last = p; bar.style.transform = 'scaleX(' + p + ')'; }
+      if (p !== last) {
+        last = p; bar.style.transform = 'scaleX(' + p + ')';
+        toTop.style.setProperty('--p', p);
+      }
+      toTop.classList.toggle('is-on', window.scrollY > window.innerHeight * 0.9);
       // Compact after the first few pixels; tuck away while reading down, return on any upward scroll.
       var y = window.scrollY, hdr = $('hdr'), dy = y - lastY;
       hdr.classList.toggle('is-compact', y > 24);
@@ -793,7 +843,12 @@
     initReveal();
     initClock();
     setLang(lang, false);
-    $('langBtn').addEventListener('click', function () { setLang(state.lang === 'en' ? 'fa' : 'en', true); });
+    $('langBtn').addEventListener('click', function () {
+      var next = state.lang === 'en' ? 'fa' : 'en';
+      // Crossfade the switch (direction flips RTL <-> LTR) where the browser supports view transitions.
+      if (document.startViewTransition && !mqReduced.matches) document.startViewTransition(function () { setLang(next, true); });
+      else setLang(next, true);
+    });
 
     if (window.GMCore) {
       core = window.GMCore.init({

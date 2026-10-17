@@ -1,4 +1,4 @@
-# Publishes site/ to GitHub Pages on every push to main.
+# Publishes site/ (plus the themed variants under /themes/) to GitHub Pages on every push to main.
 name: Deploy to GitHub Pages
 
 on:
@@ -26,13 +26,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Build standalone file
+      - name: Build standalone file and themed variants
         run: npm run build
       - name: Assemble site
         run: |
-          mkdir -p _site
+          mkdir -p _site/themes
           cp -r site/. _site/
           cp dist/portfolio-fa-standalone.html _site/standalone.html
+          for t in blueberry teal; do
+            cp -r dist/themes/$t _site/themes/$t
+            cp dist/portfolio-$t-standalone.html _site/themes/$t/standalone.html
+          done
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
