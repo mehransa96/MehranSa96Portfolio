@@ -682,7 +682,21 @@
       var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
       var p = Math.min(1, Math.max(0, window.scrollY / max)).toFixed(3);
       if (p !== last) { last = p; bar.style.transform = 'scaleX(' + p + ')'; }
+      // Compact after the first few pixels; tuck away while reading down, return on any upward scroll.
+      var y = window.scrollY, hdr = $('hdr'), dy = y - lastY;
+      hdr.classList.toggle('is-compact', y > 24);
+      var menuOpen = $('menuBtn').getAttribute('aria-expanded') === 'true';
+      // Accumulate distance per direction so slow/smooth scrolling still counts.
+      if ((dy > 0) !== (travel > 0)) travel = 0;
+      travel += dy;
+      if (menuOpen || state.palOpen || y < 320) hdr.classList.remove('is-hidden');
+      else if (travel > 24) hdr.classList.add('is-hidden');
+      else if (travel < -14) hdr.classList.remove('is-hidden');
+      lastY = y;
     };
+    var lastY = window.scrollY, travel = 0;
+    // Keyboard users tabbing into the header always get it back.
+    $('hdr').addEventListener('focusin', function () { $('hdr').classList.remove('is-hidden'); });
     window.addEventListener('scroll', function () { if (!q) { q = true; requestAnimationFrame(update); } }, { passive: true });
     window.addEventListener('resize', update);
     update();

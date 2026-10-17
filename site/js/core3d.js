@@ -23,10 +23,12 @@
   }
   function ease(x) { x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); }
   function sstep(x) { return ease(x); }
+  // Frame-rate independent exponential smoothing.
+  function damp(a, b, lambda, dt) { return b + (a - b) * Math.exp(-lambda * dt); }
 
   var VERT = [
     'uniform float uTime, uSize, uPR, uMouseK, uAspect, uPulseT, uFlow;',
-    'uniform vec3 uM; uniform vec2 uMouse, uPulseC; uniform vec3 uAccent;',
+    'uniform vec3 uM; uniform vec2 uMouse, uVel, uPulseC; uniform vec3 uAccent;',
     'attribute vec3 aB, aC, aD, aCol; attribute vec4 aRnd;',
     'varying vec3 vCol; varying float vA;',
     'float ez(float x){ x = clamp(x, 0.0, 1.0); return x * x * (3.0 - 2.0 * x); }',
@@ -39,20 +41,24 @@
     '  vec4 mv = modelViewMatrix * vec4(p, 1.0);',
     '  vec4 cl = projectionMatrix * mv; vec2 ndc = cl.xy / cl.w;',
     '  vec2 dv = ndc - uMouse; dv.x *= uAspect; float d = length(dv);',
-    '  float f = uMouseK * (1.0 - smoothstep(0.0, 0.3, d));',
-    '  mv.xy += (d > 1e-4 ? dv / d : vec2(0.0)) * f * f * 0.34;',
-    '  float glow = f * 0.9;',
+    '  float f = uMouseK * exp(-d * d * 22.0);',
+    '  mv.xy += (d > 1e-4 ? dv / d : vec2(0.0)) * f * 0.2 + uVel * f * 0.05;',
+    '  mv.z += f * 0.35;',
+    '  float glow = f * 0.55;',
     '  if (uPulseT >= 0.0) {',
     '    vec2 dp = ndc - uPulseC; dp.x *= uAspect; float pd = length(dp);',
-    '    float w = exp(-pow((pd - uPulseT * 2.2) * 7.0, 2.0)) * (1.0 - clamp(uPulseT, 0.0, 1.0));',
-    '    mv.z += w * 0.7; mv.xy += (pd > 1e-4 ? dp / pd : vec2(0.0)) * w * 0.18; glow += w * 1.6;',
+    '    float pt = clamp(uPulseT, 0.0, 1.0), rad = (1.0 - pow(1.0 - pt, 3.0)) * 2.0;',
+    '    float w = exp(-pow((pd - rad) * 6.0, 2.0)) * (1.0 - pt) * (1.0 - pt);',
+    '    mv.z += w * 0.5; mv.xy += (pd > 1e-4 ? dp / pd : vec2(0.0)) * w * 0.14; glow += w * 1.1;',
     '  }',
     '  gl_Position = projectionMatrix * mv;',
     '  gl_PointSize = uSize * aRnd.y * (1.0 + glow * 0.8) * (1.0 + 0.3 * t3) * uPR * (5.6 / -mv.z);',
     '  vec3 base = mix(uAccent, vec3(0.906, 0.914, 0.910), step(0.86, aRnd.w));',
     '  base = mix(base, uAccent * 0.5, step(aRnd.w, 0.25));',
-    '  vCol = mix(base, aCol, t3) + glow * vec3(0.25, 0.35, 0.3);',
-    '  vA = (0.5 + 0.5 * s) * (0.75 + glow);',
+    '  vCol = mix(base, aCol, t3) + glow * vec3(0.18, 0.26, 0.22);',
+    '  float depth = clamp((-mv.z - 3.4) / 4.4, 0.0, 1.0);',
+    '  float tw = 0.82 + 0.18 * sin(uTime * 1.6 + s * 41.0);',
+    '  vA = (0.38 + 0.46 * s) * (0.8 + glow) * (1.0 - depth * 0.6) * mix(tw, 1.0, t3);',
     '}'
   ].join('\n');
 
@@ -163,8 +169,8 @@
     geo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 10);
 
     var U = {
-      uTime: { value: 0 }, uSize: { value: small ? 2.6 : 2.3 }, uPR: { value: PR },
-      uMouse: { value: new THREE.Vector2(9, 9) }, uMouseK: { value: 0 }, uAspect: { value: 1 },
+      uTime: { value: 0 }, uSize: { value: (small || coarse) ? 2.7 : 2.3 }, uPR: { value: PR },
+      uMouse: { value: new THREE.Vector2(9, 9) }, uVel: { value: new THREE.Vector2() }, uMouseK: { value: 0 }, uAspect: { value: 1 },
       uPulseT: { value: -1 }, uPulseC: { value: new THREE.Vector2() }, uFlow: { value: 1 },
       uM: { value: new THREE.Vector3() }, uAccent: { value: new THREE.Vector3(accent.r, accent.g, accent.b) },
       uOpacity: { value: 1 }
@@ -238,8 +244,9 @@
       vtmp.set(px, py, pz).applyMatrix4(grp.matrixWorld).applyMatrix4(cam.matrixWorldInverse);
       ntmp.copy(vtmp).applyMatrix4(cam.projectionMatrix);
       var dx = (ntmp.x - mxs) * aspect, dy = ntmp.y - mys, d = Math.sqrt(dx * dx + dy * dy);
-      var f = mk * (1 - sstep(d / 0.3));
-      if (d > 1e-4) { vtmp.x += dx / d * f * f * 0.34; vtmp.y += dy / d * f * f * 0.34; }
+      var f = mk * Math.exp(-d * d * 22);
+      if (d > 1e-4) { vtmp.x += dx / d * f * 0.2; vtmp.y += dy / d * f * 0.2; }
+      vtmp.x += U.uVel.value.x * f * 0.05; vtmp.y += U.uVel.value.y * f * 0.05; vtmp.z += f * 0.35;
       return d;
     }
 
@@ -260,9 +267,9 @@
       var order = [];
       for (var q = 0; q < candN; q++) order.push(q);
       order.sort(function (x, y) { return cand[x * 4 + 3] - cand[y * 4 + 3]; });
-      var TETH = Math.min(coarse ? 14 : 26, order.length);
+      var TETH = Math.min(coarse ? 12 : 18, order.length);
       for (var tq = 0; tq < TETH && nl < MAXL; tq++) {
-        var oq = order[tq] * 4, tl = (1 - tq / TETH) * mk * 0.9, t6 = nl * 6;
+        var oq = order[tq] * 4, tl = Math.pow(1 - tq / TETH, 1.5) * (1 - cand[oq + 3] / CAND_R) * mk * 1.1, t6 = nl * 6;
         lpos[t6] = ctmp.x; lpos[t6 + 1] = ctmp.y; lpos[t6 + 2] = ctmp.z;
         lpos[t6 + 3] = cand[oq]; lpos[t6 + 4] = cand[oq + 1]; lpos[t6 + 5] = cand[oq + 2];
         lcol[t6] = ar * tl * 0.15; lcol[t6 + 1] = ag * tl * 0.15; lcol[t6 + 2] = ab * tl * 0.15;
@@ -349,6 +356,7 @@
     var gx = 0, gy = 0, gs = 1, opa = 1, lastO2, raf = 0, frame = 0;
     var time = 0, lastT = 0, fps = 60, slowFor = 0, quality = 2;
     var boost = 0, boostT = 0, spinAcc = 0, pulseT = -1;
+    var mS = new THREE.Vector3(), mSm = new THREE.Vector2(9, 9);
     var euler = new THREE.Euler(), qI = new THREE.Quaternion(), qE = new THREE.Quaternion();
     var stats = { nodes: N, edges: 0, yaw: 0, pitch: 0, fps: 60, phase: 'CORE', morph: 0 };
 
@@ -375,19 +383,30 @@
       var dStart = Math.max(secT.max - vh * 0.85, secT.a + vh * 0.2);
       var pD = sstep((yS - dStart) / Math.max(1, secT.max - dStart - vh * 0.05));
       var dim = sstep((yS - (secT.p - vh * 0.4)) / (vh * 0.5)) * (1 - pC);
+      // Damped scroll targets: morphs glide even when the page jumps (anchor links, fast flicks).
+      mS.x = damp(mS.x, pB, 5, dt); mS.y = damp(mS.y, pC, 5, dt); mS.z = damp(mS.z, pD, 5, dt);
+      pB = mS.x; pC = mS.y; pD = mS.z;
       U.uM.value.set(pB, pC, pD);
 
       // Motion: flow field, spin, mouse field strength, pulse.
-      boost += (boostT - boost) * 0.05;
+      boost = damp(boost, boostT, 3, dt);
       if (motion) { time += dt * (1 + boost * 1.5); spinAcc += dt * 0.055 * (1 + boost * 4) * (1 - pD); }
       U.uTime.value = time;
       U.uFlow.value = motion ? 1 + boost * 1.4 : 0;
-      U.uMouseK.value += (mouseTarget * (1 - dim * 0.7) - U.uMouseK.value) * 0.08;
-      U.uMouse.value.set(mNdcX, mNdcY);
-      if (pulseT >= 0) { pulseT += dt * 0.95; if (pulseT > 1.3) pulseT = -1; }
+      U.uMouseK.value = damp(U.uMouseK.value, mouseTarget * (1 - dim * 0.7), 4, dt);
+      // Spring-smoothed cursor + its velocity (for the wake behind fast moves).
+      if (mSm.x > 5) { mSm.x = mNdcX; mSm.y = mNdcY; }
+      var px0 = mSm.x, py0 = mSm.y;
+      mSm.x = damp(mSm.x, mNdcX, 9, dt); mSm.y = damp(mSm.y, mNdcY, 9, dt);
+      var vx = (mSm.x - px0) / Math.max(dt, 1e-3), vy = (mSm.y - py0) / Math.max(dt, 1e-3);
+      var vl = Math.sqrt(vx * vx + vy * vy), vmax = 3;
+      if (vl > vmax) { vx *= vmax / vl; vy *= vmax / vl; }
+      U.uVel.value.set(damp(U.uVel.value.x, vx * (vw / vh), 6, dt), damp(U.uVel.value.y, vy, 6, dt));
+      U.uMouse.value.set(mSm.x, mSm.y);
+      if (pulseT >= 0) { pulseT += dt * 0.8; if (pulseT > 1.05) pulseT = -1; }
       U.uPulseT.value = pulseT;
 
-      cx += (tx - cx) * 0.055; cy += (ty - cy) * 0.055;
+      cx = damp(cx, tx, 3.2, dt); cy = damp(cy, ty, 3.2, dt);
       euler.set(cx + pC * 1.02, cy + spinAcc, pC * 0.12);
       qE.setFromEuler(euler);
       grp.quaternion.copy(qE).slerp(qI, pD);
@@ -409,12 +428,12 @@
         tS = s2 + (emS - s2) * pD;
         tX = nearX * (1 - f); tY = nearY * (1 - f) + visH * 0.12 * pD;
       }
-      gx += (tX - gx) * 0.08; gy += (tY - gy) * 0.08; gs += (tS - gs) * 0.08;
+      gx = damp(gx, tX, 4.5, dt); gy = damp(gy, tY, 4.5, dt); gs = damp(gs, tS, 4.5, dt);
       grp.position.set(gx, gy, 0);
       grp.scale.setScalar(gs);
 
       var tOpa = 1 - 0.06 * pB - 0.6 * dim - 0.15 * pC + 0.1 * pD;
-      opa += (tOpa - opa) * 0.06;
+      opa = damp(opa, tOpa, 3.5, dt);
       var o2 = Math.min(1, opa).toFixed(2);
       if (o2 !== lastO2) { lastO2 = o2; cv.style.opacity = o2; }
 
