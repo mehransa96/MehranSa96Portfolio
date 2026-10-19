@@ -105,13 +105,22 @@
     }
 
     if (finePointer && !reduced) {
+      // Read letter positions once per hover, then write at most once per frame (no layout thrash).
+      var boxes = null, px = 0, queued = false;
+      h.addEventListener('pointerenter', function () {
+        boxes = chars.map(function (s) { var r = s.getBoundingClientRect(); return [r.left + r.width / 2, r.width]; });
+      });
       h.addEventListener('pointermove', function (e) {
-        chars.forEach(function (s) {
-          var r = s.getBoundingClientRect();
-          var d = Math.abs(e.clientX - (r.left + r.width / 2)) / (r.width * 3.2);
-          var lift = Math.max(0, 1 - d);
-          s.style.setProperty('--lift', (lift * lift * -0.12).toFixed(3) + 'em');
-          s.style.setProperty('--glow', (lift * 0.9).toFixed(2));
+        px = e.clientX;
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(function () {
+          queued = false;
+          if (!boxes) return;
+          chars.forEach(function (s, i) {
+            var d = Math.abs(px - boxes[i][0]) / (boxes[i][1] * 3.2), lift = Math.max(0, 1 - d);
+            s.style.setProperty('--lift', (lift * lift * -0.12).toFixed(3) + 'em');
+          });
         });
       });
       h.addEventListener('pointerleave', function () {

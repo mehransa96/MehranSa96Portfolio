@@ -85,7 +85,7 @@
       cv.style.display = 'none';
       return null;
     }
-    var PR = Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 1.75);
+    var PR = Math.min(window.devicePixelRatio || 1, coarse ? 1.35 : 1.5);
     renderer.setPixelRatio(PR);
 
     var scene = new THREE.Scene();
@@ -96,7 +96,7 @@
     scene.add(grp);
 
     // ---------- Layouts ----------
-    var N = (coarse || small) ? 14000 : 32000;
+    var N = (coarse || small) ? 11000 : 22000;
     var A = new Float32Array(N * 3), B = new Float32Array(N * 3), C = new Float32Array(N * 3), D = new Float32Array(N * 3);
     var RND = new Float32Array(N * 4), COL = new Float32Array(N * 3);
     var R = mulberry(20260914);
@@ -172,7 +172,7 @@
     geo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 10);
 
     var U = {
-      uTime: { value: 0 }, uSize: { value: (small || coarse) ? 2.7 : 2.3 }, uPR: { value: PR },
+      uTime: { value: 0 }, uSize: { value: (small || coarse) ? 2.9 : 2.6 }, uPR: { value: PR },
       uMouse: { value: new THREE.Vector2(9, 9) }, uVel: { value: new THREE.Vector2() }, uMouseK: { value: 0 }, uAspect: { value: 1 },
       uPulseT: { value: -1 }, uPulseC: { value: new THREE.Vector2() }, uFlow: { value: 1 },
       uM: { value: new THREE.Vector3() }, uAccent: { value: new THREE.Vector3(accent.r, accent.g, accent.b) }, uInk: { value: new THREE.Vector3(ink.r, ink.g, ink.b) },
@@ -241,7 +241,7 @@
     var lines = new THREE.LineSegments(lgeo, new THREE.LineBasicMaterial(Object.assign({ vertexColors: true, transparent: true, depthWrite: false, depthTest: false }, GLOW)));
     lines.frustumCulled = false;
     cam.add(lines);
-    var cand = new Float32Array(SUB * 4), candN = 0, linkCount = 0;
+    var cand = new Float32Array(SUB * 4), candN = 0, linkCount = 0, ordBuf = new Int32Array(32);
     var vtmp = new THREE.Vector3(), ntmp = new THREE.Vector3(), ctmp = new THREE.Vector3();
 
     // Exact JS replica of the vertex shader for one particle; returns view-space position in vtmp.
@@ -277,10 +277,14 @@
       ctmp.set(mxs, mys, 0.5).unproject(cam).sub(cam.position).normalize();
       var tk = (grp.position.z - cam.position.z) / ctmp.z;
       ctmp.multiplyScalar(tk).add(cam.position).applyMatrix4(cam.matrixWorldInverse);
-      var order = [];
-      for (var q = 0; q < candN; q++) order.push(q);
-      order.sort(function (x, y) { return cand[x * 4 + 3] - cand[y * 4 + 3]; });
-      var TETH = Math.min(coarse ? 12 : 18, order.length);
+      var TETH = Math.min(coarse ? 12 : 18, candN), order = ordBuf, oc = 0;
+      for (var q = 0; q < candN; q++) {
+        var dq = cand[q * 4 + 3], pos = oc < TETH ? oc++ : TETH;
+        if (pos === TETH && dq >= cand[order[TETH - 1] * 4 + 3]) continue;
+        if (pos === TETH) pos = TETH - 1;
+        while (pos > 0 && cand[order[pos - 1] * 4 + 3] > dq) { order[pos] = order[pos - 1]; pos--; }
+        order[pos] = q;
+      }
       for (var tq = 0; tq < TETH && nl < MAXL; tq++) {
         var oq = order[tq] * 4, tl = Math.pow(1 - tq / TETH, 1.5) * (1 - cand[oq + 3] / CAND_R) * mk * 1.1, t6 = nl * 6;
         lpos[t6] = ctmp.x; lpos[t6 + 1] = ctmp.y; lpos[t6 + 2] = ctmp.z;
@@ -349,8 +353,7 @@
         spotQ = true;
         requestAnimationFrame(function () {
           spotQ = false;
-          opts.spot.style.setProperty('--sx', (mxn * 100).toFixed(1) + '%');
-          opts.spot.style.setProperty('--sy', (myn * 100).toFixed(1) + '%');
+          opts.spot.style.transform = 'translate3d(' + (mxn * vw).toFixed(0) + 'px,' + (myn * vh).toFixed(0) + 'px,0)';
         });
       }
     }
@@ -404,7 +407,7 @@
     // ---------- Loop ----------
     var visH = 2 * Math.tan((40 * Math.PI / 180) / 2) * 5.6;
     var gx = 0, gy = 0, gs = 1, opa = 1, lastO2, raf = 0, frame = 0;
-    var time = 0, lastT = 0, fps = 60, slowFor = 0, quality = 2;
+    var time = 0, lastT = 0, fps = 60, slowFor = 0, quality = 3;
     var boost = 0, boostT = 0, spinAcc = 0, pulseT = -1;
     var mS = new THREE.Vector3(), mSm = new THREE.Vector2(9, 9), energy = 0, lastScrollY = window.scrollY;
     var euler = new THREE.Euler(), qI = new THREE.Quaternion(), qE = new THREE.Quaternion();
@@ -492,16 +495,18 @@
 
       grp.updateMatrixWorld(true);
       cam.updateMatrixWorld();
-      updateLinks(time, vw / vh);
-      renderer.render(scene, cam);
+      if (frame % 2 === 0 || U.uMouseK.value < 0.03) updateLinks(time, vw / vh);
+      // While the field is faded behind reading sections, 30 fps is visually identical and halves the GPU load.
+      if (opa > 0.38 || frame % 2 === 0) renderer.render(scene, cam);
 
       // Adaptive quality: sustained low frame rate -> fewer particles, then pixel ratio 1.
-      if (frame > 90) {
-        slowFor = fps < 38 ? slowFor + dt : Math.max(0, slowFor - dt * 0.5);
-        if (slowFor > 1.6 && quality > 0) {
+      if (frame > 60) {
+        slowFor = fps < 45 ? slowFor + dt : Math.max(0, slowFor - dt * 0.5);
+        if (slowFor > 0.9 && quality > 0) {
           quality--; slowFor = 0;
-          if (quality === 1) geo.setDrawRange(0, Math.floor(N * 0.55));
-          else { renderer.setPixelRatio(1); U.uPR.value = 1; size(); geo.setDrawRange(0, Math.floor(N * 0.38)); }
+          if (quality === 2) { renderer.setPixelRatio(1); U.uPR.value = 1; }
+          else if (quality === 1) geo.setDrawRange(0, Math.floor(N * 0.6));
+          else geo.setDrawRange(0, Math.floor(N * 0.4));
         }
       }
 

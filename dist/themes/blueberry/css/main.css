@@ -1161,3 +1161,24 @@ html.is-locked .totop { opacity: 0; pointer-events: none; }
 
 /* Language switch crossfade */
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .35s; }
+
+/* ---------- Performance pass (smoothness) ---------- */
+/* Spotlight: a fixed-size glow moved by transform (compositor only) instead of repainting a full-screen gradient. */
+.bg-spot {
+  inset: auto; left: 0; top: 0; width: 1040px; height: 1040px; margin: -520px 0 0 -520px;
+  background: radial-gradient(closest-side, rgba(var(--accent-rgb), .055), transparent 100%);
+  transform: translate3d(50vw, 30vh, 0); will-change: transform;
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+}
+/* Header: a solid surface everywhere; a live blur over the animating canvas costs a full re-blur every frame. */
+.hdr { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(9, 13, 74, .92); }
+.hdr.is-compact { background: rgba(9, 13, 74, .96); }
+.arch__panel, .cta { -webkit-backdrop-filter: none; backdrop-filter: none; }
+.arch__panel { background: rgba(10, 15, 77, .92); }
+.cta { background: rgba(10, 15, 77, .9); }
+/* Grain stays as texture but no longer re-composites the whole screen every 200ms. */
+.grain { animation: none; inset: 0; }
+/* Name hover: transform + colour only (animated text-shadow blur is a repaint per frame). */
+.nm { text-shadow: none; transition: transform .45s var(--ease-out), color .3s ease; }
+.marquee__track { will-change: transform; }
+.bg-canvas { will-change: opacity; }
