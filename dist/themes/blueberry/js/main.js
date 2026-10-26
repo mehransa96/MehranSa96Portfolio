@@ -53,8 +53,8 @@
   ];
 
   var T = {
-    fa: { ctx: 'زمینه پروژه', ch: 'چالش‌های فنی', sol: 'رویکرد فنی', resp: 'نقش من', val: 'نتیجه', stack: 'استک', open: 'مشاهده مخزن', searchPh: 'جست‌وجو بین پروژه‌ها و بخش‌ها…', inLabel: 'ورودی', outLabel: 'خروجی', flowOn: 'توقف جریان', flowOff: 'پخش جریان', project: 'پروژه', section: 'بخش', empty: 'نتیجه‌ای پیدا نشد.', isNew: 'جدید', details: 'جزئیات پروژه', prev: 'قبلی', next: 'بعدی', noMatch: 'پروژه‌ای با این مشخصات پیدا نشد.', reset: 'پاک کردن فیلترها', searchPj: 'جست‌وجو در پروژه‌ها، فناوری‌ها…', title: 'مهران سبزعلی | مهندس ارشد نرم‌افزار — هوش مصنوعی، امنیت، IoT' },
-    en: { ctx: 'Context', ch: 'Technical challenges', sol: 'Approach', resp: 'My role', val: 'Outcome', stack: 'Stack', open: 'View repository', searchPh: 'Search projects and sections…', inLabel: 'Input', outLabel: 'Output', flowOn: 'Stop flow', flowOff: 'Play flow', project: 'PROJECT', section: 'SECTION', empty: 'No results.', isNew: 'NEW', details: 'Project details', prev: 'Previous', next: 'Next', noMatch: 'No project matches these filters.', reset: 'Clear filters', searchPj: 'Search projects, technologies…', title: 'Mehran Sabzali | Senior Software Engineer — AI, Security, IoT' }
+    fa: { ctx: 'زمینه پروژه', ch: 'چالش‌های فنی', sol: 'رویکرد فنی', resp: 'نقش من', val: 'نتیجه', stack: 'استک', open: 'مشاهده مخزن', searchPh: 'جست‌وجو بین پروژه‌ها و بخش‌ها…', inLabel: 'ورودی', outLabel: 'خروجی', flowOn: 'توقف جریان', flowOff: 'پخش جریان', project: 'پروژه', section: 'بخش', empty: 'نتیجه‌ای پیدا نشد.', isNew: 'جدید', details: 'جزئیات پروژه', more: 'جزئیات', close: 'بستن', prev: 'قبلی', next: 'بعدی', noMatch: 'پروژه‌ای با این مشخصات پیدا نشد.', reset: 'پاک کردن فیلترها', searchPj: 'جست‌وجو در پروژه‌ها، فناوری‌ها…', title: 'مهران سبزعلی | مهندس ارشد نرم‌افزار — هوش مصنوعی، امنیت، IoT' },
+    en: { ctx: 'Context', ch: 'Technical challenges', sol: 'Approach', resp: 'My role', val: 'Outcome', stack: 'Stack', open: 'View repository', searchPh: 'Search projects and sections…', inLabel: 'Input', outLabel: 'Output', flowOn: 'Stop flow', flowOff: 'Play flow', project: 'PROJECT', section: 'SECTION', empty: 'No results.', isNew: 'NEW', details: 'Project details', more: 'Details', close: 'Close', prev: 'Previous', next: 'Next', noMatch: 'No project matches these filters.', reset: 'Clear filters', searchPj: 'Search projects, technologies…', title: 'Mehran Sabzali | Senior Software Engineer — AI, Security, IoT' }
   };
 
   var CATS = {
@@ -67,10 +67,8 @@
     en: [['expertise', 'Domains of work'], ['projects', 'Selected work'], ['opensource', 'Code repositories'], ['certs', 'Certificates'], ['stack', 'Technical stack'], ['about', 'About'], ['architecture', 'Live architecture map']]
   };
 
-  var DEFAULT_PROJECT = 6; // RepBuilderAssis opens by default.
-
   var state = {
-    lang: 'fa', filter: 'all', pq: '', sel: DEFAULT_PROJECT, pjClosed: false,
+    lang: 'fa', filter: 'all', pq: '',
     archTab: 0, archLayer: 0, flow: false,
     palOpen: false, q: '', palIdx: 0
   };
@@ -115,101 +113,8 @@
     return out;
   }
 
-  // ---------- Project visuals ----------
-  // Seeded PRNG so every project gets the same signature drawing on every visit.
-  function rng(seed) {
-    var s = (seed * 2654435761) >>> 0 || 1;
-    return function () { s ^= s << 13; s >>>= 0; s ^= s >> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; };
-  }
-
-  // A unique constellation per project: an orbit of nodes, chords between them and a lit core.
-  function sigilSvg(p) {
-    var r = rng(p.id * 97 + 13), n = 6 + Math.floor(r() * 5), cx = 200, cy = 110, R = 78, pts = [], h = '';
-    for (var i = 0; i < n; i++) {
-      var a = (i / n) * Math.PI * 2 + r() * 0.5, rr = R * (0.72 + r() * 0.34);
-      pts.push([cx + Math.cos(a) * rr * 1.55, cy + Math.sin(a) * rr]);
-    }
-    h += '<ellipse cx="200" cy="110" rx="128" ry="84" class="v-ring"/><ellipse cx="200" cy="110" rx="70" ry="46" class="v-ring v-ring--in"/>';
-    for (i = 0; i < n; i++) {
-      var j = (i + 1 + Math.floor(r() * (n - 2))) % n;
-      h += '<line x1="' + pts[i][0].toFixed(1) + '" y1="' + pts[i][1].toFixed(1) + '" x2="' + pts[j][0].toFixed(1) + '" y2="' + pts[j][1].toFixed(1) + '" class="v-edge' + (i % 3 === 0 ? ' v-edge--hot' : '') + '"/>';
-      h += '<line x1="200" y1="110" x2="' + pts[i][0].toFixed(1) + '" y2="' + pts[i][1].toFixed(1) + '" class="v-spoke"/>';
-    }
-    pts.forEach(function (q, k) {
-      h += '<circle cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="' + (k % 3 === 0 ? 3.6 : 2.4) + '" class="v-node' + (k % 3 === 0 ? ' v-node--hot' : '') + '" style="--i:' + k + '"/>';
-    });
-    h += '<circle cx="200" cy="110" r="9" class="v-core"/><circle cx="200" cy="110" r="18" class="v-halo"/>';
-    return '<svg class="vis vis--sigil" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + h + '</svg>';
-  }
-
-  // GMTask: Jalali month grid on a phone, a checklist ticking itself off, and the desktop window behind.
-  function tasksSvg() {
-    var h = '<rect x="168" y="22" width="206" height="150" rx="6" class="v-win"/><rect x="168" y="22" width="206" height="16" rx="6" class="v-win-bar"/>';
-    h += '<circle cx="180" cy="30" r="2.4" class="v-dot"/><circle cx="189" cy="30" r="2.4" class="v-dot"/>';
-    for (var k = 0; k < 4; k++) {
-      var y = 56 + k * 26;
-      h += '<rect x="246" y="' + y + '" width="11" height="11" rx="2" class="v-box"/>';
-      h += '<path d="M248.5 ' + (y + 5.5) + ' l2.6 2.8 l4.6 -5.4" class="v-tick" style="--i:' + k + '"/>';
-      h += '<rect x="265" y="' + (y + 2) + '" width="' + (88 - k * 13) + '" height="3" rx="1.5" class="v-line"/>';
-      h += '<rect x="265" y="' + (y + 8) + '" width="' + (52 - k * 6) + '" height="2" rx="1" class="v-line v-line--dim"/>';
-    }
-    h += '<rect x="246" y="158" width="108" height="3" rx="1.5" class="v-track"/><rect x="246" y="158" width="108" height="3" rx="1.5" class="v-fill"/>';
-    h += '<rect x="40" y="30" width="112" height="178" rx="14" class="v-phone"/><rect x="72" y="36" width="48" height="5" rx="2.5" class="v-notch"/>';
-    h += '<rect x="52" y="52" width="58" height="5" rx="2.5" class="v-line"/><rect x="52" y="61" width="34" height="3" rx="1.5" class="v-line v-line--dim"/>';
-    for (var d = 0; d < 35; d++) {
-      var c = d % 7, row = Math.floor(d / 7), x = 52 + c * 12.4, yy = 76 + row * 13;
-      var cls = d === 17 ? 'v-day v-day--today' : (d === 6 || d === 13 || d === 20 || d === 27 || d === 34) ? 'v-day v-day--off' : ([3, 9, 15, 22, 24, 30].indexOf(d) >= 0 ? 'v-day v-day--busy' : 'v-day');
-      h += '<rect x="' + x.toFixed(1) + '" y="' + yy + '" width="9" height="9" rx="2" class="' + cls + '"/>';
-    }
-    h += '<circle cx="' + (52 + 3 * 12.4 + 4.5).toFixed(1) + '" cy="' + (76 + 2 * 13 + 4.5) + '" r="9" class="v-pulse"/>';
-    h += '<rect x="52" y="148" width="88" height="22" rx="5" class="v-chip"/><rect x="59" y="157" width="40" height="3" rx="1.5" class="v-line"/>';
-    h += '<rect x="52" y="176" width="88" height="22" rx="5" class="v-chip v-chip--dim"/>';
-    return '<svg class="vis vis--tasks" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + h + '</svg>';
-  }
-
-  // Kavosh: a schema graph with the shortest JOIN path lighting up between two tables.
-  function graphSvg() {
-    var N = [[46, 62, 'FIN3.Voucher'], [118, 34], [172, 92, ''], [96, 132], [40, 176], [236, 46], [250, 150, ''], [310, 98], [356, 44], [362, 172, 'GNR.Party'], [180, 188], [292, 196]];
-    var E = [[0, 1], [0, 3], [1, 2], [2, 3], [3, 4], [1, 5], [2, 6], [5, 7], [6, 7], [7, 8], [7, 9], [6, 10], [10, 4], [6, 11], [11, 9], [5, 8]];
-    var P = [[0, 3], [3, 2], [2, 6], [6, 7], [7, 9]];
-    var h = '';
-    E.forEach(function (e) { h += '<line x1="' + N[e[0]][0] + '" y1="' + N[e[0]][1] + '" x2="' + N[e[1]][0] + '" y2="' + N[e[1]][1] + '" class="v-edge"/>'; });
-    var d = 'M' + N[P[0][0]][0] + ' ' + N[P[0][0]][1];
-    P.forEach(function (e) { d += ' L' + N[e[1]][0] + ' ' + N[e[1]][1]; });
-    h += '<path d="' + d + '" class="v-path"/><path d="' + d + '" class="v-path-flow"/>';
-    N.forEach(function (n, i) {
-      var onPath = [0, 3, 2, 6, 7, 9].indexOf(i) >= 0, end = i === 0 || i === 9;
-      h += '<rect x="' + (n[0] - (end ? 8 : 5)) + '" y="' + (n[1] - (end ? 8 : 5)) + '" width="' + (end ? 16 : 10) + '" height="' + (end ? 16 : 10) + '" rx="' + (end ? 4 : 2.5) + '" class="v-table' + (onPath ? ' v-table--on' : '') + (end ? ' v-table--end' : '') + '" style="--i:' + i + '"/>';
-      if (n[2]) h += '<text x="' + n[0] + '" y="' + (n[1] + (n[1] > 150 ? -16 : 24)) + '" class="v-label" text-anchor="middle">' + n[2] + '</text>';
-    });
-    h += '<text x="200" y="18" class="v-label v-label--k" text-anchor="middle">JOIN PATH · 5 HOPS</text>';
-    return '<svg class="vis vis--graph" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + h + '</svg>';
-  }
-
-  // RepBuilderAssis: question → retrieval → plan → validated T-SQL → RDL, with a packet travelling the line.
-  var svgUid = 0;
-  function pipelineSvg() {
-    var rid = 'pipe-route-' + (++svgUid);
-    var S = [['PROMPT', 52, 70], ['RETRIEVE', 128, 150], ['PLAN', 200, 70], ['VALIDATE', 272, 150], ['RDL', 348, 70]];
-    var d = 'M' + S.map(function (s) { return s[1] + ' ' + s[2]; }).join(' L');
-    var h = '<path id="' + rid + '" d="' + d + '" class="v-path"/><path d="' + d + '" class="v-path-flow"/>';
-    S.forEach(function (s, i) {
-      h += '<rect x="' + (s[1] - 32) + '" y="' + (s[2] - 15) + '" width="64" height="30" rx="5" class="v-stage' + (i === 3 ? ' v-stage--check' : '') + '" style="--i:' + i + '"/>';
-      h += '<text x="' + s[1] + '" y="' + (s[2] + 3.5) + '" class="v-label v-label--stage" text-anchor="middle">' + s[0] + '</text>';
-      h += '<text x="' + s[1] + '" y="' + (s[2] + (s[2] < 100 ? -24 : 32)) + '" class="v-label" text-anchor="middle">0' + (i + 1) + '</text>';
-    });
-    h += '<path d="M262 151 l6 6 l12 -13" class="v-tick v-tick--big"/>';
-    h += '<circle r="5" class="v-packet"><animateMotion dur="4.6s" repeatCount="indefinite" rotate="auto"><mpath href="#' + rid + '"/></animateMotion></circle>';
-    h += '<text x="200" y="208" class="v-label v-label--k" text-anchor="middle">SELECT … FROM … JOIN … ✓</text>';
-    return '<svg class="vis vis--pipeline" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + h + '</svg>';
-  }
-
-  function visualFor(p) {
-    if (p.visual === 'tasks') return tasksSvg();
-    if (p.visual === 'graph') return graphSvg();
-    if (p.visual === 'pipeline') return pipelineSvg();
-    return sigilSvg(p);
-  }
+  // ---------- Project visuals (site/js/visuals.js) ----------
+  function visualFor(p) { return window.GMVisuals ? window.GMVisuals.forProject(p) : ''; }
 
   // ---------- Featured showcase ----------
   function renderFeatured() {
@@ -240,22 +145,11 @@
     observeReveal($('pjFeat').querySelectorAll('.fcard'));
   }
 
-  function openProject(id) {
-    state.sel = id; state.filter = 'all'; state.pq = ''; state.pjClosed = false;
-    $('pjSearch').value = '';
-    renderProjects({ force: true });
-    if (isMobile()) { revealRow(id); return; }
-    var grid = document.querySelector('.pj-grid');
-    window.scrollTo({ top: Math.max(0, grid.getBoundingClientRect().top + window.scrollY - 84), behavior: mqReduced.matches ? 'auto' : 'smooth' });
-    var row = document.querySelector('[data-pj="' + id + '"]');
-    if (row) row.scrollIntoView({ block: 'nearest' });
-  }
-
   function initFeatured() {
     var box = $('pjFeat');
     box.addEventListener('click', function (e) {
       var card = e.target.closest('[data-feat]');
-      if (card) openProject(Number(card.getAttribute('data-feat')));
+      if (card) openProject(Number(card.getAttribute('data-feat')), card.querySelector('.fcard__go'));
     });
     // Mobile carousel: keep the dots in step with the swipe position.
     var q = false;
@@ -279,23 +173,25 @@
     });
   }
 
-  // ---------- Projects ----------
-  function effectiveSel(vis) {
-    for (var i = 0; i < vis.length; i++) if (vis[i].id === state.sel) return state.sel;
-    return vis[0] ? vis[0].id : null;
-  }
+  // ---------- Projects: overview cards ----------
+  function arrow() { return state.lang === 'en' ? '→' : '←'; }
 
-  function rowHtml(p, i, on, mobile) {
-    var mark = mobile ? (on ? '−' : '+') : (on ? '•' : '');
-    return '<button type="button" class="pj-row' + (on ? ' is-on' : '') + '" data-pj="' + p.id + '"' +
-      (mobile ? ' aria-expanded="' + on + '" aria-controls="pjDet"' : ' aria-current="' + (on ? 'true' : 'false') + '"') + '>' +
-      '<span class="pj-row__num">' + pad(i + 1) + '</span>' +
-      '<span class="pj-row__txt"><span class="pj-row__title">' + esc(p.title) +
-      (p.isNew ? ' <span class="tag-new tag-new--sm">' + esc(t().isNew) + '</span>' : '') + '</span>' +
-      '<span class="pj-row__en" dir="ltr">' + esc(p.en) + '</span></span>' +
-      '<span class="pj-row__end"><span class="pj-row__tag">' + esc(p.tag) + '</span>' +
-      '<span class="pj-row__mark" aria-hidden="true">' + mark + '</span></span>' +
-      '</button>';
+  function cardHtml(p, i) {
+    var tx = t(), chips = (p.platforms && p.platforms.length ? p.platforms : (p.stack || [])).slice(0, 3)
+      .map(function (s) { return '<span class="chip">' + esc(s) + '</span>'; }).join('');
+    return '<article class="pcard" data-pj="' + p.id + '" style="--d:' + Math.min(i, 8) * 45 + 'ms">' +
+      '<div class="pcard__vis">' + visualFor(p) +
+      '<span class="pcard__num" dir="ltr">' + pad(i + 1) + '</span>' +
+      (p.isNew ? '<span class="tag-new pcard__new">' + esc(tx.isNew) + '</span>' : '') + '</div>' +
+      '<div class="pcard__body">' +
+      '<div class="pcard__meta"><span class="pcard__tag" dir="ltr">' + esc(p.tag || '') + '</span>' +
+      (p.year ? '<span class="pcard__year" dir="ltr">' + esc(p.year) + '</span>' : '') + '</div>' +
+      '<h3 class="pcard__title">' + esc(p.title) + '</h3>' +
+      '<p class="pcard__sum">' + esc(p.sum || '') + '</p>' +
+      '<div class="pcard__foot"><div class="chips pcard__chips" dir="ltr">' + chips + '</div>' +
+      '<button type="button" class="pcard__go" data-open="' + p.id + '" aria-haspopup="dialog">' +
+      '<span>' + esc(tx.more) + '</span><i aria-hidden="true">' + arrow() + '</i></button></div>' +
+      '</div></article>';
   }
 
   function bullets(items, cls) {
@@ -305,14 +201,13 @@
   function label(txt) { return '<div class="det__label"><span>' + esc(txt) + '</span></div>'; }
 
   function detailHtml(p, idx, total) {
-    var tx = t(), en = state.lang === 'en', h = '';
+    var tx = t(), h = '';
     h += '<div class="det__band">' + visualFor(p) +
-      '<div class="det__band-top"><span class="det__num">' + (idx >= 0 ? pad(idx + 1) : '--') + ' / ' + pad(total) + '</span>' +
-      '<span class="det__badges">' + (p.isNew ? '<span class="tag-new">' + esc(tx.isNew) + '</span>' : '') +
+      '<div class="det__band-top"><span class="det__badges">' + (p.isNew ? '<span class="tag-new">' + esc(tx.isNew) + '</span>' : '') +
       (p.badge ? '<span>' + esc(p.badge) + '</span>' : '') + '<span dir="ltr">' + esc(p.tag || '') + '</span></span></div>' +
-      '<span class="det__glyph" dir="ltr" aria-hidden="true">' + pad(p.id) + '</span></div>';
+      '<span class="det__glyph" dir="ltr" aria-hidden="true">' + pad(idx + 1) + '</span></div>';
     h += '<div class="det">';
-    h += '<h3>' + esc(p.title) + '</h3>';
+    h += '<h3 id="sheetTitle">' + esc(p.title) + '</h3>';
     h += '<div class="det__en" dir="ltr">' + esc(p.en) + '</div>';
     if ((p.platforms && p.platforms.length) || p.year) {
       h += '<div class="det__plat" dir="ltr">' + (p.platforms || []).map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') +
@@ -329,23 +224,12 @@
     if (p.val) h += '<div class="det__val"><div class="det__val-k">' + esc(tx.val) + '</div><div class="det__val-v">' + esc(p.val) + '</div></div>';
     h += label(tx.stack) + '<div class="det__stack" dir="ltr">' + (p.stack || []).map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') + '</div>';
     if (p.link) h += '<a class="det__link" href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(tx.open) + ' <span aria-hidden="true">↗</span></a>';
-    if (total > 1) {
-      h += '<div class="det__nav">' +
-        '<button type="button" data-step="-1"><span aria-hidden="true">' + (en ? '←' : '→') + '</span> ' + esc(tx.prev) + '</button>' +
-        '<span class="det__nav-k" dir="ltr">' + pad(idx + 1) + ' / ' + pad(total) + '</span>' +
-        '<button type="button" data-step="1">' + esc(tx.next) + ' <span aria-hidden="true">' + (en ? '→' : '←') + '</span></button></div>';
-    }
     h += '</div>';
     return h;
   }
 
-  var lastDetKey = '';
-  function renderProjects(opts) {
-    opts = opts || {};
+  function renderProjects() {
     var tx = t(), en = state.lang === 'en', all = list(), vis = visible();
-    var mobile = isMobile(), closed = mobile && state.pjClosed;
-    var effId = effectiveSel(vis);
-
     $('pjCount').textContent = pad(vis.length) + (en ? ' / ' + pad(all.length) + ' PROJECTS' : ' / ' + pad(all.length));
 
     var q = (state.pq || '').trim().toLowerCase();
@@ -355,79 +239,158 @@
         esc(c[1]) + '<span class="pill__n" dir="ltr">' + n + '</span></button>';
     }).join('');
 
-    var rows = vis.map(function (p, i) { return rowHtml(p, i, p.id === effId && !closed, mobile); });
-    var openIdx = -1;
-    for (var i = 0; i < vis.length; i++) if (vis[i].id === effId) openIdx = i;
-    var splitAt = (!mobile || closed || openIdx < 0) ? rows.length : openIdx + 1;
-    var focusedId = document.activeElement && document.activeElement.getAttribute && document.activeElement.getAttribute('data-pj');
-    $('pjListA').innerHTML = rows.length ? rows.slice(0, splitAt).join('') :
+    var box = $('pjCards');
+    box.innerHTML = vis.length ? vis.map(cardHtml).join('') :
       '<div class="pj-empty"><b>' + esc(tx.noMatch) + '</b><button type="button" data-reset>' + esc(tx.reset) + '</button></div>';
-    $('pjListB').innerHTML = rows.slice(splitAt).join('');
-    if (focusedId) {
-      var keep = document.querySelector('[data-pj="' + (opts.focusId || focusedId) + '"]');
-      if (keep) keep.focus({ preventScroll: true });
-    }
+    var cards = box.querySelectorAll('.pcard');
+    initTilt(cards);
+    watchCards(cards);
+    if (sheet.open) renderSheet(false);
+  }
 
-    var det = $('pjDet');
-    var sel = null, selIdx = openIdx;
-    if (openIdx >= 0) sel = softenRep(vis[openIdx]);
-    if (!sel || closed) {
-      det.hidden = true;
-      det.innerHTML = '';
-      lastDetKey = '';
-      return;
-    }
-    det.hidden = false;
-    var key = sel.id + '|' + state.filter + '|' + state.lang + '|' + vis.length;
-    if (key !== lastDetKey || opts.force) {
-      det.innerHTML = detailHtml(sel, selIdx, vis.length);
-      det.scrollTop = 0;
-      if (lastDetKey && det.animate && !mqReduced.matches) {
-        det.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 420, easing: 'cubic-bezier(.16,.86,.2,1)' });
-      }
-      lastDetKey = key;
+  // Card illustrations animate only while they matter: on hover (mouse) or while a card
+  // sits in the middle band of the screen (touch), so 25 drawings never run at once.
+  var cardIO = null;
+  function watchCards(cards) {
+    if (cardIO) cardIO.disconnect();
+    if (!('IntersectionObserver' in window)) return;
+    cardIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        en.target.classList.toggle('is-live', en.isIntersecting);
+        if (en.isIntersecting && !en.target.classList.contains('is-seen')) en.target.classList.add('is-seen');
+      });
+    }, { rootMargin: hoverCapable() ? '0px' : '-38% 0px -38% 0px', threshold: 0 });
+    Array.prototype.forEach.call(cards, function (c) { cardIO.observe(c); });
+  }
+  function hoverCapable() { return window.matchMedia('(hover: hover) and (pointer: fine)').matches; }
+
+  // ---------- Project details sheet (bottom sheet on phones, centred panel on desktop) ----------
+  var sheet = { open: false, id: null, ret: null, pushed: false, closing: 0 };
+
+  function sheetList() {
+    var vis = visible();
+    for (var i = 0; i < vis.length; i++) if (vis[i].id === sheet.id) return vis;
+    return list();
+  }
+
+  function renderSheet(animate, dir) {
+    var L = sheetList(), idx = 0;
+    for (var i = 0; i < L.length; i++) if (L[i].id === sheet.id) idx = i;
+    var p = softenRep(L[idx]);
+    if (!p) return;
+    var body = $('pjDet');
+    body.innerHTML = detailHtml(p, idx, L.length);
+    body.scrollTop = 0;
+    $('sheetCount').textContent = pad(idx + 1) + ' / ' + pad(L.length);
+    var prev = L[(idx - 1 + L.length) % L.length], next = L[(idx + 1) % L.length], tx = t();
+    $('sheetPrev').innerHTML = '<i aria-hidden="true">' + (state.lang === 'en' ? '←' : '→') + '</i><span><small>' + esc(tx.prev) + '</small><b>' + esc(prev.title) + '</b></span>';
+    $('sheetNext').innerHTML = '<span><small>' + esc(tx.next) + '</small><b>' + esc(next.title) + '</b></span><i aria-hidden="true">' + arrow() + '</i>';
+    $('sheetPrev').hidden = $('sheetNext').hidden = L.length < 2;
+    $('sheetClose').setAttribute('aria-label', tx.close);
+    if (animate && body.animate && !mqReduced.matches) {
+      var dx = (dir || 0) * (state.lang === 'en' ? 1 : -1) * 28;
+      body.animate([{ opacity: 0, transform: 'translateX(' + dx + 'px)' }, { opacity: 1, transform: 'none' }], { duration: 380, easing: 'cubic-bezier(.16,.86,.2,1)' });
     }
   }
 
-  function revealRow(id) {
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        var el = document.querySelector('[data-pj="' + id + '"]');
-        if (el) window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + window.scrollY - 76), behavior: mqReduced.matches ? 'auto' : 'smooth' });
-      });
+  function lockScroll(on) {
+    var w = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingInlineEnd = on && w > 0 ? w + 'px' : '';
+    root.classList.toggle('is-locked', on);
+  }
+
+  function openSheet(id, opts) {
+    opts = opts || {};
+    var el = $('pjSheet');
+    clearTimeout(sheet.closing);
+    sheet.id = id;
+    if (!sheet.open) {
+      sheet.ret = opts.ret || document.activeElement;
+      sheet.open = true;
+      closeMenu();
+      el.hidden = false;
+      el.removeAttribute('inert');
+      lockScroll(true);
+      $('sheetPanel').style.removeProperty('--sy');
+      requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add('is-open'); }); });
+      if (!opts.fromHistory) {
+        try { history.pushState({ pj: id }, '', '#project-' + id); sheet.pushed = true; } catch (e) { sheet.pushed = false; }
+      }
+      setTimeout(function () { $('sheetClose').focus({ preventScroll: true }); }, 60);
+    }
+    renderSheet(false);
+  }
+
+  function closeSheet(fromHistory) {
+    if (!sheet.open) return;
+    if (!fromHistory && sheet.pushed) { sheet.pushed = false; history.back(); return; }
+    sheet.open = false; sheet.pushed = false;
+    var el = $('pjSheet');
+    el.classList.remove('is-open');
+    el.setAttribute('inert', '');
+    lockScroll(false);
+    sheet.closing = setTimeout(function () { el.hidden = true; $('pjDet').innerHTML = ''; $('sheetPanel').style.removeProperty('--sy'); }, 460);
+    var back = sheet.ret && document.contains(sheet.ret) ? sheet.ret : document.querySelector('[data-pj="' + sheet.id + '"] .pcard__go');
+    if (back && back.focus) back.focus({ preventScroll: true });
+  }
+
+  function sheetStep(d) {
+    var L = sheetList(), idx = 0;
+    for (var i = 0; i < L.length; i++) if (L[i].id === sheet.id) idx = i;
+    sheet.id = L[(idx + d + L.length) % L.length].id;
+    try { if (sheet.pushed) history.replaceState({ pj: sheet.id }, '', '#project-' + sheet.id); } catch (e) { /* history unavailable */ }
+    renderSheet(true, d);
+  }
+
+  function initSheet() {
+    var el = $('pjSheet'), panel = $('sheetPanel'), body = $('pjDet');
+    el.addEventListener('click', function (e) { if (e.target.closest('[data-sheet-close]')) closeSheet(); });
+    $('sheetClose').addEventListener('click', function () { closeSheet(); });
+    $('sheetPrev').addEventListener('click', function () { sheetStep(-1); });
+    $('sheetNext').addEventListener('click', function () { sheetStep(1); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Tab') {
+        var f = panel.querySelectorAll('button:not([hidden]), a[href]'), first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+    window.addEventListener('popstate', function (e) {
+      var m = /^#project-(\d+)$/.exec(location.hash);
+      if (sheet.open && !m) closeSheet(true);
+      else if (m && e.state && e.state.pj) { sheet.pushed = true; openSheet(Number(m[1]), { fromHistory: true }); }
+    });
+
+    // Drag down to dismiss (phones): from the grab bar, or from the body when it is scrolled to the top.
+    var y0 = 0, dy = 0, t0 = 0, drag = false, armed = false;
+    panel.addEventListener('touchstart', function (e) {
+      if (!isMobile()) return;
+      armed = !!e.target.closest('.sheet__bar') || body.scrollTop <= 0;
+      drag = false; dy = 0; y0 = e.touches[0].clientY; t0 = performance.now();
+    }, { passive: true });
+    panel.addEventListener('touchmove', function (e) {
+      if (!armed) return;
+      var m = e.touches[0].clientY - y0;
+      if (!drag) {
+        if (m > 6 && (body.scrollTop <= 0 || e.target.closest('.sheet__bar'))) { drag = true; panel.classList.add('is-dragging'); }
+        else if (m < -6) { armed = false; return; }
+        else return;
+      }
+      dy = Math.max(0, m);
+      panel.style.setProperty('--sy', dy + 'px');
+      if (e.cancelable) e.preventDefault();
+    }, { passive: false });
+    panel.addEventListener('touchend', function () {
+      if (!drag) { armed = false; return; }
+      drag = armed = false;
+      panel.classList.remove('is-dragging');
+      var v = dy / Math.max(1, performance.now() - t0);
+      if (dy > panel.offsetHeight * 0.22 || (v > 0.6 && dy > 40)) closeSheet();
+      else panel.style.removeProperty('--sy');
     });
   }
 
-  function selectProject(id) {
-    var mobile = isMobile();
-    var vis = visible();
-    if (mobile && id === effectiveSel(vis)) {
-      state.pjClosed = !state.pjClosed;
-      renderProjects({ focusId: id });
-      revealRow(id);
-      return;
-    }
-    state.sel = id;
-    state.pjClosed = false;
-    renderProjects({ focusId: id });
-    if (mobile) revealRow(id);
-  }
-
-  function step(d, fromDetail) {
-    var vis = visible();
-    if (!vis.length) return;
-    var ae = document.activeElement, focused = !fromDetail && ae && ae.getAttribute && Number(ae.getAttribute('data-pj'));
-    var cur = focused || effectiveSel(vis), i = 0;
-    for (var n = 0; n < vis.length; n++) if (vis[n].id === cur) i = n;
-    var next = vis[(i + d + vis.length) % vis.length];
-    state.sel = next.id;
-    state.pjClosed = false;
-    renderProjects({ focusId: next.id });
-    var row = document.querySelector('[data-pj="' + next.id + '"]');
-    if (row && !fromDetail) row.focus({ preventScroll: true });
-    if (row && !isMobile()) row.scrollIntoView({ block: 'nearest' });
-    if (isMobile()) revealRow(next.id);
-  }
+  function openProject(id, ret) { openSheet(id, { ret: ret }); }
 
   function initProjects() {
     $('pjFilters').addEventListener('click', function (e) {
@@ -444,25 +407,20 @@
       var v = e.target.value;
       st = setTimeout(function () { state.pq = v; renderProjects(); }, 120);
     });
-    ['pjListA', 'pjListB'].forEach(function (id) {
-      $(id).addEventListener('click', function (e) {
-        if (e.target.closest('[data-reset]')) {
-          state.filter = 'all'; state.pq = ''; $('pjSearch').value = ''; renderProjects(); return;
-        }
-        var b = e.target.closest('[data-pj]');
-        if (b) selectProject(Number(b.getAttribute('data-pj')));
-      });
-    });
-    $('pjDet').addEventListener('click', function (e) {
-      var b = e.target.closest('[data-step]');
-      if (b) step(Number(b.getAttribute('data-step')), true);
+    $('pjCards').addEventListener('click', function (e) {
+      if (e.target.closest('[data-reset]')) {
+        state.filter = 'all'; state.pq = ''; $('pjSearch').value = ''; renderProjects(); return;
+      }
+      var c = e.target.closest('[data-pj]');
+      if (c) openProject(Number(c.getAttribute('data-pj')), c.querySelector('.pcard__go'));
     });
     initFeatured();
-    var wasMobile = isMobile();
-    var onBp = function () {
-      if (isMobile() !== wasMobile) { wasMobile = isMobile(); state.pjClosed = false; lastDetKey = ''; renderProjects(); }
-    };
-    if (mqMobile.addEventListener) mqMobile.addEventListener('change', onBp); else mqMobile.addListener(onBp);
+    initSheet();
+    var m = /^#project-(\d+)$/.exec(location.hash);
+    if (m && list().some(function (p) { return p.id === Number(m[1]); })) {
+      try { history.replaceState(null, '', location.pathname + location.search + '#projects'); } catch (e) { /* history unavailable */ }
+      setTimeout(function () { openProject(Number(m[1])); }, 300);
+    }
   }
 
   // ---------- Scroll reveal ----------
@@ -587,7 +545,7 @@
     list().forEach(function (p) {
       var hay = (p.title + ' ' + p.en + ' ' + (p.stack || []).join(' ') + ' ' + (p.cat || '')).toLowerCase();
       if (!q || hay.indexOf(q) >= 0) out.push({ kind: tx.project, label: p.title, run: function () {
-        closePal(); state.sel = p.id; state.filter = 'all'; state.pjClosed = false; renderProjects(); jump('projects');
+        closePal(); openProject(p.id);
       } });
     });
     return out.slice(0, 40);
@@ -757,16 +715,18 @@
     window.addEventListener('keydown', function (e) {
       var k = (e.key || '').toLowerCase();
       if (k === 'k' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); if (state.palOpen) closePal(); else openPal(); return; }
-      if (k === 'escape') { if (state.palOpen) { closePal(); return; } closeMenu(); return; }
+      if (k === 'escape') { if (state.palOpen) { closePal(); return; } if (sheet.open) { closeSheet(); return; } closeMenu(); return; }
       if (state.palOpen) {
         if (k === 'tab') { e.preventDefault(); $('palInput').focus(); }
         return;
       }
-      // Arrow / j / k step through projects while focus is inside the project list.
-      var ae = document.activeElement;
-      if (!ae || !ae.closest || !ae.closest('#pjListA, #pjListB')) return;
-      if (k === 'arrowdown' || k === 'j') { e.preventDefault(); step(1); }
-      if (k === 'arrowup' || k === 'k') { e.preventDefault(); step(-1); }
+      // Arrow keys page through projects while the details sheet is open (mirrored in RTL).
+      if (sheet.open && (k === 'arrowleft' || k === 'arrowright')) {
+        var ae = document.activeElement;
+        if (ae && /^(INPUT|TEXTAREA)$/.test(ae.tagName)) return;
+        e.preventDefault();
+        sheetStep((k === 'arrowright') === (state.lang === 'en') ? 1 : -1);
+      }
     });
   }
 
@@ -814,7 +774,6 @@
     document.title = t().title;
     $('palInput').placeholder = t().searchPh;
     $('pjSearch').placeholder = t().searchPj;
-    lastDetKey = '';
     renderFeatured();
     renderProjects();
     renderArch();

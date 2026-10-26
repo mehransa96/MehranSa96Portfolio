@@ -79,7 +79,7 @@ function transform(text, pal) {
   return text;
 }
 
-const FILES = ['index.html', 'css/main.css', 'js/main.js', 'js/hero.js', 'js/core3d.js'];
+const FILES = ['index.html', 'css/main.css', 'js/main.js', 'js/hero.js', 'js/core3d.js', 'js/visuals.js'];
 
 for (const [key, theme] of Object.entries(THEMES)) {
   const pal = makePalette(theme);

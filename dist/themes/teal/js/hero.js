@@ -120,11 +120,12 @@
           chars.forEach(function (s, i) {
             var d = Math.abs(px - boxes[i][0]) / (boxes[i][1] * 3.2), lift = Math.max(0, 1 - d);
             s.style.setProperty('--lift', (lift * lift * -0.12).toFixed(3) + 'em');
+            s.style.setProperty('--wt', String(Math.round(lift * lift * 100)));
           });
         });
       });
       h.addEventListener('pointerleave', function () {
-        chars.forEach(function (s) { s.style.setProperty('--lift', '0em'); s.style.setProperty('--glow', '0'); });
+        chars.forEach(function (s) { s.style.setProperty('--lift', '0em'); s.style.setProperty('--glow', '0'); s.style.setProperty('--wt', '0'); });
       });
       chars.forEach(function (s) { s.addEventListener('pointerenter', function () { scramble(s, 260); }); });
     }
