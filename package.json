@@ -2,10 +2,9 @@
   "name": "gmtec-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Mehran Sabzali (GMTec) portfolio \u2014 static site, single-file standalone build and two themed variants",
+  "description": "Mehran Sabzali (GMTec) portfolio \u2014 static site and single-file standalone build",
   "scripts": {
-    "build": "node scripts/build-standalone.mjs && node scripts/build-themes.mjs",
-    "build:themes": "node scripts/build-themes.mjs",
+    "build": "node scripts/build-standalone.mjs",
     "serve": "http-server site -p 8080 -c-1"
   }
 }
