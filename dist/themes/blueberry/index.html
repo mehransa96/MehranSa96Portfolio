@@ -325,40 +325,72 @@
   <section class="sec sec--md wrap" id="about">
     <div class="sub-head">
       <h2><span data-l="fa">درباره من</span><span data-l="en">About</span></h2>
-      <span class="sub-head__meta">MEHRAN SABZALI</span>
+      <span class="sub-head__meta">MEHRAN SABZALI · PROFILE</span>
     </div>
-    <div class="about">
-      <div>
-        <div class="about__frame">
-          <img src="assets/portrait.webp" alt="مهران سبزعلی" loading="lazy" decoding="async">
+    <div class="ab">
+      <figure class="ab__portrait">
+        <div class="ab__frame">
+          <div class="ab__img">
+            <img src="assets/portrait.webp" alt="مهران سبزعلی" width="484" height="484" loading="lazy" decoding="async">
+            <span class="ab__scan" aria-hidden="true"></span>
+          </div>
+          <span class="ab__c ab__c--tl" aria-hidden="true"></span><span class="ab__c ab__c--tr" aria-hidden="true"></span>
+          <span class="ab__c ab__c--bl" aria-hidden="true"></span><span class="ab__c ab__c--br" aria-hidden="true"></span>
+          <span class="ab__badge" dir="ltr"><i aria-hidden="true"></i>CEH CERTIFIED</span>
         </div>
-        <div class="about__cap" dir="ltr"><span>TEHRAN, IR</span><span>CEH CERTIFIED</span></div>
-      </div>
-      <div class="about__text">
-        <div data-l="fa">
+        <figcaption class="ab__cap" dir="ltr">
+          <span>TEHRAN, IR · 35.69°N</span>
+          <span class="ab__live"><i aria-hidden="true"></i>LOCAL <b data-clock>--:--:--</b></span>
+        </figcaption>
+      </figure>
+
+      <div class="ab__body">
+        <p class="ab__lead"><span data-l="fa">کد تمیز، معماری محکم، <em>امنیت از روز اول.</em></span><span data-l="en">Clean code, solid architecture, <em>security from day one.</em></span></p>
+        <div class="ab__bio" data-l="fa">
           <p>بیش از ۸ سال است که در سه حوزه موازی فعالیت می‌کنم: توسعه نرم‌افزار فول‌استک، امنیت سایبری، و معماری سیستم‌های هوش مصنوعی. مسیر حرفه‌ای‌ام از طراحی نرم‌افزارهای سازمانی آغاز شد و امروز شامل ساخت پایپ‌لاین‌های LLM، اجرای تست‌های نفوذ، و توسعه سیستم‌های IoT در مقیاس واقعی می‌شود.</p>
-          <p>رویکرد من ساده است: کد تمیز، معماری محکم، امنیت از روز اول. دارنده مدرک CEH هستم و با شرکت‌ها و استارتاپ‌ها در پروژه‌های تحول دیجیتال همکاری می‌کنم.</p>
+          <p>دارنده مدرک CEH هستم و با شرکت‌ها و استارتاپ‌ها در پروژه‌های تحول دیجیتال همکاری می‌کنم.</p>
         </div>
-        <div data-l="en">
+        <div class="ab__bio" data-l="en">
           <p>For more than eight years I have worked across three parallel fields: full-stack software development, cyber security, and AI system architecture. My path started with enterprise software design and today includes LLM pipelines, penetration testing, and IoT systems at real scale.</p>
-          <p>My approach is simple: clean code, solid architecture, security from day one. I hold the CEH certification and work with companies and startups on digital transformation projects.</p>
+          <p>I hold the CEH certification and work with companies and startups on digital transformation projects.</p>
         </div>
-        <div class="tiles tiles--values">
-          <div class="tile">
-            <div data-l="fa"><div class="tile__k">امنیت از روز اول</div><div class="tile__v">هر پروژه با تحلیل تهدیدات و طراحی امن آغاز می‌شود، نه پس از توسعه.</div></div>
-            <div data-l="en"><div class="tile__k">Security from day one</div><div class="tile__v">Every project starts with threat analysis and secure design, not after the build.</div></div>
+
+        <dl class="ab__stats">
+          <div><dt><b data-stat="8">8</b><sup>+</sup></dt><dd><span data-l="fa">سال تجربه</span><span data-l="en">Years in production</span></dd></div>
+          <div><dt><b data-stat="25">25</b></dt><dd><span data-l="fa">پروژه</span><span data-l="en">Projects</span></dd></div>
+          <div><dt><b data-stat="3">3</b></dt><dd><span data-l="fa">حوزه موازی</span><span data-l="en">Parallel fields</span></dd></div>
+          <div><dt><b>CEH</b></dt><dd><span data-l="fa">هکر قانونمند</span><span data-l="en">Ethical hacker</span></dd></div>
+        </dl>
+
+        <div class="ab__k"><span data-l="fa">مسیر حرفه‌ای</span><span data-l="en">The path</span></div>
+        <ol class="ab__path">
+          <li><span class="ab__node" dir="ltr">01</span><div><b><span data-l="fa">نرم‌افزار سازمانی</span><span data-l="en">Enterprise software</span></b><span data-l="fa">نقطه شروع: طراحی سامانه‌های بزرگ روی SQL Server</span><span data-l="en">Where it started: large systems on SQL Server</span></div></li>
+          <li><span class="ab__node" dir="ltr">02</span><div><b><span data-l="fa">امنیت سایبری</span><span data-l="en">Cyber security</span></b><span data-l="fa">تست نفوذ و طراحی امن؛ گواهی CEH</span><span data-l="en">Penetration testing and secure design; CEH</span></div></li>
+          <li><span class="ab__node" dir="ltr">03</span><div><b><span data-l="fa">IoT در مقیاس واقعی</span><span data-l="en">IoT at real scale</span></b><span data-l="fa">ESP32، MQTT و تونل‌های رمزنگاری‌شده</span><span data-l="en">ESP32, MQTT and encrypted tunnels</span></div></li>
+          <li class="is-now"><span class="ab__node" dir="ltr">04</span><div><b><span data-l="fa">معماری هوش مصنوعی</span><span data-l="en">AI architecture</span> <em class="ab__now" dir="ltr">NOW</em></b><span data-l="fa">پایپ‌لاین‌های LLM و دستیارهای هوشمند</span><span data-l="en">LLM pipelines and intelligent assistants</span></div></li>
+        </ol>
+
+        <div class="ab__k"><span data-l="fa">اصول کار</span><span data-l="en">Principles</span></div>
+        <div class="ab__values">
+          <div class="ab__val">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            <div data-l="fa"><b>امنیت از روز اول</b><span>هر پروژه با تحلیل تهدیدات و طراحی امن آغاز می‌شود، نه پس از توسعه.</span></div>
+            <div data-l="en"><b>Security from day one</b><span>Every project starts with threat analysis and secure design, not after the build.</span></div>
           </div>
-          <div class="tile">
-            <div data-l="fa"><div class="tile__k">ارزش واقعی</div><div class="tile__v">تنها راه‌حل‌هایی می‌سازم که مشکل واقعی کسب‌وکار را حل کنند.</div></div>
-            <div data-l="en"><div class="tile__k">Real value</div><div class="tile__v">I only build solutions that solve an actual business problem.</div></div>
+          <div class="ab__val">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></svg>
+            <div data-l="fa"><b>ارزش واقعی</b><span>تنها راه‌حل‌هایی می‌سازم که مشکل واقعی کسب‌وکار را حل کنند.</span></div>
+            <div data-l="en"><b>Real value</b><span>I only build solutions that solve an actual business problem.</span></div>
           </div>
-          <div class="tile">
-            <div data-l="fa"><div class="tile__k">شفافیت فنی</div><div class="tile__v">مستندسازی کامل و ارتباط شفاف در طول پروژه، بدون تعجب.</div></div>
-            <div data-l="en"><div class="tile__k">Technical transparency</div><div class="tile__v">Full documentation and clear communication throughout — no surprises.</div></div>
+          <div class="ab__val">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg>
+            <div data-l="fa"><b>شفافیت فنی</b><span>مستندسازی کامل و ارتباط شفاف در طول پروژه، بدون تعجب.</span></div>
+            <div data-l="en"><b>Technical transparency</b><span>Full documentation and clear communication throughout — no surprises.</span></div>
           </div>
-          <div class="tile">
-            <div data-l="fa"><div class="tile__k">یادگیری مداوم</div><div class="tile__v">در فضای AI و امنیت، توقف یعنی عقب‌ماندن.</div></div>
-            <div data-l="en"><div class="tile__k">Constant learning</div><div class="tile__v">In AI and security, standing still means falling behind.</div></div>
+          <div class="ab__val">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 4 4 7-8"/><path d="M15 8h5v5"/></svg>
+            <div data-l="fa"><b>یادگیری مداوم</b><span>در فضای AI و امنیت، توقف یعنی عقب‌ماندن.</span></div>
+            <div data-l="en"><b>Constant learning</b><span>In AI and security, standing still means falling behind.</span></div>
           </div>
         </div>
       </div>

@@ -443,10 +443,37 @@
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     // Stagger siblings inside the same group.
-    ['.exp-grid > .xcard', '#opensource .row', '#certs .tile', '#stack .row', '.tiles--values .tile'].forEach(function (sel) {
+    ['.exp-grid > .xcard', '#opensource .row', '#certs .tile', '#stack .row', '.ab__val', '.ab__path li', '.ab__stats > div'].forEach(function (sel) {
       Array.prototype.forEach.call(document.querySelectorAll(sel), function (el, i) { el.style.setProperty('--d', (i % 6) * 80 + 'ms'); });
     });
-    observeReveal(document.querySelectorAll('.sec-head, .sub-head, .xcard, .pj-label, .pj-bar, .pj-grid, #opensource .row, .tile, #stack .row, .about__frame, .about__text > div, .arch__intro, .arch__grid, .cta'));
+    observeReveal(document.querySelectorAll('.sec-head, .sub-head, .xcard, .pj-label, .pj-bar, .pj-grid, #opensource .row, .tile, #stack .row, .ab__portrait, .ab__lead, .ab__bio, .ab__stats > div, .ab__k, .ab__val, .arch__intro, .arch__grid, .cta'));
+  }
+
+  // ---------- About: portrait tilt, stats count-up, career path drawn on scroll ----------
+  function initAbout() {
+    var box = document.querySelector('.ab');
+    if (!box) return;
+    initTilt(box.querySelectorAll('.ab__frame'));
+    var run = function () {
+      box.classList.add('is-in');
+      if (mqReduced.matches) return;
+      Array.prototype.forEach.call(box.querySelectorAll('[data-stat]'), function (el, i) {
+        var to = Number(el.getAttribute('data-stat')), t0 = 0, dur = 1000 + i * 200;
+        el.textContent = '0';
+        (function f(ts) {
+          if (!t0) t0 = ts;
+          var k = Math.min(1, (ts - t0) / dur);
+          el.textContent = String(Math.round(to * (1 - Math.pow(1 - k, 3))));
+          if (k < 1) requestAnimationFrame(f);
+        })(performance.now());
+      });
+    };
+    if (!('IntersectionObserver' in window)) { run(); return; }
+    var io = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      io.disconnect(); run();
+    }, { threshold: 0.18 });
+    io.observe(box.querySelector('.ab__stats'));
   }
 
   // ---------- Stack ----------
@@ -799,6 +826,7 @@
     initHeader();
     initKeys();
     initTilt(document.querySelectorAll('.xcard'));
+    initAbout();
     initReveal();
     initClock();
     setLang(lang, false);
