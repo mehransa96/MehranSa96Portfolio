@@ -35,8 +35,8 @@
   <header class="hdr" id="hdr">
     <span class="hdr__progress" id="progress"></span>
     <div class="hdr__bar">
-      <button class="hbtn hbtn--icon hbtn--menu only-mobile" type="button" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="mmenu">
-        <span></span><span></span><span></span>
+      <button class="hbtn tg-btn hbtn--menu only-mobile" type="button" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="mmenu">
+        <span class="ham" aria-hidden="true"><i></i><i></i><i></i></span>
       </button>
       <a class="brand" href="#top" aria-label="GMTec">
         <img src="assets/logo.png" alt="GMTec" width="40" height="26">
@@ -50,15 +50,17 @@
       </nav>
 
       <div class="hdr__actions">
-        <button class="hbtn hbtn--search only-desk" type="button" data-open-pal title="Ctrl + K" aria-label="Search" dir="ltr">
-          <span>⌘K</span><i></i><span>SEARCH</span>
+        <button class="hbtn hbtn--search only-desk" type="button" data-open-pal title="Ctrl + K" aria-label="Search">
+          <svg class="ico ico--search" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6.2"></circle><path d="m15.6 15.6 4.4 4.4"></path></svg>
+          <span class="hbtn__ph"><span data-l="fa">جستجو</span><span data-l="en">Search</span></span>
+          <kbd dir="ltr">⌘K</kbd>
         </button>
-        <button class="hbtn hbtn--icon only-mobile" type="button" data-open-pal aria-label="Search">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="6.4"></circle><line x1="15.8" y1="15.8" x2="20.5" y2="20.5"></line></svg>
+        <button class="hbtn tg-btn only-mobile" type="button" data-open-pal aria-label="Search">
+          <svg class="ico ico--search" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="6.2"></circle><path d="m15.6 15.6 4.4 4.4"></path></svg>
         </button>
-        <button class="hbtn hbtn--lang" type="button" id="langBtn" aria-label="Language">EN</button>
-        <a class="hbtn hbtn--tg" href="https://t.me/Mehran_Sa96" target="_blank" rel="noopener" title="Telegram" aria-label="Telegram">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M21.86 4.3a1 1 0 0 0-1.35-1.05L2.9 10.1c-.94.37-.92 1.72.03 2.05l4.2 1.47 1.63 4.97c.24.72 1.17.9 1.66.32l2.2-2.6 4.06 2.98c.62.46 1.5.14 1.69-.61l3.49-14.38ZM9.1 13.38l8.07-5.1-6.4 5.96a1 1 0 0 0-.31.6l-.25 1.87-1.11-3.33Z"></path></svg>
+        <button class="hbtn tg-btn hbtn--lang" type="button" id="langBtn" aria-label="Language">EN</button>
+        <a class="hbtn tg-btn hbtn--tg" href="https://t.me/Mehran_Sa96" target="_blank" rel="noopener" title="Telegram" aria-label="Telegram">
+          <svg class="ico--plane" viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M21.86 4.3a1 1 0 0 0-1.35-1.05L2.9 10.1c-.94.37-.92 1.72.03 2.05l4.2 1.47 1.63 4.97c.24.72 1.17.9 1.66.32l2.2-2.6 4.06 2.98c.62.46 1.5.14 1.69-.61l3.49-14.38ZM9.1 13.38l8.07-5.1-6.4 5.96a1 1 0 0 0-.31.6l-.25 1.87-1.11-3.33Z"></path></svg>
         </a>
       </div>
     </div>
@@ -66,28 +68,100 @@
 
   <div class="drawer-scrim" id="scrim" aria-hidden="true"></div>
   <aside class="drawer" id="mmenu" aria-label="Menu" aria-hidden="true" inert>
-    <div class="drawer__top">
-      <a class="brand" href="#top" aria-label="GMTec">
-        <img src="assets/logo.png" alt="GMTec" width="40" height="26">
-        <span>GMTEC</span>
-      </a>
-      <button class="hbtn hbtn--icon drawer__close" type="button" id="drawerClose" aria-label="Close">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
-      </button>
-    </div>
-    <nav class="drawer__nav" aria-label="Mobile">
-      <a href="#expertise" style="--i:0"><span class="mono">01</span><span class="drawer__t"><span data-l="fa">تخصص‌ها</span><span data-l="en">Domains</span></span><span class="drawer__go" aria-hidden="true"></span></a>
-      <a href="#projects" style="--i:1"><span class="mono">02</span><span class="drawer__t"><span data-l="fa">پروژه‌ها</span><span data-l="en">Work</span></span><span class="drawer__go" aria-hidden="true"></span></a>
-      <a href="#about" style="--i:2"><span class="mono">03</span><span class="drawer__t"><span data-l="fa">درباره</span><span data-l="en">About</span></span><span class="drawer__go" aria-hidden="true"></span></a>
-    </nav>
-    <div class="drawer__foot" style="--i:3">
-      <div class="drawer__links">
-        <a href="https://t.me/Mehran_Sa96" target="_blank" rel="noopener"><span data-l="fa">تلگرام</span><span data-l="en">Telegram</span></a>
-        <a href="https://www.linkedin.com/in/mehran-sabzali" target="_blank" rel="noopener"><span data-l="fa">لینکدین</span><span data-l="en">LinkedIn</span></a>
-        <a href="https://github.com/mehransa96" target="_blank" rel="noopener"><span data-l="fa">گیت‌هاب</span><span data-l="en">GitHub</span></a>
-        <a href="mailto:mehran.sabzali96@gmail.com"><span data-l="fa">ایمیل</span><span data-l="en">Email</span></a>
+    <div class="dr-cover">
+      <div class="dr-cover__fx" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="dr-cover__bar">
+        <button class="tg-btn dr-back" type="button" id="drawerClose" aria-label="Close">
+          <span class="ham" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+        <span class="dr-cover__tag mono" dir="ltr">GMTEC</span>
       </div>
-      <div class="drawer__meta mono" dir="ltr">© GMTEC · MEHRAN SABZALI</div>
+      <div class="dr-me">
+        <span class="dr-ava" aria-hidden="true">
+          <img src="assets/portrait.webp" alt="" width="64" height="64" decoding="async">
+          <svg viewBox="0 0 72 72"><circle cx="36" cy="36" r="34" pathLength="1"></circle></svg>
+          <i class="dr-ava__dot"></i>
+        </span>
+        <div class="dr-me__txt">
+          <strong class="dr-name"><span data-l="fa" class="dr-split">مهران سبزعلی</span><span data-l="en" class="dr-split">Mehran Sabzali</span></strong>
+          <span class="dr-role"><span data-l="fa" class="dr-split">مهندس ارشد نرم‌افزار · CEH</span><span data-l="en" class="dr-split">Senior Software Engineer · CEH</span></span>
+          <span class="dr-handle mono" dir="ltr">@Mehran_Sa96</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="dr-list" aria-label="Mobile">
+      <a class="dr-row rpl" href="#expertise" data-sec="expertise" style="--i:0">
+        <svg class="dr-ico" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M12 3.5 3.5 8 12 12.5 20.5 8Z"></path><path pathLength="1" d="m3.5 12.2 8.5 4.5 8.5-4.5"></path><path pathLength="1" d="m3.5 16.2 8.5 4.5 8.5-4.5"></path></svg>
+        <span class="dr-row__t"><span data-l="fa">تخصص‌ها</span><span data-l="en">Domains</span></span>
+      </a>
+      <a class="dr-row rpl" href="#projects" data-sec="projects" style="--i:1">
+        <svg class="dr-ico" viewBox="0 0 24 24" aria-hidden="true"><rect pathLength="1" x="3" y="7" width="18" height="13" rx="2.5"></rect><path pathLength="1" d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"></path><path pathLength="1" d="M3 12.5h18"></path></svg>
+        <span class="dr-row__t"><span data-l="fa">پروژه‌ها</span><span data-l="en">Work</span></span>
+        <span class="dr-badge" data-badge="projects"></span>
+      </a>
+      <a class="dr-row rpl" href="#opensource" data-sec="opensource" style="--i:2">
+        <svg class="dr-ico" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="m8 8-4 4 4 4"></path><path pathLength="1" d="m16 8 4 4-4 4"></path><path pathLength="1" d="m13.5 5-3 14"></path></svg>
+        <span class="dr-row__t"><span data-l="fa">مخازن کد</span><span data-l="en">Repositories</span></span>
+        <span class="dr-badge dr-badge--soft" data-badge="#opensource .row"></span>
+      </a>
+      <a class="dr-row rpl" href="#certs" data-sec="certs" style="--i:3">
+        <svg class="dr-ico" viewBox="0 0 24 24" aria-hidden="true"><circle pathLength="1" cx="12" cy="9" r="5.5"></circle><path pathLength="1" d="m8.6 13.4-1.6 7.1 5-2.6 5 2.6-1.6-7.1"></path></svg>
+        <span class="dr-row__t"><span data-l="fa">گواهینامه‌ها</span><span data-l="en">Certificates</span></span>
+        <span class="dr-badge dr-badge--soft" data-badge="#certs .tile"></span>
+      </a>
+      <a class="dr-row rpl" href="#about" data-sec="about" style="--i:4">
+        <svg class="dr-ico" viewBox="0 0 24 24" aria-hidden="true"><circle pathLength="1" cx="12" cy="8" r="4"></circle><path pathLength="1" d="M4.5 20.5a7.5 7.5 0 0 1 15 0"></path></svg>
+        <span class="dr-row__t"><span data-l="fa">درباره من</span><span data-l="en">About me</span></span>
+      </a>
+      <a class="dr-row rpl" href="#architecture" data-sec="architecture" style="--i:5">
+        <svg class="dr-ico" viewBox="0 0 24 24" aria-hidden="true"><circle pathLength="1" cx="12" cy="5" r="2.3"></circle><circle pathLength="1" cx="5" cy="19" r="2.3"></circle><circle pathLength="1" cx="19" cy="19" r="2.3"></circle><path pathLength="1" d="M12 7.3v5.2L6.6 17.2M12 12.5l5.4 4.7"></path></svg>
+        <span class="dr-row__t"><span data-l="fa">نقشه معماری</span><span data-l="en">Architecture map</span></span>
+      </a>
+      <a class="dr-row rpl" href="#contact" data-sec="contact" style="--i:6">
+        <svg class="dr-ico" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M20 11.5a8 8 0 0 1-11.7 7.1L4 19.8l1.2-4A8 8 0 1 1 20 11.5Z"></path><path pathLength="1" d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"></path></svg>
+        <span class="dr-row__t"><span data-l="fa">همکاری با من</span><span data-l="en">Work with me</span></span>
+      </a>
+    </nav>
+
+    <div class="dr-sep" aria-hidden="true"></div>
+
+    <div class="dr-list dr-list--tools">
+      <button class="dr-row rpl" type="button" data-open-pal style="--i:7">
+        <svg class="dr-ico" viewBox="0 0 24 24" aria-hidden="true"><circle pathLength="1" cx="11" cy="11" r="6.2"></circle><path pathLength="1" d="m15.6 15.6 4.4 4.4"></path></svg>
+        <span class="dr-row__t"><span data-l="fa">جستجو در سایت</span><span data-l="en">Search the site</span></span>
+        <kbd class="dr-kbd" dir="ltr">⌘K</kbd>
+      </button>
+      <div class="dr-row dr-row--lang" style="--i:8">
+        <svg class="dr-ico" viewBox="0 0 24 24" aria-hidden="true"><circle pathLength="1" cx="12" cy="12" r="8.5"></circle><path pathLength="1" d="M3.5 12h17"></path><path pathLength="1" d="M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5c-2.4-2.4-3.6-5.2-3.6-8.5s1.2-6.1 3.6-8.5Z"></path></svg>
+        <span class="dr-row__t"><span data-l="fa">زبان</span><span data-l="en">Language</span></span>
+        <span class="dr-seg" role="group" aria-label="Language">
+          <button type="button" data-set-lang="fa" aria-pressed="true">فا</button>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </span>
+      </div>
+    </div>
+
+    <div class="dr-foot">
+      <div class="dr-social">
+        <a class="dr-soc dr-soc--tg" href="https://t.me/Mehran_Sa96" target="_blank" rel="noopener" style="--j:0" aria-label="Telegram">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.86 4.3a1 1 0 0 0-1.35-1.05L2.9 10.1c-.94.37-.92 1.72.03 2.05l4.2 1.47 1.63 4.97c.24.72 1.17.9 1.66.32l2.2-2.6 4.06 2.98c.62.46 1.5.14 1.69-.61l3.49-14.38ZM9.1 13.38l8.07-5.1-6.4 5.96a1 1 0 0 0-.31.6l-.25 1.87-1.11-3.33Z"></path></svg>
+          <span><span data-l="fa">تلگرام</span><span data-l="en">Telegram</span></span>
+        </a>
+        <a class="dr-soc" href="https://www.linkedin.com/in/mehran-sabzali" target="_blank" rel="noopener" style="--j:1" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"></rect><path d="M8.2 10.5v6M8.2 7.6v.01M12 16.5v-3.4a2.2 2.2 0 0 1 4.4 0v3.4M12 10.5v6"></path></svg>
+          <span><span data-l="fa">لینکدین</span><span data-l="en">LinkedIn</span></span>
+        </a>
+        <a class="dr-soc" href="https://github.com/mehransa96" target="_blank" rel="noopener" style="--j:2" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-3.1 19.1c.5.1.67-.21.67-.47v-1.7c-2.73.6-3.3-1.17-3.3-1.17-.45-1.13-1.1-1.43-1.1-1.43-.88-.6.07-.6.07-.6.98.07 1.5 1 1.5 1 .87 1.5 2.3 1.07 2.85.82.09-.64.34-1.07.62-1.31-2.18-.25-4.47-1.09-4.47-4.85 0-1.07.38-1.95 1-2.63-.1-.25-.43-1.25.1-2.6 0 0 .82-.26 2.69 1a9.3 9.3 0 0 1 4.9 0c1.87-1.26 2.69-1 2.69-1 .53 1.35.2 2.35.1 2.6.62.68 1 1.56 1 2.63 0 3.77-2.3 4.6-4.48 4.84.35.3.67.9.67 1.82v2.7c0 .26.18.57.68.47A9.8 9.8 0 0 0 12 2.2Z"></path></svg>
+          <span><span data-l="fa">گیت‌هاب</span><span data-l="en">GitHub</span></span>
+        </a>
+        <a class="dr-soc" href="mailto:mehran.sabzali96@gmail.com" style="--j:3" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"></rect><path d="m3.8 7 8.2 6 8.2-6"></path></svg>
+          <span><span data-l="fa">ایمیل</span><span data-l="en">Email</span></span>
+        </a>
+      </div>
+      <div class="dr-meta mono" dir="ltr">GMTEC PORTFOLIO · TEHRAN · <span data-clock>--:--:--</span></div>
     </div>
   </aside>
 

@@ -641,6 +641,8 @@
     var btn = $('menuBtn'), d = $('mmenu'), scrim = $('scrim');
     if (open === menuIsOpen()) return;
     btn.setAttribute('aria-expanded', String(open));
+    btn.classList.toggle('is-arrow', open);
+    if (open) markCurrentSection();
     d.classList.toggle('is-open', open);
     scrim.classList.toggle('is-open', open);
     d.setAttribute('aria-hidden', String(!open));
@@ -649,12 +651,66 @@
     root.classList.toggle('is-locked', open);
     if (open) {
       drawerReturn = document.activeElement;
-      setTimeout(function () { var f = d.querySelector('.drawer__nav a'); if (f) f.focus({ preventScroll: true }); }, 60);
+      setTimeout(function () { var f = d.querySelector('.dr-row.is-current') || d.querySelector('.dr-row'); if (f) f.focus({ preventScroll: true }); }, 60);
     } else if (drawerReturn && drawerReturn.focus) {
       drawerReturn.focus({ preventScroll: true });
     }
   }
   function closeMenu() { setDrawer(false); }
+  // Highlight the row of the section currently under the header (Telegram's selected folder).
+  function markCurrentSection() {
+    var cur = null;
+    Array.prototype.forEach.call(document.querySelectorAll('#mmenu [data-sec]'), function (a) {
+      var sec = $(a.getAttribute('data-sec'));
+      if (sec && sec.getBoundingClientRect().top <= window.innerHeight * 0.35) cur = a;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('#mmenu [data-sec]'), function (a) {
+      a.classList.toggle('is-current', a === cur);
+      if (a === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+    });
+  }
+
+  // ---------- Telegram-style icon feedback: ink ripple, per-icon tap animation, drawer text ----------
+  function initTgUi() {
+    document.addEventListener('pointerdown', function (e) {
+      var el = e.target.closest && e.target.closest('.tg-btn, .rpl');
+      if (!el || mqReduced.matches || e.button > 0) return;
+      var r = el.getBoundingClientRect(), size = Math.max(r.width, r.height) * 2.2;
+      var w = document.createElement('span');
+      w.className = 'rpl__w';
+      w.style.width = w.style.height = size + 'px';
+      w.style.left = (e.clientX - r.left - size / 2) + 'px';
+      w.style.top = (e.clientY - r.top - size / 2) + 'px';
+      el.appendChild(w);
+      setTimeout(function () { if (w.parentNode) w.parentNode.removeChild(w); }, 650);
+    }, { passive: true });
+    Array.prototype.forEach.call(document.querySelectorAll('.hdr .tg-btn:not(.hbtn--menu)'), function (b) {
+      b.addEventListener('click', function () {
+        b.classList.remove('is-tap'); void b.offsetWidth; b.classList.add('is-tap');
+        setTimeout(function () { b.classList.remove('is-tap'); }, 850);
+      });
+    });
+    // Split the drawer's name and role into words so they can rise in one by one.
+    Array.prototype.forEach.call(document.querySelectorAll('.dr-split'), function (el) {
+      var words = el.textContent.trim().split(/\s+/);
+      el.textContent = '';
+      words.forEach(function (wd, i) {
+        var s = document.createElement('span');
+        s.className = 'dr-w'; s.style.setProperty('--w', i); s.textContent = wd;
+        el.appendChild(s);
+        if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
+      });
+    });
+    // Counters on the drawer rows.
+    Array.prototype.forEach.call(document.querySelectorAll('[data-badge]'), function (b) {
+      var k = b.getAttribute('data-badge');
+      var n = k === 'projects' ? (data().FA || []).length : document.querySelectorAll(k).length;
+      b.textContent = n ? String(n) : '';
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-set-lang]'), function (b) {
+      b.addEventListener('click', function () { switchLang(b.getAttribute('data-set-lang')); });
+    });
+  }
   function initHeader() {
     var btn = $('menuBtn'), d = $('mmenu');
     btn.addEventListener('click', function () { setDrawer(!menuIsOpen()); });
@@ -797,6 +853,9 @@
     root.setAttribute('lang', en ? 'en' : 'fa');
     root.setAttribute('dir', en ? 'ltr' : 'rtl');
     $('langBtn').textContent = en ? 'FA' : 'EN';
+    Array.prototype.forEach.call(document.querySelectorAll('[data-set-lang]'), function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === state.lang));
+    });
     $('langBtn').setAttribute('aria-label', en ? 'فارسی' : 'English');
     document.title = t().title;
     $('palInput').placeholder = t().searchPh;
@@ -808,6 +867,13 @@
     if (core) core.refresh();
     window.dispatchEvent(new CustomEvent('gm:lang', { detail: state.lang }));
     if (persist) { try { localStorage.setItem('gm-lang', state.lang); } catch (e) { /* storage unavailable */ } }
+  }
+
+  function switchLang(next) {
+    if (next === state.lang) return;
+    // Crossfade the switch (direction flips RTL <-> LTR) where the browser supports view transitions.
+    if (document.startViewTransition && !mqReduced.matches) document.startViewTransition(function () { setLang(next, true); });
+    else setLang(next, true);
   }
 
   // ---------- Boot ----------
@@ -830,12 +896,8 @@
     initReveal();
     initClock();
     setLang(lang, false);
-    $('langBtn').addEventListener('click', function () {
-      var next = state.lang === 'en' ? 'fa' : 'en';
-      // Crossfade the switch (direction flips RTL <-> LTR) where the browser supports view transitions.
-      if (document.startViewTransition && !mqReduced.matches) document.startViewTransition(function () { setLang(next, true); });
-      else setLang(next, true);
-    });
+    initTgUi();
+    $('langBtn').addEventListener('click', function () { switchLang(state.lang === 'en' ? 'fa' : 'en'); });
 
     if (window.GMCore) {
       core = window.GMCore.init({
