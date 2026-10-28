@@ -1082,6 +1082,8 @@ html.is-locked .totop { opacity: 0; pointer-events: none; }
    Projects v3 — overview cards + details sheet
    ===================================================================== */
 .pj-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 18px); }
+/* A lone card on the last desktop row sits in the middle column rather than hanging at the edge. */
+@media (min-width: 1100px) { .pj-cards > .pcard:last-child:nth-child(3n+1) { grid-column: 2; } }
 @media (max-width: 1099.98px) { .pj-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .pj-cards > .pj-empty { grid-column: 1 / -1; border: 1px solid #181C1B; border-radius: 4px; }
 
@@ -1126,11 +1128,8 @@ html[lang="en"] .pcard__title { line-height: 1.4; letter-spacing: -0.01em; }
 }
 html[lang="en"] .pcard__sum { line-height: 1.7; }
 .pcard__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 8px; }
-.pcard__chips {
-  flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; overflow: hidden;
-  -webkit-mask-image: linear-gradient(to left, transparent, #000 28px); mask-image: linear-gradient(to left, transparent, #000 28px);
-}
-html[dir="rtl"] .pcard__chips { -webkit-mask-image: linear-gradient(to right, transparent, #000 28px); mask-image: linear-gradient(to right, transparent, #000 28px); }
+/* One row of whole chips: any chip that doesn't fit wraps onto a clipped second row instead of being cut mid-word. */
+.pcard__chips { flex: 1 1 auto; min-width: 0; flex-wrap: wrap; align-content: flex-start; height: 26px; overflow: hidden; }
 .pcard__chips .chip { flex: 0 0 auto; white-space: nowrap; }
 .pcard__go {
   flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 14px;

@@ -525,7 +525,7 @@
       h += '<button type="button" class="layer' + (on ? ' is-on' : '') + '" data-layer="' + i + '" aria-current="' + on + '">' +
         '<span class="layer__num">' + pad(i + 1) + '</span>' +
         '<span class="layer__txt"><span class="layer__title">' + esc(en ? l.en : l.fa) + '</span>' +
-        '<span class="layer__en" dir="ltr">' + esc(en ? l.fa : l.en) + '</span></span></button>';
+        '<span class="layer__en" dir="ltr">' + esc(en ? l.edge : l.en) + '</span></span></button>';
       if (i < L.length - 1) {
         var wire = (i === li || i === li - 1) ? 'rgba(0,226,138,.5)' : '#1F2423';
         h += '<div class="wire' + (state.flow || on ? ' is-live' : '') + '" style="--wire:' + wire + '" aria-hidden="true">' +
@@ -538,7 +538,7 @@
     $('archPanel').innerHTML =
       '<div class="arch__kicker">' + esc((en ? tab.en : tab.fa) + ' · ' + pad(li + 1) + '/' + pad(L.length)) + '</div>' +
       '<h3>' + esc(en ? cl.en : cl.fa) + '</h3>' +
-      '<div class="arch__en" dir="ltr">' + esc(en ? cl.fa : cl.en) + '</div>' +
+      '<div class="arch__en" dir="ltr">' + esc(en ? cl.edge : cl.en) + '</div>' +
       '<p class="arch__body">' + esc(en ? cl.bodyEn : cl.bodyFa) + '</p>' +
       '<div class="arch__io"><div><div class="arch__io-k">' + esc(tx.inLabel) + '</div><div class="arch__io-v">' + esc(en ? cl.inEn : cl.inFa) + '</div></div>' +
       '<div><div class="arch__io-k">' + esc(tx.outLabel) + '</div><div class="arch__io-v">' + esc(en ? cl.outEn : cl.outFa) + '</div></div></div>' +

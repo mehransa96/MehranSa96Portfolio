@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>مهران سبزعلی | مهندس ارشد نرم‌افزار — هوش مصنوعی، امنیت، IoT</title>
-<meta name="description" content="کارنامه فنی مهران سبزعلی (GMTec): معماری سیستم‌های هوش مصنوعی، امنیت سایبری با مدرک CEH، پایگاه داده و SQL Server، و توسعه IoT. ۸ سال تجربه و ۲۵ پروژه عملیاتی.">
+<meta name="description" content="کارنامه فنی مهران سبزعلی (GMTec): معماری سیستم‌های هوش مصنوعی، امنیت سایبری با مدرک CEH، پایگاه داده و SQL Server، و توسعه IoT. ۸ سال تجربه و ۱۹ پروژه عملیاتی.">
 <meta name="author" content="Mehran Sabzali">
 <meta name="theme-color" content="#08090A">
 <link rel="canonical" href="https://gmtec.ir/">
 <meta property="og:title" content="مهران سبزعلی | مهندس ارشد نرم‌افزار">
-<meta property="og:description" content="هوش مصنوعی، امنیت سایبری، پایگاه داده و IoT — ۲۵ پروژه عملیاتی.">
+<meta property="og:description" content="هوش مصنوعی، امنیت سایبری، پایگاه داده و IoT — ۱۹ پروژه عملیاتی.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gmtec.ir/">
 <meta property="og:locale" content="fa_IR">
@@ -1159,6 +1159,8 @@ html.is-locked .totop { opacity: 0; pointer-events: none; }
    Projects v3 — overview cards + details sheet
    ===================================================================== */
 .pj-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 18px); }
+/* A lone card on the last desktop row sits in the middle column rather than hanging at the edge. */
+@media (min-width: 1100px) { .pj-cards > .pcard:last-child:nth-child(3n+1) { grid-column: 2; } }
 @media (max-width: 1099.98px) { .pj-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .pj-cards > .pj-empty { grid-column: 1 / -1; border: 1px solid #181C1B; border-radius: 4px; }
 
@@ -1203,11 +1205,8 @@ html[lang="en"] .pcard__title { line-height: 1.4; letter-spacing: -0.01em; }
 }
 html[lang="en"] .pcard__sum { line-height: 1.7; }
 .pcard__foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 8px; }
-.pcard__chips {
-  flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; overflow: hidden;
-  -webkit-mask-image: linear-gradient(to left, transparent, #000 28px); mask-image: linear-gradient(to left, transparent, #000 28px);
-}
-html[dir="rtl"] .pcard__chips { -webkit-mask-image: linear-gradient(to right, transparent, #000 28px); mask-image: linear-gradient(to right, transparent, #000 28px); }
+/* One row of whole chips: any chip that doesn't fit wraps onto a clipped second row instead of being cut mid-word. */
+.pcard__chips { flex: 1 1 auto; min-width: 0; flex-wrap: wrap; align-content: flex-start; height: 26px; overflow: hidden; }
 .pcard__chips .chip { flex: 0 0 auto; white-space: nowrap; }
 .pcard__go {
   flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 14px;
@@ -1313,11 +1312,96 @@ html[dir="ltr"] .sheet__step--next:hover i { transform: translateX(3px); }
   .pcard { animation: none; }
 }
 
+/* ---------- Details panel: desktop layout ----------
+   Phones keep the single-column bottom sheet (the wrappers below collapse with display: contents).
+   From 880px the panel gets a fixed height, so paging never makes it jump, a reading-progress line,
+   the title in the bar once the heading scrolls away, and a two-column body: the story on the main
+   side and a sticky quick-reference column (role, outcome, stack, repository). */
+.sheet__body { position: relative; }
+.sheet__mini, .sheet__keys, .sheet__prog { display: none; }
+@media (max-width: 879.98px) {
+  .det__head, .det__grid, .det__main, .det__side, .det__card { display: contents; }
+}
+@media (min-width: 880px) {
+  .sheet { padding: 32px; }
+  .sheet__scrim { background: rgba(4, 5, 5, .84); }
+  .sheet__panel {
+    width: min(1180px, 100%); height: min(880px, calc(100dvh - 64px)); max-height: none; border-radius: 10px;
+  }
+  .sheet__bar { min-height: 62px; gap: 18px; padding: 10px 12px; padding-inline-start: 24px; border-bottom: 0; }
+  .sheet__count { flex: 0 0 auto; color: var(--accent); }
+  .sheet__mini {
+    display: block; flex: 1 1 auto; min-width: 0; font-size: 14px; font-weight: 600; color: var(--ink-2);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    opacity: 0; transform: translateY(6px); transition: opacity .3s ease, transform .45s var(--ease-out);
+  }
+  .sheet__panel.is-scrolled .sheet__mini { opacity: 1; transform: none; }
+  .sheet__keys { display: inline-flex; align-items: center; gap: 5px; }
+  .sheet__keys kbd {
+    min-width: 24px; padding: 3px 6px; border: 1px solid var(--line-3); border-radius: 4px;
+    font-family: var(--mono); font-size: 10px; line-height: 1.4; color: var(--mute-2); text-align: center;
+  }
+  .sheet__prog { display: block; position: relative; flex: 0 0 auto; height: 1px; background: #161A19; }
+  .sheet__prog::after {
+    content: ''; position: absolute; inset: 0; background: var(--accent); box-shadow: 0 0 10px rgba(var(--accent-rgb), .55);
+    transform: scaleX(var(--sp, 0)); transform-origin: left center; transition: transform .12s linear;
+  }
+  html[dir="rtl"] .sheet__prog::after { transform-origin: right center; }
+  .sheet__x { width: 42px; height: 42px; border-radius: 6px; }
+
+  .sheet .det__band { height: clamp(190px, 18vw, 230px); }
+  .sheet .det { padding: 38px clamp(32px, 4vw, 56px) 52px; }
+  .sheet .det h3 { font-size: clamp(26px, 2.4vw, 34px); }
+  .sheet .det__sum { max-width: 880px; }
+  .sheet .det__sum { font-size: 16.5px; }
+  .sheet .det__facts { border-radius: 6px; overflow: hidden; }
+  .sheet .det__facts > div { padding: 16px 18px 14px; }
+
+  .det__grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(290px, 340px); gap: 0 clamp(36px, 4vw, 60px); align-items: start;
+  }
+  .det__main .det__label:first-child { margin-top: 34px; }
+  .det__main .det__ctx, .det__main .det__bullets li { font-size: 15px; line-height: 2.05; }
+  .det__main .det__bullets { gap: 12px; }
+  .det__bullets--steps { counter-reset: step; }
+  .det__bullets--steps li { counter-increment: step; }
+  .det__bullets--steps li::before {
+    content: counter(step, decimal-leading-zero); width: 22px; height: auto; margin-top: 5px; border-radius: 0; background: none;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1px; color: var(--accent); direction: ltr;
+  }
+
+  .det__side { display: flex; flex-direction: column; gap: 14px; padding-top: 34px; }
+  .det__card {
+    border: 1px solid #1A1F1E; border-radius: 8px; padding: 2px 20px 20px;
+    background: linear-gradient(180deg, rgba(16, 20, 19, .85), rgba(11, 14, 13, .85));
+  }
+  .det__card .det__label { margin: 18px 0 12px; }
+  .det__side .det__bullets { gap: 8px; }
+  .det__side .det__bullets li { font-size: 13.5px; line-height: 1.85; }
+  .det__side .det__bullets li::before { margin-top: 10px; }
+  .det__side .det__val { margin-top: 0; border-radius: 8px; padding: 18px 20px; }
+  .det__side .det__val-v { font-size: 14px; line-height: 1.9; }
+  .det__side .det__link {
+    justify-content: center; min-height: 50px; margin-top: 0; border: 1px solid rgba(var(--accent-rgb), .35); border-radius: 8px;
+    background: rgba(var(--accent-rgb), .06); transition: background .25s ease, border-color .25s ease;
+  }
+  .det__side .det__link:hover { background: rgba(var(--accent-rgb), .13); border-color: var(--accent); }
+
+  .sheet.is-open .det__head, .sheet.is-open .det__main, .sheet.is-open .det__side { animation: detIn .6s var(--ease-out) both; }
+  .sheet.is-open .det__main { animation-delay: .07s; }
+  .sheet.is-open .det__side { animation-delay: .14s; }
+  .sheet__step { min-height: 64px; padding: 10px 24px; }
+}
+@media (min-width: 880px) and (min-height: 700px) {
+  .det__side { position: sticky; top: 0; }
+}
+@keyframes detIn { from { opacity: 0; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .sheet.is-open .det__head, .sheet.is-open .det__main, .sheet.is-open .det__side { animation: none; }
+  .sheet__prog::after, .sheet__mini { transition: none; }
+}
+
 /* ---------- Extra line-art classes used by site/js/visuals.js ---------- */
-.vis .v-slab { fill: rgba(14, 18, 17, .96); stroke: #3A423F; stroke-width: 1.2; animation: vStage 5.2s ease-in-out calc(var(--i) * 1.1s) infinite; }
-.vis .v-slab--hot { stroke: var(--accent); fill: rgba(var(--accent-rgb), .1); animation: none; }
-.vis .v-slab-side { fill: #111514; stroke: #232827; stroke-width: 1; }
-.vis .v-rise { stroke: rgba(var(--accent-rgb), .5); stroke-width: 1.4; stroke-dasharray: 4 10; animation: vFlow 1.4s linear calc(var(--i) * -.4s) infinite reverse; }
 .vis .v-bubble { fill: #121716; stroke: #252B29; animation: vBlink 4s ease-in-out calc(var(--i) * .5s) infinite; }
 .vis .v-bubble--me { fill: rgba(var(--accent-rgb), .16); stroke: rgba(var(--accent-rgb), .45); }
 .vis .v-line--ink { fill: rgba(var(--accent-rgb), .7); }
@@ -1330,8 +1414,6 @@ html[dir="ltr"] .sheet__step--next:hover i { transform: translateX(3px); }
 .vis .v-wave { fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; animation: vBlink 2.2s ease-in-out infinite; }
 .vis .v-lock { fill: var(--accent); }
 .vis .v-lock-arc { fill: none; stroke: var(--accent); stroke-width: 1.8; }
-.vis .v-shield { fill: rgba(14, 18, 17, .96); stroke: #3A423F; stroke-width: 1.4; stroke-linejoin: round; }
-.vis .v-shield--in { fill: rgba(var(--accent-rgb), .1); stroke: var(--accent); }
 .vis .v-doc { fill: #0E1211; stroke: #3A423F; stroke-width: 1.2; stroke-linejoin: round; }
 .vis .v-doc--on { fill: rgba(var(--accent-rgb), .08); stroke: rgba(var(--accent-rgb), .6); }
 .vis .v-spark { fill: var(--accent); transform-box: fill-box; transform-origin: center; animation: vBreath 3s ease-in-out infinite; }
@@ -1347,9 +1429,6 @@ html[dir="ltr"] .sheet__step--next:hover i { transform: translateX(3px); }
 .vis .v-sweep-cone { fill: rgba(var(--accent-rgb), .12); }
 .vis .v-sweep-arm { stroke: var(--accent); stroke-width: 1.4; }
 .vis .v-hex { fill: rgba(var(--accent-rgb), .1); stroke: var(--accent); stroke-width: 1.4; stroke-linejoin: round; }
-.vis .v-tube { fill: none; stroke: rgba(var(--accent-rgb), .3); stroke-width: 1.2; animation: vBlink 2.4s ease-in-out calc(var(--i) * .25s) infinite; }
-.vis .v-gate { fill: rgba(224, 164, 88, .3); stroke: rgba(224, 164, 88, .6); }
-.vis .v-packet-r { fill: var(--accent); }
 .vis .v-cloud { fill: rgba(var(--accent-rgb), .07); stroke: rgba(var(--accent-rgb), .55); stroke-width: 1.3; stroke-linejoin: round; }
 .vis .v-grid { stroke: rgba(231, 233, 232, .05); stroke-width: 1; }
 .vis .v-type { font-family: var(--display-x); font-size: 92px; font-weight: 700; fill: var(--ink); letter-spacing: -2px; }
@@ -1359,7 +1438,6 @@ html[dir="ltr"] .sheet__step--next:hover i { transform: translateX(3px); }
 .vis .v-sw2 { fill: rgba(var(--accent-rgb), .45); }
 .vis .v-sw3 { fill: #3A423F; }
 .vis .v-sw4 { fill: #1A1F1E; }
-.vis .v-sw5 { fill: var(--ink); }
 .vis .v-btn { fill: var(--accent); }
 .vis .v-btn--ghost { fill: none; stroke: rgba(var(--accent-rgb), .6); stroke-width: 1.2; }
 .vis .v-dotp { fill: var(--ink-3); }
@@ -2007,7 +2085,7 @@ html[lang="fa"] .drawer.is-open .dr-row .dr-row__t { animation-name: drTextFa; }
           <span class="rot__caret" aria-hidden="true"></span>
         </div>
         <div class="hero__meta" dir="ltr">
-          <span>TEHRAN, IR</span><span class="hero__domains"><b>|</b><i data-dom="0">AI</i> · <i data-dom="1">SECURITY</i> · <i data-dom="2">DATA</i> · <i data-dom="3">IOT</i></span><span><b>|</b><em data-count="8">8</em> YEARS</span><span><b>|</b><em data-count="25">25</em> PROJECTS</span>
+          <span>TEHRAN, IR</span><span class="hero__domains"><b>|</b><i data-dom="0">AI</i> · <i data-dom="1">SECURITY</i> · <i data-dom="2">DATA</i> · <i data-dom="3">IOT</i></span><span><b>|</b><em data-count="8">8</em> YEARS</span><span><b>|</b><em data-count="19">19</em> PROJECTS</span>
         </div>
         <div class="hero__cue" aria-hidden="true"><span>↓</span><span>SCROLL</span></div>
       </div>
@@ -2028,8 +2106,8 @@ html[lang="fa"] .drawer.is-open .dr-row .dr-row__t { animation-name: drTextFa; }
     </div>
     <div class="marquee" dir="ltr" aria-hidden="true">
       <div class="marquee__track">
-        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>25 PROJECTS</span></div>
-        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>25 PROJECTS</span></div>
+        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>19 PROJECTS</span></div>
+        <div class="marquee__run"><span class="a">/</span><span>TEHRAN 35.69°N 51.39°E</span><span class="s">/</span><span>LOCAL <span data-clock>--:--:--</span></span><span class="s">/</span><span>CEH CERTIFIED · EC-COUNCIL</span><span class="s">/</span><span>AI · SECURITY · DATA · IOT</span><span class="s">/</span><span>8 YEARS IN PRODUCTION</span><span class="s">/</span><span>19 PROJECTS</span></div>
       </div>
     </div>
   </section>
@@ -2177,16 +2255,6 @@ html[lang="fa"] .drawer.is-open .dr-row .dr-row__t { animation-name: drTextFa; }
         </span>
         <span class="row__badge"><span data-l="fa">خصوصی</span><span data-l="en">Private</span></span>
       </div>
-      <a class="row" href="https://github.com/mehransa96/gmtecaitools" target="_blank" rel="noopener">
-        <span class="row__name" dir="ltr">gmtecaitools</span>
-        <span class="row__desc"></span>
-        <span class="row__end">↗</span>
-      </a>
-      <a class="row" href="https://github.com/mehransa96/PowerGmTec" target="_blank" rel="noopener">
-        <span class="row__name" dir="ltr">PowerGmTec</span>
-        <span class="row__desc"></span>
-        <span class="row__end">↗</span>
-      </a>
     </div>
   </section>
 
@@ -2257,7 +2325,7 @@ html[lang="fa"] .drawer.is-open .dr-row .dr-row__t { animation-name: drTextFa; }
 
         <dl class="ab__stats">
           <div><dt><b data-stat="8">8</b><sup>+</sup></dt><dd><span data-l="fa">سال تجربه</span><span data-l="en">Years in production</span></dd></div>
-          <div><dt><b data-stat="25">25</b></dt><dd><span data-l="fa">پروژه</span><span data-l="en">Projects</span></dd></div>
+          <div><dt><b data-stat="19">19</b></dt><dd><span data-l="fa">پروژه</span><span data-l="en">Projects</span></dd></div>
           <div><dt><b data-stat="3">3</b></dt><dd><span data-l="fa">حوزه موازی</span><span data-l="en">Parallel fields</span></dd></div>
           <div><dt><b>CEH</b></dt><dd><span data-l="fa">هکر قانونمند</span><span data-l="en">Ethical hacker</span></dd></div>
         </dl>
@@ -2363,8 +2431,11 @@ html[lang="fa"] .drawer.is-open .dr-row .dr-row__t { animation-name: drTextFa; }
     <div class="sheet__bar">
       <span class="sheet__grab" aria-hidden="true"></span>
       <span class="sheet__count" id="sheetCount" dir="ltr"></span>
+      <span class="sheet__mini" id="sheetMini" aria-hidden="true"></span>
+      <span class="sheet__keys" aria-hidden="true" dir="ltr"><kbd>←</kbd><kbd>→</kbd><kbd>ESC</kbd></span>
       <button class="sheet__x" id="sheetClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
     </div>
+    <span class="sheet__prog" aria-hidden="true"></span>
     <div class="sheet__body" id="pjDet"></div>
     <div class="sheet__nav">
       <button type="button" class="sheet__step sheet__step--prev" id="sheetPrev"></button>
@@ -2454,31 +2525,6 @@ const FA = [
     badge: 'مخزن خصوصی'
   },
   {
-    id: 1, cat: 'web security', tag: 'ENTERPRISE',
-    title: 'سامانه مالی سازمانی', en: 'Enterprise Financial WebApp',
-    sum: 'سامانه مالی جامع برای سازمان‌های بزرگ با معماری چندلایه، امنیت سطح بانکی و گزارش‌گیری پیشرفته روی SQL Server.',
-    ctx: 'سامانه‌ای که تیم مالی سازمان هر روز با آن کار می‌کند: ثبت اسناد، گردش تأیید و گزارش‌های قانونی. الزام اصلی این بود که هیچ محاسبه‌ای در شرایط همزمانی بالا خطا نکند و دسترسی‌ها با ساختار سازمانی موجود یکی باشد.',
-    ch: [
-      'مدیریت تراکنش‌های موازی با بیش از ۵۰۰ کاربر همزمان و جلوگیری از race condition در محاسبات مالی.',
-      'پیاده‌سازی احراز هویت چندعاملی یکپارچه با Active Directory سازمان.',
-      'گزارش‌گیری real-time با تأخیر کمتر از ۲ ثانیه روی داده‌های میلیونی.'
-    ],
-    sol: [
-      'معماری چندلایه روی ASP.NET Core با جداسازی کامل لایه دامنه از رابط کاربری',
-      'محاسبات مالی داخل تراکنش‌های SQL Server با سطح جداسازی کنترل‌شده و قفل‌گذاری هدفمند',
-      'گزارش‌ها روی stored procedure های بهینه و SSRS، به‌جای کوئری مستقیم از سمت اپلیکیشن',
-      'کش Redis برای داده‌های پرتکرار و استقرار کانتینری روی IIS'
-    ],
-    resp: [
-      'معماری کامل سیستم از نیازسنجی تا استقرار',
-      'طراحی schema و stored procedure های بهینه',
-      'پیاده‌سازی لایه‌های امنیتی و رمزنگاری داده',
-      'تیم‌لید توسعه frontend و backend'
-    ],
-    val: 'کاهش ۶۵٪ در زمان پردازش گزارش‌های مالی ماهانه و حذف کامل خطاهای دستی.',
-    stack: ['ASP.NET Core', 'C#', 'SQL Server', 'T-SQL', 'SSRS', 'React', 'Azure AD', 'Redis', 'Docker', 'IIS']
-  },
-  {
     id: 2, cat: 'ai', tag: 'AI / EDGE',
     title: 'ربات هوشمند یادگیری زبان', en: 'AI Language Learning Bot',
     sum: 'ربات تلگرامی مبتنی بر LLM با تطبیق هوشمند سطح، گیمیفیکیشن و ردیابی پیشرفت، اجراشده روی Cloudflare Edge.',
@@ -2527,31 +2573,6 @@ const FA = [
     ],
     val: 'کاهش ۸۰٪ در مداخلات دستی اپراتور و شناسایی خرابی ۴۸ ساعت زودتر.',
     stack: ['ESP32', 'Arduino C++', 'MQTT', 'WireGuard', 'Node.js', 'InfluxDB', 'Grafana', 'Raspberry Pi', 'WebSocket']
-  },
-  {
-    id: 4, cat: 'web security', tag: 'WEB',
-    title: 'وب‌سایت شرکت Green Mind Tech', en: 'Corporate Site + Hardening',
-    sum: 'توسعه فول‌استک وب‌سایت شرکتی با CMS اختصاصی، بهینه‌سازی سئو و سخت‌سازی امنیتی جامع.',
-    ctx: 'وب‌سایتی که هم ویترین خدمات شرکت است و هم باید محتوایش را تیم غیرفنی به‌روز کند؛ در ضمن هدف مستمر ترافیک بات بود.',
-    ch: [
-      'پیاده‌سازی CSP سختگیرانه بدون آسیب به عملکرد.',
-      'رساندن Core Web Vitals به امتیاز ۹۵ به بالا.',
-      'سیستم چندزبانه فارسی/انگلیسی با RTL و LTR خودکار.'
-    ],
-    sol: [
-      'Next.js با رندر سمت سرور برای صفحات محتوایی و CMS اختصاصی روی PostgreSQL و Prisma',
-      'مسیر چندزبانه با تشخیص خودکار جهت متن',
-      'هدرهای امنیتی و CSP در لایه Nginx، فیلتر بات در Cloudflare WAF',
-      'بهینه‌سازی تصاویر و بارگذاری تنبل برای رسیدن به بودجه عملکرد'
-    ],
-    resp: [
-      'طراحی کامل UI/UX و پیاده‌سازی frontend',
-      'توسعه CMS اختصاصی با Next.js و PostgreSQL',
-      'پیکربندی Nginx و Cloudflare WAF',
-      'بهینه‌سازی سئوی فنی و محتوایی'
-    ],
-    val: 'افزایش ۱۴۰٪ در ترافیک ارگانیک ظرف ۴ ماه و کاهش ۹۵٪ در حملات بات.',
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Prisma', 'Nginx', 'Cloudflare WAF', 'GSC API']
   },
   {
     id: 5, cat: 'ai web', tag: 'AUTOMATION',
@@ -2700,80 +2721,13 @@ const FA = [
     link: 'https://github.com/mehransa96/freellmapi'
   },
   {
-    id: 12, cat: 'security', tag: 'NETWORK / RUST',
-    title: 'رله HTTP با عبور از DPI', en: 'MasterHttpRelayVPN — Rust',
-    sum: 'بازنویسی یک رله HTTP در Rust برای عبور از بازرسی عمیق بسته، با تمرکز روی پایداری اتصال و مصرف کم منابع.',
-    ctx: 'هدف این بود که رله بدون هیچ وابستگی زمان اجرا روی ویندوز، لینوکس و مک اجرا شود و روی شبکه‌هایی که ترافیک را فعالانه بازرسی می‌کنند پایدار بماند.',
-    ch: [
-      'حفظ پایداری اتصال روی شبکه‌هایی که ترافیک را فعالانه بازرسی می‌کنند.',
-      'انتقال منطق از پیاده‌سازی قبلی به Rust بدون افت کارایی.'
-    ],
-    sol: [
-      'پورت کامل منطق رله به Rust با Tokio و بدون وابستگی زمان اجرا',
-      'پروکسی HTTP و SOCKS5 در یک باینری، همراه CLI و رابط دسکتاپ',
-      'پنهان‌سازی SNI در مسیر رله برای عبور از بازرسی بسته'
-    ],
-    resp: [
-      'پورت کامل کد به Rust',
-      'پیاده‌سازی لایه رله و مدیریت اتصال‌ها'
-    ],
-    stack: ['Rust', 'Tokio', 'HTTP', 'SOCKS5', 'Networking'],
-    link: 'https://github.com/mehransa96/MasterHttpRelayVPN-RUST'
-  },
-  {
-    id: 13, cat: 'security web', tag: 'NETWORK / EDGE',
-    title: 'رله دامین‌فرانتینگ MHR-CFW', en: 'MHR-CFW — Domain-Fronted Relay',
-    sum: 'رله محلی که ترافیک را از مسیر Google Apps Script و Cloudflare Worker عبور می‌دهد تا فیلتر شبکه فقط یک دامنه مجاز ببیند.',
-    ctx: 'ادامه کار روی رله HTTP: این نسخه مسیر خروج را به Cloudflare Worker می‌برد و برای سایت‌هایی که به آی‌پی خروج ثابت نیاز دارند یک فورواردر اختیاری اضافه می‌کند.',
-    ch: [
-      'نمایش‌دادن یک دامنه مجاز به بازرسی شبکه، در حالی که مقصد واقعی داخل درخواست رله می‌ماند.',
-      'آی‌پی خروجی Worker در هر درخواست عوض می‌شود و توکن‌های CAPTCHA به آی‌پی گره خورده‌اند.',
-      'راه‌اندازی چندمرحله‌ای باید برای کاربر غیرفنی قابل انجام بماند.'
-    ],
-    sol: [
-      'مسیر رله: کلاینت، پروکسی محلی، فرانت گوگل، رله Apps Script، ورکر Cloudflare، خروج',
-      'پروکسی محلی HTTP و SOCKS5 با ویزارد راه‌اندازی در اجرای اول',
-      'فورواردر اختیاری Node روی VPS با TLS برای ثابت‌کردن آی‌پی خروج',
-      'حالت شکست بسته به‌صورت پیش‌فرض تا در خطا ترافیک مستقیم نرود'
-    ],
-    resp: [
-      'طراحی مسیر رله و پیاده‌سازی ورکر و اسکریپت Apps Script',
-      'نوشتن پروکسی محلی و ویزارد راه‌اندازی',
-      'افزودن فورواردر اختیاری برای آی‌پی خروج ثابت',
-      'مستندسازی دوزبانه راه‌اندازی'
-    ],
-    stack: ['Python', 'Cloudflare Workers', 'Google Apps Script', 'Node.js', 'SOCKS5', 'TLS'],
-    link: 'https://github.com/mehransa96/mhr-cfw'
-  },
-  {
-    id: 14, cat: 'ai', tag: 'DEVELOPER TOOLING',
-    title: 'اسکیل تخصصی طراحی UI/UX برای مدل‌های هوش مصنوعی', en: 'ui-ux-pro-max skill',
-    sum: 'بستهٔ دانش طراحی — سبک‌های رابط، پالت‌های رنگ، جفت‌فونت‌ها و قواعد تجربه کاربری — که به دستیار هوش مصنوعی داده می‌شود تا خروجی طراحی‌اش حرفه‌ای‌تر شود.',
-    ctx: 'مدل‌های هوش مصنوعی کد رابط را سریع می‌نویسند ولی انتخاب‌های طراحی‌شان تکراری است. این بسته یک مرجع قابل جست‌وجو می‌شود که مدل هنگام طراحی به آن رجوع کند.',
-    ch: [
-      'ساختاردهی دانش طراحی به شکلی که مدل بتواند در لحظه جست‌وجو و استفاده کند.',
-      'پوشش‌دادن استک‌های متفاوت با قواعد اختصاصی هر کدام.'
-    ],
-    sol: [
-      'پایگاه دانش دسته‌بندی‌شده: سبک‌های رابط، پالت رنگ، جفت‌فونت، قواعد تجربه کاربری و انواع نمودار',
-      'قواعد اجرایی مجزا برای هر استک، از React و Tailwind تا SwiftUI و Flutter',
-      'ساختار قابل جست‌وجو تا مدل فقط بخش مرتبط را بخواند'
-    ],
-    resp: [
-      'گردآوری و دسته‌بندی پایگاه دانش طراحی',
-      'نوشتن قواعد اجرایی برای هر استک'
-    ],
-    stack: ['Prompt Engineering', 'Knowledge Base', 'Design Systems'],
-    link: 'https://github.com/mehransa96/Claude-ui-ux-pro-max-skill'
-  },
-  {
     id: 15, cat: 'web', tag: 'PORTFOLIO',
     title: 'وب‌سایت شخصی و کارنامه فنی', en: 'Personal Portfolio — GMTec',
     sum: 'کارنامه فنی دوزبانه با نسخه فارسی راست‌به‌چپ و انگلیسی چپ‌به‌راست، فیلتر دسته‌ای پروژه‌ها و پنل جزئیات بازشونده.',
     ctx: 'نسخه اول سایت یک صفحه شلوغ با پنجره‌های شناور بود. بازطراحی روی سه چیز تمرکز داشت: خوانایی متن فارسی، ساختار اطلاعات پروژه‌ها و بارگذاری سریع بدون تصویر سنگین.',
     ch: [
       'یک ساختار برای دو جهت متن: فارسی راست‌به‌چپ و انگلیسی چپ‌به‌راست، روی یک منبع داده مشترک.',
-      'نمایش جزئیات بیش از بیست پروژه بدون شلوغ‌شدن صفحه.',
+      'نمایش جزئیات نزدیک به بیست پروژه بدون شلوغ‌شدن صفحه.',
       'انیمیشن‌های روان روی موبایل بدون افت عملکرد.'
     ],
     sol: [
@@ -2871,23 +2825,6 @@ const FA = [
       'تولیدکننده RDL و T-SQL'
     ],
     stack: ['Python', 'T-SQL', 'RDL', 'MCP']
-  },
-  {
-    id: 20, cat: 'ai', tag: 'AI SKILL',
-    title: 'مهارت سفارشی prompt-engineer-vibe-coder', en: 'prompt-engineer-vibe-coder — Custom AI Skill',
-    sum: 'متدولوژی ساختاریافته چهارفازی برای مهندسی پرامپت و پروژه‌های Vibe Coding، بسته‌بندی‌شده به شکل یک مهارت سفارشی.',
-    ctx: 'خروجی ابزارهای کدنویسی با هوش مصنوعی به کیفیت پرامپت گره خورده است. این مهارت همان مسیر را به یک روند مرحله‌ای تبدیل می‌کند تا از نیازسنجی به تحویل برسد.',
-    sol: [
-      'فاز یک — استخراج نیازمندی‌ها: هدف، مخاطب، ابزار، محدودیت‌ها و معیار موفقیت',
-      'فاز دو — طراحی معماری در سه مسیر: فقط پرامپت، Vibe Coding، یا ترکیبی',
-      'فاز سه — خروجی و چک‌لیست',
-      'فاز چهار — تحویل ساختاریافته و بازخوردگیری'
-    ],
-    resp: [
-      'طراحی متدولوژی چهارفازی',
-      'بسته‌بندی به شکل مهارت سفارشی قابل استفاده'
-    ],
-    stack: ['Prompt Engineering', 'Custom AI Skill', 'Vibe Coding']
   },
   {
     id: 21, cat: 'ai', tag: 'AUTOMATION',
@@ -3012,31 +2949,6 @@ const EN = [
     badge: 'Private repo'
   },
   {
-    id: 1, cat: 'web security', tag: 'ENTERPRISE',
-    title: 'Enterprise financial web app', en: 'Multi-layer platform on SQL Server',
-    sum: 'A financial platform for large organisations with layered architecture, banking-grade security and advanced reporting on SQL Server.',
-    ctx: 'The platform the finance team works in every day: document entry, approval flow and statutory reporting. The hard requirement was that no calculation could go wrong under heavy concurrency, and that access had to mirror the existing organisational structure.',
-    ch: [
-      'Handling concurrent transactions for 500+ simultaneous users without race conditions in financial calculations.',
-      'Multi-factor authentication integrated with the organisation’s Active Directory.',
-      'Real-time reporting with under 2 seconds latency across millions of rows.'
-    ],
-    sol: [
-      'Layered ASP.NET Core architecture with the domain layer fully separated from the UI',
-      'Financial calculations inside SQL Server transactions with controlled isolation and targeted locking',
-      'Reporting through optimised stored procedures and SSRS rather than application-side queries',
-      'Redis cache for hot data, containerised deployment on IIS'
-    ],
-    resp: [
-      'End-to-end architecture from requirements to deployment',
-      'Database schema and optimised stored procedures',
-      'Security layers and data encryption',
-      'Tech lead for frontend and backend'
-    ],
-    val: 'Monthly financial reporting time cut by 65% and manual entry errors eliminated.',
-    stack: ['ASP.NET Core', 'C#', 'SQL Server', 'T-SQL', 'SSRS', 'React', 'Azure AD', 'Redis', 'Docker', 'IIS']
-  },
-  {
     id: 2, cat: 'ai', tag: 'AI / EDGE',
     title: 'AI language-learning bot', en: 'LLM bot on Cloudflare Edge',
     sum: 'An LLM-based Telegram bot with adaptive levelling, gamification and progress tracking, running on Cloudflare Edge.',
@@ -3085,31 +2997,6 @@ const EN = [
     ],
     val: 'Operator intervention down 80%; failures detected 48 hours earlier.',
     stack: ['ESP32', 'Arduino C++', 'MQTT', 'WireGuard', 'Node.js', 'InfluxDB', 'Grafana', 'Raspberry Pi', 'WebSocket']
-  },
-  {
-    id: 4, cat: 'web security', tag: 'WEB',
-    title: 'Green Mind Tech corporate site', en: 'Full-stack build + hardening',
-    sum: 'Full-stack corporate site with a custom CMS, SEO work and comprehensive security hardening.',
-    ctx: 'A site that is both the company’s shop window and something a non-technical team has to keep updated — while being a standing target for bot traffic.',
-    ch: [
-      'A strict CSP with no performance cost.',
-      'Core Web Vitals above 95.',
-      'Bilingual Persian/English with automatic RTL and LTR.'
-    ],
-    sol: [
-      'Server-rendered Next.js for content pages with a custom CMS on PostgreSQL and Prisma',
-      'Bilingual routing with automatic text-direction handling',
-      'Security headers and CSP at the Nginx layer, bot filtering in Cloudflare WAF',
-      'Image optimisation and lazy loading to hold the performance budget'
-    ],
-    resp: [
-      'Complete UI/UX design and frontend build',
-      'Custom CMS on Next.js and PostgreSQL',
-      'Nginx and Cloudflare WAF configuration',
-      'Technical and content SEO'
-    ],
-    val: 'Organic traffic up 140% in four months; bot attacks down 95%.',
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Prisma', 'Nginx', 'Cloudflare WAF', 'GSC API']
   },
   {
     id: 5, cat: 'ai web', tag: 'AUTOMATION',
@@ -3258,80 +3145,13 @@ const EN = [
     link: 'https://github.com/mehransa96/freellmapi'
   },
   {
-    id: 12, cat: 'security', tag: 'NETWORK / RUST',
-    title: 'MasterHttpRelayVPN — Rust', en: 'DPI-resistant HTTP relay',
-    sum: 'A Rust rewrite of an HTTP relay built to pass deep packet inspection, focused on connection stability and low resource use.',
-    ctx: 'The aim was a relay that runs with no runtime dependencies on Windows, Linux and macOS, and stays stable on networks that actively inspect traffic.',
-    ch: [
-      'Keeping connections stable on networks that actively inspect traffic.',
-      'Porting the logic to Rust without losing throughput.'
-    ],
-    sol: [
-      'Full port of the relay logic to Rust on Tokio, with no runtime dependencies',
-      'HTTP and SOCKS5 proxy in a single binary, with a CLI and a desktop UI',
-      'SNI concealment along the relay path to pass inspection'
-    ],
-    resp: [
-      'Complete port of the codebase to Rust',
-      'Relay layer and connection management'
-    ],
-    stack: ['Rust', 'Tokio', 'HTTP', 'SOCKS5', 'Networking'],
-    link: 'https://github.com/mehransa96/MasterHttpRelayVPN-RUST'
-  },
-  {
-    id: 13, cat: 'security web', tag: 'NETWORK / EDGE',
-    title: 'MHR-CFW', en: 'Domain-fronted relay with a Worker exit',
-    sum: 'A local relay that routes traffic through Google Apps Script and a Cloudflare Worker, so the network filter only ever sees an allowed domain.',
-    ctx: 'A continuation of the HTTP relay work: this version moves the exit to a Cloudflare Worker and adds an optional forwarder for sites that require a stable exit IP.',
-    ch: [
-      'Showing the network an allowed domain while the real destination stays inside the relay request.',
-      'The Worker’s exit IP changes per request, and CAPTCHA tokens are bound to the IP that solved them.',
-      'A multi-step setup that a non-technical user can still complete.'
-    ],
-    sol: [
-      'Relay path: client, local proxy, Google front, Apps Script relay, Cloudflare Worker, exit',
-      'Local HTTP and SOCKS5 proxy with a first-run setup wizard',
-      'Optional Node forwarder on a VPS behind TLS to pin the exit IP',
-      'Fail-closed by default, so an error never leaks traffic direct'
-    ],
-    resp: [
-      'Relay path design, Worker and Apps Script implementation',
-      'Local proxy and setup wizard',
-      'Optional forwarder for a stable exit IP',
-      'Bilingual setup documentation'
-    ],
-    stack: ['Python', 'Cloudflare Workers', 'Google Apps Script', 'Node.js', 'SOCKS5', 'TLS'],
-    link: 'https://github.com/mehransa96/mhr-cfw'
-  },
-  {
-    id: 14, cat: 'ai', tag: 'DEVELOPER TOOLING',
-    title: 'ui-ux-pro-max skill', en: 'Design intelligence for AI assistants',
-    sum: 'A design knowledge pack — interface styles, colour palettes, font pairings and UX rules — handed to an AI assistant so its design output holds up professionally.',
-    ctx: 'AI models write interface code quickly, but their design choices repeat. This pack becomes a searchable reference the model consults while designing.',
-    ch: [
-      'Structuring design knowledge so a model can search and apply it on the fly.',
-      'Covering many stacks, each with its own rules.'
-    ],
-    sol: [
-      'A classified knowledge base: interface styles, palettes, font pairings, UX rules and chart types',
-      'Separate actionable rules per stack, from React and Tailwind to SwiftUI and Flutter',
-      'A searchable structure so the model reads only the relevant part'
-    ],
-    resp: [
-      'Collecting and classifying the design knowledge base',
-      'Writing actionable rules per stack'
-    ],
-    stack: ['Prompt Engineering', 'Knowledge Base', 'Design Systems'],
-    link: 'https://github.com/mehransa96/Claude-ui-ux-pro-max-skill'
-  },
-  {
     id: 15, cat: 'web', tag: 'PORTFOLIO',
     title: 'Personal portfolio', en: 'Bilingual RTL/LTR portfolio — GMTec',
     sum: 'A bilingual technical portfolio with a right-to-left Persian version and a left-to-right English one, category filters and expandable detail panels.',
     ctx: 'The first version of the site was a crowded page built around floating windows. The redesign focused on three things: Persian text legibility, the information structure behind each project, and fast loading with no heavy imagery.',
     ch: [
       'One structure for two text directions — Persian RTL and English LTR — from a single shared data source.',
-      'Showing detail for more than twenty projects without crowding the page.',
+      'Showing detail for nearly twenty projects without crowding the page.',
       'Smooth motion on mobile with no performance cost.'
     ],
     sol: [
@@ -3429,23 +3249,6 @@ const EN = [
       'RDL and T-SQL generator'
     ],
     stack: ['Python', 'T-SQL', 'RDL', 'MCP']
-  },
-  {
-    id: 20, cat: 'ai', tag: 'AI SKILL',
-    title: 'prompt-engineer-vibe-coder', en: 'Custom AI skill',
-    sum: 'A structured four-phase methodology for prompt engineering and vibe-coding projects, packaged as a custom AI skill.',
-    ctx: 'What AI coding tools produce is bound to the quality of the prompt. This skill turns that into a staged process that runs from requirements to delivery.',
-    sol: [
-      'Phase one — requirements extraction: goal, audience, tooling, constraints, success criteria',
-      'Phase two — architecture design across three paths: prompt-only, vibe coding, or hybrid',
-      'Phase three — output and checklist',
-      'Phase four — structured delivery and feedback'
-    ],
-    resp: [
-      'Designing the four-phase methodology',
-      'Packaging it as a reusable custom skill'
-    ],
-    stack: ['Prompt Engineering', 'Custom AI Skill', 'Vibe Coding']
   },
   {
     id: 21, cat: 'ai', tag: 'AUTOMATION',
@@ -3619,20 +3422,6 @@ if (typeof window !== 'undefined') {
     return svg('pipeline', h + text(200, 208, 'SELECT … FROM … JOIN … ✓', 'v-label v-label--k'));
   };
 
-  // Enterprise platform: four isometric layers, data rising through them to the interface.
-  M.layers = function () {
-    var L = ['UI', 'API', 'SERVICES', 'SQL SERVER'], h = '';
-    for (var k = L.length - 1; k >= 0; k--) {
-      var y = 52 + k * 38, top = k === 0;
-      h += path('M110 ' + y + ' L200 ' + (y - 24) + ' L290 ' + y + ' L200 ' + (y + 24) + ' Z', top ? 'v-slab v-slab--hot' : 'v-slab', i(k));
-      h += path('M110 ' + y + ' v7 L200 ' + (y + 31) + ' L290 ' + (y + 7) + ' v-7 L200 ' + (y + 24) + ' Z', 'v-slab-side');
-      h += line(292, y, 318, y, 'v-edge') + text(324, y + 3, L[k], 'v-label', 'start');
-    }
-    for (k = 0; k < 3; k++) h += line(170 + k * 30, 182, 170 + k * 30, 58, 'v-rise', i(k));
-    h += circ(200, 52, 4, 'v-core') + circ(200, 52, 12, 'v-halo');
-    return svg('layers', h + text(76, 112, 'C# · .NET', 'v-label v-label--k', 'middle'));
-  };
-
   // LLM bot on the edge: a chat thread on the left, a globe of edge locations on the right.
   M.chat = function () {
     var h = win(36, 28, 168, 164);
@@ -3665,18 +3454,6 @@ if (typeof window !== 'undefined') {
     h += path('M262 30 a14 14 0 0 1 20 0 M257 24 a22 22 0 0 1 30 0', 'v-wave') + circ(272, 36, 2.4, 'v-core');
     h += rect(191, 158, 18, 14, 3, 'v-lock') + path('M195 158 v-5 a5 5 0 0 1 10 0 v5', 'v-lock-arc');
     return svg('chip', h + text(200, 204, 'WIREGUARD · MQTT', 'v-label v-label--k'));
-  };
-
-  // Full-stack build and hardening: a web app window behind a checked shield.
-  M.shield = function () {
-    var h = win(46, 30, 210, 160);
-    h += rect(60, 56, 182, 34, 4, 'v-chip v-chip--dim') + lines(70, 66, [92, 64], 9);
-    h += rect(60, 100, 86, 76, 4, 'v-chip v-chip--dim') + rect(156, 100, 86, 34, 4, 'v-chip v-chip--dim') + rect(156, 142, 86, 34, 4, 'v-chip');
-    h += lines(70, 112, [60, 44, 52, 30], 12);
-    h += path('M300 46 L344 62 V104 C344 136 324 158 300 170 C276 158 256 136 256 104 V62 Z', 'v-shield');
-    h += path('M300 60 L332 72 V104 C332 128 318 146 300 156 C282 146 268 128 268 104 V72 Z', 'v-shield v-shield--in');
-    h += path('M285 107 l10 10 l21 -24', 'v-tick v-tick--big');
-    return svg('shield', h + text(300, 196, 'OWASP · CSP · RBAC', 'v-label v-label--k'));
   };
 
   // LLM pipeline with human review: document → model → reviewer → published.
@@ -3746,43 +3523,6 @@ if (typeof window !== 'undefined') {
     return svg('hub', h + text(250, 214, '16 PROVIDERS · 1 API', 'v-label v-label--k'));
   };
 
-  // DPI-resistant relay: packets slipping through a tunnel past an inspection gate.
-  M.tunnel = function () {
-    var h = '', rid = 'vt-' + (++uid);
-    for (var k = 0; k < 6; k++) h += '<ellipse cx="' + (120 + k * 32) + '" cy="110" rx="' + (12 - k * 0.6) + '" ry="' + (54 - k * 3) + '" class="v-tube"' + i(k) + '/>';
-    h += line(120, 56, 280, 74, 'v-edge') + line(120, 164, 280, 146, 'v-edge');
-    h += '<path id="' + rid + '" d="M44 110 C 90 110, 110 104, 200 110 S 310 116, 356 110" class="v-path"/>';
-    h += rect(28, 94, 32, 32, 5, 'v-table v-table--on') + rect(340, 94, 32, 32, 5, 'v-table v-table--on');
-    h += rect(194, 22, 12, 30, 2, 'v-gate') + rect(194, 168, 12, 30, 2, 'v-gate') + text(200, 16, 'DPI', 'v-label');
-    for (k = 0; k < 3; k++) h += '<rect x="-6" y="-4" width="12" height="8" rx="2" class="v-packet-r"><animateMotion dur="3.2s" begin="' + (k * 1.05) + 's" repeatCount="indefinite"><mpath href="#' + rid + '"/></animateMotion></rect>';
-    return svg('tunnel', h + text(200, 214, 'RUST · TOKIO · SOCKS5', 'v-label v-label--k'));
-  };
-
-  // Domain-fronted relay: client → fronting CDN → worker exit → the open web.
-  M.relay = function () {
-    var d = 'M52 150 C 110 150, 120 80, 170 80 M232 80 C 270 80, 268 150, 300 150', h = path(d, 'v-path') + path(d, 'v-path-flow');
-    h += rect(30, 136, 44, 30, 5, 'v-table v-table--on') + rect(40, 168, 24, 4, 2, 'v-line');
-    h += path('M150 96 a22 22 0 0 1 8 -40 a30 30 0 0 1 56 -6 a22 22 0 0 1 30 26 a18 18 0 0 1 -6 20 Z', 'v-cloud');
-    h += text(200, 82, 'FRONT', 'v-label v-label--stage');
-    h += rect(282, 134, 38, 32, 5, 'v-die') + text(301, 154, 'λ', 'v-label v-label--stage');
-    h += circ(352, 70, 28, 'v-globe') + '<ellipse cx="352" cy="70" rx="12" ry="28" class="v-globe v-globe--in"/>' + line(324, 70, 380, 70, 'v-globe v-globe--in');
-    h += path('M320 140 C 338 120, 344 108, 348 98', 'v-edge v-edge--hot');
-    return svg('relay', h + text(200, 204, 'CLIENT → CDN → WORKER → WEB', 'v-label v-label--k'));
-  };
-
-  // Design intelligence for AI assistants: type specimen, palette and grid.
-  M.swatches = function () {
-    var h = '';
-    for (var k = 0; k <= 8; k++) h += line(40 + k * 40, 24, 40 + k * 40, 196, 'v-grid');
-    h += text(110, 128, 'Aa', 'v-type', 'middle');
-    h += lines(180, 60, [130, 96, 112], 12);
-    var sw = ['v-sw1', 'v-sw2', 'v-sw3', 'v-sw4', 'v-sw5'];
-    sw.forEach(function (c, k) { h += rect(180 + k * 32, 104, 26, 40, 4, 'v-sw ' + c, i(k)); });
-    h += rect(180, 158, 78, 24, 12, 'v-btn') + rect(266, 158, 78, 24, 12, 'v-btn v-btn--ghost');
-    h += path('M346 46 l3 9 l9 3 l-9 3 l-3 9 l-3 -9 l-9 -3 l9 -3 Z', 'v-spark');
-    return svg('swatches', h);
-  };
-
   // The portfolio itself: an orb of particles with an orbit.
   M.orb = function (p) {
     var r = rng(p.id * 31 + 7), h = '<ellipse cx="200" cy="110" rx="128" ry="26" class="v-ring v-ring--in"/>';
@@ -3846,16 +3586,6 @@ if (typeof window !== 'undefined') {
     return svg('terminal', h);
   };
 
-  // Custom AI skill: a small neural network with a few lit paths.
-  M.neural = function () {
-    var cols = [[3, 80], [5, 160], [5, 240], [2, 320]], P = [], h = '';
-    cols.forEach(function (c) { var a = []; for (var k = 0; k < c[0]; k++) a.push([c[1], 110 + (k - (c[0] - 1) / 2) * 34]); P.push(a); });
-    for (var l = 0; l < P.length - 1; l++) P[l].forEach(function (u, a) { P[l + 1].forEach(function (v, b) { h += line(u[0], u[1], v[0], v[1], (a + b + l) % 4 === 0 ? 'v-edge v-edge--hot' : 'v-edge'); }); });
-    var n = 0;
-    P.forEach(function (c, l) { c.forEach(function (u, k) { h += circ(u[0], u[1], l === 3 ? 7 : 5.5, (k + l) % 3 === 0 || l === 3 ? 'v-node v-node--hot' : 'v-node', i(n++)); }); });
-    return svg('neural', h + text(200, 212, 'PROMPT · CONTEXT · OUTPUT', 'v-label v-label--k'));
-  };
-
   // Process automation with RAG: workflow nodes branching into a vector store.
   M.flow = function () {
     var N = [[40, 92, 'TRIGGER'], [130, 92, 'FETCH'], [220, 50, 'EMBED'], [220, 134, 'LLM'], [310, 92, 'SEND']], h = '';
@@ -3912,9 +3642,9 @@ if (typeof window !== 'undefined') {
   };
 
   var BY_ID = {
-    1: 'layers', 2: 'chat', 3: 'chip', 4: 'shield', 5: 'review', 7: 'dashboard', 9: 'board', 10: 'radar',
-    11: 'hub', 12: 'tunnel', 13: 'relay', 14: 'swatches', 15: 'orb', 16: 'newtab', 17: 'cloudpanel', 18: 'article',
-    19: 'terminal', 20: 'neural', 21: 'flow', 22: 'system', 23: 'globe', 24: 'printer'
+    2: 'chat', 3: 'chip', 5: 'review', 7: 'dashboard', 9: 'board', 10: 'radar', 11: 'hub',
+    15: 'orb', 16: 'newtab', 17: 'cloudpanel', 18: 'article', 19: 'terminal', 21: 'flow',
+    22: 'system', 23: 'globe', 24: 'printer'
   };
 
   function forProject(p) {
@@ -4691,7 +4421,11 @@ if (typeof window !== 'undefined') {
       '<div class="det__band-top"><span class="det__badges">' + (p.isNew ? '<span class="tag-new">' + esc(tx.isNew) + '</span>' : '') +
       (p.badge ? '<span>' + esc(p.badge) + '</span>' : '') + '<span dir="ltr">' + esc(p.tag || '') + '</span></span></div>' +
       '<span class="det__glyph" dir="ltr" aria-hidden="true">' + pad(idx + 1) + '</span></div>';
+    // Head (title, summary, facts) spans the panel; below it the narrative sits in the main column and
+    // the quick-reference facts (role, outcome, stack, repo) in a side column on desktop. The DOM order
+    // matches the single-column phone layout, so the bottom sheet reads exactly as before.
     h += '<div class="det">';
+    h += '<div class="det__head">';
     h += '<h3 id="sheetTitle">' + esc(p.title) + '</h3>';
     h += '<div class="det__en" dir="ltr">' + esc(p.en) + '</div>';
     if ((p.platforms && p.platforms.length) || p.year) {
@@ -4702,14 +4436,16 @@ if (typeof window !== 'undefined') {
     if (p.facts && p.facts.length) {
       h += '<div class="det__facts">' + p.facts.map(function (f) { return '<div><b dir="ltr">' + esc(f[0]) + '</b><span>' + esc(f[1]) + '</span></div>'; }).join('') + '</div>';
     }
+    h += '</div><div class="det__grid"><div class="det__main">';
     if (p.ctx) h += label(tx.ctx) + '<p class="det__ctx">' + esc(p.ctx) + '</p>';
     if (p.ch && p.ch.length) h += label(tx.ch) + bullets(p.ch, 'det__bullets--accent');
-    if (p.sol && p.sol.length) h += label(tx.sol) + bullets(p.sol);
-    if (p.resp && p.resp.length) h += label(tx.resp) + bullets(p.resp);
+    if (p.sol && p.sol.length) h += label(tx.sol) + bullets(p.sol, 'det__bullets--steps');
+    h += '</div><aside class="det__side">';
+    if (p.resp && p.resp.length) h += '<div class="det__card">' + label(tx.resp) + bullets(p.resp) + '</div>';
     if (p.val) h += '<div class="det__val"><div class="det__val-k">' + esc(tx.val) + '</div><div class="det__val-v">' + esc(p.val) + '</div></div>';
-    h += label(tx.stack) + '<div class="det__stack" dir="ltr">' + (p.stack || []).map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') + '</div>';
+    h += '<div class="det__card">' + label(tx.stack) + '<div class="det__stack" dir="ltr">' + (p.stack || []).map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') + '</div></div>';
     if (p.link) h += '<a class="det__link" href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(tx.open) + ' <span aria-hidden="true">↗</span></a>';
-    h += '</div>';
+    h += '</aside></div></div>';
     return h;
   }
 
@@ -4734,7 +4470,7 @@ if (typeof window !== 'undefined') {
   }
 
   // Card illustrations animate only while they matter: on hover (mouse) or while a card
-  // sits in the middle band of the screen (touch), so 25 drawings never run at once.
+  // sits in the middle band of the screen (touch), so the drawings never run at once.
   var cardIO = null;
   function watchCards(cards) {
     if (cardIO) cardIO.disconnect();
@@ -4766,7 +4502,9 @@ if (typeof window !== 'undefined') {
     var body = $('pjDet');
     body.innerHTML = detailHtml(p, idx, L.length);
     body.scrollTop = 0;
+    sheetScrolled();
     $('sheetCount').textContent = pad(idx + 1) + ' / ' + pad(L.length);
+    $('sheetMini').textContent = p.title;
     var prev = L[(idx - 1 + L.length) % L.length], next = L[(idx + 1) % L.length], tx = t();
     $('sheetPrev').innerHTML = '<i aria-hidden="true">' + (state.lang === 'en' ? '←' : '→') + '</i><span><small>' + esc(tx.prev) + '</small><b>' + esc(prev.title) + '</b></span>';
     $('sheetNext').innerHTML = '<span><small>' + esc(tx.next) + '</small><b>' + esc(next.title) + '</b></span><i aria-hidden="true">' + arrow() + '</i>';
@@ -4776,6 +4514,15 @@ if (typeof window !== 'undefined') {
       var dx = (dir || 0) * (state.lang === 'en' ? 1 : -1) * 28;
       body.animate([{ opacity: 0, transform: 'translateX(' + dx + 'px)' }, { opacity: 1, transform: 'none' }], { duration: 380, easing: 'cubic-bezier(.16,.86,.2,1)' });
     }
+  }
+
+  // Desktop panel chrome: a reading-progress line under the bar, and the project title in the bar
+  // once the heading has scrolled away. Both are hidden by CSS on phones.
+  function sheetScrolled() {
+    var body = $('pjDet'), panel = $('sheetPanel'), h = body.querySelector('.det h3');
+    var max = body.scrollHeight - body.clientHeight;
+    panel.style.setProperty('--sp', max > 0 ? Math.min(1, body.scrollTop / max).toFixed(3) : '0');
+    panel.classList.toggle('is-scrolled', !!h && body.scrollTop > h.offsetTop + h.offsetHeight);
   }
 
   function lockScroll(on) {
@@ -4828,8 +4575,12 @@ if (typeof window !== 'undefined') {
   }
 
   function initSheet() {
-    var el = $('pjSheet'), panel = $('sheetPanel'), body = $('pjDet');
+    var el = $('pjSheet'), panel = $('sheetPanel'), body = $('pjDet'), sq = false;
     el.addEventListener('click', function (e) { if (e.target.closest('[data-sheet-close]')) closeSheet(); });
+    body.addEventListener('scroll', function () {
+      if (sq) return; sq = true;
+      requestAnimationFrame(function () { sq = false; sheetScrolled(); });
+    }, { passive: true });
     $('sheetClose').addEventListener('click', function () { closeSheet(); });
     $('sheetPrev').addEventListener('click', function () { sheetStep(-1); });
     $('sheetNext').addEventListener('click', function () { sheetStep(1); });
@@ -4989,7 +4740,7 @@ if (typeof window !== 'undefined') {
       h += '<button type="button" class="layer' + (on ? ' is-on' : '') + '" data-layer="' + i + '" aria-current="' + on + '">' +
         '<span class="layer__num">' + pad(i + 1) + '</span>' +
         '<span class="layer__txt"><span class="layer__title">' + esc(en ? l.en : l.fa) + '</span>' +
-        '<span class="layer__en" dir="ltr">' + esc(en ? l.fa : l.en) + '</span></span></button>';
+        '<span class="layer__en" dir="ltr">' + esc(en ? l.edge : l.en) + '</span></span></button>';
       if (i < L.length - 1) {
         var wire = (i === li || i === li - 1) ? 'rgba(0,226,138,.5)' : '#1F2423';
         h += '<div class="wire' + (state.flow || on ? ' is-live' : '') + '" style="--wire:' + wire + '" aria-hidden="true">' +
@@ -5002,7 +4753,7 @@ if (typeof window !== 'undefined') {
     $('archPanel').innerHTML =
       '<div class="arch__kicker">' + esc((en ? tab.en : tab.fa) + ' · ' + pad(li + 1) + '/' + pad(L.length)) + '</div>' +
       '<h3>' + esc(en ? cl.en : cl.fa) + '</h3>' +
-      '<div class="arch__en" dir="ltr">' + esc(en ? cl.fa : cl.en) + '</div>' +
+      '<div class="arch__en" dir="ltr">' + esc(en ? cl.edge : cl.en) + '</div>' +
       '<p class="arch__body">' + esc(en ? cl.bodyEn : cl.bodyFa) + '</p>' +
       '<div class="arch__io"><div><div class="arch__io-k">' + esc(tx.inLabel) + '</div><div class="arch__io-v">' + esc(en ? cl.inEn : cl.inFa) + '</div></div>' +
       '<div><div class="arch__io-k">' + esc(tx.outLabel) + '</div><div class="arch__io-v">' + esc(en ? cl.outEn : cl.outFa) + '</div></div></div>' +
