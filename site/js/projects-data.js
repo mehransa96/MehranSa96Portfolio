@@ -59,31 +59,6 @@ const FA = [
     badge: 'مخزن خصوصی'
   },
   {
-    id: 1, cat: 'web security', tag: 'ENTERPRISE',
-    title: 'سامانه مالی سازمانی', en: 'Enterprise Financial WebApp',
-    sum: 'سامانه مالی جامع برای سازمان‌های بزرگ با معماری چندلایه، امنیت سطح بانکی و گزارش‌گیری پیشرفته روی SQL Server.',
-    ctx: 'سامانه‌ای که تیم مالی سازمان هر روز با آن کار می‌کند: ثبت اسناد، گردش تأیید و گزارش‌های قانونی. الزام اصلی این بود که هیچ محاسبه‌ای در شرایط همزمانی بالا خطا نکند و دسترسی‌ها با ساختار سازمانی موجود یکی باشد.',
-    ch: [
-      'مدیریت تراکنش‌های موازی با بیش از ۵۰۰ کاربر همزمان و جلوگیری از race condition در محاسبات مالی.',
-      'پیاده‌سازی احراز هویت چندعاملی یکپارچه با Active Directory سازمان.',
-      'گزارش‌گیری real-time با تأخیر کمتر از ۲ ثانیه روی داده‌های میلیونی.'
-    ],
-    sol: [
-      'معماری چندلایه روی ASP.NET Core با جداسازی کامل لایه دامنه از رابط کاربری',
-      'محاسبات مالی داخل تراکنش‌های SQL Server با سطح جداسازی کنترل‌شده و قفل‌گذاری هدفمند',
-      'گزارش‌ها روی stored procedure های بهینه و SSRS، به‌جای کوئری مستقیم از سمت اپلیکیشن',
-      'کش Redis برای داده‌های پرتکرار و استقرار کانتینری روی IIS'
-    ],
-    resp: [
-      'معماری کامل سیستم از نیازسنجی تا استقرار',
-      'طراحی schema و stored procedure های بهینه',
-      'پیاده‌سازی لایه‌های امنیتی و رمزنگاری داده',
-      'تیم‌لید توسعه frontend و backend'
-    ],
-    val: 'کاهش ۶۵٪ در زمان پردازش گزارش‌های مالی ماهانه و حذف کامل خطاهای دستی.',
-    stack: ['ASP.NET Core', 'C#', 'SQL Server', 'T-SQL', 'SSRS', 'React', 'Azure AD', 'Redis', 'Docker', 'IIS']
-  },
-  {
     id: 2, cat: 'ai', tag: 'AI / EDGE',
     title: 'ربات هوشمند یادگیری زبان', en: 'AI Language Learning Bot',
     sum: 'ربات تلگرامی مبتنی بر LLM با تطبیق هوشمند سطح، گیمیفیکیشن و ردیابی پیشرفت، اجراشده روی Cloudflare Edge.',
@@ -132,31 +107,6 @@ const FA = [
     ],
     val: 'کاهش ۸۰٪ در مداخلات دستی اپراتور و شناسایی خرابی ۴۸ ساعت زودتر.',
     stack: ['ESP32', 'Arduino C++', 'MQTT', 'WireGuard', 'Node.js', 'InfluxDB', 'Grafana', 'Raspberry Pi', 'WebSocket']
-  },
-  {
-    id: 4, cat: 'web security', tag: 'WEB',
-    title: 'وب‌سایت شرکت Green Mind Tech', en: 'Corporate Site + Hardening',
-    sum: 'توسعه فول‌استک وب‌سایت شرکتی با CMS اختصاصی، بهینه‌سازی سئو و سخت‌سازی امنیتی جامع.',
-    ctx: 'وب‌سایتی که هم ویترین خدمات شرکت است و هم باید محتوایش را تیم غیرفنی به‌روز کند؛ در ضمن هدف مستمر ترافیک بات بود.',
-    ch: [
-      'پیاده‌سازی CSP سختگیرانه بدون آسیب به عملکرد.',
-      'رساندن Core Web Vitals به امتیاز ۹۵ به بالا.',
-      'سیستم چندزبانه فارسی/انگلیسی با RTL و LTR خودکار.'
-    ],
-    sol: [
-      'Next.js با رندر سمت سرور برای صفحات محتوایی و CMS اختصاصی روی PostgreSQL و Prisma',
-      'مسیر چندزبانه با تشخیص خودکار جهت متن',
-      'هدرهای امنیتی و CSP در لایه Nginx، فیلتر بات در Cloudflare WAF',
-      'بهینه‌سازی تصاویر و بارگذاری تنبل برای رسیدن به بودجه عملکرد'
-    ],
-    resp: [
-      'طراحی کامل UI/UX و پیاده‌سازی frontend',
-      'توسعه CMS اختصاصی با Next.js و PostgreSQL',
-      'پیکربندی Nginx و Cloudflare WAF',
-      'بهینه‌سازی سئوی فنی و محتوایی'
-    ],
-    val: 'افزایش ۱۴۰٪ در ترافیک ارگانیک ظرف ۴ ماه و کاهش ۹۵٪ در حملات بات.',
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Prisma', 'Nginx', 'Cloudflare WAF', 'GSC API']
   },
   {
     id: 5, cat: 'ai web', tag: 'AUTOMATION',
@@ -305,80 +255,13 @@ const FA = [
     link: 'https://github.com/mehransa96/freellmapi'
   },
   {
-    id: 12, cat: 'security', tag: 'NETWORK / RUST',
-    title: 'رله HTTP با عبور از DPI', en: 'MasterHttpRelayVPN — Rust',
-    sum: 'بازنویسی یک رله HTTP در Rust برای عبور از بازرسی عمیق بسته، با تمرکز روی پایداری اتصال و مصرف کم منابع.',
-    ctx: 'هدف این بود که رله بدون هیچ وابستگی زمان اجرا روی ویندوز، لینوکس و مک اجرا شود و روی شبکه‌هایی که ترافیک را فعالانه بازرسی می‌کنند پایدار بماند.',
-    ch: [
-      'حفظ پایداری اتصال روی شبکه‌هایی که ترافیک را فعالانه بازرسی می‌کنند.',
-      'انتقال منطق از پیاده‌سازی قبلی به Rust بدون افت کارایی.'
-    ],
-    sol: [
-      'پورت کامل منطق رله به Rust با Tokio و بدون وابستگی زمان اجرا',
-      'پروکسی HTTP و SOCKS5 در یک باینری، همراه CLI و رابط دسکتاپ',
-      'پنهان‌سازی SNI در مسیر رله برای عبور از بازرسی بسته'
-    ],
-    resp: [
-      'پورت کامل کد به Rust',
-      'پیاده‌سازی لایه رله و مدیریت اتصال‌ها'
-    ],
-    stack: ['Rust', 'Tokio', 'HTTP', 'SOCKS5', 'Networking'],
-    link: 'https://github.com/mehransa96/MasterHttpRelayVPN-RUST'
-  },
-  {
-    id: 13, cat: 'security web', tag: 'NETWORK / EDGE',
-    title: 'رله دامین‌فرانتینگ MHR-CFW', en: 'MHR-CFW — Domain-Fronted Relay',
-    sum: 'رله محلی که ترافیک را از مسیر Google Apps Script و Cloudflare Worker عبور می‌دهد تا فیلتر شبکه فقط یک دامنه مجاز ببیند.',
-    ctx: 'ادامه کار روی رله HTTP: این نسخه مسیر خروج را به Cloudflare Worker می‌برد و برای سایت‌هایی که به آی‌پی خروج ثابت نیاز دارند یک فورواردر اختیاری اضافه می‌کند.',
-    ch: [
-      'نمایش‌دادن یک دامنه مجاز به بازرسی شبکه، در حالی که مقصد واقعی داخل درخواست رله می‌ماند.',
-      'آی‌پی خروجی Worker در هر درخواست عوض می‌شود و توکن‌های CAPTCHA به آی‌پی گره خورده‌اند.',
-      'راه‌اندازی چندمرحله‌ای باید برای کاربر غیرفنی قابل انجام بماند.'
-    ],
-    sol: [
-      'مسیر رله: کلاینت، پروکسی محلی، فرانت گوگل، رله Apps Script، ورکر Cloudflare، خروج',
-      'پروکسی محلی HTTP و SOCKS5 با ویزارد راه‌اندازی در اجرای اول',
-      'فورواردر اختیاری Node روی VPS با TLS برای ثابت‌کردن آی‌پی خروج',
-      'حالت شکست بسته به‌صورت پیش‌فرض تا در خطا ترافیک مستقیم نرود'
-    ],
-    resp: [
-      'طراحی مسیر رله و پیاده‌سازی ورکر و اسکریپت Apps Script',
-      'نوشتن پروکسی محلی و ویزارد راه‌اندازی',
-      'افزودن فورواردر اختیاری برای آی‌پی خروج ثابت',
-      'مستندسازی دوزبانه راه‌اندازی'
-    ],
-    stack: ['Python', 'Cloudflare Workers', 'Google Apps Script', 'Node.js', 'SOCKS5', 'TLS'],
-    link: 'https://github.com/mehransa96/mhr-cfw'
-  },
-  {
-    id: 14, cat: 'ai', tag: 'DEVELOPER TOOLING',
-    title: 'اسکیل تخصصی طراحی UI/UX برای مدل‌های هوش مصنوعی', en: 'ui-ux-pro-max skill',
-    sum: 'بستهٔ دانش طراحی — سبک‌های رابط، پالت‌های رنگ، جفت‌فونت‌ها و قواعد تجربه کاربری — که به دستیار هوش مصنوعی داده می‌شود تا خروجی طراحی‌اش حرفه‌ای‌تر شود.',
-    ctx: 'مدل‌های هوش مصنوعی کد رابط را سریع می‌نویسند ولی انتخاب‌های طراحی‌شان تکراری است. این بسته یک مرجع قابل جست‌وجو می‌شود که مدل هنگام طراحی به آن رجوع کند.',
-    ch: [
-      'ساختاردهی دانش طراحی به شکلی که مدل بتواند در لحظه جست‌وجو و استفاده کند.',
-      'پوشش‌دادن استک‌های متفاوت با قواعد اختصاصی هر کدام.'
-    ],
-    sol: [
-      'پایگاه دانش دسته‌بندی‌شده: سبک‌های رابط، پالت رنگ، جفت‌فونت، قواعد تجربه کاربری و انواع نمودار',
-      'قواعد اجرایی مجزا برای هر استک، از React و Tailwind تا SwiftUI و Flutter',
-      'ساختار قابل جست‌وجو تا مدل فقط بخش مرتبط را بخواند'
-    ],
-    resp: [
-      'گردآوری و دسته‌بندی پایگاه دانش طراحی',
-      'نوشتن قواعد اجرایی برای هر استک'
-    ],
-    stack: ['Prompt Engineering', 'Knowledge Base', 'Design Systems'],
-    link: 'https://github.com/mehransa96/Claude-ui-ux-pro-max-skill'
-  },
-  {
     id: 15, cat: 'web', tag: 'PORTFOLIO',
     title: 'وب‌سایت شخصی و کارنامه فنی', en: 'Personal Portfolio — GMTec',
     sum: 'کارنامه فنی دوزبانه با نسخه فارسی راست‌به‌چپ و انگلیسی چپ‌به‌راست، فیلتر دسته‌ای پروژه‌ها و پنل جزئیات بازشونده.',
     ctx: 'نسخه اول سایت یک صفحه شلوغ با پنجره‌های شناور بود. بازطراحی روی سه چیز تمرکز داشت: خوانایی متن فارسی، ساختار اطلاعات پروژه‌ها و بارگذاری سریع بدون تصویر سنگین.',
     ch: [
       'یک ساختار برای دو جهت متن: فارسی راست‌به‌چپ و انگلیسی چپ‌به‌راست، روی یک منبع داده مشترک.',
-      'نمایش جزئیات بیش از بیست پروژه بدون شلوغ‌شدن صفحه.',
+      'نمایش جزئیات نزدیک به بیست پروژه بدون شلوغ‌شدن صفحه.',
       'انیمیشن‌های روان روی موبایل بدون افت عملکرد.'
     ],
     sol: [
@@ -476,23 +359,6 @@ const FA = [
       'تولیدکننده RDL و T-SQL'
     ],
     stack: ['Python', 'T-SQL', 'RDL', 'MCP']
-  },
-  {
-    id: 20, cat: 'ai', tag: 'AI SKILL',
-    title: 'مهارت سفارشی prompt-engineer-vibe-coder', en: 'prompt-engineer-vibe-coder — Custom AI Skill',
-    sum: 'متدولوژی ساختاریافته چهارفازی برای مهندسی پرامپت و پروژه‌های Vibe Coding، بسته‌بندی‌شده به شکل یک مهارت سفارشی.',
-    ctx: 'خروجی ابزارهای کدنویسی با هوش مصنوعی به کیفیت پرامپت گره خورده است. این مهارت همان مسیر را به یک روند مرحله‌ای تبدیل می‌کند تا از نیازسنجی به تحویل برسد.',
-    sol: [
-      'فاز یک — استخراج نیازمندی‌ها: هدف، مخاطب، ابزار، محدودیت‌ها و معیار موفقیت',
-      'فاز دو — طراحی معماری در سه مسیر: فقط پرامپت، Vibe Coding، یا ترکیبی',
-      'فاز سه — خروجی و چک‌لیست',
-      'فاز چهار — تحویل ساختاریافته و بازخوردگیری'
-    ],
-    resp: [
-      'طراحی متدولوژی چهارفازی',
-      'بسته‌بندی به شکل مهارت سفارشی قابل استفاده'
-    ],
-    stack: ['Prompt Engineering', 'Custom AI Skill', 'Vibe Coding']
   },
   {
     id: 21, cat: 'ai', tag: 'AUTOMATION',
@@ -617,31 +483,6 @@ const EN = [
     badge: 'Private repo'
   },
   {
-    id: 1, cat: 'web security', tag: 'ENTERPRISE',
-    title: 'Enterprise financial web app', en: 'Multi-layer platform on SQL Server',
-    sum: 'A financial platform for large organisations with layered architecture, banking-grade security and advanced reporting on SQL Server.',
-    ctx: 'The platform the finance team works in every day: document entry, approval flow and statutory reporting. The hard requirement was that no calculation could go wrong under heavy concurrency, and that access had to mirror the existing organisational structure.',
-    ch: [
-      'Handling concurrent transactions for 500+ simultaneous users without race conditions in financial calculations.',
-      'Multi-factor authentication integrated with the organisation’s Active Directory.',
-      'Real-time reporting with under 2 seconds latency across millions of rows.'
-    ],
-    sol: [
-      'Layered ASP.NET Core architecture with the domain layer fully separated from the UI',
-      'Financial calculations inside SQL Server transactions with controlled isolation and targeted locking',
-      'Reporting through optimised stored procedures and SSRS rather than application-side queries',
-      'Redis cache for hot data, containerised deployment on IIS'
-    ],
-    resp: [
-      'End-to-end architecture from requirements to deployment',
-      'Database schema and optimised stored procedures',
-      'Security layers and data encryption',
-      'Tech lead for frontend and backend'
-    ],
-    val: 'Monthly financial reporting time cut by 65% and manual entry errors eliminated.',
-    stack: ['ASP.NET Core', 'C#', 'SQL Server', 'T-SQL', 'SSRS', 'React', 'Azure AD', 'Redis', 'Docker', 'IIS']
-  },
-  {
     id: 2, cat: 'ai', tag: 'AI / EDGE',
     title: 'AI language-learning bot', en: 'LLM bot on Cloudflare Edge',
     sum: 'An LLM-based Telegram bot with adaptive levelling, gamification and progress tracking, running on Cloudflare Edge.',
@@ -690,31 +531,6 @@ const EN = [
     ],
     val: 'Operator intervention down 80%; failures detected 48 hours earlier.',
     stack: ['ESP32', 'Arduino C++', 'MQTT', 'WireGuard', 'Node.js', 'InfluxDB', 'Grafana', 'Raspberry Pi', 'WebSocket']
-  },
-  {
-    id: 4, cat: 'web security', tag: 'WEB',
-    title: 'Green Mind Tech corporate site', en: 'Full-stack build + hardening',
-    sum: 'Full-stack corporate site with a custom CMS, SEO work and comprehensive security hardening.',
-    ctx: 'A site that is both the company’s shop window and something a non-technical team has to keep updated — while being a standing target for bot traffic.',
-    ch: [
-      'A strict CSP with no performance cost.',
-      'Core Web Vitals above 95.',
-      'Bilingual Persian/English with automatic RTL and LTR.'
-    ],
-    sol: [
-      'Server-rendered Next.js for content pages with a custom CMS on PostgreSQL and Prisma',
-      'Bilingual routing with automatic text-direction handling',
-      'Security headers and CSP at the Nginx layer, bot filtering in Cloudflare WAF',
-      'Image optimisation and lazy loading to hold the performance budget'
-    ],
-    resp: [
-      'Complete UI/UX design and frontend build',
-      'Custom CMS on Next.js and PostgreSQL',
-      'Nginx and Cloudflare WAF configuration',
-      'Technical and content SEO'
-    ],
-    val: 'Organic traffic up 140% in four months; bot attacks down 95%.',
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Prisma', 'Nginx', 'Cloudflare WAF', 'GSC API']
   },
   {
     id: 5, cat: 'ai web', tag: 'AUTOMATION',
@@ -863,80 +679,13 @@ const EN = [
     link: 'https://github.com/mehransa96/freellmapi'
   },
   {
-    id: 12, cat: 'security', tag: 'NETWORK / RUST',
-    title: 'MasterHttpRelayVPN — Rust', en: 'DPI-resistant HTTP relay',
-    sum: 'A Rust rewrite of an HTTP relay built to pass deep packet inspection, focused on connection stability and low resource use.',
-    ctx: 'The aim was a relay that runs with no runtime dependencies on Windows, Linux and macOS, and stays stable on networks that actively inspect traffic.',
-    ch: [
-      'Keeping connections stable on networks that actively inspect traffic.',
-      'Porting the logic to Rust without losing throughput.'
-    ],
-    sol: [
-      'Full port of the relay logic to Rust on Tokio, with no runtime dependencies',
-      'HTTP and SOCKS5 proxy in a single binary, with a CLI and a desktop UI',
-      'SNI concealment along the relay path to pass inspection'
-    ],
-    resp: [
-      'Complete port of the codebase to Rust',
-      'Relay layer and connection management'
-    ],
-    stack: ['Rust', 'Tokio', 'HTTP', 'SOCKS5', 'Networking'],
-    link: 'https://github.com/mehransa96/MasterHttpRelayVPN-RUST'
-  },
-  {
-    id: 13, cat: 'security web', tag: 'NETWORK / EDGE',
-    title: 'MHR-CFW', en: 'Domain-fronted relay with a Worker exit',
-    sum: 'A local relay that routes traffic through Google Apps Script and a Cloudflare Worker, so the network filter only ever sees an allowed domain.',
-    ctx: 'A continuation of the HTTP relay work: this version moves the exit to a Cloudflare Worker and adds an optional forwarder for sites that require a stable exit IP.',
-    ch: [
-      'Showing the network an allowed domain while the real destination stays inside the relay request.',
-      'The Worker’s exit IP changes per request, and CAPTCHA tokens are bound to the IP that solved them.',
-      'A multi-step setup that a non-technical user can still complete.'
-    ],
-    sol: [
-      'Relay path: client, local proxy, Google front, Apps Script relay, Cloudflare Worker, exit',
-      'Local HTTP and SOCKS5 proxy with a first-run setup wizard',
-      'Optional Node forwarder on a VPS behind TLS to pin the exit IP',
-      'Fail-closed by default, so an error never leaks traffic direct'
-    ],
-    resp: [
-      'Relay path design, Worker and Apps Script implementation',
-      'Local proxy and setup wizard',
-      'Optional forwarder for a stable exit IP',
-      'Bilingual setup documentation'
-    ],
-    stack: ['Python', 'Cloudflare Workers', 'Google Apps Script', 'Node.js', 'SOCKS5', 'TLS'],
-    link: 'https://github.com/mehransa96/mhr-cfw'
-  },
-  {
-    id: 14, cat: 'ai', tag: 'DEVELOPER TOOLING',
-    title: 'ui-ux-pro-max skill', en: 'Design intelligence for AI assistants',
-    sum: 'A design knowledge pack — interface styles, colour palettes, font pairings and UX rules — handed to an AI assistant so its design output holds up professionally.',
-    ctx: 'AI models write interface code quickly, but their design choices repeat. This pack becomes a searchable reference the model consults while designing.',
-    ch: [
-      'Structuring design knowledge so a model can search and apply it on the fly.',
-      'Covering many stacks, each with its own rules.'
-    ],
-    sol: [
-      'A classified knowledge base: interface styles, palettes, font pairings, UX rules and chart types',
-      'Separate actionable rules per stack, from React and Tailwind to SwiftUI and Flutter',
-      'A searchable structure so the model reads only the relevant part'
-    ],
-    resp: [
-      'Collecting and classifying the design knowledge base',
-      'Writing actionable rules per stack'
-    ],
-    stack: ['Prompt Engineering', 'Knowledge Base', 'Design Systems'],
-    link: 'https://github.com/mehransa96/Claude-ui-ux-pro-max-skill'
-  },
-  {
     id: 15, cat: 'web', tag: 'PORTFOLIO',
     title: 'Personal portfolio', en: 'Bilingual RTL/LTR portfolio — GMTec',
     sum: 'A bilingual technical portfolio with a right-to-left Persian version and a left-to-right English one, category filters and expandable detail panels.',
     ctx: 'The first version of the site was a crowded page built around floating windows. The redesign focused on three things: Persian text legibility, the information structure behind each project, and fast loading with no heavy imagery.',
     ch: [
       'One structure for two text directions — Persian RTL and English LTR — from a single shared data source.',
-      'Showing detail for more than twenty projects without crowding the page.',
+      'Showing detail for nearly twenty projects without crowding the page.',
       'Smooth motion on mobile with no performance cost.'
     ],
     sol: [
@@ -1034,23 +783,6 @@ const EN = [
       'RDL and T-SQL generator'
     ],
     stack: ['Python', 'T-SQL', 'RDL', 'MCP']
-  },
-  {
-    id: 20, cat: 'ai', tag: 'AI SKILL',
-    title: 'prompt-engineer-vibe-coder', en: 'Custom AI skill',
-    sum: 'A structured four-phase methodology for prompt engineering and vibe-coding projects, packaged as a custom AI skill.',
-    ctx: 'What AI coding tools produce is bound to the quality of the prompt. This skill turns that into a staged process that runs from requirements to delivery.',
-    sol: [
-      'Phase one — requirements extraction: goal, audience, tooling, constraints, success criteria',
-      'Phase two — architecture design across three paths: prompt-only, vibe coding, or hybrid',
-      'Phase three — output and checklist',
-      'Phase four — structured delivery and feedback'
-    ],
-    resp: [
-      'Designing the four-phase methodology',
-      'Packaging it as a reusable custom skill'
-    ],
-    stack: ['Prompt Engineering', 'Custom AI Skill', 'Vibe Coding']
   },
   {
     id: 21, cat: 'ai', tag: 'AUTOMATION',

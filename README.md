@@ -7,7 +7,7 @@ Single-page bilingual (FA / EN) portfolio with an interactive WebGL particle cor
 | Path | What it is |
 |---|---|
 | `site/` | The website. Plain HTML/CSS/JS, no build step — upload the folder as-is to any static host. |
-| `site/js/projects-data.js` | All 25 projects (FA + EN). Edit project content here. |
+| `site/js/projects-data.js` | All 19 projects (FA + EN). Edit project content here. |
 | `site/js/main.js` | Project cards and details sheet, language switch, search palette (Ctrl/⌘ + K), architecture map, mobile menu. |
 | `site/js/visuals.js` | Line-art SVG illustration for every project (one motif each) and coloured through CSS. |
 | `site/js/core3d.js` | The particle core: 22k GPU particles in custom GLSL (11k on mobile) that morph with scroll — core → spiral galaxy → wave grid → the GM emblem sampled from the logo. The cursor parts the field and tethers to nearby particles; click sends a shockwave; quality adapts to the device. |
@@ -32,7 +32,7 @@ To host the single-file version, rename `dist/portfolio-fa-standalone.html` to `
 - Header icons: round, Telegram-style buttons with an ink ripple and a small reaction per icon (the paper plane takes off, the search lens wiggles, the language coin flips).
 - Menu: on phones the menu button sits at the start edge and the drawer slides in from it (right in Persian, left in English); swipe it back to close. It opens like Telegram's drawer: a profile cover (portrait, name, role, handle), icon rows with counters, the current section highlighted, search and an FA / EN switch, then contact buttons. The menu icon morphs into a back arrow, the row icons draw themselves in and the text rises in word by word.
 - Language: `EN` / `FA` in the header switches text and page direction (RTL ↔ LTR). The choice is remembered; `?lang=en` forces English.
-- Projects: a featured showcase (bento grid on desktop, swipe carousel on mobile) sits above an overview of every project as cards: illustration, title, short summary and a **Details** button (three columns on desktop, two on tablets, compact horizontal cards on phones). Full details open only on demand: a centred panel on desktop, a bottom sheet on phones (drag down to close). Previous / next pages through the current filter; each project has its own link (`#project-<id>`) and the browser Back button closes the sheet.
+- Projects: a featured showcase (bento grid on desktop, swipe carousel on mobile) sits above an overview of every project as cards: illustration, title, short summary and a **Details** button (three columns on desktop, two on tablets, compact horizontal cards on phones). Full details open only on demand: on desktop a fixed-height centred panel with a reading-progress line, the title in its bar once you scroll, and two columns (context, challenges and a numbered approach beside a sticky column with role, outcome, stack and repository); on phones a bottom sheet (drag down to close). Previous / next pages through the current filter; each project has its own link (`#project-<id>`) and the browser Back button closes the sheet.
 - Keyboard: Ctrl/⌘ + K opens search (↑ ↓ to move, Enter to open, Esc to close); in the project sheet ← → page through projects and Esc closes it.
 - Motion respects `prefers-reduced-motion`; the 3D scene lowers its quality automatically on slow devices.
 

@@ -100,20 +100,6 @@
     return svg('pipeline', h + text(200, 208, 'SELECT … FROM … JOIN … ✓', 'v-label v-label--k'));
   };
 
-  // Enterprise platform: four isometric layers, data rising through them to the interface.
-  M.layers = function () {
-    var L = ['UI', 'API', 'SERVICES', 'SQL SERVER'], h = '';
-    for (var k = L.length - 1; k >= 0; k--) {
-      var y = 52 + k * 38, top = k === 0;
-      h += path('M110 ' + y + ' L200 ' + (y - 24) + ' L290 ' + y + ' L200 ' + (y + 24) + ' Z', top ? 'v-slab v-slab--hot' : 'v-slab', i(k));
-      h += path('M110 ' + y + ' v7 L200 ' + (y + 31) + ' L290 ' + (y + 7) + ' v-7 L200 ' + (y + 24) + ' Z', 'v-slab-side');
-      h += line(292, y, 318, y, 'v-edge') + text(324, y + 3, L[k], 'v-label', 'start');
-    }
-    for (k = 0; k < 3; k++) h += line(170 + k * 30, 182, 170 + k * 30, 58, 'v-rise', i(k));
-    h += circ(200, 52, 4, 'v-core') + circ(200, 52, 12, 'v-halo');
-    return svg('layers', h + text(76, 112, 'C# · .NET', 'v-label v-label--k', 'middle'));
-  };
-
   // LLM bot on the edge: a chat thread on the left, a globe of edge locations on the right.
   M.chat = function () {
     var h = win(36, 28, 168, 164);
@@ -146,18 +132,6 @@
     h += path('M262 30 a14 14 0 0 1 20 0 M257 24 a22 22 0 0 1 30 0', 'v-wave') + circ(272, 36, 2.4, 'v-core');
     h += rect(191, 158, 18, 14, 3, 'v-lock') + path('M195 158 v-5 a5 5 0 0 1 10 0 v5', 'v-lock-arc');
     return svg('chip', h + text(200, 204, 'WIREGUARD · MQTT', 'v-label v-label--k'));
-  };
-
-  // Full-stack build and hardening: a web app window behind a checked shield.
-  M.shield = function () {
-    var h = win(46, 30, 210, 160);
-    h += rect(60, 56, 182, 34, 4, 'v-chip v-chip--dim') + lines(70, 66, [92, 64], 9);
-    h += rect(60, 100, 86, 76, 4, 'v-chip v-chip--dim') + rect(156, 100, 86, 34, 4, 'v-chip v-chip--dim') + rect(156, 142, 86, 34, 4, 'v-chip');
-    h += lines(70, 112, [60, 44, 52, 30], 12);
-    h += path('M300 46 L344 62 V104 C344 136 324 158 300 170 C276 158 256 136 256 104 V62 Z', 'v-shield');
-    h += path('M300 60 L332 72 V104 C332 128 318 146 300 156 C282 146 268 128 268 104 V72 Z', 'v-shield v-shield--in');
-    h += path('M285 107 l10 10 l21 -24', 'v-tick v-tick--big');
-    return svg('shield', h + text(300, 196, 'OWASP · CSP · RBAC', 'v-label v-label--k'));
   };
 
   // LLM pipeline with human review: document → model → reviewer → published.
@@ -227,43 +201,6 @@
     return svg('hub', h + text(250, 214, '16 PROVIDERS · 1 API', 'v-label v-label--k'));
   };
 
-  // DPI-resistant relay: packets slipping through a tunnel past an inspection gate.
-  M.tunnel = function () {
-    var h = '', rid = 'vt-' + (++uid);
-    for (var k = 0; k < 6; k++) h += '<ellipse cx="' + (120 + k * 32) + '" cy="110" rx="' + (12 - k * 0.6) + '" ry="' + (54 - k * 3) + '" class="v-tube"' + i(k) + '/>';
-    h += line(120, 56, 280, 74, 'v-edge') + line(120, 164, 280, 146, 'v-edge');
-    h += '<path id="' + rid + '" d="M44 110 C 90 110, 110 104, 200 110 S 310 116, 356 110" class="v-path"/>';
-    h += rect(28, 94, 32, 32, 5, 'v-table v-table--on') + rect(340, 94, 32, 32, 5, 'v-table v-table--on');
-    h += rect(194, 22, 12, 30, 2, 'v-gate') + rect(194, 168, 12, 30, 2, 'v-gate') + text(200, 16, 'DPI', 'v-label');
-    for (k = 0; k < 3; k++) h += '<rect x="-6" y="-4" width="12" height="8" rx="2" class="v-packet-r"><animateMotion dur="3.2s" begin="' + (k * 1.05) + 's" repeatCount="indefinite"><mpath href="#' + rid + '"/></animateMotion></rect>';
-    return svg('tunnel', h + text(200, 214, 'RUST · TOKIO · SOCKS5', 'v-label v-label--k'));
-  };
-
-  // Domain-fronted relay: client → fronting CDN → worker exit → the open web.
-  M.relay = function () {
-    var d = 'M52 150 C 110 150, 120 80, 170 80 M232 80 C 270 80, 268 150, 300 150', h = path(d, 'v-path') + path(d, 'v-path-flow');
-    h += rect(30, 136, 44, 30, 5, 'v-table v-table--on') + rect(40, 168, 24, 4, 2, 'v-line');
-    h += path('M150 96 a22 22 0 0 1 8 -40 a30 30 0 0 1 56 -6 a22 22 0 0 1 30 26 a18 18 0 0 1 -6 20 Z', 'v-cloud');
-    h += text(200, 82, 'FRONT', 'v-label v-label--stage');
-    h += rect(282, 134, 38, 32, 5, 'v-die') + text(301, 154, 'λ', 'v-label v-label--stage');
-    h += circ(352, 70, 28, 'v-globe') + '<ellipse cx="352" cy="70" rx="12" ry="28" class="v-globe v-globe--in"/>' + line(324, 70, 380, 70, 'v-globe v-globe--in');
-    h += path('M320 140 C 338 120, 344 108, 348 98', 'v-edge v-edge--hot');
-    return svg('relay', h + text(200, 204, 'CLIENT → CDN → WORKER → WEB', 'v-label v-label--k'));
-  };
-
-  // Design intelligence for AI assistants: type specimen, palette and grid.
-  M.swatches = function () {
-    var h = '';
-    for (var k = 0; k <= 8; k++) h += line(40 + k * 40, 24, 40 + k * 40, 196, 'v-grid');
-    h += text(110, 128, 'Aa', 'v-type', 'middle');
-    h += lines(180, 60, [130, 96, 112], 12);
-    var sw = ['v-sw1', 'v-sw2', 'v-sw3', 'v-sw4', 'v-sw5'];
-    sw.forEach(function (c, k) { h += rect(180 + k * 32, 104, 26, 40, 4, 'v-sw ' + c, i(k)); });
-    h += rect(180, 158, 78, 24, 12, 'v-btn') + rect(266, 158, 78, 24, 12, 'v-btn v-btn--ghost');
-    h += path('M346 46 l3 9 l9 3 l-9 3 l-3 9 l-3 -9 l-9 -3 l9 -3 Z', 'v-spark');
-    return svg('swatches', h);
-  };
-
   // The portfolio itself: an orb of particles with an orbit.
   M.orb = function (p) {
     var r = rng(p.id * 31 + 7), h = '<ellipse cx="200" cy="110" rx="128" ry="26" class="v-ring v-ring--in"/>';
@@ -327,16 +264,6 @@
     return svg('terminal', h);
   };
 
-  // Custom AI skill: a small neural network with a few lit paths.
-  M.neural = function () {
-    var cols = [[3, 80], [5, 160], [5, 240], [2, 320]], P = [], h = '';
-    cols.forEach(function (c) { var a = []; for (var k = 0; k < c[0]; k++) a.push([c[1], 110 + (k - (c[0] - 1) / 2) * 34]); P.push(a); });
-    for (var l = 0; l < P.length - 1; l++) P[l].forEach(function (u, a) { P[l + 1].forEach(function (v, b) { h += line(u[0], u[1], v[0], v[1], (a + b + l) % 4 === 0 ? 'v-edge v-edge--hot' : 'v-edge'); }); });
-    var n = 0;
-    P.forEach(function (c, l) { c.forEach(function (u, k) { h += circ(u[0], u[1], l === 3 ? 7 : 5.5, (k + l) % 3 === 0 || l === 3 ? 'v-node v-node--hot' : 'v-node', i(n++)); }); });
-    return svg('neural', h + text(200, 212, 'PROMPT · CONTEXT · OUTPUT', 'v-label v-label--k'));
-  };
-
   // Process automation with RAG: workflow nodes branching into a vector store.
   M.flow = function () {
     var N = [[40, 92, 'TRIGGER'], [130, 92, 'FETCH'], [220, 50, 'EMBED'], [220, 134, 'LLM'], [310, 92, 'SEND']], h = '';
@@ -393,9 +320,9 @@
   };
 
   var BY_ID = {
-    1: 'layers', 2: 'chat', 3: 'chip', 4: 'shield', 5: 'review', 7: 'dashboard', 9: 'board', 10: 'radar',
-    11: 'hub', 12: 'tunnel', 13: 'relay', 14: 'swatches', 15: 'orb', 16: 'newtab', 17: 'cloudpanel', 18: 'article',
-    19: 'terminal', 20: 'neural', 21: 'flow', 22: 'system', 23: 'globe', 24: 'printer'
+    2: 'chat', 3: 'chip', 5: 'review', 7: 'dashboard', 9: 'board', 10: 'radar', 11: 'hub',
+    15: 'orb', 16: 'newtab', 17: 'cloudpanel', 18: 'article', 19: 'terminal', 21: 'flow',
+    22: 'system', 23: 'globe', 24: 'printer'
   };
 
   function forProject(p) {

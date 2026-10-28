@@ -206,7 +206,11 @@
       '<div class="det__band-top"><span class="det__badges">' + (p.isNew ? '<span class="tag-new">' + esc(tx.isNew) + '</span>' : '') +
       (p.badge ? '<span>' + esc(p.badge) + '</span>' : '') + '<span dir="ltr">' + esc(p.tag || '') + '</span></span></div>' +
       '<span class="det__glyph" dir="ltr" aria-hidden="true">' + pad(idx + 1) + '</span></div>';
+    // Head (title, summary, facts) spans the panel; below it the narrative sits in the main column and
+    // the quick-reference facts (role, outcome, stack, repo) in a side column on desktop. The DOM order
+    // matches the single-column phone layout, so the bottom sheet reads exactly as before.
     h += '<div class="det">';
+    h += '<div class="det__head">';
     h += '<h3 id="sheetTitle">' + esc(p.title) + '</h3>';
     h += '<div class="det__en" dir="ltr">' + esc(p.en) + '</div>';
     if ((p.platforms && p.platforms.length) || p.year) {
@@ -217,14 +221,16 @@
     if (p.facts && p.facts.length) {
       h += '<div class="det__facts">' + p.facts.map(function (f) { return '<div><b dir="ltr">' + esc(f[0]) + '</b><span>' + esc(f[1]) + '</span></div>'; }).join('') + '</div>';
     }
+    h += '</div><div class="det__grid"><div class="det__main">';
     if (p.ctx) h += label(tx.ctx) + '<p class="det__ctx">' + esc(p.ctx) + '</p>';
     if (p.ch && p.ch.length) h += label(tx.ch) + bullets(p.ch, 'det__bullets--accent');
-    if (p.sol && p.sol.length) h += label(tx.sol) + bullets(p.sol);
-    if (p.resp && p.resp.length) h += label(tx.resp) + bullets(p.resp);
+    if (p.sol && p.sol.length) h += label(tx.sol) + bullets(p.sol, 'det__bullets--steps');
+    h += '</div><aside class="det__side">';
+    if (p.resp && p.resp.length) h += '<div class="det__card">' + label(tx.resp) + bullets(p.resp) + '</div>';
     if (p.val) h += '<div class="det__val"><div class="det__val-k">' + esc(tx.val) + '</div><div class="det__val-v">' + esc(p.val) + '</div></div>';
-    h += label(tx.stack) + '<div class="det__stack" dir="ltr">' + (p.stack || []).map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') + '</div>';
+    h += '<div class="det__card">' + label(tx.stack) + '<div class="det__stack" dir="ltr">' + (p.stack || []).map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') + '</div></div>';
     if (p.link) h += '<a class="det__link" href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(tx.open) + ' <span aria-hidden="true">↗</span></a>';
-    h += '</div>';
+    h += '</aside></div></div>';
     return h;
   }
 
@@ -249,7 +255,7 @@
   }
 
   // Card illustrations animate only while they matter: on hover (mouse) or while a card
-  // sits in the middle band of the screen (touch), so 25 drawings never run at once.
+  // sits in the middle band of the screen (touch), so the drawings never run at once.
   var cardIO = null;
   function watchCards(cards) {
     if (cardIO) cardIO.disconnect();
@@ -281,7 +287,9 @@
     var body = $('pjDet');
     body.innerHTML = detailHtml(p, idx, L.length);
     body.scrollTop = 0;
+    sheetScrolled();
     $('sheetCount').textContent = pad(idx + 1) + ' / ' + pad(L.length);
+    $('sheetMini').textContent = p.title;
     var prev = L[(idx - 1 + L.length) % L.length], next = L[(idx + 1) % L.length], tx = t();
     $('sheetPrev').innerHTML = '<i aria-hidden="true">' + (state.lang === 'en' ? '←' : '→') + '</i><span><small>' + esc(tx.prev) + '</small><b>' + esc(prev.title) + '</b></span>';
     $('sheetNext').innerHTML = '<span><small>' + esc(tx.next) + '</small><b>' + esc(next.title) + '</b></span><i aria-hidden="true">' + arrow() + '</i>';
@@ -291,6 +299,15 @@
       var dx = (dir || 0) * (state.lang === 'en' ? 1 : -1) * 28;
       body.animate([{ opacity: 0, transform: 'translateX(' + dx + 'px)' }, { opacity: 1, transform: 'none' }], { duration: 380, easing: 'cubic-bezier(.16,.86,.2,1)' });
     }
+  }
+
+  // Desktop panel chrome: a reading-progress line under the bar, and the project title in the bar
+  // once the heading has scrolled away. Both are hidden by CSS on phones.
+  function sheetScrolled() {
+    var body = $('pjDet'), panel = $('sheetPanel'), h = body.querySelector('.det h3');
+    var max = body.scrollHeight - body.clientHeight;
+    panel.style.setProperty('--sp', max > 0 ? Math.min(1, body.scrollTop / max).toFixed(3) : '0');
+    panel.classList.toggle('is-scrolled', !!h && body.scrollTop > h.offsetTop + h.offsetHeight);
   }
 
   function lockScroll(on) {
@@ -343,8 +360,12 @@
   }
 
   function initSheet() {
-    var el = $('pjSheet'), panel = $('sheetPanel'), body = $('pjDet');
+    var el = $('pjSheet'), panel = $('sheetPanel'), body = $('pjDet'), sq = false;
     el.addEventListener('click', function (e) { if (e.target.closest('[data-sheet-close]')) closeSheet(); });
+    body.addEventListener('scroll', function () {
+      if (sq) return; sq = true;
+      requestAnimationFrame(function () { sq = false; sheetScrolled(); });
+    }, { passive: true });
     $('sheetClose').addEventListener('click', function () { closeSheet(); });
     $('sheetPrev').addEventListener('click', function () { sheetStep(-1); });
     $('sheetNext').addEventListener('click', function () { sheetStep(1); });
@@ -504,7 +525,7 @@
       h += '<button type="button" class="layer' + (on ? ' is-on' : '') + '" data-layer="' + i + '" aria-current="' + on + '">' +
         '<span class="layer__num">' + pad(i + 1) + '</span>' +
         '<span class="layer__txt"><span class="layer__title">' + esc(en ? l.en : l.fa) + '</span>' +
-        '<span class="layer__en" dir="ltr">' + esc(en ? l.fa : l.en) + '</span></span></button>';
+        '<span class="layer__en" dir="ltr">' + esc(en ? l.edge : l.en) + '</span></span></button>';
       if (i < L.length - 1) {
         var wire = (i === li || i === li - 1) ? 'rgba(0,226,138,.5)' : '#1F2423';
         h += '<div class="wire' + (state.flow || on ? ' is-live' : '') + '" style="--wire:' + wire + '" aria-hidden="true">' +
@@ -517,7 +538,7 @@
     $('archPanel').innerHTML =
       '<div class="arch__kicker">' + esc((en ? tab.en : tab.fa) + ' · ' + pad(li + 1) + '/' + pad(L.length)) + '</div>' +
       '<h3>' + esc(en ? cl.en : cl.fa) + '</h3>' +
-      '<div class="arch__en" dir="ltr">' + esc(en ? cl.fa : cl.en) + '</div>' +
+      '<div class="arch__en" dir="ltr">' + esc(en ? cl.edge : cl.en) + '</div>' +
       '<p class="arch__body">' + esc(en ? cl.bodyEn : cl.bodyFa) + '</p>' +
       '<div class="arch__io"><div><div class="arch__io-k">' + esc(tx.inLabel) + '</div><div class="arch__io-v">' + esc(en ? cl.inEn : cl.inFa) + '</div></div>' +
       '<div><div class="arch__io-k">' + esc(tx.outLabel) + '</div><div class="arch__io-v">' + esc(en ? cl.outEn : cl.outFa) + '</div></div></div>' +
