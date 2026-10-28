@@ -7,7 +7,7 @@ Single-page bilingual (FA / EN) portfolio with an interactive WebGL particle cor
 | Path | What it is |
 |---|---|
 | `site/` | The website. Plain HTML/CSS/JS, no build step — upload the folder as-is to any static host. |
-| `site/js/projects-data.js` | All 25 projects (FA + EN). Edit project content here. |
+| `site/js/projects-data.js` | All 19 projects (FA + EN). Edit project content here. |
 | `site/js/main.js` | Project cards and details sheet, language switch, search palette (Ctrl/⌘ + K), architecture map, mobile menu. |
 | `site/js/visuals.js` | Line-art SVG illustration for every project (one motif each) and coloured through CSS. |
 | `site/js/core3d.js` | The particle core: 22k GPU particles in custom GLSL (11k on mobile) that morph with scroll — core → spiral galaxy → wave grid → the GM emblem sampled from the logo. The cursor parts the field and tethers to nearby particles; click sends a shockwave; quality adapts to the device. |

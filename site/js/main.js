@@ -249,7 +249,7 @@
   }
 
   // Card illustrations animate only while they matter: on hover (mouse) or while a card
-  // sits in the middle band of the screen (touch), so 25 drawings never run at once.
+  // sits in the middle band of the screen (touch), so the drawings never run at once.
   var cardIO = null;
   function watchCards(cards) {
     if (cardIO) cardIO.disconnect();
