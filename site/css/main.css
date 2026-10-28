@@ -1236,6 +1236,95 @@ html[dir="ltr"] .sheet__step--next:hover i { transform: translateX(3px); }
   .pcard { animation: none; }
 }
 
+/* ---------- Details panel: desktop layout ----------
+   Phones keep the single-column bottom sheet (the wrappers below collapse with display: contents).
+   From 880px the panel gets a fixed height, so paging never makes it jump, a reading-progress line,
+   the title in the bar once the heading scrolls away, and a two-column body: the story on the main
+   side and a sticky quick-reference column (role, outcome, stack, repository). */
+.sheet__body { position: relative; }
+.sheet__mini, .sheet__keys, .sheet__prog { display: none; }
+@media (max-width: 879.98px) {
+  .det__head, .det__grid, .det__main, .det__side, .det__card { display: contents; }
+}
+@media (min-width: 880px) {
+  .sheet { padding: 32px; }
+  .sheet__scrim { background: rgba(4, 5, 5, .84); }
+  .sheet__panel {
+    width: min(1180px, 100%); height: min(880px, calc(100dvh - 64px)); max-height: none; border-radius: 10px;
+  }
+  .sheet__bar { min-height: 62px; gap: 18px; padding: 10px 12px; padding-inline-start: 24px; border-bottom: 0; }
+  .sheet__count { flex: 0 0 auto; color: var(--accent); }
+  .sheet__mini {
+    display: block; flex: 1 1 auto; min-width: 0; font-size: 14px; font-weight: 600; color: var(--ink-2);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    opacity: 0; transform: translateY(6px); transition: opacity .3s ease, transform .45s var(--ease-out);
+  }
+  .sheet__panel.is-scrolled .sheet__mini { opacity: 1; transform: none; }
+  .sheet__keys { display: inline-flex; align-items: center; gap: 5px; }
+  .sheet__keys kbd {
+    min-width: 24px; padding: 3px 6px; border: 1px solid var(--line-3); border-radius: 4px;
+    font-family: var(--mono); font-size: 10px; line-height: 1.4; color: var(--mute-2); text-align: center;
+  }
+  .sheet__prog { display: block; position: relative; flex: 0 0 auto; height: 1px; background: #161A19; }
+  .sheet__prog::after {
+    content: ''; position: absolute; inset: 0; background: var(--accent); box-shadow: 0 0 10px rgba(var(--accent-rgb), .55);
+    transform: scaleX(var(--sp, 0)); transform-origin: left center; transition: transform .12s linear;
+  }
+  html[dir="rtl"] .sheet__prog::after { transform-origin: right center; }
+  .sheet__x { width: 42px; height: 42px; border-radius: 6px; }
+
+  .sheet .det__band { height: clamp(190px, 18vw, 230px); }
+  .sheet .det { padding: 38px clamp(32px, 4vw, 56px) 52px; }
+  .sheet .det h3 { font-size: clamp(26px, 2.4vw, 34px); }
+  .sheet .det__sum { max-width: 880px; }
+  .sheet .det__sum { font-size: 16.5px; }
+  .sheet .det__facts { border-radius: 6px; overflow: hidden; }
+  .sheet .det__facts > div { padding: 16px 18px 14px; }
+
+  .det__grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(290px, 340px); gap: 0 clamp(36px, 4vw, 60px); align-items: start;
+  }
+  .det__main .det__label:first-child { margin-top: 34px; }
+  .det__main .det__ctx, .det__main .det__bullets li { font-size: 15px; line-height: 2.05; }
+  .det__main .det__bullets { gap: 12px; }
+  .det__bullets--steps { counter-reset: step; }
+  .det__bullets--steps li { counter-increment: step; }
+  .det__bullets--steps li::before {
+    content: counter(step, decimal-leading-zero); width: 22px; height: auto; margin-top: 5px; border-radius: 0; background: none;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1px; color: var(--accent); direction: ltr;
+  }
+
+  .det__side { display: flex; flex-direction: column; gap: 14px; padding-top: 34px; }
+  .det__card {
+    border: 1px solid #1A1F1E; border-radius: 8px; padding: 2px 20px 20px;
+    background: linear-gradient(180deg, rgba(16, 20, 19, .85), rgba(11, 14, 13, .85));
+  }
+  .det__card .det__label { margin: 18px 0 12px; }
+  .det__side .det__bullets { gap: 8px; }
+  .det__side .det__bullets li { font-size: 13.5px; line-height: 1.85; }
+  .det__side .det__bullets li::before { margin-top: 10px; }
+  .det__side .det__val { margin-top: 0; border-radius: 8px; padding: 18px 20px; }
+  .det__side .det__val-v { font-size: 14px; line-height: 1.9; }
+  .det__side .det__link {
+    justify-content: center; min-height: 50px; margin-top: 0; border: 1px solid rgba(var(--accent-rgb), .35); border-radius: 8px;
+    background: rgba(var(--accent-rgb), .06); transition: background .25s ease, border-color .25s ease;
+  }
+  .det__side .det__link:hover { background: rgba(var(--accent-rgb), .13); border-color: var(--accent); }
+
+  .sheet.is-open .det__head, .sheet.is-open .det__main, .sheet.is-open .det__side { animation: detIn .6s var(--ease-out) both; }
+  .sheet.is-open .det__main { animation-delay: .07s; }
+  .sheet.is-open .det__side { animation-delay: .14s; }
+  .sheet__step { min-height: 64px; padding: 10px 24px; }
+}
+@media (min-width: 880px) and (min-height: 700px) {
+  .det__side { position: sticky; top: 0; }
+}
+@keyframes detIn { from { opacity: 0; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .sheet.is-open .det__head, .sheet.is-open .det__main, .sheet.is-open .det__side { animation: none; }
+  .sheet__prog::after, .sheet__mini { transition: none; }
+}
+
 /* ---------- Extra line-art classes used by site/js/visuals.js ---------- */
 .vis .v-bubble { fill: #121716; stroke: #252B29; animation: vBlink 4s ease-in-out calc(var(--i) * .5s) infinite; }
 .vis .v-bubble--me { fill: rgba(var(--accent-rgb), .16); stroke: rgba(var(--accent-rgb), .45); }
