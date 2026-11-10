@@ -1,6 +1,6 @@
 /*
- * Home-page interactions: boot sequence, name decode, rotating focus line,
- * live HUD around the 3D core, count-up stats and a trailing cursor ring.
+ * Home-page interactions: boot sequence, name decode with an x-ray lens, the focus line that
+ * drives the particle sculpture, live HUD, count-up stats and a trailing cursor ring.
  * Everything here is decorative: with JS off or reduced motion the hero reads the same.
  */
 (function () {
@@ -80,13 +80,25 @@
       return s;
     });
 
+    // Wireframe twin of the name, drawn over it: shown through a lens under the cursor
+    // and as a scan band that crosses the name each time the sculpture rebuilds.
+    var xray = document.createElement('span');
+    xray.className = 'hero__name-x';
+    xray.setAttribute('aria-hidden', 'true');
+    var twins = chars.map(function (s) {
+      var t = s.cloneNode(true);
+      xray.appendChild(t);
+      return t;
+    });
+    h.appendChild(xray);
+
     // Lock each letter's width so random glyphs never shift the line.
     var lock = function () {
       // Measure the real letters, even if a scramble is mid-flight.
       var shown = chars.map(function (s) { return s.textContent; });
       chars.forEach(function (s) { s.style.width = ''; s.textContent = s.dataset.ch === ' ' ? '\u00a0' : s.dataset.ch; });
-      chars.forEach(function (s) { s.style.width = s.getBoundingClientRect().width + 'px'; });
-      chars.forEach(function (s, i) { s.textContent = shown[i]; });
+      var ws = chars.map(function (s) { return s.getBoundingClientRect().width + 'px'; });
+      chars.forEach(function (s, i) { s.style.width = ws[i]; twins[i].style.width = ws[i]; s.textContent = shown[i]; });
     };
     lock();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(lock);
@@ -106,34 +118,52 @@
 
     if (finePointer && !reduced) {
       // Read letter positions once per hover, then write at most once per frame (no layout thrash).
-      var boxes = null, px = 0, queued = false;
+      var boxes = null, hr = null, px = 0, py = 0, queued = false;
       h.addEventListener('pointerenter', function () {
         boxes = chars.map(function (s) { var r = s.getBoundingClientRect(); return [r.left + r.width / 2, r.width]; });
+        hr = h.getBoundingClientRect();
+        xray.classList.remove('is-sweep');
+        xray.classList.add('is-lens');
       });
       h.addEventListener('pointermove', function (e) {
-        px = e.clientX;
+        px = e.clientX; py = e.clientY;
         if (queued) return;
         queued = true;
         requestAnimationFrame(function () {
           queued = false;
           if (!boxes) return;
+          xray.style.setProperty('--lx', (px - hr.left).toFixed(1) + 'px');
+          xray.style.setProperty('--ly', (py - hr.top).toFixed(1) + 'px');
           chars.forEach(function (s, i) {
             var d = Math.abs(px - boxes[i][0]) / (boxes[i][1] * 3.2), lift = Math.max(0, 1 - d);
-            s.style.setProperty('--lift', (lift * lift * -0.12).toFixed(3) + 'em');
-            s.style.setProperty('--wt', String(Math.round(lift * lift * 100)));
+            var y = (lift * lift * -0.12).toFixed(3) + 'em';
+            s.style.setProperty('--lift', y); twins[i].style.setProperty('--lift', y);
+            var wt = String(Math.round(lift * lift * 100));
+            s.style.setProperty('--wt', wt); twins[i].style.setProperty('--wt', wt);
           });
         });
       });
       h.addEventListener('pointerleave', function () {
-        chars.forEach(function (s) { s.style.setProperty('--lift', '0em'); s.style.setProperty('--glow', '0'); s.style.setProperty('--wt', '0'); });
+        boxes = null;
+        xray.classList.remove('is-lens');
+        chars.forEach(function (s, i) { s.style.setProperty('--lift', '0em'); s.style.setProperty('--glow', '0'); s.style.setProperty('--wt', '0'); twins[i].style.setProperty('--lift', '0em'); twins[i].style.setProperty('--wt', '0'); });
       });
-      chars.forEach(function (s) { s.addEventListener('pointerenter', function () { scramble(s, 260); }); });
     }
+
+    function sweep() {
+      if (reduced || xray.classList.contains('is-lens')) return;
+      xray.classList.remove('is-sweep');
+      void xray.offsetWidth;
+      xray.classList.add('is-sweep');
+    }
+    xray.addEventListener('animationend', function () { xray.classList.remove('is-sweep'); });
+    window.addEventListener('gm:focus', sweep);
 
     return {
       play: function () {
         if (reduced) return;
         chars.forEach(function (s, i) { setTimeout(function () { scramble(s, 380 + i * 55); }, 120 + i * 18); });
+        setTimeout(sweep, 1500);
       }
     };
   }
@@ -141,9 +171,13 @@
   // ---------- Rotating focus line, linked to the domain tokens and the core ----------
   function initRotator() {
     var box = $('heroRot'), tokens = document.querySelectorAll('[data-dom]');
-    if (!box) return;
-    var idx = 0, timer = 0, hold = false;
+    if (!box) return { start: function () {} };
+    var idx = 0, timer = 0, hold = false, HOLD_MS = 5200;
+    // Two views of the same state: the tokens in the meta row and the timer bars under the sculpture.
+    var segs = document.querySelectorAll('[data-seg]');
+    var runEls = [document.querySelector('.hero__domains'), $('heroSeg')].filter(Boolean);
     box.classList.add('is-js');
+    runEls.forEach(function (el) { el.style.setProperty('--rot-ms', HOLD_MS + 'ms'); });
 
     function render(animate) {
       var d = DOMAINS[idx], l = lang();
@@ -164,16 +198,33 @@
         setTimeout(function () { old.remove(); }, animate ? 600 : 0);
       }
       Array.prototype.forEach.call(tokens, function (t) { t.classList.toggle('is-on', Number(t.getAttribute('data-dom')) === idx); });
+      Array.prototype.forEach.call(segs, function (b) {
+        var on = Number(b.getAttribute('data-seg')) === idx;
+        b.classList.toggle('is-on', on);
+        if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+      });
       var f = document.querySelector('[data-hud="focus"]');
       if (f) f.textContent = d.key;
+      // The particle sculpture rebuilds itself into the same domain.
+      if (core() && core().shape) core().shape(idx, !animate);
+      if (animate) window.dispatchEvent(new CustomEvent('gm:focus', { detail: idx }));
     }
 
-    function next() { if (!hold) { idx = (idx + 1) % DOMAINS.length; render(true); } }
-    function start() { clearInterval(timer); if (!reduced) timer = setInterval(next, 2800); }
+    function next() { if (!hold && !document.hidden) { idx = (idx + 1) % DOMAINS.length; render(true); } }
+    function start() {
+      clearInterval(timer);
+      if (reduced) return;
+      timer = setInterval(next, HOLD_MS);
+      // Restart the timer line under the active token and bar.
+      runEls.forEach(function (el) { el.classList.remove('is-run'); void el.offsetWidth; el.classList.add('is-run'); });
+    }
+    function pause() { clearInterval(timer); runEls.forEach(function (el) { el.classList.remove('is-run'); }); }
 
     Array.prototype.forEach.call(tokens, function (t) {
       var go = function () {
-        hold = true; idx = Number(t.getAttribute('data-dom')); render(true);
+        var to = Number(t.getAttribute('data-dom'));
+        hold = true; pause();
+        if (to !== idx) { idx = to; render(true); }
         if (core()) core().boost(true);
       };
       var leave = function () { hold = false; if (core()) core().boost(false); start(); };
@@ -182,9 +233,18 @@
       t.addEventListener('click', function () { go(); if (core()) core().ping(); setTimeout(leave, 1600); });
     });
 
+    Array.prototype.forEach.call(segs, function (b) {
+      b.addEventListener('click', function () {
+        var to = Number(b.getAttribute('data-seg'));
+        if (to !== idx) { idx = to; render(true); }
+        if (core()) core().ping();
+        if (!hold) start();
+      });
+    });
+
     window.addEventListener('gm:lang', function () { render(false); });
     render(false);
-    start();
+    return { start: start };
   }
 
   // ---------- Live HUD around the core ----------
@@ -293,10 +353,11 @@
   function init() {
     initMagnetic();
     var name = initName();
-    initRotator();
+    var rot = initRotator();
     initHud();
     initCursor();
-    boot(function () { name.play(); countUp(); });
+    // The focus line starts cycling once the first sculpture has finished building.
+    boot(function () { name.play(); countUp(); setTimeout(rot.start, reduced ? 0 : 2600); });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

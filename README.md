@@ -10,8 +10,8 @@ Single-page bilingual (FA / EN) portfolio with an interactive WebGL particle cor
 | `site/js/projects-data.js` | All 19 projects (FA + EN). Edit project content here. |
 | `site/js/main.js` | Project cards and details sheet, language switch, search palette (Ctrl/⌘ + K), architecture map, mobile menu. |
 | `site/js/visuals.js` | Line-art SVG illustration for every project (one motif each) and coloured through CSS. |
-| `site/js/core3d.js` | The particle core: 22k GPU particles in custom GLSL (11k on mobile) that morph with scroll — core → spiral galaxy → wave grid → the GM emblem sampled from the logo. The cursor parts the field and tethers to nearby particles; click sends a shockwave; quality adapts to the device. |
-| `site/js/hero.js` | Home-page interactions: once-per-session boot sequence, name decode, rotating focus line, live HUD around the core, count-up stats, cursor ring. |
+| `site/js/core3d.js` | The particle sculpture: 22k GPU particles in custom GLSL (11k on mobile). In the hero it rebuilds itself into the current focus — a neural network (AI), a shield with a keyhole (Security), database platters (Data), a chip with its traces (IoT) — sweeping bottom to top through a swirl, then light travels along the finished form. On scroll it morphs on: spiral galaxy → wave grid → the GM emblem sampled from the logo. The cursor parts the field and tethers to nearby particles; click sends a shockwave; quality adapts to the device. Shapes live in `buildShapes()`. |
+| `site/js/hero.js` | Home-page interactions: once-per-session boot sequence, name decode, the x-ray lens over the name (a wireframe twin under the cursor, and a scan band on every rebuild), the focus line that drives the sculpture (tokens and the timer bars under it switch the form), live HUD, count-up stats, cursor ring. |
 | `site/vendor/three.min.js` | three.js r149, self-hosted. |
 | `site/assets/` | Logo, portrait and self-hosted fonts (Vazirmatn for text, Readex Pro for headings, Syne for the name, IBM Plex Mono). |
 | `dist/portfolio-fa-standalone.html` | Everything above inlined into one file — works offline or from any host. |
