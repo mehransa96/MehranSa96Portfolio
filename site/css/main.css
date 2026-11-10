@@ -1845,3 +1845,60 @@ html[lang="fa"] .drawer.is-open .dr-row .dr-row__t { animation-name: drTextFa; }
   .hbtn--tg.tg-btn::after { animation: none; }
   .rpl__w { display: none; }
 }
+
+/* =====================================================================
+   v6 — hero: shape-shifting sculpture, x-ray name, focus timer
+   ===================================================================== */
+/* Name: a wireframe twin sits on top of the letters. It shows through a lens under the cursor
+   and as a scan band that crosses the name whenever the sculpture rebuilds. */
+@property --lr { syntax: '<length>'; inherits: false; initial-value: 0px; }
+.hero__name { position: relative; }
+.hero__name-x {
+  position: absolute; inset: 0; display: block; white-space: nowrap; pointer-events: none;
+  color: var(--bg); -webkit-text-stroke: 1.2px var(--accent);
+  visibility: hidden;
+  clip-path: circle(var(--lr) at var(--lx, 50%) var(--ly, 50%));
+  transition: --lr .5s var(--ease-out), visibility 0s linear .5s;
+}
+.hero__name-x.is-lens { visibility: visible; --lr: clamp(44px, 1.15em, 92px); transition: --lr .5s var(--ease-out), visibility 0s; }
+.hero__name-x.is-sweep { visibility: visible; transition: none; animation: nameSweep 1.2s cubic-bezier(.62, 0, .3, 1) both; }
+@keyframes nameSweep {
+  from { clip-path: inset(-12% 100% -12% -24%); }
+  to { clip-path: inset(-12% -24% -12% 100%); }
+}
+@media (prefers-reduced-motion: reduce) { .hero__name-x { display: none; } }
+
+/* Focus tokens: the underline of the active one is a timer for the next rebuild. */
+.hero__domains.is-run i.is-on::after { animation: domFill var(--rot-ms, 5200ms) linear both; }
+@keyframes domFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Timer bars between the lower HUD readouts: one per focus, the active one fills until the next
+   rebuild; press any bar to build that form now. */
+.hero__seg {
+  position: absolute; left: 50%; bottom: calc(2% + 3px); width: 36%; transform: translateX(-50%);
+  display: flex; gap: 5px; z-index: 1;
+}
+.hero__seg button {
+  position: relative; flex: 1 1 0; min-width: 0; height: 30px; padding: 0; border: 0; background: none;
+  cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.hero__seg button::before, .hero__seg button::after {
+  content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; border-radius: 2px;
+}
+.hero__seg button::before { background: var(--line-3); transition: background .3s ease, transform .3s var(--ease-out); }
+.hero__seg button::after {
+  background: var(--accent); box-shadow: 0 0 10px rgba(var(--accent-rgb), .55);
+  opacity: 0; transform-origin: left; transition: opacity .5s ease;
+}
+.hero__seg button.is-on::after { opacity: 1; }
+.hero__seg.is-run button.is-on::after { animation: domFill var(--rot-ms, 5200ms) linear both; }
+.hero__seg button:focus-visible { outline-offset: -6px; }
+@media (hover: hover) {
+  .hero__seg button:hover::before { background: var(--mute-2); transform: scaleY(2); }
+}
+@media (max-height: 540px) and (orientation: landscape) { .hero__seg { bottom: 0; } }
+
+/* Desktop: the sculpture gets more room. */
+@media (min-width: 1100px) and (min-height: 760px) {
+  .hero__anchor, .hero__caption { max-width: min(100%, 580px, 66vh); }
+}
